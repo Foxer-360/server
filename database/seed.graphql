@@ -1,0 +1,94 @@
+# Add default languages into database
+mutation addLanguages {
+  # English (Default)
+  english: createLanguage(
+    data: {
+      code: "en"
+      name: "English"
+      englishName: "English"
+      isDefault: true
+      isEnabled: true
+    }
+  ) { id }
+
+  # Czech
+  czech: createLanguage(
+    data: {
+      code: "cs"
+      name: "Čeština"
+      englishName: "Czech"
+    }
+  ) { id }
+
+  # German
+  german: createLanguage(
+    data: {
+      code: "de"
+      name: "Deutsch"
+      englishName: "German"
+    }
+  ) { id }
+
+  # Russian
+  russian: createLanguage(
+    data: {
+      code: "ru"
+      name: "Russki"
+      englishName: "Russian"
+    }
+  ) { id }
+
+  # Portuguese
+  portuguese: createLanguage(
+    data: {
+      code: "pt"
+      name: "Português"
+      englishName: "Portuguese"
+    }
+  ) { id }
+
+  # Spanish
+  spanish: createLanguage(
+    data: {
+      code: "es"
+      name: "Español"
+      englishName: "Spanish"
+    }
+  ) { id }
+
+  # Polish
+  polish: createLanguage(
+    data: {
+      code: "pl"
+      name: "Polski"
+      englishName: "Polish"
+    }
+  ) { id }
+
+  # French
+  french:createLanguage(
+    data: {
+      code: "fr"
+      name: "Français"
+      englishName: "French"
+    }
+  ) { id }
+
+  # Italian
+  italian: createLanguage(
+    data: {
+      code: "it"
+      name: "Italiano"
+      englishName: "Italian"
+    }
+  ) { id }
+
+  # Slovak
+  slovak: createLanguage(
+    data: {
+      code: "sk"
+      name: "Slovenčtina"
+      englishName: "Slovak"
+    }
+  ) { id }
+}

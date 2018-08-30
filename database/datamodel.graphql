@@ -1,0 +1,83 @@
+type Language {
+  id: ID! @unique
+  code: String!
+  name: String!
+  englishName: String!
+  isDefault: Boolean! @default(value: "false")
+  isEnabled: Boolean! @default(value: "false")
+}
+
+type Project {
+  id: ID! @unique
+  name: String!
+  defaultName: String!
+  languages: [Language!]! @relation(name: "EnabledLanguagesInProject")
+  defaultLanguage: Language! @relation(name: "DefaultLanguageInProject")
+  settings: Json! @default(value: "{}")
+  websites: [Website!]! @relation(name: "WebsiteUnderProject", onDelete: CASCADE)
+}
+
+type Website {
+  id: ID! @unique
+  title: String!
+  project: Project! @relation(name: "WebsiteUnderProject")
+  languages: [Language!]! @relation(name: "EnabledLanguagesInWebsite")
+  defaultLanguage: Language! @relation(name: "DefaultLanguageInWebsite")
+  urlMask: String!
+  settings: Json! @default(value: "{}")
+  pageTypes: [PageType!]! @relation(name: "PageTypeUnderWebsite", onDelete: CASCADE)
+  pages: [Page!]! @relation(name: "PageUnderWebsite", onDelete: CASCADE)
+}
+
+type PageType {
+  id: ID! @unique
+  name: String!
+  content: Json! @default(value: "{}")
+  website: Website! @relation(name: "PageTypeUnderWebsite")
+  plugins: [String!]!
+}
+
+# Section with Pages
+enum PageStatus {
+  DRAFT,
+  PENDING,
+  PUBLISHED
+}
+
+type Page {
+  id: ID! @unique
+  parent: Page
+  website: Website! @relation(name: "PageUnderWebsite")
+  type: PageType!
+  translations: [PageTranslation!]! @relation(name: "TranslationForPage", onDelete: CASCADE)
+  chats: [PageChat!]! @relation(name: "ChatUnderPage", onDelete: CASCADE)
+}
+
+type PageTranslation {
+  id: ID! @unique
+  page: Page! @relation(name: "TranslationForPage")
+  language: Language! @relation(name: "PageTranslationLanguage")
+  url: String!
+  content: Json! @default(value: "{}")
+  name: String! @default(value: "New Page")
+  status: PageStatus! @default(value: "DRAFT")
+  publishedFrom: DateTime
+  publishedTo: DateTime
+  tasks: [PageTask!]! @relation(name: "TaskUnderPage", onDelete: CASCADE)
+}
+
+type PageTask {
+  id: ID! @unique
+  pageTranslation: PageTranslation! @relation(name: "TaskUnderPage")
+  done: Boolean! @default(value: "false")
+  name: String!
+  description: String!
+  updatedAt: DateTime!
+}
+
+type PageChat {
+  id: ID! @unique
+  page: Page! @relation(name: "ChatUnderPage")
+  text: String!
+  createdAt: DateTime!
+}

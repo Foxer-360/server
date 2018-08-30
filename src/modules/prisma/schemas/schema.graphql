@@ -1,0 +1,100 @@
+# import * from '../../../generated/prisma.graphql'
+# import * from './page.graphql'
+
+type Mutation {
+  # Copied from Prisma schema
+  createProject(data: ProjectCreateInput!): Project!
+  createWebsite(data: WebsiteCreateInput!): Website!
+  createPageTranslation(data: PageTranslationCreateInput!): PageTranslation!
+  createPageTask(data: PageTaskCreateInput!): PageTask!
+  createPageChat(data: PageChatCreateInput!): PageChat!
+  createPageType(data: PageTypeCreateInput!): PageType!
+  createLanguage(data: LanguageCreateInput!): Language!
+  updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
+  updateWebsite(data: WebsiteUpdateInput!, where: WebsiteWhereUniqueInput!): Website
+  updatePageTranslation(data: PageTranslationUpdateInput!, where: PageTranslationWhereUniqueInput!): PageTranslation
+  updatePageTask(data: PageTaskUpdateInput!, where: PageTaskWhereUniqueInput!): PageTask
+  updatePageChat(data: PageChatUpdateInput!, where: PageChatWhereUniqueInput!): PageChat
+  updatePage(data: PageUpdateInput!, where: PageWhereUniqueInput!): Page
+  updatePageType(data: PageTypeUpdateInput!, where: PageTypeWhereUniqueInput!): PageType
+  updateLanguage(data: LanguageUpdateInput!, where: LanguageWhereUniqueInput!): Language
+  deleteProject(where: ProjectWhereUniqueInput!): Project
+  deleteWebsite(where: WebsiteWhereUniqueInput!): Website
+  deletePageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
+  deletePageTask(where: PageTaskWhereUniqueInput!): PageTask
+  deletePageChat(where: PageChatWhereUniqueInput!): PageChat
+  deletePage(where: PageWhereUniqueInput!): Page
+  deletePageType(where: PageTypeWhereUniqueInput!): PageType
+  deleteLanguage(where: LanguageWhereUniqueInput!): Language
+  upsertProject(where: ProjectWhereUniqueInput!, create: ProjectCreateInput!, update: ProjectUpdateInput!): Project!
+  upsertWebsite(where: WebsiteWhereUniqueInput!, create: WebsiteCreateInput!, update: WebsiteUpdateInput!): Website!
+  upsertPageTranslation(where: PageTranslationWhereUniqueInput!, create: PageTranslationCreateInput!, update: PageTranslationUpdateInput!): PageTranslation!
+  upsertPageTask(where: PageTaskWhereUniqueInput!, create: PageTaskCreateInput!, update: PageTaskUpdateInput!): PageTask!
+  upsertPageChat(where: PageChatWhereUniqueInput!, create: PageChatCreateInput!, update: PageChatUpdateInput!): PageChat!
+  upsertPage(where: PageWhereUniqueInput!, create: PageCreateInput!, update: PageUpdateInput!): Page!
+  upsertPageType(where: PageTypeWhereUniqueInput!, create: PageTypeCreateInput!, update: PageTypeUpdateInput!): PageType!
+  upsertLanguage(where: LanguageWhereUniqueInput!, create: LanguageCreateInput!, update: LanguageUpdateInput!): Language!
+  updateManyProjects(data: ProjectUpdateInput!, where: ProjectWhereInput): BatchPayload!
+  updateManyWebsites(data: WebsiteUpdateInput!, where: WebsiteWhereInput): BatchPayload!
+  updateManyPageTranslations(data: PageTranslationUpdateInput!, where: PageTranslationWhereInput): BatchPayload!
+  updateManyPageTasks(data: PageTaskUpdateInput!, where: PageTaskWhereInput): BatchPayload!
+  updateManyPageChats(data: PageChatUpdateInput!, where: PageChatWhereInput): BatchPayload!
+  updateManyPages(data: PageUpdateInput!, where: PageWhereInput): BatchPayload!
+  updateManyPageTypes(data: PageTypeUpdateInput!, where: PageTypeWhereInput): BatchPayload!
+  updateManyLanguages(data: LanguageUpdateInput!, where: LanguageWhereInput): BatchPayload!
+  deleteManyProjects(where: ProjectWhereInput): BatchPayload!
+  deleteManyWebsites(where: WebsiteWhereInput): BatchPayload!
+  deleteManyPageTranslations(where: PageTranslationWhereInput): BatchPayload!
+  deleteManyPageTasks(where: PageTaskWhereInput): BatchPayload!
+  deleteManyPageChats(where: PageChatWhereInput): BatchPayload!
+  deleteManyPages(where: PageWhereInput): BatchPayload!
+  deleteManyPageTypes(where: PageTypeWhereInput): BatchPayload!
+  deleteManyLanguages(where: LanguageWhereInput): BatchPayload!
+
+  # Custom definitions
+  createPage(data: CustomPageCreateInput!): Page!
+}
+
+type Query {
+  # Copied from Prisma schema
+  projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
+  websites(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Website]!
+  pageTranslations(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTranslation]!
+  pageTasks(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTask]!
+  pageChats(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageChat]!
+  pages(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Page]!
+  pageTypes(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageType]!
+  languages(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Language]!
+  project(where: ProjectWhereUniqueInput!): Project
+  website(where: WebsiteWhereUniqueInput!): Website
+  pageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
+  pageTask(where: PageTaskWhereUniqueInput!): PageTask
+  pageChat(where: PageChatWhereUniqueInput!): PageChat
+  page(where: PageWhereUniqueInput!): Page
+  pageType(where: PageTypeWhereUniqueInput!): PageType
+  language(where: LanguageWhereUniqueInput!): Language
+  projectsConnection(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectConnection!
+  websitesConnection(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WebsiteConnection!
+  pageTranslationsConnection(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTranslationConnection!
+  pageTasksConnection(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTaskConnection!
+  pageChatsConnection(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageChatConnection!
+  pagesConnection(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageConnection!
+  pageTypesConnection(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTypeConnection!
+  languagesConnection(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LanguageConnection!
+
+  # Custom definitions
+}
+
+type Subscription {
+  # Copied from Prisma schema
+  project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
+  website(where: WebsiteSubscriptionWhereInput): WebsiteSubscriptionPayload
+  pageTranslation(where: PageTranslationSubscriptionWhereInput): PageTranslationSubscriptionPayload
+  pageTask(where: PageTaskSubscriptionWhereInput): PageTaskSubscriptionPayload
+  pageChat(where: PageChatSubscriptionWhereInput): PageChatSubscriptionPayload
+  page(where: PageSubscriptionWhereInput): PageSubscriptionPayload
+  pageType(where: PageTypeSubscriptionWhereInput): PageTypeSubscriptionPayload
+  language(where: LanguageSubscriptionWhereInput): LanguageSubscriptionPayload
+
+  # Custom definitions
+}

@@ -1,0 +1,11 @@
+# Ignore NodeJS modules
+node_modules/
+
+# Ignore build
+dist/
+
+# Ignore local configs
+.env
+
+# Ignore debug config of Visual Studio Code
+.vscode/

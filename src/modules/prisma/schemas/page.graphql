@@ -1,0 +1,10 @@
+input CustomPageCreateInput {
+  parent: PageCreateOneInput
+  website: WebsiteCreateOneWithoutPagesInput!
+  type: PageTypeCreateOneInput!
+  translations: PageTranslationCreateManyWithoutPageInput
+  name: String
+  url: String
+  content: Json
+  status: PageStatus
+}
