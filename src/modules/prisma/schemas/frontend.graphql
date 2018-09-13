@@ -1,0 +1,9 @@
+input FrontendWhereInput {
+  url: String!
+}
+
+type Frontend {
+  id: ID!
+  website: ID!
+  language: ID!
+}

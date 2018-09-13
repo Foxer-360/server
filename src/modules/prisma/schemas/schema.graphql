@@ -1,5 +1,6 @@
 # import * from '../../../generated/prisma.graphql'
 # import * from './page.graphql'
+# import * from './frontend.graphql'
 
 type Mutation {
   # Copied from Prisma schema
@@ -83,6 +84,7 @@ type Query {
   languagesConnection(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LanguageConnection!
 
   # Custom definitions
+  frontend(where: FrontendWhereInput!): Frontend!
 }
 
 type Subscription {
