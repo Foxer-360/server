@@ -106,6 +106,11 @@ export class FrontendResolver {
       pages = [resolvedUrl.website, ...pages];
     }
 
+    if (pages.length < 1) {
+      // Add '' into pages
+      pages.push('');
+    }
+
     const pageObjects = [];
     const pageInfo = `{
       id,
