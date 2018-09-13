@@ -2,8 +2,19 @@ input FrontendWhereInput {
   url: String!
 }
 
-type Frontend {
+type LocalizedPage {
   id: ID!
-  website: ID!
-  language: ID!
+  type: PageType!
+  url: String!
+  name: String!
+  status: PageStatus!
+  content: Json!
+  publishedTo: DateTime
+  publishedFrom: DateTime
+}
+
+type Frontend {
+  website: Website!
+  language: Language!
+  page: LocalizedPage!
 }

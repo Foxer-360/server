@@ -32,10 +32,18 @@ export class FrontendResolver {
     //   Finally if we found this page, just gather all informations what are necessary and send it to client
 
     // Now Website
-
     const websiteInfo = `
     { id
       title
+      project {
+        id
+        name
+        languages {
+          id
+          code
+          name
+        }
+      }
       languages {
         id
         code
@@ -46,6 +54,8 @@ export class FrontendResolver {
         code
         name
       }
+      urlMask
+      settings
     }`;
 
     let qWs = null;
@@ -115,7 +125,9 @@ export class FrontendResolver {
         name
         status
         content
-      }
+        publishedFrom
+        publishedTo
+      },
     }`;
 
     for (const page of pages) {
@@ -152,18 +164,13 @@ export class FrontendResolver {
       pageObjects.push(pn);
     }
 
-    // tslint:disable-next-line:no-console
-    console.log(`Website: ${websiteObject.title}`);
-    // tslint:disable-next-line:no-console
-    console.log(`Langauge: ${languageObject.name}`);
-    // tslint:disable-next-line:no-console
-    console.log(`Page: ${pageObjects[pageObjects.length - 1].name}`);
+    const res = {
+      website: websiteObject,
+      language: languageObject,
+      page: pageObjects[pageObjects.length - 1],
+    };
 
-    return Promise.resolve({
-      id: '0909',
-      website: '30242',
-      language: '3949503',
-    });
+    return Promise.resolve(res);
   }
 
 }
