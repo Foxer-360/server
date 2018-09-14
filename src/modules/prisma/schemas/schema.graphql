@@ -84,7 +84,7 @@ type Query {
   languagesConnection(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LanguageConnection!
 
   # Custom definitions
-  frontend(where: FrontendWhereInput!): Frontend!
+  frontend(where: FrontendWhereInput!): Frontend
 }
 
 type Subscription {

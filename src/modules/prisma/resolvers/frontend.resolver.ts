@@ -15,6 +15,8 @@ export class FrontendResolver {
     // tslint:disable-next-line:no-console
     console.log(`Trying to resolve ${url} page...`);
 
+    const emptyRes = null;
+
     const resolvedUrl = this.frontendService.resolveUrl(url);
 
     // Flow:
@@ -72,7 +74,8 @@ export class FrontendResolver {
     }
 
     if (!qWs || qWs.length < 1) {
-      throw new Error('No website found...');
+      return Promise.resolve(emptyRes);
+      // throw new Error('No website found...');
     }
 
     const websiteObject = qWs[0];
@@ -85,7 +88,8 @@ export class FrontendResolver {
       });
 
       if (!lang) {
-        throw new Error(`Language ${resolvedUrl.language} for this website is not available...`);
+        return Promise.resolve(emptyRes);
+        // throw new Error(`Language ${resolvedUrl.language} for this website is not available...`);
       }
 
       languageObject = { ...lang };
@@ -94,7 +98,8 @@ export class FrontendResolver {
     }
 
     if (!languageObject) {
-      throw new Error(`No language for website was found...`);
+      return Promise.resolve(emptyRes);
+      // throw new Error(`No language for website was found...`);
     }
 
     // Now page
@@ -156,7 +161,8 @@ export class FrontendResolver {
       }, pageInfo);
 
       if (!p || p.length < 1) {
-        throw new Error(`Page ${page} was not found...`);
+        return Promise.resolve(emptyRes);
+        // throw new Error(`Page ${page} was not found...`);
       }
 
       const pn = {
