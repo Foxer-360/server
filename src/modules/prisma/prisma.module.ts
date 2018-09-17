@@ -10,6 +10,7 @@ import { PageResolver } from './resolvers/page.resolver';
 import { PageTaskResolver } from './resolvers/pageTask.resolver';
 import { PageChatResolver } from './resolvers/pageChat.resolver';
 import { FrontendResolver } from './resolvers/frontend.resolver';
+import { NavigationResolver } from './resolvers/navigation.resolvers';
 import { SubscriptionsService } from 'modules/subscriptions/subscriptions.service';
 import { SubscriptionsModule } from 'modules/subscriptions/subscriptions.module';
 import { FrontendService } from './services/frontend.service';
@@ -18,7 +19,7 @@ import { importSchema } from 'graphql-import';
 @Module({
   imports: [GraphQLModule, SubscriptionsModule.forRoot(5001)],
   providers: [prismaProvider, LanguageResolver, ProjectResolver, WebsiteResolver, PageTypeResolver,
-    PageResolver, PageTaskResolver, PageChatResolver, FrontendResolver, FrontendService],
+    PageResolver, PageTaskResolver, PageChatResolver, FrontendResolver, FrontendService, NavigationResolver],
   exports: [prismaProvider],
 })
 export class PrismaModule implements NestModule {
