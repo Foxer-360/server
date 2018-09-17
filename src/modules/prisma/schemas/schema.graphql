@@ -6,6 +6,7 @@ type Mutation {
   # Copied from Prisma schema
   createProject(data: ProjectCreateInput!): Project!
   createPageTranslation(data: PageTranslationCreateInput!): PageTranslation!
+  createPagePlugin(data: PagePluginCreateInput!): PagePlugin!
   createPageTask(data: PageTaskCreateInput!): PageTask!
   createPageChat(data: PageChatCreateInput!): PageChat!
   createFile(data: FileCreateInput!): File!
@@ -16,6 +17,7 @@ type Mutation {
   createLanguage(data: LanguageCreateInput!): Language!
   updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
   updatePageTranslation(data: PageTranslationUpdateInput!, where: PageTranslationWhereUniqueInput!): PageTranslation
+  updatePagePlugin(data: PagePluginUpdateInput!, where: PagePluginWhereUniqueInput!): PagePlugin
   updatePageTask(data: PageTaskUpdateInput!, where: PageTaskWhereUniqueInput!): PageTask
   updatePageChat(data: PageChatUpdateInput!, where: PageChatWhereUniqueInput!): PageChat
   updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
@@ -27,6 +29,7 @@ type Mutation {
   updateLanguage(data: LanguageUpdateInput!, where: LanguageWhereUniqueInput!): Language
   deleteProject(where: ProjectWhereUniqueInput!): Project
   deletePageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
+  deletePagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
   deletePageTask(where: PageTaskWhereUniqueInput!): PageTask
   deletePageChat(where: PageChatWhereUniqueInput!): PageChat
   deleteFile(where: FileWhereUniqueInput!): File
@@ -38,6 +41,7 @@ type Mutation {
   deleteLanguage(where: LanguageWhereUniqueInput!): Language
   upsertProject(where: ProjectWhereUniqueInput!, create: ProjectCreateInput!, update: ProjectUpdateInput!): Project!
   upsertPageTranslation(where: PageTranslationWhereUniqueInput!, create: PageTranslationCreateInput!, update: PageTranslationUpdateInput!): PageTranslation!
+  upsertPagePlugin(where: PagePluginWhereUniqueInput!, create: PagePluginCreateInput!, update: PagePluginUpdateInput!): PagePlugin!
   upsertPageTask(where: PageTaskWhereUniqueInput!, create: PageTaskCreateInput!, update: PageTaskUpdateInput!): PageTask!
   upsertPageChat(where: PageChatWhereUniqueInput!, create: PageChatCreateInput!, update: PageChatUpdateInput!): PageChat!
   upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
@@ -49,6 +53,7 @@ type Mutation {
   upsertLanguage(where: LanguageWhereUniqueInput!, create: LanguageCreateInput!, update: LanguageUpdateInput!): Language!
   updateManyProjects(data: ProjectUpdateInput!, where: ProjectWhereInput): BatchPayload!
   updateManyPageTranslations(data: PageTranslationUpdateInput!, where: PageTranslationWhereInput): BatchPayload!
+  updateManyPagePlugins(data: PagePluginUpdateInput!, where: PagePluginWhereInput): BatchPayload!
   updateManyPageTasks(data: PageTaskUpdateInput!, where: PageTaskWhereInput): BatchPayload!
   updateManyPageChats(data: PageChatUpdateInput!, where: PageChatWhereInput): BatchPayload!
   updateManyFiles(data: FileUpdateInput!, where: FileWhereInput): BatchPayload!
@@ -60,6 +65,7 @@ type Mutation {
   updateManyLanguages(data: LanguageUpdateInput!, where: LanguageWhereInput): BatchPayload!
   deleteManyProjects(where: ProjectWhereInput): BatchPayload!
   deleteManyPageTranslations(where: PageTranslationWhereInput): BatchPayload!
+  deleteManyPagePlugins(where: PagePluginWhereInput): BatchPayload!
   deleteManyPageTasks(where: PageTaskWhereInput): BatchPayload!
   deleteManyPageChats(where: PageChatWhereInput): BatchPayload!
   deleteManyFiles(where: FileWhereInput): BatchPayload!
@@ -73,12 +79,14 @@ type Mutation {
   # Custom definitions
   createPage(data: CustomPageCreateInput!): Page!
   createNavigationStructure(navigation: ID!, data: [NavigationNodeCreateInput]!): [NavigationNode]!
+  savePagePlugin(data: PagePluginCreateInput!): PagePlugin!
 }
 
 type Query {
   # Copied from Prisma schema
   projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
   pageTranslations(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTranslation]!
+  pagePlugins(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PagePlugin]!
   pageTasks(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTask]!
   pageChats(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageChat]!
   files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File]!
@@ -90,6 +98,7 @@ type Query {
   languages(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Language]!
   project(where: ProjectWhereUniqueInput!): Project
   pageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
+  pagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
   pageTask(where: PageTaskWhereUniqueInput!): PageTask
   pageChat(where: PageChatWhereUniqueInput!): PageChat
   file(where: FileWhereUniqueInput!): File
@@ -101,6 +110,7 @@ type Query {
   language(where: LanguageWhereUniqueInput!): Language
   projectsConnection(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectConnection!
   pageTranslationsConnection(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTranslationConnection!
+  pagePluginsConnection(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PagePluginConnection!
   pageTasksConnection(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTaskConnection!
   pageChatsConnection(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageChatConnection!
   filesConnection(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
@@ -119,6 +129,7 @@ type Subscription {
   # Copied from Prisma schema
   project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
   pageTranslation(where: PageTranslationSubscriptionWhereInput): PageTranslationSubscriptionPayload
+  pagePlugin(where: PagePluginSubscriptionWhereInput): PagePluginSubscriptionPayload
   pageTask(where: PageTaskSubscriptionWhereInput): PageTaskSubscriptionPayload
   pageChat(where: PageChatSubscriptionWhereInput): PageChatSubscriptionPayload
   file(where: FileSubscriptionWhereInput): FileSubscriptionPayload
