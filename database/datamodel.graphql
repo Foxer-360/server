@@ -81,3 +81,14 @@ type PageChat {
   text: String!
   createdAt: DateTime!
 }
+
+type File {
+  id: ID! @unique
+  hash: String! @unique
+  category: String
+  filename: String!
+  mimetype: String
+  size: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}

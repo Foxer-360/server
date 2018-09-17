@@ -1,0 +1,20 @@
+input FrontendWhereInput {
+  url: String!
+}
+
+type LocalizedPage {
+  id: ID!
+  type: PageType!
+  url: String!
+  name: String!
+  status: PageStatus!
+  content: Json!
+  publishedTo: DateTime
+  publishedFrom: DateTime
+}
+
+type Frontend {
+  website: Website!
+  language: Language!
+  page: LocalizedPage!
+}

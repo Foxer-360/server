@@ -24,7 +24,7 @@ export class PageResolver {
       url: '/',
       content: {},
       name: 'New Page',
-      status: 'DRAFT'
+      status: 'DRAFT',
     };
     if (args.data.url) {
       translation.url = args.data.url;
@@ -70,12 +70,12 @@ export class PageResolver {
         data: {
           ...translation,
           page: {
-            connect: { id: page }
+            connect: { id: page },
           },
           language: {
-            connect: { id: lang }
-          }
-        } as PageTranslationCreateInput
+            connect: { id: lang },
+          },
+        } as PageTranslationCreateInput,
       };
 
       await this.prisma.mutation.createPageTranslation(transArgs, '{ id }');
