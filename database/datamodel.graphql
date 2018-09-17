@@ -66,6 +66,14 @@ type PageTranslation {
   tasks: [PageTask!]! @relation(name: "TaskUnderPage", onDelete: CASCADE)
 }
 
+type PagePlugin {
+  id: ID! @unique
+  page: Page! @relation(name: "PluginForPage")
+  language: Language! @relation(name: "PagePluginLanguage")
+  plugin: String!
+  content: Json! @default(value: "{}")
+}
+
 type PageTask {
   id: ID! @unique
   pageTranslation: PageTranslation! @relation(name: "TaskUnderPage")

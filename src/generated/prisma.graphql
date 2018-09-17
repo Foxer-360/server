@@ -1,5 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Mon Sep 17 2018 15:56:46 GMT+0200 (Central European Summer Time)
+# timestamp: Mon Sep 17 2018 17:41:12 GMT+0200 (Central European Summer Time)
 
 type AggregateFile {
   count: Int!
@@ -22,6 +22,10 @@ type AggregatePage {
 }
 
 type AggregatePageChat {
+  count: Int!
+}
+
+type AggregatePagePlugin {
   count: Int!
 }
 
@@ -806,6 +810,7 @@ scalar Long
 type Mutation {
   createProject(data: ProjectCreateInput!): Project!
   createPageTranslation(data: PageTranslationCreateInput!): PageTranslation!
+  createPagePlugin(data: PagePluginCreateInput!): PagePlugin!
   createPageTask(data: PageTaskCreateInput!): PageTask!
   createPageChat(data: PageChatCreateInput!): PageChat!
   createFile(data: FileCreateInput!): File!
@@ -817,6 +822,7 @@ type Mutation {
   createLanguage(data: LanguageCreateInput!): Language!
   updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
   updatePageTranslation(data: PageTranslationUpdateInput!, where: PageTranslationWhereUniqueInput!): PageTranslation
+  updatePagePlugin(data: PagePluginUpdateInput!, where: PagePluginWhereUniqueInput!): PagePlugin
   updatePageTask(data: PageTaskUpdateInput!, where: PageTaskWhereUniqueInput!): PageTask
   updatePageChat(data: PageChatUpdateInput!, where: PageChatWhereUniqueInput!): PageChat
   updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
@@ -828,6 +834,7 @@ type Mutation {
   updateLanguage(data: LanguageUpdateInput!, where: LanguageWhereUniqueInput!): Language
   deleteProject(where: ProjectWhereUniqueInput!): Project
   deletePageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
+  deletePagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
   deletePageTask(where: PageTaskWhereUniqueInput!): PageTask
   deletePageChat(where: PageChatWhereUniqueInput!): PageChat
   deleteFile(where: FileWhereUniqueInput!): File
@@ -839,6 +846,7 @@ type Mutation {
   deleteLanguage(where: LanguageWhereUniqueInput!): Language
   upsertProject(where: ProjectWhereUniqueInput!, create: ProjectCreateInput!, update: ProjectUpdateInput!): Project!
   upsertPageTranslation(where: PageTranslationWhereUniqueInput!, create: PageTranslationCreateInput!, update: PageTranslationUpdateInput!): PageTranslation!
+  upsertPagePlugin(where: PagePluginWhereUniqueInput!, create: PagePluginCreateInput!, update: PagePluginUpdateInput!): PagePlugin!
   upsertPageTask(where: PageTaskWhereUniqueInput!, create: PageTaskCreateInput!, update: PageTaskUpdateInput!): PageTask!
   upsertPageChat(where: PageChatWhereUniqueInput!, create: PageChatCreateInput!, update: PageChatUpdateInput!): PageChat!
   upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
@@ -850,6 +858,7 @@ type Mutation {
   upsertLanguage(where: LanguageWhereUniqueInput!, create: LanguageCreateInput!, update: LanguageUpdateInput!): Language!
   updateManyProjects(data: ProjectUpdateInput!, where: ProjectWhereInput): BatchPayload!
   updateManyPageTranslations(data: PageTranslationUpdateInput!, where: PageTranslationWhereInput): BatchPayload!
+  updateManyPagePlugins(data: PagePluginUpdateInput!, where: PagePluginWhereInput): BatchPayload!
   updateManyPageTasks(data: PageTaskUpdateInput!, where: PageTaskWhereInput): BatchPayload!
   updateManyPageChats(data: PageChatUpdateInput!, where: PageChatWhereInput): BatchPayload!
   updateManyFiles(data: FileUpdateInput!, where: FileWhereInput): BatchPayload!
@@ -861,6 +870,7 @@ type Mutation {
   updateManyLanguages(data: LanguageUpdateInput!, where: LanguageWhereInput): BatchPayload!
   deleteManyProjects(where: ProjectWhereInput): BatchPayload!
   deleteManyPageTranslations(where: PageTranslationWhereInput): BatchPayload!
+  deleteManyPagePlugins(where: PagePluginWhereInput): BatchPayload!
   deleteManyPageTasks(where: PageTaskWhereInput): BatchPayload!
   deleteManyPageChats(where: PageChatWhereInput): BatchPayload!
   deleteManyFiles(where: FileWhereInput): BatchPayload!
@@ -1743,6 +1753,202 @@ enum PageOrderByInput {
   updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+}
+
+type PagePlugin implements Node {
+  id: ID!
+  page(where: PageWhereInput): Page!
+  language(where: LanguageWhereInput): Language!
+  plugin: String!
+  content: Json!
+}
+
+"""A connection to a list of items."""
+type PagePluginConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [PagePluginEdge]!
+  aggregate: AggregatePagePlugin!
+}
+
+input PagePluginCreateInput {
+  plugin: String!
+  content: Json
+  page: PageCreateOneInput!
+  language: LanguageCreateOneInput!
+}
+
+"""An edge in a connection."""
+type PagePluginEdge {
+  """The item at the end of the edge."""
+  node: PagePlugin!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum PagePluginOrderByInput {
+  id_ASC
+  id_DESC
+  plugin_ASC
+  plugin_DESC
+  content_ASC
+  content_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type PagePluginPreviousValues {
+  id: ID!
+  plugin: String!
+  content: Json!
+}
+
+type PagePluginSubscriptionPayload {
+  mutation: MutationType!
+  node: PagePlugin
+  updatedFields: [String!]
+  previousValues: PagePluginPreviousValues
+}
+
+input PagePluginSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PagePluginSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PagePluginSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PagePluginSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: PagePluginWhereInput
+}
+
+input PagePluginUpdateInput {
+  plugin: String
+  content: Json
+  page: PageUpdateOneInput
+  language: LanguageUpdateOneInput
+}
+
+input PagePluginWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PagePluginWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PagePluginWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PagePluginWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  plugin: String
+
+  """All values that are not equal to given value."""
+  plugin_not: String
+
+  """All values that are contained in given list."""
+  plugin_in: [String!]
+
+  """All values that are not contained in given list."""
+  plugin_not_in: [String!]
+
+  """All values less than the given value."""
+  plugin_lt: String
+
+  """All values less than or equal the given value."""
+  plugin_lte: String
+
+  """All values greater than the given value."""
+  plugin_gt: String
+
+  """All values greater than or equal the given value."""
+  plugin_gte: String
+
+  """All values containing the given string."""
+  plugin_contains: String
+
+  """All values not containing the given string."""
+  plugin_not_contains: String
+
+  """All values starting with the given string."""
+  plugin_starts_with: String
+
+  """All values not starting with the given string."""
+  plugin_not_starts_with: String
+
+  """All values ending with the given string."""
+  plugin_ends_with: String
+
+  """All values not ending with the given string."""
+  plugin_not_ends_with: String
+  page: PageWhereInput
+  language: LanguageWhereInput
+}
+
+input PagePluginWhereUniqueInput {
+  id: ID
 }
 
 type PagePreviousValues {
@@ -3218,6 +3424,7 @@ input ProjectWhereUniqueInput {
 type Query {
   projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
   pageTranslations(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTranslation]!
+  pagePlugins(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PagePlugin]!
   pageTasks(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTask]!
   pageChats(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageChat]!
   files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File]!
@@ -3229,6 +3436,7 @@ type Query {
   languages(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Language]!
   project(where: ProjectWhereUniqueInput!): Project
   pageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
+  pagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
   pageTask(where: PageTaskWhereUniqueInput!): PageTask
   pageChat(where: PageChatWhereUniqueInput!): PageChat
   file(where: FileWhereUniqueInput!): File
@@ -3240,6 +3448,7 @@ type Query {
   language(where: LanguageWhereUniqueInput!): Language
   projectsConnection(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectConnection!
   pageTranslationsConnection(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTranslationConnection!
+  pagePluginsConnection(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PagePluginConnection!
   pageTasksConnection(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTaskConnection!
   pageChatsConnection(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageChatConnection!
   filesConnection(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
@@ -3260,6 +3469,7 @@ type Query {
 type Subscription {
   project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
   pageTranslation(where: PageTranslationSubscriptionWhereInput): PageTranslationSubscriptionPayload
+  pagePlugin(where: PagePluginSubscriptionWhereInput): PagePluginSubscriptionPayload
   pageTask(where: PageTaskSubscriptionWhereInput): PageTaskSubscriptionPayload
   pageChat(where: PageChatSubscriptionWhereInput): PageChatSubscriptionPayload
   file(where: FileSubscriptionWhereInput): FileSubscriptionPayload
