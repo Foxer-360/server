@@ -92,3 +92,18 @@ type File {
   createdAt: DateTime!
   updatedAt: DateTime!
 }
+
+type Navigation {
+  id: ID! @unique
+  name: String!
+  website: Website! @relation(name: "NavigationUnderWebsite")
+  nodes: [NavigationNode!]! @relation(name: "NodesForNavigation")
+}
+
+type NavigationNode {
+  id: ID! @unique
+  navigation: Navigation! @relation(name: "NodesForNavigation")
+  page: ID!
+  order: Int
+  parent: ID
+}
