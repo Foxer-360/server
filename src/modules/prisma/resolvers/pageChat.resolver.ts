@@ -35,8 +35,8 @@ export class PageChatResolver {
     return {
       subscribe: (obj, args, context, info) => {
         return this.prisma.subscription.pageChat(args, info);
-      }
-    }
+      },
+    };
   }
 
 }

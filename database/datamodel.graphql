@@ -66,6 +66,14 @@ type PageTranslation {
   tasks: [PageTask!]! @relation(name: "TaskUnderPage", onDelete: CASCADE)
 }
 
+type PagePlugin {
+  id: ID! @unique
+  page: Page! @relation(name: "PluginForPage")
+  language: Language! @relation(name: "PagePluginLanguage")
+  plugin: String!
+  content: Json! @default(value: "{}")
+}
+
 type PageTask {
   id: ID! @unique
   pageTranslation: PageTranslation! @relation(name: "TaskUnderPage")
@@ -91,4 +99,19 @@ type File {
   size: Int
   createdAt: DateTime!
   updatedAt: DateTime!
+}
+
+type Navigation {
+  id: ID! @unique
+  name: String!
+  website: Website! @relation(name: "NavigationUnderWebsite")
+  nodes: [NavigationNode!]! @relation(name: "NodesForNavigation")
+}
+
+type NavigationNode {
+  id: ID! @unique
+  navigation: Navigation! @relation(name: "NodesForNavigation")
+  page: ID!
+  order: Int
+  parent: ID
 }
