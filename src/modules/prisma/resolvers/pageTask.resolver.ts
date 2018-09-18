@@ -35,7 +35,7 @@ export class PageTaskResolver {
     return {
       subscribe: (obj, args, context, info) => {
         return this.prisma.subscription.pageTask(args, info);
-      }
+      },
     };
   }
 

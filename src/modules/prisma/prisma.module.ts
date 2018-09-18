@@ -27,7 +27,7 @@ import { importSchema } from 'graphql-import';
 export class PrismaModule implements NestModule {
 
   constructor(private readonly graphQLFactory: GraphQLFactory,
-    private readonly subscriptionsService: SubscriptionsService) {}
+              private readonly subscriptionsService: SubscriptionsService) {}
 
   public configure(consumer: MiddlewareConsumer) {
     // const typeDefs = this.graphQLFactory.mergeTypesByPaths('src/**/*.graphql');

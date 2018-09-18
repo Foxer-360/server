@@ -22,7 +22,7 @@
     "webpack": "webpack --config webpack.config.js"
   },
   "dependencies": {
-    "@foxer360/delta": "git+ssh://git@github.com:Foxer-360/delta.git#sandbox",
+    "@foxer360/delta": "git+https://github.com/Foxer-360/delta.git#sandbox",
     "@nestjs/common": "^5.0.0",
     "@nestjs/core": "^5.0.0",
     "@nestjs/graphql": "^3.0.0",
@@ -31,7 +31,6 @@
     "@nestjs/websockets": "^5.0.0",
     "apollo-server-express": "1.3.6",
     "cors": "^2.8.4",
-    "delta": "git+ssh://git@github.com:Foxer-360/delta.git#sandbox",
     "dotenv": "^6.0.0",
     "graphql": "^0.13.2",
     "graphql-import": "^0.6.0",

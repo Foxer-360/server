@@ -437,9 +437,9 @@ export class SocketsGateway implements OnGatewayInit, OnGatewayConnection, OnGat
       this.informAboutUpdateCommit(client.id, data.pageId, data.data);
 
       return this.response('composer/commit', {
-      status: 'success',
-      payload: { updates }
-    });
+        status: 'success',
+        payload: { updates },
+      });
     } catch (e) {
       // tslint:disable-next-line:no-console
       console.log(e.message);
