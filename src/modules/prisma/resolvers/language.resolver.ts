@@ -18,9 +18,9 @@ export class LanguageResolver {
       ...args,
       where: {
         ...args.where,
-        isEnabled: true
-      }
-    }
+        isEnabled: true,
+      },
+    };
 
     return await this.prisma.query.languages(args, info);
   }

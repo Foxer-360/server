@@ -4,7 +4,7 @@ import { SubscriptionsService } from './subscriptions.service';
 
 @Module({
   providers: [SubscriptionsService],
-  exports: [SubscriptionsService]
+  exports: [SubscriptionsService],
 })
 export class SubscriptionsModule {
 
@@ -13,7 +13,7 @@ export class SubscriptionsModule {
     return {
       module: SubscriptionsModule,
       providers: [...providers],
-      exports: [...providers]
+      exports: [...providers],
     };
   }
 

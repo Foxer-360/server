@@ -1,5 +1,5 @@
 import { Prisma } from 'generated/prisma';
-import { builder, Delta } from 'delta';
+import { builder, Delta } from '@foxer360/delta';
 
 /**
  * NOTE: This storage was copied from old version of server, where was used REST API
@@ -84,8 +84,8 @@ export class Composer {
   public async loadPage(page: string): Promise<boolean> {
     try {
       // const data = await this.pageService.getExactly(page);
-      let { content } = await this.prisma.query.pageTranslation({
-        where: { id: page }
+      const { content } = await this.prisma.query.pageTranslation({
+        where: { id: page },
       }, '{ content }');
 
       if (content === null || content === undefined) {
@@ -132,8 +132,6 @@ export class Composer {
         pageInfo.delta.commit('init', { data: {} });
         pageInfo.delta.push();
       }
-
-      console.log(pageInfo);
 
       this.pages[page] = pageInfo;
       return Promise.resolve(true);
@@ -232,7 +230,7 @@ export class Composer {
     try {
       await this.prisma.mutation.updatePageTranslation({
         data: {
-          content: builder(this.pages[page].delta, {...this.pages[page].content})
+          content: builder(this.pages[page].delta, {...this.pages[page].content}),
         },
         where: {
           id: page,
@@ -318,7 +316,6 @@ export class Composer {
    * @return {boolean} true if page contain component, otherwise returns false
    */
   public isPageContainComponent(page: string, component: number): boolean {
-    console.log(this.pages[page]._componentsIds);
     return this.pages[page]._componentsIds.indexOf(component) > -1;
   }
 
@@ -337,12 +334,10 @@ export class Composer {
       return false;
     }
 
-    console.log('Here');
     // This page must contain component
     if (!this.isPageContainComponent(page, component)) {
       return false;
     }
-
 
     // Component must be unlocked (no other user edits it already)
     const whoEdit = this.getClientWhoEditComponent(page, component);
@@ -781,8 +776,6 @@ export class Composer {
     this.pages[page].delta.push();
 
     this.pages[page]._componentsIds = this.getComponentIds(page);
-    console.log(this.pages[page]._componentsIds);
-    console.log(this.pages[page].delta.export(), this.pages[page].content);
 
     return diff.updates;
   }
