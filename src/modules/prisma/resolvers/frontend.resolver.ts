@@ -175,10 +175,32 @@ export class FrontendResolver {
       pageObjects.push(pn);
     }
 
+    // Get SEO from plugin for page
+    const pluginInfo = `{
+      id
+      content
+    }`;
+    const pluginWhere = {
+      page: {
+        id_in: [pageObjects[pageObjects.length - 1].id],
+      },
+      language: {
+        id_in: [languageObject.id],
+      },
+      plugin_contains: 'seo',
+    };
+    const plugins = await this.prisma.query.pagePlugins({ where: pluginWhere }, pluginInfo);
+    // tslint:disable-next-line:no-any
+    let seo = null as any;
+    if (plugins && plugins.length > 0) {
+      seo = plugins[0].content;
+    }
+
     const res = {
       website: websiteObject,
       language: languageObject,
       page: pageObjects[pageObjects.length - 1],
+      seo,
     };
 
     return Promise.resolve(res);
