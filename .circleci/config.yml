@@ -70,4 +70,4 @@ workflows:
   # Just run test
   test:
     jobs:
-      - test:
+      - test
