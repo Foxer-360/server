@@ -17,6 +17,97 @@ export class PageResolver {
     return await this.prisma.query.pages(args, info);
   }
 
+  @Query('pagesUrls')
+  public async getPagesUrls(obj, args, context, info): Promise<any> {
+    const cache = {}; // id => url cache
+    const nameCache = {}; // id => name cache
+
+    const ids = args.where.ids;
+    if (!ids || ids.length < 1) {
+      return Promise.resolve([]);
+    }
+    const language = args.where.language;
+    if (!language) {
+      return Promise.resolve([]);
+    }
+
+    const getLanguageQuery = `{
+      id
+      code
+    }`;
+
+    const langObject = await this.prisma.query.language({ where: { id: language } }, getLanguageQuery);
+    if (!langObject) {
+      return Promise.resolve([]);
+    }
+
+    const getPageQuery = `{
+      id
+      parent {
+        id
+      }
+      website {
+        id
+        urlMask
+        defaultLanguage {
+          id
+          code
+        }
+      }
+      translations(
+        where: {
+          language: {
+            id_in: ["${language}"]
+          }
+        }
+      ) {
+        id
+        name
+        url
+      }
+    }`;
+
+    const getUrlOfParent = async (parent: string) => {
+      if (cache[parent]) {
+        return cache[parent];
+      }
+
+      const pageInfo = await this.prisma.query.page({ where: { id: parent } }, getPageQuery);
+      nameCache[parent] = pageInfo.translations[0].name;
+
+      // Top level page
+      if (!pageInfo.parent) {
+        let prefix = pageInfo.website.urlMask;
+        if (prefix[prefix.length - 1] !== '/') {
+          prefix += '/';
+        }
+        if (pageInfo.website.defaultLanguage.id !== language) {
+          prefix += langObject.code + '/';
+        }
+
+        cache[parent] = prefix + pageInfo.translations[0].url;
+        return prefix + pageInfo.translations[0].url;
+      }
+
+      const url = await getUrlOfParent(pageInfo.parent.id) + '/' + pageInfo.translations[0].url;
+      cache[parent] = url;
+      return url;
+    };
+
+    const res = [];
+    for (const id of ids) {
+      const url = await getUrlOfParent(id);
+
+      res.push({
+        page: id,
+        url,
+        name: nameCache[id],
+      });
+    }
+
+    return Promise.resolve(res);
+  }
+
   @Mutation('createPage')
   public async createPage(obj, args, context, info): Promise<any> {
     // Parse informations for translation
