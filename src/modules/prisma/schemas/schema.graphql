@@ -123,6 +123,7 @@ type Query {
 
   # Custom definitions
   frontend(where: FrontendWhereInput!): Frontend
+  pagesUrls(where: PagesUrlsWhereInput!): [PageUrl]
 }
 
 type Subscription {

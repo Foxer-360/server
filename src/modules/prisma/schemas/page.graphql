@@ -8,3 +8,14 @@ input CustomPageCreateInput {
   content: Json
   status: PageStatus
 }
+
+input PagesUrlsWhereInput {
+  ids: [ID]
+  language: ID!
+}
+
+type PageUrl {
+  page: ID!
+  url: String!
+  name: String!
+}
