@@ -14,7 +14,7 @@ export class FrontendService {
       url += '/';
     }
 
-    const regex = /^\/?([a-z-_]{3,}\/?)?([a-z]{2}\/)?([a-z-_]{3,}[a-z-_\/]*)?\/?$/gi;
+    const regex = /^\/?([a-z-_]{3,}\/?)?([a-z]{2}\/)?([a-z-_]{3,}[a-z-_\/1-9]*)?\/?$/gi;
     const matches = regex.exec(url);
 
     const res = {
