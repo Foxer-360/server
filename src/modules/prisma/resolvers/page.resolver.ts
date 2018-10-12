@@ -22,11 +22,13 @@ export class PageResolver {
     const cache = {}; // id => url cache
     const nameCache = {}; // id => name cache
 
-    const ids = args.where.ids;
-    if (!ids || ids.length < 1) {
-      return Promise.resolve([]);
-    }
-    const language = args.where.language;
+    // tslint:disable-next-line:no-console
+    console.log('here');
+
+    const ids = args && args.where && args.where.ids;
+
+    const language = args && args.where && args.where.language;
+
     if (!language) {
       return Promise.resolve([]);
     }
@@ -36,11 +38,8 @@ export class PageResolver {
       code
     }`;
 
-    const langObject = await this.prisma.query.language({ where: { id: language } }, getLanguageQuery);
-    if (!langObject) {
-      return Promise.resolve([]);
-    }
-
+    const langObject = language && await this.prisma.query.language({ where: { id: language } }, getLanguageQuery);
+    // tslint:disable-next-line:no-console
     const getPageQuery = `{
       id
       parent {
@@ -56,9 +55,9 @@ export class PageResolver {
       }
       translations(
         where: {
-          language: {
+          ${language && `language: {
             id_in: ["${language}"]
-          }
+          }` || ''}
         }
       ) {
         id
@@ -66,13 +65,45 @@ export class PageResolver {
         url
       }
     }`;
+    // tslint:disable-next-line:no-console
+    console.log(`{
+      id
+      parent {
+        id
+      }
+      website {
+        id
+        urlMask
+        defaultLanguage {
+          id
+          code
+        }
+      }
+      translations(
+        where: {
+          ${language && `language: {
+            id_in: ["${language}"]
+          }`}
+        }
+      ) {
+        id
+        name
+        url
+      }
+    }`);
+    const pages = await this.prisma.query.pages({ where: {}}, getPageQuery);
+
+    // tslint:disable-next-line:no-console
+    console.log(pages);
+
+
 
     const getUrlOfParent = async (parent: string) => {
       if (cache[parent]) {
         return cache[parent];
       }
 
-      const pageInfo = await this.prisma.query.page({ where: { id: parent } }, getPageQuery);
+      const pageInfo = pages.find(p => p.id === parent);
       nameCache[parent] = pageInfo.translations[0].name;
 
       // Top level page
@@ -95,7 +126,8 @@ export class PageResolver {
     };
 
     const res = [];
-    for (const id of ids) {
+
+    for (const id of (ids || pages.map(p => p.id))) {
       const url = await getUrlOfParent(id);
 
       res.push({
