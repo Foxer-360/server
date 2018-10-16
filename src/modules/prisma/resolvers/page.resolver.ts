@@ -29,7 +29,9 @@ export class PageResolver {
 
     const language = args && args.where && args.where.language;
 
-    if (!language) {
+    const languageCode = args && args.where && args.where.languageCode;
+
+    if (!language && !languageCode) {
       return Promise.resolve([]);
     }
 
@@ -38,8 +40,16 @@ export class PageResolver {
       code
     }`;
 
-    const langObject = language && await this.prisma.query.language({ where: { id: language } }, getLanguageQuery);
-    // tslint:disable-next-line:no-console
+    const langObjects =  await this.prisma.query.languages(
+      (language && { where: { id: language } }) || { where: { code: languageCode } },
+      getLanguageQuery);
+
+    if (!langObjects || langObjects.length === 0) {
+      return Promise.resolve([]);
+    }
+
+    const langObject = langObjects[0];
+
     const getPageQuery = `{
       id
       parent {
@@ -55,9 +65,9 @@ export class PageResolver {
       }
       translations(
         where: {
-          ${language && `language: {
-            id_in: ["${language}"]
-          }` || ''}
+          language: {
+            ${ (language && `id_in: ["${language}"]`) || `code_in: ["${languageCode}"]` }
+          }
         }
       ) {
         id
@@ -65,39 +75,7 @@ export class PageResolver {
         url
       }
     }`;
-    // tslint:disable-next-line:no-console
-    console.log(`{
-      id
-      parent {
-        id
-      }
-      website {
-        id
-        urlMask
-        defaultLanguage {
-          id
-          code
-        }
-      }
-      translations(
-        where: {
-          ${language && `language: {
-            id_in: ["${language}"]
-          }`}
-        }
-      ) {
-        id
-        name
-        url
-      }
-    }`);
     const pages = await this.prisma.query.pages({ where: {}}, getPageQuery);
-
-    // tslint:disable-next-line:no-console
-    console.log(pages);
-
-
-
     const getUrlOfParent = async (parent: string) => {
       if (cache[parent]) {
         return cache[parent];
