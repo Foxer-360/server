@@ -11,7 +11,8 @@ input CustomPageCreateInput {
 
 input PagesUrlsWhereInput {
   ids: [ID]
-  language: ID!
+  language: ID
+  languageCode: String
 }
 
 type PageUrl {
