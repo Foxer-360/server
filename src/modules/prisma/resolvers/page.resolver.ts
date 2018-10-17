@@ -98,7 +98,9 @@ export class PageResolver {
         return prefix + pageInfo.translations[0].url;
       }
 
-      const url = await getUrlOfParent(pageInfo.parent.id) + '/' + pageInfo.translations[0].url;
+      const url = await (
+        getUrlOfParent(pageInfo.parent.id).length > 1 ? getUrlOfParent(pageInfo.parent.id) + '/' : getUrlOfParent(pageInfo.parent.id)
+      ) + pageInfo.translations[0].url;
       cache[parent] = url;
       return url;
     };
