@@ -12,9 +12,6 @@ export class FrontendResolver {
   public async getLanguage(obj, args, context, info): Promise<any> {
     const { url } = args.where;
 
-    // tslint:disable-next-line:no-console
-    console.log(`Trying to resolve ${url} page...`);
-
     const emptyRes = null;
 
     const resolvedUrl = this.frontendService.resolveUrl(url);
@@ -150,7 +147,7 @@ export class FrontendResolver {
 
       const p = await this.prisma.query.pages({
         where: {
-          parent,
+          ...(parent ? { parent } : {}),
           website: {
             id_in: [websiteObject.id],
           },
