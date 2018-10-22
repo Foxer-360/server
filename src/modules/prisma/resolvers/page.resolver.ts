@@ -22,9 +22,6 @@ export class PageResolver {
     const cache = {}; // id => url cache
     const nameCache = {}; // id => name cache
 
-    // tslint:disable-next-line:no-console
-    console.log('here');
-
     const ids = args && args.where && args.where.ids;
 
     const language = args && args.where && args.where.language;
@@ -91,14 +88,18 @@ export class PageResolver {
           prefix += '/';
         }
         if (pageInfo.website.defaultLanguage.id !== language) {
-          prefix += langObject.code + '/';
+          prefix += langObject.code + (pageInfo.translations[0].url.length > 0 ? '/' : '');
         }
 
         cache[parent] = prefix + pageInfo.translations[0].url;
         return prefix + pageInfo.translations[0].url;
       }
+      const parentUrl = await getUrlOfParent(pageInfo.parent.id);
+      const url =
+        parentUrl +
+        (pageInfo.translations[0].url.length > 0 ? '/' : '') +
+        pageInfo.translations[0].url;
 
-      const url = await getUrlOfParent(pageInfo.parent.id) + '/' + pageInfo.translations[0].url;
       cache[parent] = url;
       return url;
     };
