@@ -45,9 +45,6 @@ export class PageResolver {
       return Promise.resolve([]);
     }
 
-    // tslint:disable-next-line:no-console
-    console.log(langObjects[0]);
-
     const langObject = langObjects[0];
 
     const getPageQuery = `{
