@@ -87,7 +87,7 @@ export class PageResolver {
         if (prefix[prefix.length - 1] !== '/') {
           prefix += '/';
         }
-        if (pageInfo.website.defaultLanguage.id !== language) {
+        if (pageInfo.website.defaultLanguage.id !== language || pageInfo.website.defaultLanguage.code !== languageCode ) {
           prefix += langObject.code + (pageInfo.translations[0].url.length > 0 ? '/' : '');
         }
 
