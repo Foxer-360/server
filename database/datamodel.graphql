@@ -115,3 +115,12 @@ type NavigationNode {
   order: Int
   parent: ID
 }
+
+type Tag {
+  id: ID! @unique
+  website: Website! @relation(name: "TagUnderWebsite")
+  name: String!
+  displayInNavigation: Boolean
+  plugins: [String!]!
+  color: String!
+}
