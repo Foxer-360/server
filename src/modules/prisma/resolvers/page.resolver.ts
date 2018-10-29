@@ -110,6 +110,7 @@ export class PageResolver {
       const url = await getUrlOfParent(id);
 
       res.push({
+        id: `${id}${url}`,
         page: id,
         url,
         name: nameCache[id],
