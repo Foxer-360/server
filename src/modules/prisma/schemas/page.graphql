@@ -16,6 +16,7 @@ input PagesUrlsWhereInput {
 }
 
 type PageUrl {
+  id: String!
   page: ID!
   url: String!
   name: String!
