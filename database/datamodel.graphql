@@ -111,7 +111,9 @@ type Navigation {
 type NavigationNode {
   id: ID! @unique
   navigation: Navigation! @relation(name: "NodesForNavigation")
-  page: ID!
+  page: ID
+  title: String
+  link: String
   order: Int
   parent: ID
 }

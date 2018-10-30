@@ -1123,7 +1123,9 @@ type NavigationEdge {
 type NavigationNode implements Node {
   id: ID!
   navigation(where: NavigationWhereInput): Navigation!
-  page: ID!
+  page: ID
+  title: String
+  link: String
   order: Int
   parent: ID
 }
@@ -1139,7 +1141,9 @@ type NavigationNodeConnection {
 }
 
 input NavigationNodeCreateInput {
-  page: ID!
+  page: ID
+  title: String
+  link: String
   order: Int
   parent: ID
   navigation: NavigationCreateOneWithoutNodesInput!
@@ -1151,7 +1155,9 @@ input NavigationNodeCreateManyWithoutNavigationInput {
 }
 
 input NavigationNodeCreateWithoutNavigationInput {
-  page: ID!
+  page: ID
+  title: String
+  link: String
   order: Int
   parent: ID
 }
@@ -1170,6 +1176,10 @@ enum NavigationNodeOrderByInput {
   id_DESC
   page_ASC
   page_DESC
+  title_ASC
+  title_DESC
+  link_ASC
+  link_DESC
   order_ASC
   order_DESC
   parent_ASC
@@ -1182,7 +1192,9 @@ enum NavigationNodeOrderByInput {
 
 type NavigationNodePreviousValues {
   id: ID!
-  page: ID!
+  page: ID
+  title: String
+  link: String
   order: Int
   parent: ID
 }
@@ -1228,6 +1240,8 @@ input NavigationNodeSubscriptionWhereInput {
 
 input NavigationNodeUpdateInput {
   page: ID
+  title: String
+  link: String
   order: Int
   parent: ID
   navigation: NavigationUpdateOneWithoutNodesInput
@@ -1244,6 +1258,8 @@ input NavigationNodeUpdateManyWithoutNavigationInput {
 
 input NavigationNodeUpdateWithoutNavigationDataInput {
   page: ID
+  title: String
+  link: String
   order: Int
   parent: ID
 }
@@ -1348,6 +1364,86 @@ input NavigationNodeWhereInput {
 
   """All values not ending with the given string."""
   page_not_ends_with: ID
+  title: String
+
+  """All values that are not equal to given value."""
+  title_not: String
+
+  """All values that are contained in given list."""
+  title_in: [String!]
+
+  """All values that are not contained in given list."""
+  title_not_in: [String!]
+
+  """All values less than the given value."""
+  title_lt: String
+
+  """All values less than or equal the given value."""
+  title_lte: String
+
+  """All values greater than the given value."""
+  title_gt: String
+
+  """All values greater than or equal the given value."""
+  title_gte: String
+
+  """All values containing the given string."""
+  title_contains: String
+
+  """All values not containing the given string."""
+  title_not_contains: String
+
+  """All values starting with the given string."""
+  title_starts_with: String
+
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+
+  """All values ending with the given string."""
+  title_ends_with: String
+
+  """All values not ending with the given string."""
+  title_not_ends_with: String
+  link: String
+
+  """All values that are not equal to given value."""
+  link_not: String
+
+  """All values that are contained in given list."""
+  link_in: [String!]
+
+  """All values that are not contained in given list."""
+  link_not_in: [String!]
+
+  """All values less than the given value."""
+  link_lt: String
+
+  """All values less than or equal the given value."""
+  link_lte: String
+
+  """All values greater than the given value."""
+  link_gt: String
+
+  """All values greater than or equal the given value."""
+  link_gte: String
+
+  """All values containing the given string."""
+  link_contains: String
+
+  """All values not containing the given string."""
+  link_not_contains: String
+
+  """All values starting with the given string."""
+  link_starts_with: String
+
+  """All values not starting with the given string."""
+  link_not_starts_with: String
+
+  """All values ending with the given string."""
+  link_ends_with: String
+
+  """All values not ending with the given string."""
+  link_not_ends_with: String
   order: Int
 
   """All values that are not equal to given value."""
@@ -4486,6 +4582,10 @@ export type NavigationNodeOrderByInput =   'id_ASC' |
   'id_DESC' |
   'page_ASC' |
   'page_DESC' |
+  'title_ASC' |
+  'title_DESC' |
+  'link_ASC' |
+  'link_DESC' |
   'order_ASC' |
   'order_DESC' |
   'parent_ASC' |
@@ -4599,7 +4699,9 @@ export interface LanguageCreateManyInput {
 }
 
 export interface NavigationNodeCreateInput {
-  page: ID_Input
+  page?: ID_Input
+  title?: String
+  link?: String
   order?: Int
   parent?: ID_Input
   navigation: NavigationCreateOneWithoutNodesInput
@@ -5261,6 +5363,8 @@ export interface PageChatCreateManyWithoutPageInput {
 
 export interface NavigationNodeUpdateInput {
   page?: ID_Input
+  title?: String
+  link?: String
   order?: Int
   parent?: ID_Input
   navigation?: NavigationUpdateOneWithoutNodesInput
@@ -5272,6 +5376,8 @@ export interface PageChatCreateWithoutPageInput {
 
 export interface NavigationNodeUpdateWithoutNavigationDataInput {
   page?: ID_Input
+  title?: String
+  link?: String
   order?: Int
   parent?: ID_Input
 }
@@ -5494,7 +5600,9 @@ export interface PageTaskUpdateWithoutPageTranslationDataInput {
 }
 
 export interface NavigationNodeCreateWithoutNavigationInput {
-  page: ID_Input
+  page?: ID_Input
+  title?: String
+  link?: String
   order?: Int
   parent?: ID_Input
 }
@@ -5708,6 +5816,34 @@ export interface NavigationNodeWhereInput {
   page_not_starts_with?: ID_Input
   page_ends_with?: ID_Input
   page_not_ends_with?: ID_Input
+  title?: String
+  title_not?: String
+  title_in?: String[] | String
+  title_not_in?: String[] | String
+  title_lt?: String
+  title_lte?: String
+  title_gt?: String
+  title_gte?: String
+  title_contains?: String
+  title_not_contains?: String
+  title_starts_with?: String
+  title_not_starts_with?: String
+  title_ends_with?: String
+  title_not_ends_with?: String
+  link?: String
+  link_not?: String
+  link_in?: String[] | String
+  link_not_in?: String[] | String
+  link_lt?: String
+  link_lte?: String
+  link_gt?: String
+  link_gte?: String
+  link_contains?: String
+  link_not_contains?: String
+  link_starts_with?: String
+  link_not_starts_with?: String
+  link_ends_with?: String
+  link_not_ends_with?: String
   order?: Int
   order_not?: Int
   order_in?: Int[] | Int
@@ -6298,7 +6434,9 @@ export interface Node {
 export interface NavigationNode extends Node {
   id: ID_Output
   navigation: Navigation
-  page: ID_Output
+  page?: ID_Output
+  title?: String
+  link?: String
   order?: Int
   parent?: ID_Output
 }
@@ -6764,7 +6902,9 @@ export interface PagePluginConnection {
 
 export interface NavigationNodePreviousValues {
   id: ID_Output
-  page: ID_Output
+  page?: ID_Output
+  title?: String
+  link?: String
   order?: Int
   parent?: ID_Output
 }
