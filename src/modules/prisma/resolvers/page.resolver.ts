@@ -112,15 +112,18 @@ export class PageResolver {
 
     const res = [];
 
-    for (const id of (ids || pages.map(p => p.id))) {
-      const url = await getUrlOfParent(id);
-
-      res.push({
-        id: `${id}${url}`,
-        page: id,
-        url,
-        name: nameCache[id],
-      });
+    for (const id of (ids || pages.filter(p => p !== null).map(p => p.id))) {
+      if (id) {
+        const url = await getUrlOfParent(id);
+        if (url) {
+          res.push({
+            id: `${id}${url}`,
+            page: id,
+            url,
+            name: nameCache[id],
+          });
+        }
+      }
     }
 
     return Promise.resolve(res);
