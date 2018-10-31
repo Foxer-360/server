@@ -79,29 +79,35 @@ export class PageResolver {
       }
 
       const pageInfo = pages.find(p => p.id === parent);
-      nameCache[parent] = pageInfo.translations[0].name;
 
-      // Top level page
-      if (!pageInfo.parent) {
-        let prefix = pageInfo.website.urlMask;
-        if (prefix[prefix.length - 1] !== '/') {
-          prefix += '/';
-        }
-        if (pageInfo.website.defaultLanguage.id !== language || pageInfo.website.defaultLanguage.code !== languageCode ) {
-          prefix += langObject.code + (pageInfo.translations[0].url.length > 0 ? '/' : '');
-        }
+      if (pageInfo && pageInfo.translations) {
+        nameCache[parent] = pageInfo.translations[0].name;
 
-        cache[parent] = prefix + pageInfo.translations[0].url;
-        return prefix + pageInfo.translations[0].url;
+        // Top level page
+        if (!pageInfo.parent) {
+          let prefix = pageInfo.website.urlMask;
+          if (prefix[prefix.length - 1] !== '/') {
+            prefix += '/';
+          }
+          if (pageInfo.website.defaultLanguage.id !== language || pageInfo.website.defaultLanguage.code !== languageCode) {
+            prefix += langObject.code + (pageInfo.translations[0].url.length > 0 ? '/' : '');
+          }
+
+          cache[parent] = prefix + pageInfo.translations[0].url;
+          return prefix + pageInfo.translations[0].url;
+        }
+        const parentUrl = await getUrlOfParent(pageInfo.parent.id);
+        const url =
+          parentUrl +
+          (pageInfo.translations[0].url.length > 0 ? '/' : '') +
+          pageInfo.translations[0].url;
+
+        cache[parent] = url;
+        return url;
+
+      } else {
+        return null;
       }
-      const parentUrl = await getUrlOfParent(pageInfo.parent.id);
-      const url =
-        parentUrl +
-        (pageInfo.translations[0].url.length > 0 ? '/' : '') +
-        pageInfo.translations[0].url;
-
-      cache[parent] = url;
-      return url;
     };
 
     const res = [];
