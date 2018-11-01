@@ -51,7 +51,7 @@ type Page {
   type: PageType!
   translations: [PageTranslation!]! @relation(name: "TranslationForPage", onDelete: CASCADE)
   chats: [PageChat!]! @relation(name: "ChatUnderPage", onDelete: CASCADE)
-  tags: [Tag!]! @relation(name: "PageOnTag")
+  tags: [Tag!]! @relation(name: "TagOnPage")
 }
 
 type PageTranslation {

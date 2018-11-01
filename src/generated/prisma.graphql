@@ -1,5 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Wed Oct 31 2018 15:04:48 GMT+0100 (CET)
+# timestamp: Thu Nov 01 2018 13:36:22 GMT+0100 (CET)
 
 type AggregateFile {
   count: Int!
@@ -821,9 +821,9 @@ type Mutation {
   createNavigation(data: NavigationCreateInput!): Navigation!
   createNavigationNode(data: NavigationNodeCreateInput!): NavigationNode!
   createTag(data: TagCreateInput!): Tag!
+  createPage(data: PageCreateInput!): Page!
   createPageType(data: PageTypeCreateInput!): PageType!
   createWebsite(data: WebsiteCreateInput!): Website!
-  createPage(data: PageCreateInput!): Page!
   createLanguage(data: LanguageCreateInput!): Language!
   updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
   updatePageTranslation(data: PageTranslationUpdateInput!, where: PageTranslationWhereUniqueInput!): PageTranslation
@@ -834,9 +834,9 @@ type Mutation {
   updateNavigation(data: NavigationUpdateInput!, where: NavigationWhereUniqueInput!): Navigation
   updateNavigationNode(data: NavigationNodeUpdateInput!, where: NavigationNodeWhereUniqueInput!): NavigationNode
   updateTag(data: TagUpdateInput!, where: TagWhereUniqueInput!): Tag
+  updatePage(data: PageUpdateInput!, where: PageWhereUniqueInput!): Page
   updatePageType(data: PageTypeUpdateInput!, where: PageTypeWhereUniqueInput!): PageType
   updateWebsite(data: WebsiteUpdateInput!, where: WebsiteWhereUniqueInput!): Website
-  updatePage(data: PageUpdateInput!, where: PageWhereUniqueInput!): Page
   updateLanguage(data: LanguageUpdateInput!, where: LanguageWhereUniqueInput!): Language
   deleteProject(where: ProjectWhereUniqueInput!): Project
   deletePageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
@@ -847,9 +847,9 @@ type Mutation {
   deleteNavigation(where: NavigationWhereUniqueInput!): Navigation
   deleteNavigationNode(where: NavigationNodeWhereUniqueInput!): NavigationNode
   deleteTag(where: TagWhereUniqueInput!): Tag
+  deletePage(where: PageWhereUniqueInput!): Page
   deletePageType(where: PageTypeWhereUniqueInput!): PageType
   deleteWebsite(where: WebsiteWhereUniqueInput!): Website
-  deletePage(where: PageWhereUniqueInput!): Page
   deleteLanguage(where: LanguageWhereUniqueInput!): Language
   upsertProject(where: ProjectWhereUniqueInput!, create: ProjectCreateInput!, update: ProjectUpdateInput!): Project!
   upsertPageTranslation(where: PageTranslationWhereUniqueInput!, create: PageTranslationCreateInput!, update: PageTranslationUpdateInput!): PageTranslation!
@@ -860,9 +860,9 @@ type Mutation {
   upsertNavigation(where: NavigationWhereUniqueInput!, create: NavigationCreateInput!, update: NavigationUpdateInput!): Navigation!
   upsertNavigationNode(where: NavigationNodeWhereUniqueInput!, create: NavigationNodeCreateInput!, update: NavigationNodeUpdateInput!): NavigationNode!
   upsertTag(where: TagWhereUniqueInput!, create: TagCreateInput!, update: TagUpdateInput!): Tag!
+  upsertPage(where: PageWhereUniqueInput!, create: PageCreateInput!, update: PageUpdateInput!): Page!
   upsertPageType(where: PageTypeWhereUniqueInput!, create: PageTypeCreateInput!, update: PageTypeUpdateInput!): PageType!
   upsertWebsite(where: WebsiteWhereUniqueInput!, create: WebsiteCreateInput!, update: WebsiteUpdateInput!): Website!
-  upsertPage(where: PageWhereUniqueInput!, create: PageCreateInput!, update: PageUpdateInput!): Page!
   upsertLanguage(where: LanguageWhereUniqueInput!, create: LanguageCreateInput!, update: LanguageUpdateInput!): Language!
   updateManyProjects(data: ProjectUpdateInput!, where: ProjectWhereInput): BatchPayload!
   updateManyPageTranslations(data: PageTranslationUpdateInput!, where: PageTranslationWhereInput): BatchPayload!
@@ -873,9 +873,9 @@ type Mutation {
   updateManyNavigations(data: NavigationUpdateInput!, where: NavigationWhereInput): BatchPayload!
   updateManyNavigationNodes(data: NavigationNodeUpdateInput!, where: NavigationNodeWhereInput): BatchPayload!
   updateManyTags(data: TagUpdateInput!, where: TagWhereInput): BatchPayload!
+  updateManyPages(data: PageUpdateInput!, where: PageWhereInput): BatchPayload!
   updateManyPageTypes(data: PageTypeUpdateInput!, where: PageTypeWhereInput): BatchPayload!
   updateManyWebsites(data: WebsiteUpdateInput!, where: WebsiteWhereInput): BatchPayload!
-  updateManyPages(data: PageUpdateInput!, where: PageWhereInput): BatchPayload!
   updateManyLanguages(data: LanguageUpdateInput!, where: LanguageWhereInput): BatchPayload!
   deleteManyProjects(where: ProjectWhereInput): BatchPayload!
   deleteManyPageTranslations(where: PageTranslationWhereInput): BatchPayload!
@@ -886,9 +886,9 @@ type Mutation {
   deleteManyNavigations(where: NavigationWhereInput): BatchPayload!
   deleteManyNavigationNodes(where: NavigationNodeWhereInput): BatchPayload!
   deleteManyTags(where: TagWhereInput): BatchPayload!
+  deleteManyPages(where: PageWhereInput): BatchPayload!
   deleteManyPageTypes(where: PageTypeWhereInput): BatchPayload!
   deleteManyWebsites(where: WebsiteWhereInput): BatchPayload!
-  deleteManyPages(where: PageWhereInput): BatchPayload!
   deleteManyLanguages(where: LanguageWhereInput): BatchPayload!
 }
 
@@ -1786,11 +1786,11 @@ input PageCreateInput {
   type: PageTypeCreateOneInput!
   translations: PageTranslationCreateManyWithoutPageInput
   chats: PageChatCreateManyWithoutPageInput
-  tags: TagCreateManyInput
+  tags: TagCreateManyWithoutPagesInput
 }
 
-input PageCreateManyInput {
-  create: [PageCreateInput!]
+input PageCreateManyWithoutTagsInput {
+  create: [PageCreateWithoutTagsInput!]
   connect: [PageWhereUniqueInput!]
 }
 
@@ -1819,7 +1819,15 @@ input PageCreateWithoutChatsInput {
   website: WebsiteCreateOneWithoutPagesInput!
   type: PageTypeCreateOneInput!
   translations: PageTranslationCreateManyWithoutPageInput
-  tags: TagCreateManyInput
+  tags: TagCreateManyWithoutPagesInput
+}
+
+input PageCreateWithoutTagsInput {
+  parent: PageCreateOneInput
+  website: WebsiteCreateOneWithoutPagesInput!
+  type: PageTypeCreateOneInput!
+  translations: PageTranslationCreateManyWithoutPageInput
+  chats: PageChatCreateManyWithoutPageInput
 }
 
 input PageCreateWithoutTranslationsInput {
@@ -1827,7 +1835,7 @@ input PageCreateWithoutTranslationsInput {
   website: WebsiteCreateOneWithoutPagesInput!
   type: PageTypeCreateOneInput!
   chats: PageChatCreateManyWithoutPageInput
-  tags: TagCreateManyInput
+  tags: TagCreateManyWithoutPagesInput
 }
 
 input PageCreateWithoutWebsiteInput {
@@ -1835,7 +1843,7 @@ input PageCreateWithoutWebsiteInput {
   type: PageTypeCreateOneInput!
   translations: PageTranslationCreateManyWithoutPageInput
   chats: PageChatCreateManyWithoutPageInput
-  tags: TagCreateManyInput
+  tags: TagCreateManyWithoutPagesInput
 }
 
 """An edge in a connection."""
@@ -3098,7 +3106,7 @@ input PageUpdateDataInput {
   type: PageTypeUpdateOneInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
-  tags: TagUpdateManyInput
+  tags: TagUpdateManyWithoutPagesInput
 }
 
 input PageUpdateInput {
@@ -3107,16 +3115,16 @@ input PageUpdateInput {
   type: PageTypeUpdateOneInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
-  tags: TagUpdateManyInput
+  tags: TagUpdateManyWithoutPagesInput
 }
 
-input PageUpdateManyInput {
-  create: [PageCreateInput!]
+input PageUpdateManyWithoutTagsInput {
+  create: [PageCreateWithoutTagsInput!]
   connect: [PageWhereUniqueInput!]
   disconnect: [PageWhereUniqueInput!]
   delete: [PageWhereUniqueInput!]
-  update: [PageUpdateWithWhereUniqueNestedInput!]
-  upsert: [PageUpsertWithWhereUniqueNestedInput!]
+  update: [PageUpdateWithWhereUniqueWithoutTagsInput!]
+  upsert: [PageUpsertWithWhereUniqueWithoutTagsInput!]
 }
 
 input PageUpdateManyWithoutWebsiteInput {
@@ -3158,7 +3166,15 @@ input PageUpdateWithoutChatsDataInput {
   website: WebsiteUpdateOneWithoutPagesInput
   type: PageTypeUpdateOneInput
   translations: PageTranslationUpdateManyWithoutPageInput
-  tags: TagUpdateManyInput
+  tags: TagUpdateManyWithoutPagesInput
+}
+
+input PageUpdateWithoutTagsDataInput {
+  parent: PageUpdateOneInput
+  website: WebsiteUpdateOneWithoutPagesInput
+  type: PageTypeUpdateOneInput
+  translations: PageTranslationUpdateManyWithoutPageInput
+  chats: PageChatUpdateManyWithoutPageInput
 }
 
 input PageUpdateWithoutTranslationsDataInput {
@@ -3166,7 +3182,7 @@ input PageUpdateWithoutTranslationsDataInput {
   website: WebsiteUpdateOneWithoutPagesInput
   type: PageTypeUpdateOneInput
   chats: PageChatUpdateManyWithoutPageInput
-  tags: TagUpdateManyInput
+  tags: TagUpdateManyWithoutPagesInput
 }
 
 input PageUpdateWithoutWebsiteDataInput {
@@ -3174,12 +3190,12 @@ input PageUpdateWithoutWebsiteDataInput {
   type: PageTypeUpdateOneInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
-  tags: TagUpdateManyInput
+  tags: TagUpdateManyWithoutPagesInput
 }
 
-input PageUpdateWithWhereUniqueNestedInput {
+input PageUpdateWithWhereUniqueWithoutTagsInput {
   where: PageWhereUniqueInput!
-  data: PageUpdateDataInput!
+  data: PageUpdateWithoutTagsDataInput!
 }
 
 input PageUpdateWithWhereUniqueWithoutWebsiteInput {
@@ -3202,10 +3218,10 @@ input PageUpsertWithoutTranslationsInput {
   create: PageCreateWithoutTranslationsInput!
 }
 
-input PageUpsertWithWhereUniqueNestedInput {
+input PageUpsertWithWhereUniqueWithoutTagsInput {
   where: PageWhereUniqueInput!
-  update: PageUpdateDataInput!
-  create: PageCreateInput!
+  update: PageUpdateWithoutTagsDataInput!
+  create: PageCreateWithoutTagsInput!
 }
 
 input PageUpsertWithWhereUniqueWithoutWebsiteInput {
@@ -3575,9 +3591,9 @@ type Query {
   navigations(where: NavigationWhereInput, orderBy: NavigationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Navigation]!
   navigationNodes(where: NavigationNodeWhereInput, orderBy: NavigationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [NavigationNode]!
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag]!
+  pages(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Page]!
   pageTypes(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageType]!
   websites(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Website]!
-  pages(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Page]!
   languages(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Language]!
   project(where: ProjectWhereUniqueInput!): Project
   pageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
@@ -3588,9 +3604,9 @@ type Query {
   navigation(where: NavigationWhereUniqueInput!): Navigation
   navigationNode(where: NavigationNodeWhereUniqueInput!): NavigationNode
   tag(where: TagWhereUniqueInput!): Tag
+  page(where: PageWhereUniqueInput!): Page
   pageType(where: PageTypeWhereUniqueInput!): PageType
   website(where: WebsiteWhereUniqueInput!): Website
-  page(where: PageWhereUniqueInput!): Page
   language(where: LanguageWhereUniqueInput!): Language
   projectsConnection(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectConnection!
   pageTranslationsConnection(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTranslationConnection!
@@ -3601,9 +3617,9 @@ type Query {
   navigationsConnection(where: NavigationWhereInput, orderBy: NavigationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NavigationConnection!
   navigationNodesConnection(where: NavigationNodeWhereInput, orderBy: NavigationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NavigationNodeConnection!
   tagsConnection(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TagConnection!
+  pagesConnection(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageConnection!
   pageTypesConnection(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTypeConnection!
   websitesConnection(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WebsiteConnection!
-  pagesConnection(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageConnection!
   languagesConnection(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LanguageConnection!
 
   """Fetches an object given its ID"""
@@ -3623,9 +3639,9 @@ type Subscription {
   navigation(where: NavigationSubscriptionWhereInput): NavigationSubscriptionPayload
   navigationNode(where: NavigationNodeSubscriptionWhereInput): NavigationNodeSubscriptionPayload
   tag(where: TagSubscriptionWhereInput): TagSubscriptionPayload
+  page(where: PageSubscriptionWhereInput): PageSubscriptionPayload
   pageType(where: PageTypeSubscriptionWhereInput): PageTypeSubscriptionPayload
   website(where: WebsiteSubscriptionWhereInput): WebsiteSubscriptionPayload
-  page(where: PageSubscriptionWhereInput): PageSubscriptionPayload
   language(where: LanguageSubscriptionWhereInput): LanguageSubscriptionPayload
 }
 
@@ -3655,16 +3671,24 @@ input TagCreateInput {
   color: String!
   plugins: TagCreatepluginsInput
   website: WebsiteCreateOneInput!
-  pages: PageCreateManyInput
+  pages: PageCreateManyWithoutTagsInput
 }
 
-input TagCreateManyInput {
-  create: [TagCreateInput!]
+input TagCreateManyWithoutPagesInput {
+  create: [TagCreateWithoutPagesInput!]
   connect: [TagWhereUniqueInput!]
 }
 
 input TagCreatepluginsInput {
   set: [String!]
+}
+
+input TagCreateWithoutPagesInput {
+  name: String!
+  displayInNavigation: Boolean
+  color: String!
+  plugins: TagCreatepluginsInput
+  website: WebsiteCreateOneInput!
 }
 
 """An edge in a connection."""
@@ -3738,46 +3762,45 @@ input TagSubscriptionWhereInput {
   node: TagWhereInput
 }
 
-input TagUpdateDataInput {
-  name: String
-  displayInNavigation: Boolean
-  color: String
-  plugins: TagUpdatepluginsInput
-  website: WebsiteUpdateOneInput
-  pages: PageUpdateManyInput
-}
-
 input TagUpdateInput {
   name: String
   displayInNavigation: Boolean
   color: String
   plugins: TagUpdatepluginsInput
   website: WebsiteUpdateOneInput
-  pages: PageUpdateManyInput
+  pages: PageUpdateManyWithoutTagsInput
 }
 
-input TagUpdateManyInput {
-  create: [TagCreateInput!]
+input TagUpdateManyWithoutPagesInput {
+  create: [TagCreateWithoutPagesInput!]
   connect: [TagWhereUniqueInput!]
   disconnect: [TagWhereUniqueInput!]
   delete: [TagWhereUniqueInput!]
-  update: [TagUpdateWithWhereUniqueNestedInput!]
-  upsert: [TagUpsertWithWhereUniqueNestedInput!]
+  update: [TagUpdateWithWhereUniqueWithoutPagesInput!]
+  upsert: [TagUpsertWithWhereUniqueWithoutPagesInput!]
 }
 
 input TagUpdatepluginsInput {
   set: [String!]
 }
 
-input TagUpdateWithWhereUniqueNestedInput {
-  where: TagWhereUniqueInput!
-  data: TagUpdateDataInput!
+input TagUpdateWithoutPagesDataInput {
+  name: String
+  displayInNavigation: Boolean
+  color: String
+  plugins: TagUpdatepluginsInput
+  website: WebsiteUpdateOneInput
 }
 
-input TagUpsertWithWhereUniqueNestedInput {
+input TagUpdateWithWhereUniqueWithoutPagesInput {
   where: TagWhereUniqueInput!
-  update: TagUpdateDataInput!
-  create: TagCreateInput!
+  data: TagUpdateWithoutPagesDataInput!
+}
+
+input TagUpsertWithWhereUniqueWithoutPagesInput {
+  where: TagWhereUniqueInput!
+  update: TagUpdateWithoutPagesDataInput!
+  create: TagCreateWithoutPagesInput!
 }
 
 input TagWhereInput {
