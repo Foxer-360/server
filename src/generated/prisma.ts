@@ -13,9 +13,9 @@ export interface Query {
     navigations: <T = Navigation[]>(args: { where?: NavigationWhereInput, orderBy?: NavigationOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     navigationNodes: <T = NavigationNode[]>(args: { where?: NavigationNodeWhereInput, orderBy?: NavigationNodeOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     tags: <T = Tag[]>(args: { where?: TagWhereInput, orderBy?: TagOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    pages: <T = Page[]>(args: { where?: PageWhereInput, orderBy?: PageOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageTypes: <T = PageType[]>(args: { where?: PageTypeWhereInput, orderBy?: PageTypeOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     websites: <T = Website[]>(args: { where?: WebsiteWhereInput, orderBy?: WebsiteOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    pages: <T = Page[]>(args: { where?: PageWhereInput, orderBy?: PageOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     languages: <T = Language[]>(args: { where?: LanguageWhereInput, orderBy?: LanguageOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     project: <T = Project | null>(args: { where: ProjectWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageTranslation: <T = PageTranslation | null>(args: { where: PageTranslationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -26,9 +26,9 @@ export interface Query {
     navigation: <T = Navigation | null>(args: { where: NavigationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     navigationNode: <T = NavigationNode | null>(args: { where: NavigationNodeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     tag: <T = Tag | null>(args: { where: TagWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    page: <T = Page | null>(args: { where: PageWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageType: <T = PageType | null>(args: { where: PageTypeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     website: <T = Website | null>(args: { where: WebsiteWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    page: <T = Page | null>(args: { where: PageWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     language: <T = Language | null>(args: { where: LanguageWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     projectsConnection: <T = ProjectConnection>(args: { where?: ProjectWhereInput, orderBy?: ProjectOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageTranslationsConnection: <T = PageTranslationConnection>(args: { where?: PageTranslationWhereInput, orderBy?: PageTranslationOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -39,9 +39,9 @@ export interface Query {
     navigationsConnection: <T = NavigationConnection>(args: { where?: NavigationWhereInput, orderBy?: NavigationOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     navigationNodesConnection: <T = NavigationNodeConnection>(args: { where?: NavigationNodeWhereInput, orderBy?: NavigationNodeOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     tagsConnection: <T = TagConnection>(args: { where?: TagWhereInput, orderBy?: TagOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    pagesConnection: <T = PageConnection>(args: { where?: PageWhereInput, orderBy?: PageOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageTypesConnection: <T = PageTypeConnection>(args: { where?: PageTypeWhereInput, orderBy?: PageTypeOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     websitesConnection: <T = WebsiteConnection>(args: { where?: WebsiteWhereInput, orderBy?: WebsiteOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    pagesConnection: <T = PageConnection>(args: { where?: PageWhereInput, orderBy?: PageOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     languagesConnection: <T = LanguageConnection>(args: { where?: LanguageWhereInput, orderBy?: LanguageOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     node: <T = Node | null>(args: { id: ID_Output }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> 
   }
@@ -56,9 +56,9 @@ export interface Mutation {
     createNavigation: <T = Navigation>(args: { data: NavigationCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createNavigationNode: <T = NavigationNode>(args: { data: NavigationNodeCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createTag: <T = Tag>(args: { data: TagCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    createPage: <T = Page>(args: { data: PageCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createPageType: <T = PageType>(args: { data: PageTypeCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createWebsite: <T = Website>(args: { data: WebsiteCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    createPage: <T = Page>(args: { data: PageCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createLanguage: <T = Language>(args: { data: LanguageCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateProject: <T = Project | null>(args: { data: ProjectUpdateInput, where: ProjectWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updatePageTranslation: <T = PageTranslation | null>(args: { data: PageTranslationUpdateInput, where: PageTranslationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -69,9 +69,9 @@ export interface Mutation {
     updateNavigation: <T = Navigation | null>(args: { data: NavigationUpdateInput, where: NavigationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateNavigationNode: <T = NavigationNode | null>(args: { data: NavigationNodeUpdateInput, where: NavigationNodeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateTag: <T = Tag | null>(args: { data: TagUpdateInput, where: TagWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updatePage: <T = Page | null>(args: { data: PageUpdateInput, where: PageWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updatePageType: <T = PageType | null>(args: { data: PageTypeUpdateInput, where: PageTypeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateWebsite: <T = Website | null>(args: { data: WebsiteUpdateInput, where: WebsiteWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updatePage: <T = Page | null>(args: { data: PageUpdateInput, where: PageWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateLanguage: <T = Language | null>(args: { data: LanguageUpdateInput, where: LanguageWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteProject: <T = Project | null>(args: { where: ProjectWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deletePageTranslation: <T = PageTranslation | null>(args: { where: PageTranslationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -82,9 +82,9 @@ export interface Mutation {
     deleteNavigation: <T = Navigation | null>(args: { where: NavigationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteNavigationNode: <T = NavigationNode | null>(args: { where: NavigationNodeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteTag: <T = Tag | null>(args: { where: TagWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    deletePage: <T = Page | null>(args: { where: PageWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deletePageType: <T = PageType | null>(args: { where: PageTypeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteWebsite: <T = Website | null>(args: { where: WebsiteWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    deletePage: <T = Page | null>(args: { where: PageWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteLanguage: <T = Language | null>(args: { where: LanguageWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertProject: <T = Project>(args: { where: ProjectWhereUniqueInput, create: ProjectCreateInput, update: ProjectUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertPageTranslation: <T = PageTranslation>(args: { where: PageTranslationWhereUniqueInput, create: PageTranslationCreateInput, update: PageTranslationUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -95,9 +95,9 @@ export interface Mutation {
     upsertNavigation: <T = Navigation>(args: { where: NavigationWhereUniqueInput, create: NavigationCreateInput, update: NavigationUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertNavigationNode: <T = NavigationNode>(args: { where: NavigationNodeWhereUniqueInput, create: NavigationNodeCreateInput, update: NavigationNodeUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertTag: <T = Tag>(args: { where: TagWhereUniqueInput, create: TagCreateInput, update: TagUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    upsertPage: <T = Page>(args: { where: PageWhereUniqueInput, create: PageCreateInput, update: PageUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertPageType: <T = PageType>(args: { where: PageTypeWhereUniqueInput, create: PageTypeCreateInput, update: PageTypeUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertWebsite: <T = Website>(args: { where: WebsiteWhereUniqueInput, create: WebsiteCreateInput, update: WebsiteUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    upsertPage: <T = Page>(args: { where: PageWhereUniqueInput, create: PageCreateInput, update: PageUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertLanguage: <T = Language>(args: { where: LanguageWhereUniqueInput, create: LanguageCreateInput, update: LanguageUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyProjects: <T = BatchPayload>(args: { data: ProjectUpdateInput, where?: ProjectWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyPageTranslations: <T = BatchPayload>(args: { data: PageTranslationUpdateInput, where?: PageTranslationWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -108,9 +108,9 @@ export interface Mutation {
     updateManyNavigations: <T = BatchPayload>(args: { data: NavigationUpdateInput, where?: NavigationWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyNavigationNodes: <T = BatchPayload>(args: { data: NavigationNodeUpdateInput, where?: NavigationNodeWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyTags: <T = BatchPayload>(args: { data: TagUpdateInput, where?: TagWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyPages: <T = BatchPayload>(args: { data: PageUpdateInput, where?: PageWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyPageTypes: <T = BatchPayload>(args: { data: PageTypeUpdateInput, where?: PageTypeWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyWebsites: <T = BatchPayload>(args: { data: WebsiteUpdateInput, where?: WebsiteWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyPages: <T = BatchPayload>(args: { data: PageUpdateInput, where?: PageWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyLanguages: <T = BatchPayload>(args: { data: LanguageUpdateInput, where?: LanguageWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyProjects: <T = BatchPayload>(args: { where?: ProjectWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyPageTranslations: <T = BatchPayload>(args: { where?: PageTranslationWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -121,9 +121,9 @@ export interface Mutation {
     deleteManyNavigations: <T = BatchPayload>(args: { where?: NavigationWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyNavigationNodes: <T = BatchPayload>(args: { where?: NavigationNodeWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyTags: <T = BatchPayload>(args: { where?: TagWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    deleteManyPages: <T = BatchPayload>(args: { where?: PageWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyPageTypes: <T = BatchPayload>(args: { where?: PageTypeWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyWebsites: <T = BatchPayload>(args: { where?: WebsiteWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    deleteManyPages: <T = BatchPayload>(args: { where?: PageWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyLanguages: <T = BatchPayload>(args: { where?: LanguageWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> 
   }
 
@@ -137,9 +137,9 @@ export interface Subscription {
     navigation: <T = NavigationSubscriptionPayload | null>(args: { where?: NavigationSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
     navigationNode: <T = NavigationNodeSubscriptionPayload | null>(args: { where?: NavigationNodeSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
     tag: <T = TagSubscriptionPayload | null>(args: { where?: TagSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
+    page: <T = PageSubscriptionPayload | null>(args: { where?: PageSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
     pageType: <T = PageTypeSubscriptionPayload | null>(args: { where?: PageTypeSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
     website: <T = WebsiteSubscriptionPayload | null>(args: { where?: WebsiteSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
-    page: <T = PageSubscriptionPayload | null>(args: { where?: PageSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
     language: <T = LanguageSubscriptionPayload | null>(args: { where?: LanguageSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> 
   }
 
@@ -153,9 +153,9 @@ export interface Exists {
   Navigation: (where?: NavigationWhereInput) => Promise<boolean>
   NavigationNode: (where?: NavigationNodeWhereInput) => Promise<boolean>
   Tag: (where?: TagWhereInput) => Promise<boolean>
+  Page: (where?: PageWhereInput) => Promise<boolean>
   PageType: (where?: PageTypeWhereInput) => Promise<boolean>
   Website: (where?: WebsiteWhereInput) => Promise<boolean>
-  Page: (where?: PageWhereInput) => Promise<boolean>
   Language: (where?: LanguageWhereInput) => Promise<boolean>
 }
 
@@ -1001,9 +1001,9 @@ type Mutation {
   createNavigation(data: NavigationCreateInput!): Navigation!
   createNavigationNode(data: NavigationNodeCreateInput!): NavigationNode!
   createTag(data: TagCreateInput!): Tag!
+  createPage(data: PageCreateInput!): Page!
   createPageType(data: PageTypeCreateInput!): PageType!
   createWebsite(data: WebsiteCreateInput!): Website!
-  createPage(data: PageCreateInput!): Page!
   createLanguage(data: LanguageCreateInput!): Language!
   updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
   updatePageTranslation(data: PageTranslationUpdateInput!, where: PageTranslationWhereUniqueInput!): PageTranslation
@@ -1014,9 +1014,9 @@ type Mutation {
   updateNavigation(data: NavigationUpdateInput!, where: NavigationWhereUniqueInput!): Navigation
   updateNavigationNode(data: NavigationNodeUpdateInput!, where: NavigationNodeWhereUniqueInput!): NavigationNode
   updateTag(data: TagUpdateInput!, where: TagWhereUniqueInput!): Tag
+  updatePage(data: PageUpdateInput!, where: PageWhereUniqueInput!): Page
   updatePageType(data: PageTypeUpdateInput!, where: PageTypeWhereUniqueInput!): PageType
   updateWebsite(data: WebsiteUpdateInput!, where: WebsiteWhereUniqueInput!): Website
-  updatePage(data: PageUpdateInput!, where: PageWhereUniqueInput!): Page
   updateLanguage(data: LanguageUpdateInput!, where: LanguageWhereUniqueInput!): Language
   deleteProject(where: ProjectWhereUniqueInput!): Project
   deletePageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
@@ -1027,9 +1027,9 @@ type Mutation {
   deleteNavigation(where: NavigationWhereUniqueInput!): Navigation
   deleteNavigationNode(where: NavigationNodeWhereUniqueInput!): NavigationNode
   deleteTag(where: TagWhereUniqueInput!): Tag
+  deletePage(where: PageWhereUniqueInput!): Page
   deletePageType(where: PageTypeWhereUniqueInput!): PageType
   deleteWebsite(where: WebsiteWhereUniqueInput!): Website
-  deletePage(where: PageWhereUniqueInput!): Page
   deleteLanguage(where: LanguageWhereUniqueInput!): Language
   upsertProject(where: ProjectWhereUniqueInput!, create: ProjectCreateInput!, update: ProjectUpdateInput!): Project!
   upsertPageTranslation(where: PageTranslationWhereUniqueInput!, create: PageTranslationCreateInput!, update: PageTranslationUpdateInput!): PageTranslation!
@@ -1040,9 +1040,9 @@ type Mutation {
   upsertNavigation(where: NavigationWhereUniqueInput!, create: NavigationCreateInput!, update: NavigationUpdateInput!): Navigation!
   upsertNavigationNode(where: NavigationNodeWhereUniqueInput!, create: NavigationNodeCreateInput!, update: NavigationNodeUpdateInput!): NavigationNode!
   upsertTag(where: TagWhereUniqueInput!, create: TagCreateInput!, update: TagUpdateInput!): Tag!
+  upsertPage(where: PageWhereUniqueInput!, create: PageCreateInput!, update: PageUpdateInput!): Page!
   upsertPageType(where: PageTypeWhereUniqueInput!, create: PageTypeCreateInput!, update: PageTypeUpdateInput!): PageType!
   upsertWebsite(where: WebsiteWhereUniqueInput!, create: WebsiteCreateInput!, update: WebsiteUpdateInput!): Website!
-  upsertPage(where: PageWhereUniqueInput!, create: PageCreateInput!, update: PageUpdateInput!): Page!
   upsertLanguage(where: LanguageWhereUniqueInput!, create: LanguageCreateInput!, update: LanguageUpdateInput!): Language!
   updateManyProjects(data: ProjectUpdateInput!, where: ProjectWhereInput): BatchPayload!
   updateManyPageTranslations(data: PageTranslationUpdateInput!, where: PageTranslationWhereInput): BatchPayload!
@@ -1053,9 +1053,9 @@ type Mutation {
   updateManyNavigations(data: NavigationUpdateInput!, where: NavigationWhereInput): BatchPayload!
   updateManyNavigationNodes(data: NavigationNodeUpdateInput!, where: NavigationNodeWhereInput): BatchPayload!
   updateManyTags(data: TagUpdateInput!, where: TagWhereInput): BatchPayload!
+  updateManyPages(data: PageUpdateInput!, where: PageWhereInput): BatchPayload!
   updateManyPageTypes(data: PageTypeUpdateInput!, where: PageTypeWhereInput): BatchPayload!
   updateManyWebsites(data: WebsiteUpdateInput!, where: WebsiteWhereInput): BatchPayload!
-  updateManyPages(data: PageUpdateInput!, where: PageWhereInput): BatchPayload!
   updateManyLanguages(data: LanguageUpdateInput!, where: LanguageWhereInput): BatchPayload!
   deleteManyProjects(where: ProjectWhereInput): BatchPayload!
   deleteManyPageTranslations(where: PageTranslationWhereInput): BatchPayload!
@@ -1066,9 +1066,9 @@ type Mutation {
   deleteManyNavigations(where: NavigationWhereInput): BatchPayload!
   deleteManyNavigationNodes(where: NavigationNodeWhereInput): BatchPayload!
   deleteManyTags(where: TagWhereInput): BatchPayload!
+  deleteManyPages(where: PageWhereInput): BatchPayload!
   deleteManyPageTypes(where: PageTypeWhereInput): BatchPayload!
   deleteManyWebsites(where: WebsiteWhereInput): BatchPayload!
-  deleteManyPages(where: PageWhereInput): BatchPayload!
   deleteManyLanguages(where: LanguageWhereInput): BatchPayload!
 }
 
@@ -1966,11 +1966,11 @@ input PageCreateInput {
   type: PageTypeCreateOneInput!
   translations: PageTranslationCreateManyWithoutPageInput
   chats: PageChatCreateManyWithoutPageInput
-  tags: TagCreateManyInput
+  tags: TagCreateManyWithoutPagesInput
 }
 
-input PageCreateManyInput {
-  create: [PageCreateInput!]
+input PageCreateManyWithoutTagsInput {
+  create: [PageCreateWithoutTagsInput!]
   connect: [PageWhereUniqueInput!]
 }
 
@@ -1999,7 +1999,15 @@ input PageCreateWithoutChatsInput {
   website: WebsiteCreateOneWithoutPagesInput!
   type: PageTypeCreateOneInput!
   translations: PageTranslationCreateManyWithoutPageInput
-  tags: TagCreateManyInput
+  tags: TagCreateManyWithoutPagesInput
+}
+
+input PageCreateWithoutTagsInput {
+  parent: PageCreateOneInput
+  website: WebsiteCreateOneWithoutPagesInput!
+  type: PageTypeCreateOneInput!
+  translations: PageTranslationCreateManyWithoutPageInput
+  chats: PageChatCreateManyWithoutPageInput
 }
 
 input PageCreateWithoutTranslationsInput {
@@ -2007,7 +2015,7 @@ input PageCreateWithoutTranslationsInput {
   website: WebsiteCreateOneWithoutPagesInput!
   type: PageTypeCreateOneInput!
   chats: PageChatCreateManyWithoutPageInput
-  tags: TagCreateManyInput
+  tags: TagCreateManyWithoutPagesInput
 }
 
 input PageCreateWithoutWebsiteInput {
@@ -2015,7 +2023,7 @@ input PageCreateWithoutWebsiteInput {
   type: PageTypeCreateOneInput!
   translations: PageTranslationCreateManyWithoutPageInput
   chats: PageChatCreateManyWithoutPageInput
-  tags: TagCreateManyInput
+  tags: TagCreateManyWithoutPagesInput
 }
 
 """An edge in a connection."""
@@ -3278,7 +3286,7 @@ input PageUpdateDataInput {
   type: PageTypeUpdateOneInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
-  tags: TagUpdateManyInput
+  tags: TagUpdateManyWithoutPagesInput
 }
 
 input PageUpdateInput {
@@ -3287,16 +3295,16 @@ input PageUpdateInput {
   type: PageTypeUpdateOneInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
-  tags: TagUpdateManyInput
+  tags: TagUpdateManyWithoutPagesInput
 }
 
-input PageUpdateManyInput {
-  create: [PageCreateInput!]
+input PageUpdateManyWithoutTagsInput {
+  create: [PageCreateWithoutTagsInput!]
   connect: [PageWhereUniqueInput!]
   disconnect: [PageWhereUniqueInput!]
   delete: [PageWhereUniqueInput!]
-  update: [PageUpdateWithWhereUniqueNestedInput!]
-  upsert: [PageUpsertWithWhereUniqueNestedInput!]
+  update: [PageUpdateWithWhereUniqueWithoutTagsInput!]
+  upsert: [PageUpsertWithWhereUniqueWithoutTagsInput!]
 }
 
 input PageUpdateManyWithoutWebsiteInput {
@@ -3338,7 +3346,15 @@ input PageUpdateWithoutChatsDataInput {
   website: WebsiteUpdateOneWithoutPagesInput
   type: PageTypeUpdateOneInput
   translations: PageTranslationUpdateManyWithoutPageInput
-  tags: TagUpdateManyInput
+  tags: TagUpdateManyWithoutPagesInput
+}
+
+input PageUpdateWithoutTagsDataInput {
+  parent: PageUpdateOneInput
+  website: WebsiteUpdateOneWithoutPagesInput
+  type: PageTypeUpdateOneInput
+  translations: PageTranslationUpdateManyWithoutPageInput
+  chats: PageChatUpdateManyWithoutPageInput
 }
 
 input PageUpdateWithoutTranslationsDataInput {
@@ -3346,7 +3362,7 @@ input PageUpdateWithoutTranslationsDataInput {
   website: WebsiteUpdateOneWithoutPagesInput
   type: PageTypeUpdateOneInput
   chats: PageChatUpdateManyWithoutPageInput
-  tags: TagUpdateManyInput
+  tags: TagUpdateManyWithoutPagesInput
 }
 
 input PageUpdateWithoutWebsiteDataInput {
@@ -3354,12 +3370,12 @@ input PageUpdateWithoutWebsiteDataInput {
   type: PageTypeUpdateOneInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
-  tags: TagUpdateManyInput
+  tags: TagUpdateManyWithoutPagesInput
 }
 
-input PageUpdateWithWhereUniqueNestedInput {
+input PageUpdateWithWhereUniqueWithoutTagsInput {
   where: PageWhereUniqueInput!
-  data: PageUpdateDataInput!
+  data: PageUpdateWithoutTagsDataInput!
 }
 
 input PageUpdateWithWhereUniqueWithoutWebsiteInput {
@@ -3382,10 +3398,10 @@ input PageUpsertWithoutTranslationsInput {
   create: PageCreateWithoutTranslationsInput!
 }
 
-input PageUpsertWithWhereUniqueNestedInput {
+input PageUpsertWithWhereUniqueWithoutTagsInput {
   where: PageWhereUniqueInput!
-  update: PageUpdateDataInput!
-  create: PageCreateInput!
+  update: PageUpdateWithoutTagsDataInput!
+  create: PageCreateWithoutTagsInput!
 }
 
 input PageUpsertWithWhereUniqueWithoutWebsiteInput {
@@ -3755,9 +3771,9 @@ type Query {
   navigations(where: NavigationWhereInput, orderBy: NavigationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Navigation]!
   navigationNodes(where: NavigationNodeWhereInput, orderBy: NavigationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [NavigationNode]!
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag]!
+  pages(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Page]!
   pageTypes(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageType]!
   websites(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Website]!
-  pages(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Page]!
   languages(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Language]!
   project(where: ProjectWhereUniqueInput!): Project
   pageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
@@ -3768,9 +3784,9 @@ type Query {
   navigation(where: NavigationWhereUniqueInput!): Navigation
   navigationNode(where: NavigationNodeWhereUniqueInput!): NavigationNode
   tag(where: TagWhereUniqueInput!): Tag
+  page(where: PageWhereUniqueInput!): Page
   pageType(where: PageTypeWhereUniqueInput!): PageType
   website(where: WebsiteWhereUniqueInput!): Website
-  page(where: PageWhereUniqueInput!): Page
   language(where: LanguageWhereUniqueInput!): Language
   projectsConnection(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectConnection!
   pageTranslationsConnection(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTranslationConnection!
@@ -3781,9 +3797,9 @@ type Query {
   navigationsConnection(where: NavigationWhereInput, orderBy: NavigationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NavigationConnection!
   navigationNodesConnection(where: NavigationNodeWhereInput, orderBy: NavigationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NavigationNodeConnection!
   tagsConnection(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TagConnection!
+  pagesConnection(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageConnection!
   pageTypesConnection(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTypeConnection!
   websitesConnection(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WebsiteConnection!
-  pagesConnection(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageConnection!
   languagesConnection(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LanguageConnection!
 
   """Fetches an object given its ID"""
@@ -3803,9 +3819,9 @@ type Subscription {
   navigation(where: NavigationSubscriptionWhereInput): NavigationSubscriptionPayload
   navigationNode(where: NavigationNodeSubscriptionWhereInput): NavigationNodeSubscriptionPayload
   tag(where: TagSubscriptionWhereInput): TagSubscriptionPayload
+  page(where: PageSubscriptionWhereInput): PageSubscriptionPayload
   pageType(where: PageTypeSubscriptionWhereInput): PageTypeSubscriptionPayload
   website(where: WebsiteSubscriptionWhereInput): WebsiteSubscriptionPayload
-  page(where: PageSubscriptionWhereInput): PageSubscriptionPayload
   language(where: LanguageSubscriptionWhereInput): LanguageSubscriptionPayload
 }
 
@@ -3835,16 +3851,24 @@ input TagCreateInput {
   color: String!
   plugins: TagCreatepluginsInput
   website: WebsiteCreateOneInput!
-  pages: PageCreateManyInput
+  pages: PageCreateManyWithoutTagsInput
 }
 
-input TagCreateManyInput {
-  create: [TagCreateInput!]
+input TagCreateManyWithoutPagesInput {
+  create: [TagCreateWithoutPagesInput!]
   connect: [TagWhereUniqueInput!]
 }
 
 input TagCreatepluginsInput {
   set: [String!]
+}
+
+input TagCreateWithoutPagesInput {
+  name: String!
+  displayInNavigation: Boolean
+  color: String!
+  plugins: TagCreatepluginsInput
+  website: WebsiteCreateOneInput!
 }
 
 """An edge in a connection."""
@@ -3918,46 +3942,45 @@ input TagSubscriptionWhereInput {
   node: TagWhereInput
 }
 
-input TagUpdateDataInput {
-  name: String
-  displayInNavigation: Boolean
-  color: String
-  plugins: TagUpdatepluginsInput
-  website: WebsiteUpdateOneInput
-  pages: PageUpdateManyInput
-}
-
 input TagUpdateInput {
   name: String
   displayInNavigation: Boolean
   color: String
   plugins: TagUpdatepluginsInput
   website: WebsiteUpdateOneInput
-  pages: PageUpdateManyInput
+  pages: PageUpdateManyWithoutTagsInput
 }
 
-input TagUpdateManyInput {
-  create: [TagCreateInput!]
+input TagUpdateManyWithoutPagesInput {
+  create: [TagCreateWithoutPagesInput!]
   connect: [TagWhereUniqueInput!]
   disconnect: [TagWhereUniqueInput!]
   delete: [TagWhereUniqueInput!]
-  update: [TagUpdateWithWhereUniqueNestedInput!]
-  upsert: [TagUpsertWithWhereUniqueNestedInput!]
+  update: [TagUpdateWithWhereUniqueWithoutPagesInput!]
+  upsert: [TagUpsertWithWhereUniqueWithoutPagesInput!]
 }
 
 input TagUpdatepluginsInput {
   set: [String!]
 }
 
-input TagUpdateWithWhereUniqueNestedInput {
-  where: TagWhereUniqueInput!
-  data: TagUpdateDataInput!
+input TagUpdateWithoutPagesDataInput {
+  name: String
+  displayInNavigation: Boolean
+  color: String
+  plugins: TagUpdatepluginsInput
+  website: WebsiteUpdateOneInput
 }
 
-input TagUpsertWithWhereUniqueNestedInput {
+input TagUpdateWithWhereUniqueWithoutPagesInput {
   where: TagWhereUniqueInput!
-  update: TagUpdateDataInput!
-  create: TagCreateInput!
+  data: TagUpdateWithoutPagesDataInput!
+}
+
+input TagUpsertWithWhereUniqueWithoutPagesInput {
+  where: TagWhereUniqueInput!
+  update: TagUpdateWithoutPagesDataInput!
+  create: TagCreateWithoutPagesInput!
 }
 
 input TagWhereInput {
@@ -4697,15 +4720,9 @@ export type TagOrderByInput =   'id_ASC' |
   'createdAt_ASC' |
   'createdAt_DESC'
 
-export interface PageTranslationCreateWithoutTasksInput {
-  url: String
-  content?: Json
-  name?: String
-  status?: PageStatus
-  publishedFrom?: DateTime
-  publishedTo?: DateTime
-  page: PageCreateOneWithoutTranslationsInput
-  language: LanguageCreateOneInput
+export interface PageCreateOneWithoutChatsInput {
+  create?: PageCreateWithoutChatsInput
+  connect?: PageWhereUniqueInput
 }
 
 export interface ProjectWhereInput {
@@ -4763,42 +4780,49 @@ export interface ProjectWhereInput {
   websites_none?: WebsiteWhereInput
 }
 
-export interface WebsiteCreateManyWithoutProjectInput {
-  create?: WebsiteCreateWithoutProjectInput[] | WebsiteCreateWithoutProjectInput
-  connect?: WebsiteWhereUniqueInput[] | WebsiteWhereUniqueInput
-}
-
-export interface PageChatUpdateManyWithoutPageInput {
-  create?: PageChatCreateWithoutPageInput[] | PageChatCreateWithoutPageInput
-  connect?: PageChatWhereUniqueInput[] | PageChatWhereUniqueInput
-  disconnect?: PageChatWhereUniqueInput[] | PageChatWhereUniqueInput
-  delete?: PageChatWhereUniqueInput[] | PageChatWhereUniqueInput
-  update?: PageChatUpdateWithWhereUniqueWithoutPageInput[] | PageChatUpdateWithWhereUniqueWithoutPageInput
-  upsert?: PageChatUpsertWithWhereUniqueWithoutPageInput[] | PageChatUpsertWithWhereUniqueWithoutPageInput
-}
-
-export interface WebsiteCreateWithoutProjectInput {
-  title: String
-  urlMask: String
-  settings?: Json
-  languages?: LanguageCreateManyInput
-  defaultLanguage: LanguageCreateOneInput
-  pageTypes?: PageTypeCreateManyWithoutWebsiteInput
-  pages?: PageCreateManyWithoutWebsiteInput
-}
-
-export interface NavigationNodeCreateInput {
-  page?: ID_Input
-  title?: String
-  link?: String
-  order?: Int
-  parent?: ID_Input
-  navigation: NavigationCreateOneWithoutNodesInput
-}
-
 export interface PageTypeCreateManyWithoutWebsiteInput {
   create?: PageTypeCreateWithoutWebsiteInput[] | PageTypeCreateWithoutWebsiteInput
   connect?: PageTypeWhereUniqueInput[] | PageTypeWhereUniqueInput
+}
+
+export interface PageChatUpdateWithWhereUniqueWithoutPageInput {
+  where: PageChatWhereUniqueInput
+  data: PageChatUpdateWithoutPageDataInput
+}
+
+export interface PageTypeCreateWithoutWebsiteInput {
+  name: String
+  content?: Json
+  plugins?: PageTypeCreatepluginsInput
+}
+
+export interface TagCreateInput {
+  name: String
+  displayInNavigation?: Boolean
+  color: String
+  plugins?: TagCreatepluginsInput
+  website: WebsiteCreateOneInput
+  pages?: PageCreateManyWithoutTagsInput
+}
+
+export interface PageTypeCreatepluginsInput {
+  set?: String[] | String
+}
+
+export interface WebsiteSubscriptionWhereInput {
+  AND?: WebsiteSubscriptionWhereInput[] | WebsiteSubscriptionWhereInput
+  OR?: WebsiteSubscriptionWhereInput[] | WebsiteSubscriptionWhereInput
+  NOT?: WebsiteSubscriptionWhereInput[] | WebsiteSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: WebsiteWhereInput
+}
+
+export interface PageCreateManyWithoutWebsiteInput {
+  create?: PageCreateWithoutWebsiteInput[] | PageCreateWithoutWebsiteInput
+  connect?: PageWhereUniqueInput[] | PageWhereUniqueInput
 }
 
 export interface PageSubscriptionWhereInput {
@@ -4812,25 +4836,12 @@ export interface PageSubscriptionWhereInput {
   node?: PageWhereInput
 }
 
-export interface PageTypeCreateWithoutWebsiteInput {
-  name: String
-  content?: Json
-  plugins?: PageTypeCreatepluginsInput
-}
-
-export interface PageTypeSubscriptionWhereInput {
-  AND?: PageTypeSubscriptionWhereInput[] | PageTypeSubscriptionWhereInput
-  OR?: PageTypeSubscriptionWhereInput[] | PageTypeSubscriptionWhereInput
-  NOT?: PageTypeSubscriptionWhereInput[] | PageTypeSubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: PageTypeWhereInput
-}
-
-export interface PageTypeCreatepluginsInput {
-  set?: String[] | String
+export interface PageCreateWithoutWebsiteInput {
+  parent?: PageCreateOneInput
+  type: PageTypeCreateOneInput
+  translations?: PageTranslationCreateManyWithoutPageInput
+  chats?: PageChatCreateManyWithoutPageInput
+  tags?: TagCreateManyWithoutPagesInput
 }
 
 export interface TagSubscriptionWhereInput {
@@ -4844,9 +4855,9 @@ export interface TagSubscriptionWhereInput {
   node?: TagWhereInput
 }
 
-export interface PageCreateManyWithoutWebsiteInput {
-  create?: PageCreateWithoutWebsiteInput[] | PageCreateWithoutWebsiteInput
-  connect?: PageWhereUniqueInput[] | PageWhereUniqueInput
+export interface PageCreateOneInput {
+  create?: PageCreateInput
+  connect?: PageWhereUniqueInput
 }
 
 export interface NavigationNodeSubscriptionWhereInput {
@@ -4860,12 +4871,13 @@ export interface NavigationNodeSubscriptionWhereInput {
   node?: NavigationNodeWhereInput
 }
 
-export interface PageCreateWithoutWebsiteInput {
+export interface PageCreateInput {
   parent?: PageCreateOneInput
+  website: WebsiteCreateOneWithoutPagesInput
   type: PageTypeCreateOneInput
   translations?: PageTranslationCreateManyWithoutPageInput
   chats?: PageChatCreateManyWithoutPageInput
-  tags?: TagCreateManyInput
+  tags?: TagCreateManyWithoutPagesInput
 }
 
 export interface NavigationSubscriptionWhereInput {
@@ -4879,9 +4891,9 @@ export interface NavigationSubscriptionWhereInput {
   node?: NavigationWhereInput
 }
 
-export interface PageCreateOneInput {
-  create?: PageCreateInput
-  connect?: PageWhereUniqueInput
+export interface WebsiteCreateOneWithoutPagesInput {
+  create?: WebsiteCreateWithoutPagesInput
+  connect?: WebsiteWhereUniqueInput
 }
 
 export interface PageChatSubscriptionWhereInput {
@@ -4895,13 +4907,14 @@ export interface PageChatSubscriptionWhereInput {
   node?: PageChatWhereInput
 }
 
-export interface PageCreateInput {
-  parent?: PageCreateOneInput
-  website: WebsiteCreateOneWithoutPagesInput
-  type: PageTypeCreateOneInput
-  translations?: PageTranslationCreateManyWithoutPageInput
-  chats?: PageChatCreateManyWithoutPageInput
-  tags?: TagCreateManyInput
+export interface WebsiteCreateWithoutPagesInput {
+  title: String
+  urlMask: String
+  settings?: Json
+  project: ProjectCreateOneWithoutWebsitesInput
+  languages?: LanguageCreateManyInput
+  defaultLanguage: LanguageCreateOneInput
+  pageTypes?: PageTypeCreateManyWithoutWebsiteInput
 }
 
 export interface PageTaskSubscriptionWhereInput {
@@ -4915,9 +4928,9 @@ export interface PageTaskSubscriptionWhereInput {
   node?: PageTaskWhereInput
 }
 
-export interface WebsiteCreateOneWithoutPagesInput {
-  create?: WebsiteCreateWithoutPagesInput
-  connect?: WebsiteWhereUniqueInput
+export interface ProjectCreateOneWithoutWebsitesInput {
+  create?: ProjectCreateWithoutWebsitesInput
+  connect?: ProjectWhereUniqueInput
 }
 
 export interface PagePluginSubscriptionWhereInput {
@@ -4931,14 +4944,12 @@ export interface PagePluginSubscriptionWhereInput {
   node?: PagePluginWhereInput
 }
 
-export interface WebsiteCreateWithoutPagesInput {
-  title: String
-  urlMask: String
+export interface ProjectCreateWithoutWebsitesInput {
+  name: String
+  defaultName: String
   settings?: Json
-  project: ProjectCreateOneWithoutWebsitesInput
   languages?: LanguageCreateManyInput
   defaultLanguage: LanguageCreateOneInput
-  pageTypes?: PageTypeCreateManyWithoutWebsiteInput
 }
 
 export interface PageTypeWhereInput {
@@ -4976,9 +4987,9 @@ export interface PageTypeWhereInput {
   website?: WebsiteWhereInput
 }
 
-export interface ProjectCreateOneWithoutWebsitesInput {
-  create?: ProjectCreateWithoutWebsitesInput
-  connect?: ProjectWhereUniqueInput
+export interface PageTypeCreateOneInput {
+  create?: PageTypeCreateInput
+  connect?: PageTypeWhereUniqueInput
 }
 
 export interface FileWhereInput {
@@ -5081,12 +5092,11 @@ export interface FileWhereInput {
   updatedAt_gte?: DateTime
 }
 
-export interface ProjectCreateWithoutWebsitesInput {
+export interface PageTypeCreateInput {
   name: String
-  defaultName: String
-  settings?: Json
-  languages?: LanguageCreateManyInput
-  defaultLanguage: LanguageCreateOneInput
+  content?: Json
+  plugins?: PageTypeCreatepluginsInput
+  website: WebsiteCreateOneWithoutPageTypesInput
 }
 
 export interface ProjectSubscriptionWhereInput {
@@ -5100,9 +5110,9 @@ export interface ProjectSubscriptionWhereInput {
   node?: ProjectWhereInput
 }
 
-export interface PageTypeCreateOneInput {
-  create?: PageTypeCreateInput
-  connect?: PageTypeWhereUniqueInput
+export interface WebsiteCreateOneWithoutPageTypesInput {
+  create?: WebsiteCreateWithoutPageTypesInput
+  connect?: WebsiteWhereUniqueInput
 }
 
 export interface NavigationNodeWhereInput {
@@ -5190,25 +5200,14 @@ export interface NavigationNodeWhereInput {
   navigation?: NavigationWhereInput
 }
 
-export interface PageTypeCreateInput {
-  name: String
-  content?: Json
-  plugins?: PageTypeCreatepluginsInput
-  website: WebsiteCreateOneWithoutPageTypesInput
-}
-
-export interface PageUpdateInput {
-  parent?: PageUpdateOneInput
-  website?: WebsiteUpdateOneWithoutPagesInput
-  type?: PageTypeUpdateOneInput
-  translations?: PageTranslationUpdateManyWithoutPageInput
-  chats?: PageChatUpdateManyWithoutPageInput
-  tags?: TagUpdateManyInput
-}
-
-export interface WebsiteCreateOneWithoutPageTypesInput {
-  create?: WebsiteCreateWithoutPageTypesInput
-  connect?: WebsiteWhereUniqueInput
+export interface WebsiteCreateWithoutPageTypesInput {
+  title: String
+  urlMask: String
+  settings?: Json
+  project: ProjectCreateOneWithoutWebsitesInput
+  languages?: LanguageCreateManyInput
+  defaultLanguage: LanguageCreateOneInput
+  pages?: PageCreateManyWithoutWebsiteInput
 }
 
 export interface WebsiteUpdateInput {
@@ -5222,27 +5221,16 @@ export interface WebsiteUpdateInput {
   pages?: PageUpdateManyWithoutWebsiteInput
 }
 
-export interface WebsiteCreateWithoutPageTypesInput {
-  title: String
-  urlMask: String
-  settings?: Json
-  project: ProjectCreateOneWithoutWebsitesInput
-  languages?: LanguageCreateManyInput
-  defaultLanguage: LanguageCreateOneInput
-  pages?: PageCreateManyWithoutWebsiteInput
-}
-
-export interface PageTranslationWhereUniqueInput {
-  id?: ID_Input
-}
-
 export interface PageTranslationCreateManyWithoutPageInput {
   create?: PageTranslationCreateWithoutPageInput[] | PageTranslationCreateWithoutPageInput
   connect?: PageTranslationWhereUniqueInput[] | PageTranslationWhereUniqueInput
 }
 
-export interface PageTaskWhereUniqueInput {
-  id?: ID_Input
+export interface PageTypeUpdateInput {
+  name?: String
+  content?: Json
+  plugins?: PageTypeUpdatepluginsInput
+  website?: WebsiteUpdateOneWithoutPageTypesInput
 }
 
 export interface PageTranslationCreateWithoutPageInput {
@@ -5256,9 +5244,8 @@ export interface PageTranslationCreateWithoutPageInput {
   tasks?: PageTaskCreateManyWithoutPageTranslationInput
 }
 
-export interface FileWhereUniqueInput {
+export interface PageTranslationWhereUniqueInput {
   id?: ID_Input
-  hash?: String
 }
 
 export interface PageTaskCreateManyWithoutPageTranslationInput {
@@ -5266,7 +5253,7 @@ export interface PageTaskCreateManyWithoutPageTranslationInput {
   connect?: PageTaskWhereUniqueInput[] | PageTaskWhereUniqueInput
 }
 
-export interface NavigationNodeWhereUniqueInput {
+export interface PageTaskWhereUniqueInput {
   id?: ID_Input
 }
 
@@ -5276,8 +5263,9 @@ export interface PageTaskCreateWithoutPageTranslationInput {
   description: String
 }
 
-export interface PageTypeWhereUniqueInput {
+export interface FileWhereUniqueInput {
   id?: ID_Input
+  hash?: String
 }
 
 export interface PageChatCreateManyWithoutPageInput {
@@ -5285,7 +5273,7 @@ export interface PageChatCreateManyWithoutPageInput {
   connect?: PageChatWhereUniqueInput[] | PageChatWhereUniqueInput
 }
 
-export interface PageWhereUniqueInput {
+export interface NavigationNodeWhereUniqueInput {
   id?: ID_Input
 }
 
@@ -5293,48 +5281,46 @@ export interface PageChatCreateWithoutPageInput {
   text: String
 }
 
-export interface PageTypeUpdateInput {
-  name?: String
-  content?: Json
-  plugins?: PageTypeUpdatepluginsInput
-  website?: WebsiteUpdateOneWithoutPageTypesInput
+export interface PageWhereUniqueInput {
+  id?: ID_Input
 }
 
-export interface TagCreateManyInput {
-  create?: TagCreateInput[] | TagCreateInput
+export interface TagCreateManyWithoutPagesInput {
+  create?: TagCreateWithoutPagesInput[] | TagCreateWithoutPagesInput
   connect?: TagWhereUniqueInput[] | TagWhereUniqueInput
 }
 
-export interface NavigationUpsertWithoutNodesInput {
-  update: NavigationUpdateWithoutNodesDataInput
-  create: NavigationCreateWithoutNodesInput
+export interface WebsiteWhereUniqueInput {
+  id?: ID_Input
 }
 
-export interface TagCreateInput {
+export interface TagCreateWithoutPagesInput {
   name: String
   displayInNavigation?: Boolean
   color: String
   plugins?: TagCreatepluginsInput
   website: WebsiteCreateOneInput
-  pages?: PageCreateManyInput
 }
 
-export interface NavigationUpdateOneWithoutNodesInput {
-  create?: NavigationCreateWithoutNodesInput
-  connect?: NavigationWhereUniqueInput
-  delete?: Boolean
-  update?: NavigationUpdateWithoutNodesDataInput
-  upsert?: NavigationUpsertWithoutNodesInput
+export interface PageUpdateInput {
+  parent?: PageUpdateOneInput
+  website?: WebsiteUpdateOneWithoutPagesInput
+  type?: PageTypeUpdateOneInput
+  translations?: PageTranslationUpdateManyWithoutPageInput
+  chats?: PageChatUpdateManyWithoutPageInput
+  tags?: TagUpdateManyWithoutPagesInput
 }
 
 export interface TagCreatepluginsInput {
   set?: String[] | String
 }
 
-export interface NavigationNodeUpsertWithWhereUniqueWithoutNavigationInput {
-  where: NavigationNodeWhereUniqueInput
-  update: NavigationNodeUpdateWithoutNavigationDataInput
-  create: NavigationNodeCreateWithoutNavigationInput
+export interface PageUpdateWithoutTagsDataInput {
+  parent?: PageUpdateOneInput
+  website?: WebsiteUpdateOneWithoutPagesInput
+  type?: PageTypeUpdateOneInput
+  translations?: PageTranslationUpdateManyWithoutPageInput
+  chats?: PageChatUpdateManyWithoutPageInput
 }
 
 export interface WebsiteCreateOneInput {
@@ -5342,9 +5328,13 @@ export interface WebsiteCreateOneInput {
   connect?: WebsiteWhereUniqueInput
 }
 
-export interface NavigationNodeUpdateWithWhereUniqueWithoutNavigationInput {
-  where: NavigationNodeWhereUniqueInput
-  data: NavigationNodeUpdateWithoutNavigationDataInput
+export interface PageUpdateManyWithoutTagsInput {
+  create?: PageCreateWithoutTagsInput[] | PageCreateWithoutTagsInput
+  connect?: PageWhereUniqueInput[] | PageWhereUniqueInput
+  disconnect?: PageWhereUniqueInput[] | PageWhereUniqueInput
+  delete?: PageWhereUniqueInput[] | PageWhereUniqueInput
+  update?: PageUpdateWithWhereUniqueWithoutTagsInput[] | PageUpdateWithWhereUniqueWithoutTagsInput
+  upsert?: PageUpsertWithWhereUniqueWithoutTagsInput[] | PageUpsertWithWhereUniqueWithoutTagsInput
 }
 
 export interface WebsiteCreateInput {
@@ -5358,20 +5348,9 @@ export interface WebsiteCreateInput {
   pages?: PageCreateManyWithoutWebsiteInput
 }
 
-export interface NavigationUpdateInput {
-  name?: String
-  website?: WebsiteUpdateOneInput
-  nodes?: NavigationNodeUpdateManyWithoutNavigationInput
-}
-
-export interface PageCreateManyInput {
-  create?: PageCreateInput[] | PageCreateInput
-  connect?: PageWhereUniqueInput[] | PageWhereUniqueInput
-}
-
-export interface PageUpsertWithoutChatsInput {
-  update: PageUpdateWithoutChatsDataInput
-  create: PageCreateWithoutChatsInput
+export interface NavigationUpsertWithoutNodesInput {
+  update: NavigationUpdateWithoutNodesDataInput
+  create: NavigationCreateWithoutNodesInput
 }
 
 export interface PageTranslationCreateInput {
@@ -5386,6 +5365,68 @@ export interface PageTranslationCreateInput {
   tasks?: PageTaskCreateManyWithoutPageTranslationInput
 }
 
+export interface NavigationUpdateOneWithoutNodesInput {
+  create?: NavigationCreateWithoutNodesInput
+  connect?: NavigationWhereUniqueInput
+  delete?: Boolean
+  update?: NavigationUpdateWithoutNodesDataInput
+  upsert?: NavigationUpsertWithoutNodesInput
+}
+
+export interface PageCreateOneWithoutTranslationsInput {
+  create?: PageCreateWithoutTranslationsInput
+  connect?: PageWhereUniqueInput
+}
+
+export interface NavigationNodeUpsertWithWhereUniqueWithoutNavigationInput {
+  where: NavigationNodeWhereUniqueInput
+  update: NavigationNodeUpdateWithoutNavigationDataInput
+  create: NavigationNodeCreateWithoutNavigationInput
+}
+
+export interface PageCreateWithoutTranslationsInput {
+  parent?: PageCreateOneInput
+  website: WebsiteCreateOneWithoutPagesInput
+  type: PageTypeCreateOneInput
+  chats?: PageChatCreateManyWithoutPageInput
+  tags?: TagCreateManyWithoutPagesInput
+}
+
+export interface NavigationNodeUpdateWithWhereUniqueWithoutNavigationInput {
+  where: NavigationNodeWhereUniqueInput
+  data: NavigationNodeUpdateWithoutNavigationDataInput
+}
+
+export interface PagePluginCreateInput {
+  plugin: String
+  content?: Json
+  page: PageCreateOneInput
+  language: LanguageCreateOneInput
+}
+
+export interface NavigationUpdateInput {
+  name?: String
+  website?: WebsiteUpdateOneInput
+  nodes?: NavigationNodeUpdateManyWithoutNavigationInput
+}
+
+export interface PageTaskCreateInput {
+  done?: Boolean
+  name: String
+  description: String
+  pageTranslation: PageTranslationCreateOneWithoutTasksInput
+}
+
+export interface PageUpsertWithoutChatsInput {
+  update: PageUpdateWithoutChatsDataInput
+  create: PageCreateWithoutChatsInput
+}
+
+export interface PageTranslationCreateOneWithoutTasksInput {
+  create?: PageTranslationCreateWithoutTasksInput
+  connect?: PageTranslationWhereUniqueInput
+}
+
 export interface PageUpdateOneWithoutChatsInput {
   create?: PageCreateWithoutChatsInput
   connect?: PageWhereUniqueInput
@@ -5394,9 +5435,15 @@ export interface PageUpdateOneWithoutChatsInput {
   upsert?: PageUpsertWithoutChatsInput
 }
 
-export interface PageCreateOneWithoutTranslationsInput {
-  create?: PageCreateWithoutTranslationsInput
-  connect?: PageWhereUniqueInput
+export interface PageTranslationCreateWithoutTasksInput {
+  url: String
+  content?: Json
+  name?: String
+  status?: PageStatus
+  publishedFrom?: DateTime
+  publishedTo?: DateTime
+  page: PageCreateOneWithoutTranslationsInput
+  language: LanguageCreateOneInput
 }
 
 export interface PageTranslationUpsertWithoutTasksInput {
@@ -5404,12 +5451,9 @@ export interface PageTranslationUpsertWithoutTasksInput {
   create: PageTranslationCreateWithoutTasksInput
 }
 
-export interface PageCreateWithoutTranslationsInput {
-  parent?: PageCreateOneInput
-  website: WebsiteCreateOneWithoutPagesInput
-  type: PageTypeCreateOneInput
-  chats?: PageChatCreateManyWithoutPageInput
-  tags?: TagCreateManyInput
+export interface PageChatCreateInput {
+  text: String
+  page: PageCreateOneWithoutChatsInput
 }
 
 export interface PageTranslationUpdateOneWithoutTasksInput {
@@ -5420,11 +5464,10 @@ export interface PageTranslationUpdateOneWithoutTasksInput {
   upsert?: PageTranslationUpsertWithoutTasksInput
 }
 
-export interface PagePluginCreateInput {
-  plugin: String
-  content?: Json
-  page: PageCreateOneInput
-  language: LanguageCreateOneInput
+export interface PageChatUpsertWithWhereUniqueWithoutPageInput {
+  where: PageChatWhereUniqueInput
+  update: PageChatUpdateWithoutPageDataInput
+  create: PageChatCreateWithoutPageInput
 }
 
 export interface PagePluginUpdateInput {
@@ -5434,11 +5477,12 @@ export interface PagePluginUpdateInput {
   language?: LanguageUpdateOneInput
 }
 
-export interface PageTaskCreateInput {
-  done?: Boolean
-  name: String
-  description: String
-  pageTranslation: PageTranslationCreateOneWithoutTasksInput
+export interface PageCreateWithoutChatsInput {
+  parent?: PageCreateOneInput
+  website: WebsiteCreateOneWithoutPagesInput
+  type: PageTypeCreateOneInput
+  translations?: PageTranslationCreateManyWithoutPageInput
+  tags?: TagCreateManyWithoutPagesInput
 }
 
 export interface PageUpdateWithoutTranslationsDataInput {
@@ -5446,12 +5490,15 @@ export interface PageUpdateWithoutTranslationsDataInput {
   website?: WebsiteUpdateOneWithoutPagesInput
   type?: PageTypeUpdateOneInput
   chats?: PageChatUpdateManyWithoutPageInput
-  tags?: TagUpdateManyInput
+  tags?: TagUpdateManyWithoutPagesInput
 }
 
-export interface PageTranslationCreateOneWithoutTasksInput {
-  create?: PageTranslationCreateWithoutTasksInput
-  connect?: PageTranslationWhereUniqueInput
+export interface FileCreateInput {
+  hash: String
+  category?: String
+  filename: String
+  mimetype?: String
+  size?: Int
 }
 
 export interface PageTranslationUpdateInput {
@@ -5466,8 +5513,10 @@ export interface PageTranslationUpdateInput {
   tasks?: PageTaskUpdateManyWithoutPageTranslationInput
 }
 
-export interface PageChatUpdateWithoutPageDataInput {
-  text?: String
+export interface NavigationCreateInput {
+  name: String
+  website: WebsiteCreateOneInput
+  nodes?: NavigationNodeCreateManyWithoutNavigationInput
 }
 
 export interface PageUpsertWithWhereUniqueWithoutWebsiteInput {
@@ -5476,83 +5525,15 @@ export interface PageUpsertWithWhereUniqueWithoutWebsiteInput {
   create: PageCreateWithoutWebsiteInput
 }
 
-export interface PageChatCreateInput {
-  text: String
-  page: PageCreateOneWithoutChatsInput
-}
-
-export interface TagUpsertWithWhereUniqueNestedInput {
-  where: TagWhereUniqueInput
-  update: TagUpdateDataInput
-  create: TagCreateInput
-}
-
-export interface PageCreateOneWithoutChatsInput {
-  create?: PageCreateWithoutChatsInput
-  connect?: PageWhereUniqueInput
-}
-
-export interface PageUpdateWithWhereUniqueNestedInput {
-  where: PageWhereUniqueInput
-  data: PageUpdateDataInput
-}
-
-export interface PageCreateWithoutChatsInput {
-  parent?: PageCreateOneInput
-  website: WebsiteCreateOneWithoutPagesInput
-  type: PageTypeCreateOneInput
-  translations?: PageTranslationCreateManyWithoutPageInput
-  tags?: TagCreateManyInput
-}
-
-export interface WebsiteUpsertNestedInput {
-  update: WebsiteUpdateDataInput
-  create: WebsiteCreateInput
-}
-
-export interface FileCreateInput {
-  hash: String
-  category?: String
-  filename: String
-  mimetype?: String
-  size?: Int
-}
-
-export interface WebsiteUpdateOneInput {
-  create?: WebsiteCreateInput
-  connect?: WebsiteWhereUniqueInput
-  delete?: Boolean
-  update?: WebsiteUpdateDataInput
-  upsert?: WebsiteUpsertNestedInput
-}
-
-export interface NavigationCreateInput {
-  name: String
-  website: WebsiteCreateOneInput
-  nodes?: NavigationNodeCreateManyWithoutNavigationInput
-}
-
-export interface TagUpdateDataInput {
-  name?: String
-  displayInNavigation?: Boolean
-  color?: String
-  plugins?: TagUpdatepluginsInput
-  website?: WebsiteUpdateOneInput
-  pages?: PageUpdateManyInput
-}
-
 export interface NavigationNodeCreateManyWithoutNavigationInput {
   create?: NavigationNodeCreateWithoutNavigationInput[] | NavigationNodeCreateWithoutNavigationInput
   connect?: NavigationNodeWhereUniqueInput[] | NavigationNodeWhereUniqueInput
 }
 
-export interface TagUpdateManyInput {
-  create?: TagCreateInput[] | TagCreateInput
-  connect?: TagWhereUniqueInput[] | TagWhereUniqueInput
-  disconnect?: TagWhereUniqueInput[] | TagWhereUniqueInput
-  delete?: TagWhereUniqueInput[] | TagWhereUniqueInput
-  update?: TagUpdateWithWhereUniqueNestedInput[] | TagUpdateWithWhereUniqueNestedInput
-  upsert?: TagUpsertWithWhereUniqueNestedInput[] | TagUpsertWithWhereUniqueNestedInput
+export interface TagUpsertWithWhereUniqueWithoutPagesInput {
+  where: TagWhereUniqueInput
+  update: TagUpdateWithoutPagesDataInput
+  create: TagCreateWithoutPagesInput
 }
 
 export interface NavigationNodeCreateWithoutNavigationInput {
@@ -5561,6 +5542,45 @@ export interface NavigationNodeCreateWithoutNavigationInput {
   link?: String
   order?: Int
   parent?: ID_Input
+}
+
+export interface WebsiteUpdateDataInput {
+  title?: String
+  urlMask?: String
+  settings?: Json
+  project?: ProjectUpdateOneWithoutWebsitesInput
+  languages?: LanguageUpdateManyInput
+  defaultLanguage?: LanguageUpdateOneInput
+  pageTypes?: PageTypeUpdateManyWithoutWebsiteInput
+  pages?: PageUpdateManyWithoutWebsiteInput
+}
+
+export interface NavigationNodeCreateInput {
+  page?: ID_Input
+  title?: String
+  link?: String
+  order?: Int
+  parent?: ID_Input
+  navigation: NavigationCreateOneWithoutNodesInput
+}
+
+export interface TagUpdatepluginsInput {
+  set?: String[] | String
+}
+
+export interface NavigationCreateOneWithoutNodesInput {
+  create?: NavigationCreateWithoutNodesInput
+  connect?: NavigationWhereUniqueInput
+}
+
+export interface TagUpdateWithWhereUniqueWithoutPagesInput {
+  where: TagWhereUniqueInput
+  data: TagUpdateWithoutPagesDataInput
+}
+
+export interface NavigationCreateWithoutNodesInput {
+  name: String
+  website: WebsiteCreateOneInput
 }
 
 export interface ProjectCreateInput {
@@ -5572,9 +5592,8 @@ export interface ProjectCreateInput {
   websites?: WebsiteCreateManyWithoutProjectInput
 }
 
-export interface PageChatUpdateWithWhereUniqueWithoutPageInput {
-  where: PageChatWhereUniqueInput
-  data: PageChatUpdateWithoutPageDataInput
+export interface PageChatUpdateWithoutPageDataInput {
+  text?: String
 }
 
 export interface LanguageCreateInput {
@@ -5585,9 +5604,22 @@ export interface LanguageCreateInput {
   isEnabled?: Boolean
 }
 
-export interface NavigationCreateOneWithoutNodesInput {
-  create?: NavigationCreateWithoutNodesInput
-  connect?: NavigationWhereUniqueInput
+export interface PageCreateManyWithoutTagsInput {
+  create?: PageCreateWithoutTagsInput[] | PageCreateWithoutTagsInput
+  connect?: PageWhereUniqueInput[] | PageWhereUniqueInput
+}
+
+export interface WebsiteCreateManyWithoutProjectInput {
+  create?: WebsiteCreateWithoutProjectInput[] | WebsiteCreateWithoutProjectInput
+  connect?: WebsiteWhereUniqueInput[] | WebsiteWhereUniqueInput
+}
+
+export interface PageCreateWithoutTagsInput {
+  parent?: PageCreateOneInput
+  website: WebsiteCreateOneWithoutPagesInput
+  type: PageTypeCreateOneInput
+  translations?: PageTranslationCreateManyWithoutPageInput
+  chats?: PageChatCreateManyWithoutPageInput
 }
 
 export interface LanguageSubscriptionWhereInput {
@@ -5601,9 +5633,13 @@ export interface LanguageSubscriptionWhereInput {
   node?: LanguageWhereInput
 }
 
-export interface NavigationCreateWithoutNodesInput {
-  name: String
-  website: WebsiteCreateOneInput
+export interface ProjectUpdateInput {
+  name?: String
+  defaultName?: String
+  settings?: Json
+  languages?: LanguageUpdateManyInput
+  defaultLanguage?: LanguageUpdateOneInput
+  websites?: WebsiteUpdateManyWithoutProjectInput
 }
 
 export interface TagWhereInput {
@@ -5660,13 +5696,13 @@ export interface TagWhereInput {
   pages_none?: PageWhereInput
 }
 
-export interface ProjectUpdateInput {
-  name?: String
-  defaultName?: String
-  settings?: Json
-  languages?: LanguageUpdateManyInput
-  defaultLanguage?: LanguageUpdateOneInput
-  websites?: WebsiteUpdateManyWithoutProjectInput
+export interface LanguageUpdateManyInput {
+  create?: LanguageCreateInput[] | LanguageCreateInput
+  connect?: LanguageWhereUniqueInput[] | LanguageWhereUniqueInput
+  disconnect?: LanguageWhereUniqueInput[] | LanguageWhereUniqueInput
+  delete?: LanguageWhereUniqueInput[] | LanguageWhereUniqueInput
+  update?: LanguageUpdateWithWhereUniqueNestedInput[] | LanguageUpdateWithWhereUniqueNestedInput
+  upsert?: LanguageUpsertWithWhereUniqueNestedInput[] | LanguageUpsertWithWhereUniqueNestedInput
 }
 
 export interface PageTaskWhereInput {
@@ -5728,13 +5764,9 @@ export interface PageTaskWhereInput {
   pageTranslation?: PageTranslationWhereInput
 }
 
-export interface LanguageUpdateManyInput {
-  create?: LanguageCreateInput[] | LanguageCreateInput
-  connect?: LanguageWhereUniqueInput[] | LanguageWhereUniqueInput
-  disconnect?: LanguageWhereUniqueInput[] | LanguageWhereUniqueInput
-  delete?: LanguageWhereUniqueInput[] | LanguageWhereUniqueInput
-  update?: LanguageUpdateWithWhereUniqueNestedInput[] | LanguageUpdateWithWhereUniqueNestedInput
-  upsert?: LanguageUpsertWithWhereUniqueNestedInput[] | LanguageUpsertWithWhereUniqueNestedInput
+export interface LanguageUpdateWithWhereUniqueNestedInput {
+  where: LanguageWhereUniqueInput
+  data: LanguageUpdateDataInput
 }
 
 export interface PageTranslationWhereInput {
@@ -5810,9 +5842,12 @@ export interface PageTranslationWhereInput {
   tasks_none?: PageTaskWhereInput
 }
 
-export interface LanguageUpdateWithWhereUniqueNestedInput {
-  where: LanguageWhereUniqueInput
-  data: LanguageUpdateDataInput
+export interface LanguageUpdateDataInput {
+  code?: String
+  name?: String
+  englishName?: String
+  isDefault?: Boolean
+  isEnabled?: Boolean
 }
 
 export interface PagePluginWhereInput {
@@ -5851,12 +5886,10 @@ export interface PagePluginWhereInput {
   language?: LanguageWhereInput
 }
 
-export interface LanguageUpdateDataInput {
-  code?: String
-  name?: String
-  englishName?: String
-  isDefault?: Boolean
-  isEnabled?: Boolean
+export interface LanguageUpsertWithWhereUniqueNestedInput {
+  where: LanguageWhereUniqueInput
+  update: LanguageUpdateDataInput
+  create: LanguageCreateInput
 }
 
 export interface WebsiteWhereInput {
@@ -5918,10 +5951,12 @@ export interface WebsiteWhereInput {
   pages_none?: PageWhereInput
 }
 
-export interface LanguageUpsertWithWhereUniqueNestedInput {
-  where: LanguageWhereUniqueInput
-  update: LanguageUpdateDataInput
-  create: LanguageCreateInput
+export interface LanguageUpdateOneInput {
+  create?: LanguageCreateInput
+  connect?: LanguageWhereUniqueInput
+  delete?: Boolean
+  update?: LanguageUpdateDataInput
+  upsert?: LanguageUpsertNestedInput
 }
 
 export interface LanguageUpdateInput {
@@ -5932,24 +5967,12 @@ export interface LanguageUpdateInput {
   isEnabled?: Boolean
 }
 
-export interface LanguageUpdateOneInput {
-  create?: LanguageCreateInput
-  connect?: LanguageWhereUniqueInput
-  delete?: Boolean
-  update?: LanguageUpdateDataInput
-  upsert?: LanguageUpsertNestedInput
-}
-
-export interface ProjectWhereUniqueInput {
-  id?: ID_Input
-}
-
 export interface LanguageUpsertNestedInput {
   update: LanguageUpdateDataInput
   create: LanguageCreateInput
 }
 
-export interface PageChatWhereUniqueInput {
+export interface ProjectWhereUniqueInput {
   id?: ID_Input
 }
 
@@ -5962,7 +5985,7 @@ export interface WebsiteUpdateManyWithoutProjectInput {
   upsert?: WebsiteUpsertWithWhereUniqueWithoutProjectInput[] | WebsiteUpsertWithWhereUniqueWithoutProjectInput
 }
 
-export interface TagWhereUniqueInput {
+export interface PageChatWhereUniqueInput {
   id?: ID_Input
 }
 
@@ -5971,7 +5994,7 @@ export interface WebsiteUpdateWithWhereUniqueWithoutProjectInput {
   data: WebsiteUpdateWithoutProjectDataInput
 }
 
-export interface LanguageWhereUniqueInput {
+export interface TagWhereUniqueInput {
   id?: ID_Input
 }
 
@@ -5985,9 +6008,8 @@ export interface WebsiteUpdateWithoutProjectDataInput {
   pages?: PageUpdateManyWithoutWebsiteInput
 }
 
-export interface NavigationUpdateWithoutNodesDataInput {
-  name?: String
-  website?: WebsiteUpdateOneInput
+export interface LanguageWhereUniqueInput {
+  id?: ID_Input
 }
 
 export interface PageTypeUpdateManyWithoutWebsiteInput {
@@ -5999,6 +6021,27 @@ export interface PageTypeUpdateManyWithoutWebsiteInput {
   upsert?: PageTypeUpsertWithWhereUniqueWithoutWebsiteInput[] | PageTypeUpsertWithWhereUniqueWithoutWebsiteInput
 }
 
+export interface PageUpdateWithWhereUniqueWithoutTagsInput {
+  where: PageWhereUniqueInput
+  data: PageUpdateWithoutTagsDataInput
+}
+
+export interface PageTypeUpdateWithWhereUniqueWithoutWebsiteInput {
+  where: PageTypeWhereUniqueInput
+  data: PageTypeUpdateWithoutWebsiteDataInput
+}
+
+export interface NavigationUpdateWithoutNodesDataInput {
+  name?: String
+  website?: WebsiteUpdateOneInput
+}
+
+export interface PageTypeUpdateWithoutWebsiteDataInput {
+  name?: String
+  content?: Json
+  plugins?: PageTypeUpdatepluginsInput
+}
+
 export interface NavigationNodeUpdateWithoutNavigationDataInput {
   page?: ID_Input
   title?: String
@@ -6007,9 +6050,8 @@ export interface NavigationNodeUpdateWithoutNavigationDataInput {
   parent?: ID_Input
 }
 
-export interface PageTypeUpdateWithWhereUniqueWithoutWebsiteInput {
-  where: PageTypeWhereUniqueInput
-  data: PageTypeUpdateWithoutWebsiteDataInput
+export interface PageTypeUpdatepluginsInput {
+  set?: String[] | String
 }
 
 export interface FileUpdateInput {
@@ -6020,40 +6062,15 @@ export interface FileUpdateInput {
   size?: Int
 }
 
-export interface PageTypeUpdateWithoutWebsiteDataInput {
-  name?: String
-  content?: Json
-  plugins?: PageTypeUpdatepluginsInput
-}
-
-export interface PageChatUpdateInput {
-  text?: String
-  page?: PageUpdateOneWithoutChatsInput
-}
-
-export interface PageTypeUpdatepluginsInput {
-  set?: String[] | String
-}
-
-export interface PageTaskUpdateInput {
-  done?: Boolean
-  name?: String
-  description?: String
-  pageTranslation?: PageTranslationUpdateOneWithoutTasksInput
-}
-
 export interface PageTypeUpsertWithWhereUniqueWithoutWebsiteInput {
   where: PageTypeWhereUniqueInput
   update: PageTypeUpdateWithoutWebsiteDataInput
   create: PageTypeCreateWithoutWebsiteInput
 }
 
-export interface PageUpdateOneWithoutTranslationsInput {
-  create?: PageCreateWithoutTranslationsInput
-  connect?: PageWhereUniqueInput
-  delete?: Boolean
-  update?: PageUpdateWithoutTranslationsDataInput
-  upsert?: PageUpsertWithoutTranslationsInput
+export interface PageChatUpdateInput {
+  text?: String
+  page?: PageUpdateOneWithoutChatsInput
 }
 
 export interface PageUpdateManyWithoutWebsiteInput {
@@ -6065,9 +6082,11 @@ export interface PageUpdateManyWithoutWebsiteInput {
   upsert?: PageUpsertWithWhereUniqueWithoutWebsiteInput[] | PageUpsertWithWhereUniqueWithoutWebsiteInput
 }
 
-export interface PageUpsertNestedInput {
-  update: PageUpdateDataInput
-  create: PageCreateInput
+export interface PageTaskUpdateInput {
+  done?: Boolean
+  name?: String
+  description?: String
+  pageTranslation?: PageTranslationUpdateOneWithoutTasksInput
 }
 
 export interface PageUpdateWithWhereUniqueWithoutWebsiteInput {
@@ -6075,13 +6094,12 @@ export interface PageUpdateWithWhereUniqueWithoutWebsiteInput {
   data: PageUpdateWithoutWebsiteDataInput
 }
 
-export interface PageUpdateManyInput {
-  create?: PageCreateInput[] | PageCreateInput
-  connect?: PageWhereUniqueInput[] | PageWhereUniqueInput
-  disconnect?: PageWhereUniqueInput[] | PageWhereUniqueInput
-  delete?: PageWhereUniqueInput[] | PageWhereUniqueInput
-  update?: PageUpdateWithWhereUniqueNestedInput[] | PageUpdateWithWhereUniqueNestedInput
-  upsert?: PageUpsertWithWhereUniqueNestedInput[] | PageUpsertWithWhereUniqueNestedInput
+export interface PageUpdateOneWithoutTranslationsInput {
+  create?: PageCreateWithoutTranslationsInput
+  connect?: PageWhereUniqueInput
+  delete?: Boolean
+  update?: PageUpdateWithoutTranslationsDataInput
+  upsert?: PageUpsertWithoutTranslationsInput
 }
 
 export interface PageUpdateWithoutWebsiteDataInput {
@@ -6089,11 +6107,12 @@ export interface PageUpdateWithoutWebsiteDataInput {
   type?: PageTypeUpdateOneInput
   translations?: PageTranslationUpdateManyWithoutPageInput
   chats?: PageChatUpdateManyWithoutPageInput
-  tags?: TagUpdateManyInput
+  tags?: TagUpdateManyWithoutPagesInput
 }
 
-export interface TagUpdatepluginsInput {
-  set?: String[] | String
+export interface PageUpsertNestedInput {
+  update: PageUpdateDataInput
+  create: PageCreateInput
 }
 
 export interface PageUpdateOneInput {
@@ -6105,10 +6124,12 @@ export interface PageUpdateOneInput {
   upsert?: PageUpsertNestedInput
 }
 
-export interface PageChatUpsertWithWhereUniqueWithoutPageInput {
-  where: PageChatWhereUniqueInput
-  update: PageChatUpdateWithoutPageDataInput
-  create: PageChatCreateWithoutPageInput
+export interface WebsiteUpdateOneInput {
+  create?: WebsiteCreateInput
+  connect?: WebsiteWhereUniqueInput
+  delete?: Boolean
+  update?: WebsiteUpdateDataInput
+  upsert?: WebsiteUpsertNestedInput
 }
 
 export interface PageUpdateDataInput {
@@ -6117,12 +6138,16 @@ export interface PageUpdateDataInput {
   type?: PageTypeUpdateOneInput
   translations?: PageTranslationUpdateManyWithoutPageInput
   chats?: PageChatUpdateManyWithoutPageInput
-  tags?: TagUpdateManyInput
+  tags?: TagUpdateManyWithoutPagesInput
 }
 
-export interface LanguageCreateOneInput {
-  create?: LanguageCreateInput
-  connect?: LanguageWhereUniqueInput
+export interface TagUpdateManyWithoutPagesInput {
+  create?: TagCreateWithoutPagesInput[] | TagCreateWithoutPagesInput
+  connect?: TagWhereUniqueInput[] | TagWhereUniqueInput
+  disconnect?: TagWhereUniqueInput[] | TagWhereUniqueInput
+  delete?: TagWhereUniqueInput[] | TagWhereUniqueInput
+  update?: TagUpdateWithWhereUniqueWithoutPagesInput[] | TagUpdateWithWhereUniqueWithoutPagesInput
+  upsert?: TagUpsertWithWhereUniqueWithoutPagesInput[] | TagUpsertWithWhereUniqueWithoutPagesInput
 }
 
 export interface WebsiteUpdateOneWithoutPagesInput {
@@ -6133,47 +6158,9 @@ export interface WebsiteUpdateOneWithoutPagesInput {
   upsert?: WebsiteUpsertWithoutPagesInput
 }
 
-export interface PageChatWhereInput {
-  AND?: PageChatWhereInput[] | PageChatWhereInput
-  OR?: PageChatWhereInput[] | PageChatWhereInput
-  NOT?: PageChatWhereInput[] | PageChatWhereInput
-  id?: ID_Input
-  id_not?: ID_Input
-  id_in?: ID_Input[] | ID_Input
-  id_not_in?: ID_Input[] | ID_Input
-  id_lt?: ID_Input
-  id_lte?: ID_Input
-  id_gt?: ID_Input
-  id_gte?: ID_Input
-  id_contains?: ID_Input
-  id_not_contains?: ID_Input
-  id_starts_with?: ID_Input
-  id_not_starts_with?: ID_Input
-  id_ends_with?: ID_Input
-  id_not_ends_with?: ID_Input
-  text?: String
-  text_not?: String
-  text_in?: String[] | String
-  text_not_in?: String[] | String
-  text_lt?: String
-  text_lte?: String
-  text_gt?: String
-  text_gte?: String
-  text_contains?: String
-  text_not_contains?: String
-  text_starts_with?: String
-  text_not_starts_with?: String
-  text_ends_with?: String
-  text_not_ends_with?: String
-  createdAt?: DateTime
-  createdAt_not?: DateTime
-  createdAt_in?: DateTime[] | DateTime
-  createdAt_not_in?: DateTime[] | DateTime
-  createdAt_lt?: DateTime
-  createdAt_lte?: DateTime
-  createdAt_gt?: DateTime
-  createdAt_gte?: DateTime
-  page?: PageWhereInput
+export interface LanguageCreateOneInput {
+  create?: LanguageCreateInput
+  connect?: LanguageWhereUniqueInput
 }
 
 export interface WebsiteUpdateWithoutPagesDataInput {
@@ -6186,36 +6173,15 @@ export interface WebsiteUpdateWithoutPagesDataInput {
   pageTypes?: PageTypeUpdateManyWithoutWebsiteInput
 }
 
-export interface PageWhereInput {
-  AND?: PageWhereInput[] | PageWhereInput
-  OR?: PageWhereInput[] | PageWhereInput
-  NOT?: PageWhereInput[] | PageWhereInput
-  id?: ID_Input
-  id_not?: ID_Input
-  id_in?: ID_Input[] | ID_Input
-  id_not_in?: ID_Input[] | ID_Input
-  id_lt?: ID_Input
-  id_lte?: ID_Input
-  id_gt?: ID_Input
-  id_gte?: ID_Input
-  id_contains?: ID_Input
-  id_not_contains?: ID_Input
-  id_starts_with?: ID_Input
-  id_not_starts_with?: ID_Input
-  id_ends_with?: ID_Input
-  id_not_ends_with?: ID_Input
-  parent?: PageWhereInput
-  website?: WebsiteWhereInput
-  type?: PageTypeWhereInput
-  translations_every?: PageTranslationWhereInput
-  translations_some?: PageTranslationWhereInput
-  translations_none?: PageTranslationWhereInput
-  chats_every?: PageChatWhereInput
-  chats_some?: PageChatWhereInput
-  chats_none?: PageChatWhereInput
-  tags_every?: TagWhereInput
-  tags_some?: TagWhereInput
-  tags_none?: TagWhereInput
+export interface PageTypeSubscriptionWhereInput {
+  AND?: PageTypeSubscriptionWhereInput[] | PageTypeSubscriptionWhereInput
+  OR?: PageTypeSubscriptionWhereInput[] | PageTypeSubscriptionWhereInput
+  NOT?: PageTypeSubscriptionWhereInput[] | PageTypeSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: PageTypeWhereInput
 }
 
 export interface ProjectUpdateOneWithoutWebsitesInput {
@@ -6226,42 +6192,15 @@ export interface ProjectUpdateOneWithoutWebsitesInput {
   upsert?: ProjectUpsertWithoutWebsitesInput
 }
 
-export interface NavigationWhereInput {
-  AND?: NavigationWhereInput[] | NavigationWhereInput
-  OR?: NavigationWhereInput[] | NavigationWhereInput
-  NOT?: NavigationWhereInput[] | NavigationWhereInput
-  id?: ID_Input
-  id_not?: ID_Input
-  id_in?: ID_Input[] | ID_Input
-  id_not_in?: ID_Input[] | ID_Input
-  id_lt?: ID_Input
-  id_lte?: ID_Input
-  id_gt?: ID_Input
-  id_gte?: ID_Input
-  id_contains?: ID_Input
-  id_not_contains?: ID_Input
-  id_starts_with?: ID_Input
-  id_not_starts_with?: ID_Input
-  id_ends_with?: ID_Input
-  id_not_ends_with?: ID_Input
-  name?: String
-  name_not?: String
-  name_in?: String[] | String
-  name_not_in?: String[] | String
-  name_lt?: String
-  name_lte?: String
-  name_gt?: String
-  name_gte?: String
-  name_contains?: String
-  name_not_contains?: String
-  name_starts_with?: String
-  name_not_starts_with?: String
-  name_ends_with?: String
-  name_not_ends_with?: String
-  website?: WebsiteWhereInput
-  nodes_every?: NavigationNodeWhereInput
-  nodes_some?: NavigationNodeWhereInput
-  nodes_none?: NavigationNodeWhereInput
+export interface FileSubscriptionWhereInput {
+  AND?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput
+  OR?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput
+  NOT?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: FileWhereInput
 }
 
 export interface ProjectUpdateWithoutWebsitesDataInput {
@@ -6270,111 +6209,6 @@ export interface ProjectUpdateWithoutWebsitesDataInput {
   settings?: Json
   languages?: LanguageUpdateManyInput
   defaultLanguage?: LanguageUpdateOneInput
-}
-
-export interface PagePluginWhereUniqueInput {
-  id?: ID_Input
-}
-
-export interface ProjectUpsertWithoutWebsitesInput {
-  update: ProjectUpdateWithoutWebsitesDataInput
-  create: ProjectCreateWithoutWebsitesInput
-}
-
-export interface WebsiteWhereUniqueInput {
-  id?: ID_Input
-}
-
-export interface WebsiteUpsertWithoutPagesInput {
-  update: WebsiteUpdateWithoutPagesDataInput
-  create: WebsiteCreateWithoutPagesInput
-}
-
-export interface NavigationNodeUpdateInput {
-  page?: ID_Input
-  title?: String
-  link?: String
-  order?: Int
-  parent?: ID_Input
-  navigation?: NavigationUpdateOneWithoutNodesInput
-}
-
-export interface PageTypeUpdateOneInput {
-  create?: PageTypeCreateInput
-  connect?: PageTypeWhereUniqueInput
-  delete?: Boolean
-  update?: PageTypeUpdateDataInput
-  upsert?: PageTypeUpsertNestedInput
-}
-
-export interface PageUpdateWithoutChatsDataInput {
-  parent?: PageUpdateOneInput
-  website?: WebsiteUpdateOneWithoutPagesInput
-  type?: PageTypeUpdateOneInput
-  translations?: PageTranslationUpdateManyWithoutPageInput
-  tags?: TagUpdateManyInput
-}
-
-export interface PageTypeUpdateDataInput {
-  name?: String
-  content?: Json
-  plugins?: PageTypeUpdatepluginsInput
-  website?: WebsiteUpdateOneWithoutPageTypesInput
-}
-
-export interface PageUpsertWithoutTranslationsInput {
-  update: PageUpdateWithoutTranslationsDataInput
-  create: PageCreateWithoutTranslationsInput
-}
-
-export interface WebsiteUpdateOneWithoutPageTypesInput {
-  create?: WebsiteCreateWithoutPageTypesInput
-  connect?: WebsiteWhereUniqueInput
-  delete?: Boolean
-  update?: WebsiteUpdateWithoutPageTypesDataInput
-  upsert?: WebsiteUpsertWithoutPageTypesInput
-}
-
-export interface PageUpsertWithWhereUniqueNestedInput {
-  where: PageWhereUniqueInput
-  update: PageUpdateDataInput
-  create: PageCreateInput
-}
-
-export interface WebsiteUpdateWithoutPageTypesDataInput {
-  title?: String
-  urlMask?: String
-  settings?: Json
-  project?: ProjectUpdateOneWithoutWebsitesInput
-  languages?: LanguageUpdateManyInput
-  defaultLanguage?: LanguageUpdateOneInput
-  pages?: PageUpdateManyWithoutWebsiteInput
-}
-
-export interface TagUpdateWithWhereUniqueNestedInput {
-  where: TagWhereUniqueInput
-  data: TagUpdateDataInput
-}
-
-export interface WebsiteUpsertWithoutPageTypesInput {
-  update: WebsiteUpdateWithoutPageTypesDataInput
-  create: WebsiteCreateWithoutPageTypesInput
-}
-
-export interface WebsiteSubscriptionWhereInput {
-  AND?: WebsiteSubscriptionWhereInput[] | WebsiteSubscriptionWhereInput
-  OR?: WebsiteSubscriptionWhereInput[] | WebsiteSubscriptionWhereInput
-  NOT?: WebsiteSubscriptionWhereInput[] | WebsiteSubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: WebsiteWhereInput
-}
-
-export interface PageTypeUpsertNestedInput {
-  update: PageTypeUpdateDataInput
-  create: PageTypeCreateInput
 }
 
 export interface PageTranslationSubscriptionWhereInput {
@@ -6388,62 +6222,9 @@ export interface PageTranslationSubscriptionWhereInput {
   node?: PageTranslationWhereInput
 }
 
-export interface PageTranslationUpdateManyWithoutPageInput {
-  create?: PageTranslationCreateWithoutPageInput[] | PageTranslationCreateWithoutPageInput
-  connect?: PageTranslationWhereUniqueInput[] | PageTranslationWhereUniqueInput
-  disconnect?: PageTranslationWhereUniqueInput[] | PageTranslationWhereUniqueInput
-  delete?: PageTranslationWhereUniqueInput[] | PageTranslationWhereUniqueInput
-  update?: PageTranslationUpdateWithWhereUniqueWithoutPageInput[] | PageTranslationUpdateWithWhereUniqueWithoutPageInput
-  upsert?: PageTranslationUpsertWithWhereUniqueWithoutPageInput[] | PageTranslationUpsertWithWhereUniqueWithoutPageInput
-}
-
-export interface NavigationWhereUniqueInput {
-  id?: ID_Input
-}
-
-export interface PageTranslationUpdateWithWhereUniqueWithoutPageInput {
-  where: PageTranslationWhereUniqueInput
-  data: PageTranslationUpdateWithoutPageDataInput
-}
-
-export interface NavigationNodeUpdateManyWithoutNavigationInput {
-  create?: NavigationNodeCreateWithoutNavigationInput[] | NavigationNodeCreateWithoutNavigationInput
-  connect?: NavigationNodeWhereUniqueInput[] | NavigationNodeWhereUniqueInput
-  disconnect?: NavigationNodeWhereUniqueInput[] | NavigationNodeWhereUniqueInput
-  delete?: NavigationNodeWhereUniqueInput[] | NavigationNodeWhereUniqueInput
-  update?: NavigationNodeUpdateWithWhereUniqueWithoutNavigationInput[] | NavigationNodeUpdateWithWhereUniqueWithoutNavigationInput
-  upsert?: NavigationNodeUpsertWithWhereUniqueWithoutNavigationInput[] | NavigationNodeUpsertWithWhereUniqueWithoutNavigationInput
-}
-
-export interface PageTranslationUpdateWithoutPageDataInput {
-  url?: String
-  content?: Json
-  name?: String
-  status?: PageStatus
-  publishedFrom?: DateTime
-  publishedTo?: DateTime
-  language?: LanguageUpdateOneInput
-  tasks?: PageTaskUpdateManyWithoutPageTranslationInput
-}
-
-export interface WebsiteUpsertWithWhereUniqueWithoutProjectInput {
-  where: WebsiteWhereUniqueInput
-  update: WebsiteUpdateWithoutProjectDataInput
-  create: WebsiteCreateWithoutProjectInput
-}
-
-export interface PageTaskUpdateManyWithoutPageTranslationInput {
-  create?: PageTaskCreateWithoutPageTranslationInput[] | PageTaskCreateWithoutPageTranslationInput
-  connect?: PageTaskWhereUniqueInput[] | PageTaskWhereUniqueInput
-  disconnect?: PageTaskWhereUniqueInput[] | PageTaskWhereUniqueInput
-  delete?: PageTaskWhereUniqueInput[] | PageTaskWhereUniqueInput
-  update?: PageTaskUpdateWithWhereUniqueWithoutPageTranslationInput[] | PageTaskUpdateWithWhereUniqueWithoutPageTranslationInput
-  upsert?: PageTaskUpsertWithWhereUniqueWithoutPageTranslationInput[] | PageTaskUpsertWithWhereUniqueWithoutPageTranslationInput
-}
-
-export interface LanguageCreateManyInput {
-  create?: LanguageCreateInput[] | LanguageCreateInput
-  connect?: LanguageWhereUniqueInput[] | LanguageWhereUniqueInput
+export interface ProjectUpsertWithoutWebsitesInput {
+  update: ProjectUpdateWithoutWebsitesDataInput
+  create: ProjectCreateWithoutWebsitesInput
 }
 
 export interface LanguageWhereInput {
@@ -6512,6 +6293,254 @@ export interface LanguageWhereInput {
   isEnabled_not?: Boolean
 }
 
+export interface WebsiteUpsertWithoutPagesInput {
+  update: WebsiteUpdateWithoutPagesDataInput
+  create: WebsiteCreateWithoutPagesInput
+}
+
+export interface NavigationWhereUniqueInput {
+  id?: ID_Input
+}
+
+export interface PageTypeUpdateOneInput {
+  create?: PageTypeCreateInput
+  connect?: PageTypeWhereUniqueInput
+  delete?: Boolean
+  update?: PageTypeUpdateDataInput
+  upsert?: PageTypeUpsertNestedInput
+}
+
+export interface PageUpsertWithWhereUniqueWithoutTagsInput {
+  where: PageWhereUniqueInput
+  update: PageUpdateWithoutTagsDataInput
+  create: PageCreateWithoutTagsInput
+}
+
+export interface PageTypeUpdateDataInput {
+  name?: String
+  content?: Json
+  plugins?: PageTypeUpdatepluginsInput
+  website?: WebsiteUpdateOneWithoutPageTypesInput
+}
+
+export interface NavigationNodeUpdateInput {
+  page?: ID_Input
+  title?: String
+  link?: String
+  order?: Int
+  parent?: ID_Input
+  navigation?: NavigationUpdateOneWithoutNodesInput
+}
+
+export interface WebsiteUpdateOneWithoutPageTypesInput {
+  create?: WebsiteCreateWithoutPageTypesInput
+  connect?: WebsiteWhereUniqueInput
+  delete?: Boolean
+  update?: WebsiteUpdateWithoutPageTypesDataInput
+  upsert?: WebsiteUpsertWithoutPageTypesInput
+}
+
+export interface PageUpdateWithoutChatsDataInput {
+  parent?: PageUpdateOneInput
+  website?: WebsiteUpdateOneWithoutPagesInput
+  type?: PageTypeUpdateOneInput
+  translations?: PageTranslationUpdateManyWithoutPageInput
+  tags?: TagUpdateManyWithoutPagesInput
+}
+
+export interface WebsiteUpdateWithoutPageTypesDataInput {
+  title?: String
+  urlMask?: String
+  settings?: Json
+  project?: ProjectUpdateOneWithoutWebsitesInput
+  languages?: LanguageUpdateManyInput
+  defaultLanguage?: LanguageUpdateOneInput
+  pages?: PageUpdateManyWithoutWebsiteInput
+}
+
+export interface PageUpsertWithoutTranslationsInput {
+  update: PageUpdateWithoutTranslationsDataInput
+  create: PageCreateWithoutTranslationsInput
+}
+
+export interface WebsiteUpsertWithoutPageTypesInput {
+  update: WebsiteUpdateWithoutPageTypesDataInput
+  create: WebsiteCreateWithoutPageTypesInput
+}
+
+export interface WebsiteUpsertNestedInput {
+  update: WebsiteUpdateDataInput
+  create: WebsiteCreateInput
+}
+
+export interface PageTypeUpsertNestedInput {
+  update: PageTypeUpdateDataInput
+  create: PageTypeCreateInput
+}
+
+export interface LanguageCreateManyInput {
+  create?: LanguageCreateInput[] | LanguageCreateInput
+  connect?: LanguageWhereUniqueInput[] | LanguageWhereUniqueInput
+}
+
+export interface PageTranslationUpdateManyWithoutPageInput {
+  create?: PageTranslationCreateWithoutPageInput[] | PageTranslationCreateWithoutPageInput
+  connect?: PageTranslationWhereUniqueInput[] | PageTranslationWhereUniqueInput
+  disconnect?: PageTranslationWhereUniqueInput[] | PageTranslationWhereUniqueInput
+  delete?: PageTranslationWhereUniqueInput[] | PageTranslationWhereUniqueInput
+  update?: PageTranslationUpdateWithWhereUniqueWithoutPageInput[] | PageTranslationUpdateWithWhereUniqueWithoutPageInput
+  upsert?: PageTranslationUpsertWithWhereUniqueWithoutPageInput[] | PageTranslationUpsertWithWhereUniqueWithoutPageInput
+}
+
+export interface PageChatWhereInput {
+  AND?: PageChatWhereInput[] | PageChatWhereInput
+  OR?: PageChatWhereInput[] | PageChatWhereInput
+  NOT?: PageChatWhereInput[] | PageChatWhereInput
+  id?: ID_Input
+  id_not?: ID_Input
+  id_in?: ID_Input[] | ID_Input
+  id_not_in?: ID_Input[] | ID_Input
+  id_lt?: ID_Input
+  id_lte?: ID_Input
+  id_gt?: ID_Input
+  id_gte?: ID_Input
+  id_contains?: ID_Input
+  id_not_contains?: ID_Input
+  id_starts_with?: ID_Input
+  id_not_starts_with?: ID_Input
+  id_ends_with?: ID_Input
+  id_not_ends_with?: ID_Input
+  text?: String
+  text_not?: String
+  text_in?: String[] | String
+  text_not_in?: String[] | String
+  text_lt?: String
+  text_lte?: String
+  text_gt?: String
+  text_gte?: String
+  text_contains?: String
+  text_not_contains?: String
+  text_starts_with?: String
+  text_not_starts_with?: String
+  text_ends_with?: String
+  text_not_ends_with?: String
+  createdAt?: DateTime
+  createdAt_not?: DateTime
+  createdAt_in?: DateTime[] | DateTime
+  createdAt_not_in?: DateTime[] | DateTime
+  createdAt_lt?: DateTime
+  createdAt_lte?: DateTime
+  createdAt_gt?: DateTime
+  createdAt_gte?: DateTime
+  page?: PageWhereInput
+}
+
+export interface PageTranslationUpdateWithWhereUniqueWithoutPageInput {
+  where: PageTranslationWhereUniqueInput
+  data: PageTranslationUpdateWithoutPageDataInput
+}
+
+export interface NavigationWhereInput {
+  AND?: NavigationWhereInput[] | NavigationWhereInput
+  OR?: NavigationWhereInput[] | NavigationWhereInput
+  NOT?: NavigationWhereInput[] | NavigationWhereInput
+  id?: ID_Input
+  id_not?: ID_Input
+  id_in?: ID_Input[] | ID_Input
+  id_not_in?: ID_Input[] | ID_Input
+  id_lt?: ID_Input
+  id_lte?: ID_Input
+  id_gt?: ID_Input
+  id_gte?: ID_Input
+  id_contains?: ID_Input
+  id_not_contains?: ID_Input
+  id_starts_with?: ID_Input
+  id_not_starts_with?: ID_Input
+  id_ends_with?: ID_Input
+  id_not_ends_with?: ID_Input
+  name?: String
+  name_not?: String
+  name_in?: String[] | String
+  name_not_in?: String[] | String
+  name_lt?: String
+  name_lte?: String
+  name_gt?: String
+  name_gte?: String
+  name_contains?: String
+  name_not_contains?: String
+  name_starts_with?: String
+  name_not_starts_with?: String
+  name_ends_with?: String
+  name_not_ends_with?: String
+  website?: WebsiteWhereInput
+  nodes_every?: NavigationNodeWhereInput
+  nodes_some?: NavigationNodeWhereInput
+  nodes_none?: NavigationNodeWhereInput
+}
+
+export interface PageTranslationUpdateWithoutPageDataInput {
+  url?: String
+  content?: Json
+  name?: String
+  status?: PageStatus
+  publishedFrom?: DateTime
+  publishedTo?: DateTime
+  language?: LanguageUpdateOneInput
+  tasks?: PageTaskUpdateManyWithoutPageTranslationInput
+}
+
+export interface PageTypeWhereUniqueInput {
+  id?: ID_Input
+}
+
+export interface PageTaskUpdateManyWithoutPageTranslationInput {
+  create?: PageTaskCreateWithoutPageTranslationInput[] | PageTaskCreateWithoutPageTranslationInput
+  connect?: PageTaskWhereUniqueInput[] | PageTaskWhereUniqueInput
+  disconnect?: PageTaskWhereUniqueInput[] | PageTaskWhereUniqueInput
+  delete?: PageTaskWhereUniqueInput[] | PageTaskWhereUniqueInput
+  update?: PageTaskUpdateWithWhereUniqueWithoutPageTranslationInput[] | PageTaskUpdateWithWhereUniqueWithoutPageTranslationInput
+  upsert?: PageTaskUpsertWithWhereUniqueWithoutPageTranslationInput[] | PageTaskUpsertWithWhereUniqueWithoutPageTranslationInput
+}
+
+export interface NavigationNodeUpdateManyWithoutNavigationInput {
+  create?: NavigationNodeCreateWithoutNavigationInput[] | NavigationNodeCreateWithoutNavigationInput
+  connect?: NavigationNodeWhereUniqueInput[] | NavigationNodeWhereUniqueInput
+  disconnect?: NavigationNodeWhereUniqueInput[] | NavigationNodeWhereUniqueInput
+  delete?: NavigationNodeWhereUniqueInput[] | NavigationNodeWhereUniqueInput
+  update?: NavigationNodeUpdateWithWhereUniqueWithoutNavigationInput[] | NavigationNodeUpdateWithWhereUniqueWithoutNavigationInput
+  upsert?: NavigationNodeUpsertWithWhereUniqueWithoutNavigationInput[] | NavigationNodeUpsertWithWhereUniqueWithoutNavigationInput
+}
+
+export interface PageTaskUpdateWithWhereUniqueWithoutPageTranslationInput {
+  where: PageTaskWhereUniqueInput
+  data: PageTaskUpdateWithoutPageTranslationDataInput
+}
+
+export interface WebsiteUpsertWithWhereUniqueWithoutProjectInput {
+  where: WebsiteWhereUniqueInput
+  update: WebsiteUpdateWithoutProjectDataInput
+  create: WebsiteCreateWithoutProjectInput
+}
+
+export interface WebsiteCreateWithoutProjectInput {
+  title: String
+  urlMask: String
+  settings?: Json
+  languages?: LanguageCreateManyInput
+  defaultLanguage: LanguageCreateOneInput
+  pageTypes?: PageTypeCreateManyWithoutWebsiteInput
+  pages?: PageCreateManyWithoutWebsiteInput
+}
+
+export interface PageChatUpdateManyWithoutPageInput {
+  create?: PageChatCreateWithoutPageInput[] | PageChatCreateWithoutPageInput
+  connect?: PageChatWhereUniqueInput[] | PageChatWhereUniqueInput
+  disconnect?: PageChatWhereUniqueInput[] | PageChatWhereUniqueInput
+  delete?: PageChatWhereUniqueInput[] | PageChatWhereUniqueInput
+  update?: PageChatUpdateWithWhereUniqueWithoutPageInput[] | PageChatUpdateWithWhereUniqueWithoutPageInput
+  upsert?: PageChatUpsertWithWhereUniqueWithoutPageInput[] | PageChatUpsertWithWhereUniqueWithoutPageInput
+}
+
 export interface PageTranslationUpsertWithWhereUniqueWithoutPageInput {
   where: PageTranslationWhereUniqueInput
   update: PageTranslationUpdateWithoutPageDataInput
@@ -6530,40 +6559,44 @@ export interface PageTaskUpdateWithoutPageTranslationDataInput {
   description?: String
 }
 
-export interface PageTaskUpdateWithWhereUniqueWithoutPageTranslationInput {
-  where: PageTaskWhereUniqueInput
-  data: PageTaskUpdateWithoutPageTranslationDataInput
+export interface PageWhereInput {
+  AND?: PageWhereInput[] | PageWhereInput
+  OR?: PageWhereInput[] | PageWhereInput
+  NOT?: PageWhereInput[] | PageWhereInput
+  id?: ID_Input
+  id_not?: ID_Input
+  id_in?: ID_Input[] | ID_Input
+  id_not_in?: ID_Input[] | ID_Input
+  id_lt?: ID_Input
+  id_lte?: ID_Input
+  id_gt?: ID_Input
+  id_gte?: ID_Input
+  id_contains?: ID_Input
+  id_not_contains?: ID_Input
+  id_starts_with?: ID_Input
+  id_not_starts_with?: ID_Input
+  id_ends_with?: ID_Input
+  id_not_ends_with?: ID_Input
+  parent?: PageWhereInput
+  website?: WebsiteWhereInput
+  type?: PageTypeWhereInput
+  translations_every?: PageTranslationWhereInput
+  translations_some?: PageTranslationWhereInput
+  translations_none?: PageTranslationWhereInput
+  chats_every?: PageChatWhereInput
+  chats_some?: PageChatWhereInput
+  chats_none?: PageChatWhereInput
+  tags_every?: TagWhereInput
+  tags_some?: TagWhereInput
+  tags_none?: TagWhereInput
 }
 
-export interface TagUpdateInput {
+export interface TagUpdateWithoutPagesDataInput {
   name?: String
   displayInNavigation?: Boolean
   color?: String
   plugins?: TagUpdatepluginsInput
   website?: WebsiteUpdateOneInput
-  pages?: PageUpdateManyInput
-}
-
-export interface FileSubscriptionWhereInput {
-  AND?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput
-  OR?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput
-  NOT?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: FileWhereInput
-}
-
-export interface WebsiteUpdateDataInput {
-  title?: String
-  urlMask?: String
-  settings?: Json
-  project?: ProjectUpdateOneWithoutWebsitesInput
-  languages?: LanguageUpdateManyInput
-  defaultLanguage?: LanguageUpdateOneInput
-  pageTypes?: PageTypeUpdateManyWithoutWebsiteInput
-  pages?: PageUpdateManyWithoutWebsiteInput
 }
 
 export interface PageTranslationUpdateWithoutTasksDataInput {
@@ -6575,6 +6608,19 @@ export interface PageTranslationUpdateWithoutTasksDataInput {
   publishedTo?: DateTime
   page?: PageUpdateOneWithoutTranslationsInput
   language?: LanguageUpdateOneInput
+}
+
+export interface TagUpdateInput {
+  name?: String
+  displayInNavigation?: Boolean
+  color?: String
+  plugins?: TagUpdatepluginsInput
+  website?: WebsiteUpdateOneInput
+  pages?: PageUpdateManyWithoutTagsInput
+}
+
+export interface PagePluginWhereUniqueInput {
+  id?: ID_Input
 }
 
 /*
@@ -6638,34 +6684,15 @@ export interface LanguageEdge {
   cursor: String
 }
 
-export interface WebsitePreviousValues {
+export interface PageTypePreviousValues {
   id: ID_Output
-  title: String
-  urlMask: String
-  settings: Json
+  name: String
+  content: Json
+  plugins: String[]
 }
 
-export interface AggregatePage {
+export interface AggregateWebsite {
   count: Int
-}
-
-/*
- * An edge in a connection.
-
- */
-export interface PageEdge {
-  node: Page
-  cursor: String
-}
-
-/*
- * A connection to a list of items.
-
- */
-export interface PageConnection {
-  pageInfo: PageInfo
-  edges: PageEdge[]
-  aggregate: AggregatePage
 }
 
 /*
@@ -6674,6 +6701,25 @@ export interface PageConnection {
  */
 export interface WebsiteEdge {
   node: Website
+  cursor: String
+}
+
+/*
+ * A connection to a list of items.
+
+ */
+export interface WebsiteConnection {
+  pageInfo: PageInfo
+  edges: WebsiteEdge[]
+  aggregate: AggregateWebsite
+}
+
+/*
+ * An edge in a connection.
+
+ */
+export interface PageTypeEdge {
+  node: PageType
   cursor: String
 }
 
@@ -6688,7 +6734,7 @@ export interface File extends Node {
   updatedAt: DateTime
 }
 
-export interface AggregatePageType {
+export interface AggregatePage {
   count: Int
 }
 
@@ -6705,10 +6751,10 @@ export interface Language extends Node {
  * A connection to a list of items.
 
  */
-export interface PageTypeConnection {
+export interface PageConnection {
   pageInfo: PageInfo
-  edges: PageTypeEdge[]
-  aggregate: AggregatePageType
+  edges: PageEdge[]
+  aggregate: AggregatePage
 }
 
 export interface ProjectSubscriptionPayload {
@@ -6928,8 +6974,11 @@ export interface ProjectConnection {
   aggregate: AggregateProject
 }
 
-export interface PagePreviousValues {
+export interface WebsitePreviousValues {
   id: ID_Output
+  title: String
+  urlMask: String
+  settings: Json
 }
 
 export interface LanguageSubscriptionPayload {
@@ -6950,10 +6999,10 @@ export interface FileSubscriptionPayload {
  * A connection to a list of items.
 
  */
-export interface WebsiteConnection {
+export interface PageTypeConnection {
   pageInfo: PageInfo
-  edges: WebsiteEdge[]
-  aggregate: AggregateWebsite
+  edges: PageTypeEdge[]
+  aggregate: AggregatePageType
 }
 
 export interface FilePreviousValues {
@@ -7097,8 +7146,8 @@ export interface TagSubscriptionPayload {
  * An edge in a connection.
 
  */
-export interface PageTypeEdge {
-  node: PageType
+export interface PageEdge {
+  node: Page
   cursor: String
 }
 
@@ -7145,6 +7194,13 @@ export interface PageTranslationEdge {
   cursor: String
 }
 
+export interface PageTypeSubscriptionPayload {
+  mutation: MutationType
+  node?: PageType
+  updatedFields?: String[]
+  previousValues?: PageTypePreviousValues
+}
+
 export interface WebsiteSubscriptionPayload {
   mutation: MutationType
   node?: Website
@@ -7152,25 +7208,15 @@ export interface WebsiteSubscriptionPayload {
   previousValues?: WebsitePreviousValues
 }
 
+export interface PagePreviousValues {
+  id: ID_Output
+}
+
 export interface PageSubscriptionPayload {
   mutation: MutationType
   node?: Page
   updatedFields?: String[]
   previousValues?: PagePreviousValues
-}
-
-export interface PageTypePreviousValues {
-  id: ID_Output
-  name: String
-  content: Json
-  plugins: String[]
-}
-
-export interface PageTypeSubscriptionPayload {
-  mutation: MutationType
-  node?: PageType
-  updatedFields?: String[]
-  previousValues?: PageTypePreviousValues
 }
 
 /*
@@ -7207,7 +7253,7 @@ export interface TagConnection {
   aggregate: AggregateTag
 }
 
-export interface AggregateWebsite {
+export interface AggregatePageType {
   count: Int
 }
 
