@@ -80,7 +80,8 @@ export class PageResolver {
 
       const pageInfo = pages.find(p => p.id === parent);
 
-      if (pageInfo && pageInfo.translations) {
+      if (pageInfo && pageInfo.translations && pageInfo.translations.length > 0) {
+
         nameCache[parent] = pageInfo.translations[0].name;
 
         // Top level page
