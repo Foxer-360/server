@@ -62,7 +62,7 @@ type PageTranslation {
   content: Json! @default(value: "{}")
   name: String! @default(value: "New Page")
   status: PageStatus! @default(value: "DRAFT")
-  description: String! @default(value: "") @migrationValue(value: "")
+  description: String @default(value: " ") @migrationValue(value: " ")
   publishedFrom: DateTime
   publishedTo: DateTime
   tasks: [PageTask!]! @relation(name: "TaskUnderPage", onDelete: CASCADE)
