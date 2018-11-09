@@ -2615,6 +2615,7 @@ type PageTranslation implements Node {
   content: Json!
   name: String!
   status: PageStatus!
+  description: String
   publishedFrom: DateTime
   publishedTo: DateTime
   tasks(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTask!]
@@ -2635,6 +2636,7 @@ input PageTranslationCreateInput {
   content: Json
   name: String
   status: PageStatus
+  description: String
   publishedFrom: DateTime
   publishedTo: DateTime
   page: PageCreateOneWithoutTranslationsInput!
@@ -2657,6 +2659,7 @@ input PageTranslationCreateWithoutPageInput {
   content: Json
   name: String
   status: PageStatus
+  description: String
   publishedFrom: DateTime
   publishedTo: DateTime
   language: LanguageCreateOneInput!
@@ -2668,6 +2671,7 @@ input PageTranslationCreateWithoutTasksInput {
   content: Json
   name: String
   status: PageStatus
+  description: String
   publishedFrom: DateTime
   publishedTo: DateTime
   page: PageCreateOneWithoutTranslationsInput!
@@ -2694,6 +2698,8 @@ enum PageTranslationOrderByInput {
   name_DESC
   status_ASC
   status_DESC
+  description_ASC
+  description_DESC
   publishedFrom_ASC
   publishedFrom_DESC
   publishedTo_ASC
@@ -2710,6 +2716,7 @@ type PageTranslationPreviousValues {
   content: Json!
   name: String!
   status: PageStatus!
+  description: String
   publishedFrom: DateTime
   publishedTo: DateTime
 }
@@ -2758,6 +2765,7 @@ input PageTranslationUpdateInput {
   content: Json
   name: String
   status: PageStatus
+  description: String
   publishedFrom: DateTime
   publishedTo: DateTime
   page: PageUpdateOneWithoutTranslationsInput
@@ -2787,6 +2795,7 @@ input PageTranslationUpdateWithoutPageDataInput {
   content: Json
   name: String
   status: PageStatus
+  description: String
   publishedFrom: DateTime
   publishedTo: DateTime
   language: LanguageUpdateOneInput
@@ -2798,6 +2807,7 @@ input PageTranslationUpdateWithoutTasksDataInput {
   content: Json
   name: String
   status: PageStatus
+  description: String
   publishedFrom: DateTime
   publishedTo: DateTime
   page: PageUpdateOneWithoutTranslationsInput
@@ -2959,6 +2969,46 @@ input PageTranslationWhereInput {
 
   """All values that are not contained in given list."""
   status_not_in: [PageStatus!]
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
   publishedFrom: DateTime
 
   """All values that are not equal to given value."""
@@ -4604,6 +4654,8 @@ export type PageTranslationOrderByInput =   'id_ASC' |
   'name_DESC' |
   'status_ASC' |
   'status_DESC' |
+  'description_ASC' |
+  'description_DESC' |
   'publishedFrom_ASC' |
   'publishedFrom_DESC' |
   'publishedTo_ASC' |
@@ -5238,6 +5290,7 @@ export interface PageTranslationCreateWithoutPageInput {
   content?: Json
   name?: String
   status?: PageStatus
+  description?: String
   publishedFrom?: DateTime
   publishedTo?: DateTime
   language: LanguageCreateOneInput
@@ -5358,6 +5411,7 @@ export interface PageTranslationCreateInput {
   content?: Json
   name?: String
   status?: PageStatus
+  description?: String
   publishedFrom?: DateTime
   publishedTo?: DateTime
   page: PageCreateOneWithoutTranslationsInput
@@ -5440,6 +5494,7 @@ export interface PageTranslationCreateWithoutTasksInput {
   content?: Json
   name?: String
   status?: PageStatus
+  description?: String
   publishedFrom?: DateTime
   publishedTo?: DateTime
   page: PageCreateOneWithoutTranslationsInput
@@ -5506,6 +5561,7 @@ export interface PageTranslationUpdateInput {
   content?: Json
   name?: String
   status?: PageStatus
+  description?: String
   publishedFrom?: DateTime
   publishedTo?: DateTime
   page?: PageUpdateOneWithoutTranslationsInput
@@ -5819,6 +5875,20 @@ export interface PageTranslationWhereInput {
   status_not?: PageStatus
   status_in?: PageStatus[] | PageStatus
   status_not_in?: PageStatus[] | PageStatus
+  description?: String
+  description_not?: String
+  description_in?: String[] | String
+  description_not_in?: String[] | String
+  description_lt?: String
+  description_lte?: String
+  description_gt?: String
+  description_gte?: String
+  description_contains?: String
+  description_not_contains?: String
+  description_starts_with?: String
+  description_not_starts_with?: String
+  description_ends_with?: String
+  description_not_ends_with?: String
   publishedFrom?: DateTime
   publishedFrom_not?: DateTime
   publishedFrom_in?: DateTime[] | DateTime
@@ -6483,6 +6553,7 @@ export interface PageTranslationUpdateWithoutPageDataInput {
   content?: Json
   name?: String
   status?: PageStatus
+  description?: String
   publishedFrom?: DateTime
   publishedTo?: DateTime
   language?: LanguageUpdateOneInput
@@ -6604,6 +6675,7 @@ export interface PageTranslationUpdateWithoutTasksDataInput {
   content?: Json
   name?: String
   status?: PageStatus
+  description?: String
   publishedFrom?: DateTime
   publishedTo?: DateTime
   page?: PageUpdateOneWithoutTranslationsInput
@@ -6824,6 +6896,7 @@ export interface PageTranslationPreviousValues {
   content: Json
   name: String
   status: PageStatus
+  description?: String
   publishedFrom?: DateTime
   publishedTo?: DateTime
 }
@@ -7028,6 +7101,7 @@ export interface PageTranslation extends Node {
   content: Json
   name: String
   status: PageStatus
+  description?: String
   publishedFrom?: DateTime
   publishedTo?: DateTime
   tasks?: PageTask[]
