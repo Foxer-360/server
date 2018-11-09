@@ -21,6 +21,7 @@ export class PageResolver {
   public async getPagesUrls(obj, args, context, info): Promise<any> {
     const cache = {}; // id => url cache
     const nameCache = {}; // id => name cache
+    const descriptionCache = {};
 
     const ids = args && args.where && args.where.ids;
 
@@ -69,10 +70,12 @@ export class PageResolver {
       ) {
         id
         name
+        description
         url
       }
     }`;
     const pages = await this.prisma.query.pages({ where: {}}, getPageQuery);
+
     const getUrlOfParent = async (parent: string) => {
       if (cache[parent]) {
         return cache[parent];
@@ -83,6 +86,7 @@ export class PageResolver {
       if (pageInfo && pageInfo.translations && pageInfo.translations.length > 0) {
 
         nameCache[parent] = pageInfo.translations[0].name;
+        descriptionCache[parent] = pageInfo.translations[0].description;
 
         // Top level page
         if (!pageInfo.parent) {
@@ -122,6 +126,7 @@ export class PageResolver {
             page: id,
             url,
             name: nameCache[id],
+            description: descriptionCache[id],
           });
         }
       }
