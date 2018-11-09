@@ -20,4 +20,5 @@ type PageUrl {
   page: ID!
   url: String!
   name: String!
+  description: String
 }
