@@ -703,17 +703,20 @@ export class Composer {
    * @param {string} page
    * @return {LooseObject}
    */
-  public getInformationAboutPage(client: string, page: string): LooseObject {
+  public async getInformationAboutPage(client: string, page: string): Promise<LooseObject> {
     if (!this.isPageLoaded(page)) {
       return null;
     }
 
+    const { content } = await this.prisma.query.pageTranslation({
+      where: { id: page },
+    }, '{ content }');
     const res = {
       id: page,
-      content: this.pages[page].content,
+      content,
       editors: this.pages[page]._editors,
       locks: this.pages[page]._whoEdits,
-      delta: this.pages[page].delta.export(),
+      delta: new Delta(),
     };
 
     return res;

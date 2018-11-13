@@ -204,8 +204,8 @@ export class SocketsGateway implements OnGatewayInit, OnGatewayConnection, OnGat
 
   /** */
   @SubscribeMessage('composer/get-page')
-  public getPageInfo(client: any, data: any): WsResponse<StandardResponse> {
-    const page = this.composerService.getPageInformation(client.id, data);
+  public async getPageInfo(client: any, data: any): Promise<WsResponse<StandardResponse>> {
+    const page = await this.composerService.getPageInformation(client.id, data);
 
     if (page !== undefined && page !== null) {
       return this.response('composer/get-page', {
