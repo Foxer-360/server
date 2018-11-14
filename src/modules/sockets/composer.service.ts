@@ -290,4 +290,8 @@ export class ComposerService {
     return this.storage.composer.resolveCommit(id, pageId, commit);
   }
 
+  public resetPageContent(pageId: string, content: LooseObject) {
+    return this.storage.composer.resetPageContent(pageId, content);
+  }
+
 }

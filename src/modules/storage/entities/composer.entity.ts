@@ -708,15 +708,12 @@ export class Composer {
       return null;
     }
 
-    const { content } = await this.prisma.query.pageTranslation({
-      where: { id: page },
-    }, '{ content }');
     const res = {
       id: page,
-      content,
+      content: this.pages[page].content,
       editors: this.pages[page]._editors,
       locks: this.pages[page]._whoEdits,
-      delta: new Delta(),
+      delta: this.pages[page].delta,
     };
 
     return res;
@@ -781,6 +778,16 @@ export class Composer {
     this.pages[page]._componentsIds = this.getComponentIds(page);
 
     return diff.updates;
+  }
+
+  public resetPageContent(pageId: string, content: LooseObject) {
+    this.pages[pageId].delta = new Delta();
+    this.pages[pageId].content = content;
+
+    return {
+      content: this.pages[pageId].content,
+      delta: this.pages[pageId].delta,
+    };
   }
 
 }

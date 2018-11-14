@@ -429,6 +429,42 @@ export class SocketsGateway implements OnGatewayInit, OnGatewayConnection, OnGat
   }
 
   /** */
+  @SubscribeMessage('composer/reset-page-content')
+  public resetPageContent(client: any, data: any): WsResponse<StandardResponse> {
+
+    const { content, delta } = this.composerService.resetPageContent(data.pageId, data.content);
+
+    if (!content || !delta) {
+      return this.response('composer/reset-page-content', {
+        status: 'error',
+        message: 'Error while erasing delta.',
+      });
+    }
+
+    const clientIds = this.composerService.getClientsWhoEditPage(data.pageId);
+    if (!clientIds || clientIds === null) {
+      return;
+    }
+
+    // Prepare response
+    const event = 'composer/reset-page-content';
+    const payload = { content, delta };
+
+    // Send to all clients
+    clientIds.forEach((client: string) => {
+
+      // Send event to client
+      const socket = this.server.sockets.sockets[client];
+      // If socket doesn't exist (some type of error)
+      if (!socket || socket === null) {
+        return;
+      }
+
+      socket.emit(event, payload);
+    }, this);
+  }
+
+  /** */
   @SubscribeMessage('composer/commit')
   public commit(client: any, data: any): WsResponse<StandardResponse> {
     try {
