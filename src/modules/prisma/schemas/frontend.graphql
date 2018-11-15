@@ -11,7 +11,9 @@ type LocalizedPage {
   content: Json!
   publishedTo: DateTime
   publishedFrom: DateTime
+  tags: [Tag!]!
 }
+
 
 type Frontend {
   website: Website!

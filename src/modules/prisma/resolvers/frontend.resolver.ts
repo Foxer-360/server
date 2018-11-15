@@ -4,9 +4,7 @@ import { FrontendService } from '../services/frontend.service';
 
 @Resolver('frontend')
 export class FrontendResolver {
-
-  constructor(private readonly prisma: Prisma,
-              private readonly frontendService: FrontendService) {}
+  constructor(private readonly prisma: Prisma, private readonly frontendService: FrontendService) {}
 
   @Query('frontend')
   public async getLanguage(obj, args, context, info): Promise<any> {
@@ -80,7 +78,7 @@ export class FrontendResolver {
     // Now Language
     let languageObject = null;
     if (resolvedUrl.language) {
-      const lang = websiteObject.languages.find((l) => {
+      const lang = websiteObject.languages.find(l => {
         return l.code === resolvedUrl.language;
       });
 
@@ -102,7 +100,7 @@ export class FrontendResolver {
     // Now page
     let pages = [];
     if (resolvedUrl.pages && resolvedUrl.pages.length > 0) {
-      pages = [ ...resolvedUrl.pages ];
+      pages = [...resolvedUrl.pages];
     }
     if (isWebsiteActualyFirstPageSlag) {
       pages = [resolvedUrl.website, ...pages];
@@ -115,7 +113,11 @@ export class FrontendResolver {
 
     const pageObjects = [];
     const pageInfo = `{
-      id,
+      id
+      tags{
+        id
+        name
+      }
       translations(
         where: {
           language: {
@@ -145,17 +147,20 @@ export class FrontendResolver {
         };
       }
 
-      const p = await this.prisma.query.pages({
-        where: {
-          ...(parent ? { parent } : {}),
-          website: {
-            id_in: [websiteObject.id],
-          },
-          translations_some: {
-            url_in: [page],
+      const p = await this.prisma.query.pages(
+        {
+          where: {
+            ...(parent ? { parent } : {}),
+            website: {
+              id_in: [websiteObject.id]
+            },
+            translations_some: {
+              url_in: [page]
+            },
           },
         },
-      }, pageInfo);
+        pageInfo,
+      );
 
       if (!p || p.length < 1) {
         return Promise.resolve(emptyRes);
@@ -202,5 +207,4 @@ export class FrontendResolver {
 
     return Promise.resolve(res);
   }
-
 }
