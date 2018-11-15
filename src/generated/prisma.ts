@@ -2619,6 +2619,7 @@ type PageTranslation implements Node {
   publishedFrom: DateTime
   publishedTo: DateTime
   tasks(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTask!]
+  createdAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -2704,10 +2705,10 @@ enum PageTranslationOrderByInput {
   publishedFrom_DESC
   publishedTo_ASC
   publishedTo_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type PageTranslationPreviousValues {
@@ -2719,6 +2720,7 @@ type PageTranslationPreviousValues {
   description: String
   publishedFrom: DateTime
   publishedTo: DateTime
+  createdAt: DateTime!
 }
 
 type PageTranslationSubscriptionPayload {
@@ -3053,6 +3055,28 @@ input PageTranslationWhereInput {
 
   """All values greater than or equal the given value."""
   publishedTo_gte: DateTime
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
   page: PageWhereInput
   language: LanguageWhereInput
   tasks_every: PageTaskWhereInput
@@ -4660,10 +4684,10 @@ export type PageTranslationOrderByInput =   'id_ASC' |
   'publishedFrom_DESC' |
   'publishedTo_ASC' |
   'publishedTo_DESC' |
-  'updatedAt_ASC' |
-  'updatedAt_DESC' |
   'createdAt_ASC' |
-  'createdAt_DESC'
+  'createdAt_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC'
 
 export type FileOrderByInput =   'id_ASC' |
   'id_DESC' |
@@ -5905,6 +5929,14 @@ export interface PageTranslationWhereInput {
   publishedTo_lte?: DateTime
   publishedTo_gt?: DateTime
   publishedTo_gte?: DateTime
+  createdAt?: DateTime
+  createdAt_not?: DateTime
+  createdAt_in?: DateTime[] | DateTime
+  createdAt_not_in?: DateTime[] | DateTime
+  createdAt_lt?: DateTime
+  createdAt_lte?: DateTime
+  createdAt_gt?: DateTime
+  createdAt_gte?: DateTime
   page?: PageWhereInput
   language?: LanguageWhereInput
   tasks_every?: PageTaskWhereInput
@@ -6899,6 +6931,7 @@ export interface PageTranslationPreviousValues {
   description?: String
   publishedFrom?: DateTime
   publishedTo?: DateTime
+  createdAt: DateTime
 }
 
 export interface AggregateFile {
@@ -7105,6 +7138,7 @@ export interface PageTranslation extends Node {
   publishedFrom?: DateTime
   publishedTo?: DateTime
   tasks?: PageTask[]
+  createdAt: DateTime
 }
 
 /*
