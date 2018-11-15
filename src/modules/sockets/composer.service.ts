@@ -212,7 +212,7 @@ export class ComposerService {
    * @param {object} data
    * @return {object} informations about page (content, who is editing, which components are locked, etc)
    */
-  public getPageInformation(id: string, data: any): Promise<any> {
+  public getPageInformation(id: string, data: any): any {
     const pageId = data.pageId;
     // if (!isNumber(pageId)) {
     //   return null;
