@@ -703,7 +703,7 @@ export class Composer {
    * @param {string} page
    * @return {LooseObject}
    */
-  public async getInformationAboutPage(client: string, page: string): Promise<LooseObject> {
+  public getInformationAboutPage(client: string, page: string): LooseObject {
     if (!this.isPageLoaded(page)) {
       return null;
     }
