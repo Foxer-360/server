@@ -713,7 +713,7 @@ export class Composer {
       content: this.pages[page].content,
       editors: this.pages[page]._editors,
       locks: this.pages[page]._whoEdits,
-      delta: this.pages[page].delta,
+      delta: this.pages[page].delta.export(),
     };
 
     return res;
