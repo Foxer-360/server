@@ -217,7 +217,6 @@ export class ComposerService {
     // if (!isNumber(pageId)) {
     //   return null;
     // }
-
     return this.storage.composer.getInformationAboutPage(id, pageId);
   }
 
@@ -289,6 +288,10 @@ export class ComposerService {
 
   public resolveCommit(id: string, pageId: string, commit: LooseObject) {
     return this.storage.composer.resolveCommit(id, pageId, commit);
+  }
+
+  public resetPageContent(pageId: string, content: LooseObject) {
+    return this.storage.composer.resetPageContent(pageId, content);
   }
 
 }
