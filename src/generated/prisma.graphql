@@ -1,5 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Fri Nov 09 2018 11:20:23 GMT+0100 (CET)
+# timestamp: Thu Nov 15 2018 17:18:41 GMT+0100 (CET)
 
 type AggregateFile {
   count: Int!
@@ -2439,6 +2439,7 @@ type PageTranslation implements Node {
   publishedFrom: DateTime
   publishedTo: DateTime
   tasks(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTask!]
+  createdAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -2524,10 +2525,10 @@ enum PageTranslationOrderByInput {
   publishedFrom_DESC
   publishedTo_ASC
   publishedTo_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type PageTranslationPreviousValues {
@@ -2539,6 +2540,7 @@ type PageTranslationPreviousValues {
   description: String
   publishedFrom: DateTime
   publishedTo: DateTime
+  createdAt: DateTime!
 }
 
 type PageTranslationSubscriptionPayload {
@@ -2873,6 +2875,28 @@ input PageTranslationWhereInput {
 
   """All values greater than or equal the given value."""
   publishedTo_gte: DateTime
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
   page: PageWhereInput
   language: LanguageWhereInput
   tasks_every: PageTaskWhereInput

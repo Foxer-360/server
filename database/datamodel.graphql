@@ -39,8 +39,8 @@ type PageType {
 
 # Section with Pages
 enum PageStatus {
-  DRAFT,
-  PENDING,
+  DRAFT
+  PENDING
   PUBLISHED
 }
 
@@ -66,6 +66,7 @@ type PageTranslation {
   publishedFrom: DateTime
   publishedTo: DateTime
   tasks: [PageTask!]! @relation(name: "TaskUnderPage", onDelete: CASCADE)
+  createdAt: DateTime!
 }
 
 type PagePlugin {
