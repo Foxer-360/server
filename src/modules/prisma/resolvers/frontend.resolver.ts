@@ -136,6 +136,7 @@ export class FrontendResolver {
         content
         publishedFrom
         publishedTo
+        createdAt
       },
     }`;
 
