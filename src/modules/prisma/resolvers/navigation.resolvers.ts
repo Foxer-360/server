@@ -38,6 +38,11 @@ export class NavigationResolver {
     return await this.prisma.query.navigationNodes(args, info);
   }
 
+  @Mutation('deleteNavigationNode')
+  public async deleteNavigationNode(obj, args, context, info): Promise<any> {
+    return await this.prisma.mutation.deleteNavigationNode(args, info);
+  }
+
   @Mutation('createNavigationStructure')
   public async createNavigationStructure(obj, args, context, info): Promise<any> {
     const nodes: Array<any> = args.data;

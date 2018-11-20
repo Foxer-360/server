@@ -10,6 +10,7 @@ import { PagePluginResolver } from './resolvers/pagePlugin.resolver';
 import { PageResolver } from './resolvers/page.resolver';
 import { PageTaskResolver } from './resolvers/pageTask.resolver';
 import { PageChatResolver } from './resolvers/pageChat.resolver';
+import { PageTranslationResolver } from './resolvers/pageTranslation.resolver';
 import { FrontendResolver } from './resolvers/frontend.resolver';
 import { NavigationResolver } from './resolvers/navigation.resolvers';
 import { TagResolver } from './resolvers/tag.resolver';
@@ -21,7 +22,7 @@ import { importSchema } from 'graphql-import';
 @Module({
   imports: [GraphQLModule, SubscriptionsModule.forRoot(5001)],
   providers: [prismaProvider, LanguageResolver, ProjectResolver, WebsiteResolver, PageTypeResolver,
-    PageResolver, PageTaskResolver, PageChatResolver, FrontendResolver, FrontendService, NavigationResolver,
+    PageResolver, PageTaskResolver, PageChatResolver, PageTranslationResolver, FrontendResolver, FrontendService, NavigationResolver,
     TagResolver, PagePluginResolver],
   exports: [prismaProvider],
 })

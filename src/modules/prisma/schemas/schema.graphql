@@ -90,7 +90,7 @@ type Mutation {
 
 type Query {
   # Copied from Prisma schema
-  projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
+projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
   pageTranslations(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTranslation]!
   pagePlugins(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PagePlugin]!
   pageTasks(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTask]!
@@ -129,6 +129,12 @@ type Query {
   pageTypesConnection(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTypeConnection!
   websitesConnection(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WebsiteConnection!
   languagesConnection(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LanguageConnection!
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
 
   # Custom definitions
   frontend(where: FrontendWhereInput!): Frontend
