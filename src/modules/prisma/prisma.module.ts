@@ -45,7 +45,7 @@ export class PrismaModule implements NestModule {
 
     const schemaWithMiddleware = applyMiddleware(
       schema,
-      // authorizationMiddleware(process.env.AUTHORIZATION_API_ADDRESS),
+      authorizationMiddleware(process.env.AUTHORIZATION_API_ADDRESS),
     );
 
     consumer

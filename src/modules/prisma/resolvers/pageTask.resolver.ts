@@ -46,8 +46,6 @@ export class PageTaskResolver {
     const pageTasks = await this.prisma.query.pageTasks(args, info);
     const pageTasksWithAuth0id = await this.prisma.query.pageTasks(args, '{ id auth0id }');
 
-    console.log(pageTasks);
-
     return pageTasks
       .map((pageTask: any) => ({ ...pageTask, ...(pageTasksWithAuth0id.find(p => p.id === pageTask.id) || {}) }))
       .map((pageTask: any) => {
@@ -97,6 +95,16 @@ export class PageTaskResolver {
   @Subscription('pageTask')
   public pageTask() {
     return {
+      resolve: async (payload, args, context, info) => {
+        const users: any = await getUsers();
+        const { pageTask } = payload;
+        if (pageTask.node.id) {
+          const pageTaskWithAuth0id = await this.prisma.query.pageTask({ where: { id: pageTask.node.id } }, '{ id auth0id }');
+          pageTask.node.user = users.find(user => user.auth0id === pageTaskWithAuth0id.auth0id);
+        }
+
+        return pageTask;
+      },
       subscribe: (obj, args, context, info) => {
         return this.prisma.subscription.pageTask(args, info);
       },

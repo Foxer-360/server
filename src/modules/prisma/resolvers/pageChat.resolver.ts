@@ -1,5 +1,5 @@
 import { Resolver, Mutation, Query, Subscription } from '@nestjs/graphql';
-import { Prisma } from 'generated/prisma';
+import { Prisma, PageChatSubscriptionPayload } from 'generated/prisma';
 import { request } from 'graphql-request';
 
 // TODO place to service
@@ -44,8 +44,6 @@ export class PageChatResolver {
 
     const pageChats = await this.prisma.query.pageChats(args, info);
     const pageChatsWithAuth0id = await this.prisma.query.pageChats(args, '{ id auth0id }');
-
-    console.log(pageChats);
 
     return pageChats
       .map((pageChat: any) => ({ ...pageChat, ...(pageChatsWithAuth0id.find(p => p.id === pageChat.id) || {}) }))
@@ -96,6 +94,16 @@ export class PageChatResolver {
   @Subscription('pageChat')
   public pageChat() {
     return {
+      resolve: async (payload, args, context, info) => {
+        const users: any = await getUsers();
+        const { pageChat } = payload;
+        if (pageChat.node.id) {
+          const pageChatWithAuth0id = await this.prisma.query.pageChat({ where: { id: pageChat.node.id } }, '{ id auth0id }');
+          pageChat.node.user = users.find(user => user.auth0id === pageChatWithAuth0id.auth0id);
+        }
+
+        return pageChat;
+      },
       subscribe: (obj, args, context, info) => {
         return this.prisma.subscription.pageChat(args, info);
       },

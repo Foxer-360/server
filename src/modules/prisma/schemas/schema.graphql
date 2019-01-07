@@ -165,13 +165,28 @@ type Query {
   pagesUrls(where: PagesUrlsWhereInput!): [PageUrl]
 }
 
+type PageChatWithUserSubscriptionPayload {
+  mutation: MutationType!
+  node: PageChatWithUser
+  updatedFields: [String!]
+  previousValues: PageChatPreviousValues
+}
+
+type PageTaskWithUserSubscriptionPayload {
+  mutation: MutationType!
+  node: PageTaskWithUser
+  updatedFields: [String!]
+  previousValues: PageChatPreviousValues
+}
+
+
 type Subscription {
   # Copied from Prisma schema
   project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
   pageTranslation(where: PageTranslationSubscriptionWhereInput): PageTranslationSubscriptionPayload
   pagePlugin(where: PagePluginSubscriptionWhereInput): PagePluginSubscriptionPayload
-  pageTask(where: PageTaskSubscriptionWhereInput): PageTaskSubscriptionPayload
-  pageChat(where: PageChatSubscriptionWhereInput): PageChatSubscriptionPayload
+  pageTask(where: PageTaskSubscriptionWhereInput): PageTaskWithUserSubscriptionPayload
+  pageChat(where: PageChatSubscriptionWhereInput): PageChatWithUserSubscriptionPayload
   file(where: FileSubscriptionWhereInput): FileSubscriptionPayload
   navigation(where: NavigationSubscriptionWhereInput): NavigationSubscriptionPayload
   navigationNode(where: NavigationNodeSubscriptionWhereInput): NavigationNodeSubscriptionPayload
