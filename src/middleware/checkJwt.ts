@@ -3,9 +3,6 @@ import * as jwt from 'express-jwt';
 // tslint:disable-next-line:no-var-requires
 import * as jwksRsa from 'jwks-rsa';
 
-// tslint:disable-next-line:no-console
-console.log(process.env);
-
 const options = {
   cache: true,
   rateLimit: true,
