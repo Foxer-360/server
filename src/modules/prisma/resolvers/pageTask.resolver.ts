@@ -84,11 +84,7 @@ export class PageTaskResolver {
   @Mutation('deletePageTask')
   public async deletePageTask(obj, args, context, info): Promise<any> {
 
-    const users: any = await getUsers();
-
     const pageTask: any = await this.prisma.mutation.deletePageTask(args, info);
-    const pageTaskWithAuth0id = await this.prisma.query.pageTask({ where: { id: pageTask.id } }, '{ id auth0id }');
-    pageTask.user = users.find(user => user.auth0id === pageTaskWithAuth0id.auth0id);
     return pageTask;
   }
 

@@ -83,11 +83,7 @@ export class PageChatResolver {
   @Mutation('deletePageChat')
   public async deletePageChat(obj, args, context, info): Promise<any> {
 
-    const users: any = await getUsers();
-
     const pageChat: any = await this.prisma.mutation.deletePageChat(args, info);
-    const pageChatWithAuth0id = await this.prisma.query.pageChat({ where: { id: pageChat.id } }, '{ id auth0id }');
-    pageChat.user = users.find(user => user.auth0id === pageChatWithAuth0id.auth0id);
     return pageChat;
   }
 
