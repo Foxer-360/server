@@ -148,14 +148,14 @@ export class Composer {
    * @param {string} page
    * @return {Promise<boolean>} true if client start edit page, otherwise returns false
    */
-  public async clientStartEditPage(client: string, page: string): Promise<boolean> {
+  public async clientStartEditPage(clientId: string, page: string, userInfo: any): Promise<boolean> {
     // If client doesn't exist, register him
-    if (!this.isClientRegistered(client)) {
-      this.registerClient(client);
+    if (!this.isClientRegistered(clientId)) {
+      this.registerClient(clientId);
     }
 
     // If client is already editing another page
-    const actualPage = this.clients[client].actualPage;
+    const actualPage = this.clients[clientId].actualPage;
     if (actualPage !== null) {
       if (actualPage === page) {
         return Promise.resolve(true);
@@ -178,8 +178,8 @@ export class Composer {
     }
 
     // Now add client as editor of page
-    this.pages[page]._editors.push(client);
-    this.clients[client].actualPage = page;
+    this.pages[page]._editors.push({ socketId: clientId, userInfo });
+    this.clients[clientId].actualPage = page;
 
     return Promise.resolve(true);
   }
@@ -191,27 +191,27 @@ export class Composer {
    * @param {string} page
    * @return {Promise<boolean>} true if it was successful, otherwise returns false
    */
-  public async clientStopEditPage(client: string, page: string): Promise<boolean> {
+  public async clientStopEditPage(clientId: string, page: string): Promise<boolean> {
     // If client is not editing this page
     // if (!this.isClientEditingPage(client, page)) {
     //   return Promise.resolve(true);
     // }
-    if (!this.isClientRegistered(client)) {
+    if (!this.isClientRegistered(clientId)) {
       return Promise.resolve(true);
     }
 
-    if (page !== this.clients[client].actualPage) {
-      if (!this.clients[client].actualPage) {
+    if (page !== this.clients[clientId].actualPage) {
+      if (!this.clients[clientId].actualPage) {
         return Promise.resolve(true);
       }
 
-      page = this.clients[client].actualPage;
+      page = this.clients[clientId].actualPage;
     }
 
     // Check if client edit some component, if so, then stop edit this component
-    const actualComponent = this.clients[client].actualComponent;
+    const actualComponent = this.clients[clientId].actualComponent;
     if (actualComponent !== null) {
-      const stopped = this.clientStopEditingComponent(client, page, actualComponent);
+      const stopped = this.clientStopEditingComponent(clientId, page, actualComponent);
       if (!stopped) {
         return Promise.resolve(false);
       }
@@ -242,14 +242,15 @@ export class Composer {
     }
 
     // Then remove client from editors
-    this.pages[page]._editors = this.pages[page]._editors.filter((val: string) => {
-      if (val === client) {
+    this.pages[page]._editors = this.pages[page]._editors.filter((val: LooseObject) => {
+
+      if (val.socketId === clientId) {
         return false;
       }
 
       return true;
     });
-    this.clients[client].actualPage = null;
+    this.clients[clientId].actualPage = null;
 
     return Promise.resolve(true);
   }
@@ -261,19 +262,19 @@ export class Composer {
    * @param {string} page
    * @return {boolean}
    */
-  public isClientEditingPage(client: string, page: string): boolean {
+  public isClientEditingPage(clientId: string, page: string): boolean {
     // Page must be loaded
     if (!this.isPageLoaded(page)) {
       return false;
     }
 
     // Client must be registered
-    if (!this.isClientRegistered(client)) {
+    if (!this.isClientRegistered(clientId)) {
       return false;
     }
 
     // Check if client has page in editing
-    if (this.clients[client].actualPage === page) {
+    if (this.clients[clientId].actualPage === page) {
       return true;
     }
 
@@ -300,8 +301,8 @@ export class Composer {
    * @param {string} client id of client (socket id)
    * @return {boolean} true if clieant is registered in storage, otherwise returns false
    */
-  public isClientRegistered(client: string): boolean {
-    if (this.clients[client] !== undefined && this.clients[client] !== null) {
+  public isClientRegistered(clientId: string): boolean {
+    if (this.clients[clientId] !== undefined && this.clients[clientId] !== null) {
       return true;
     }
 
@@ -328,9 +329,9 @@ export class Composer {
    * @param {number} component
    * @return {boolean} true if client can edit this component, otherwise returns false
    */
-  public clientStartEditComponent(client: string, page: string, component: number): boolean {
+  public clientStartEditComponent(clientId: string, page: string, component: number): boolean {
     // Client must already edit this page
-    if (!this.isClientEditingPage(client, page)) {
+    if (!this.isClientEditingPage(clientId, page)) {
       return false;
     }
 
@@ -341,13 +342,13 @@ export class Composer {
 
     // Component must be unlocked (no other user edits it already)
     const whoEdit = this.getClientWhoEditComponent(page, component);
-    if (whoEdit !== undefined && whoEdit !== null && whoEdit !== client) {
+    if (whoEdit !== undefined && whoEdit !== null && whoEdit !== clientId) {
       return false;
     }
 
     // Client is ready to lock this component
-    this.pages[page]._whoEdits[component] = client;
-    this.clients[client].actualComponent = component;
+    this.pages[page]._whoEdits[component] = clientId;
+    this.clients[clientId].actualComponent = component;
 
     return true;
   }
@@ -360,13 +361,13 @@ export class Composer {
    * @param {number} component
    * @return {boolean} true if client is editing component, otherwise returns false
    */
-  public isClientEditingComponent(client: string, page: string, component: number): boolean {
+  public isClientEditingComponent(clientId: string, page: string, component: number): boolean {
     // Client must edits page already
-    if (!this.isClientEditingPage(client, page)) {
+    if (!this.isClientEditingPage(clientId, page)) {
       return false;
     }
 
-    if (this.clients[client].actualComponent === component) {
+    if (this.clients[clientId].actualComponent === component) {
       return true;
     }
 
@@ -385,8 +386,8 @@ export class Composer {
    * @param {any} data
    * @return {boolean} true if component was updated, otherwise returns false
    */
-  public clientUpdateComponent(client: string, page: string, component: number, data: any): boolean {
-    if (!this.isClientEditingComponent(client, page, component)) {
+  public clientUpdateComponent(clientId: string, page: string, component: number, data: any): boolean {
+    if (!this.isClientEditingComponent(clientId, page, component)) {
       return false;
     }
 
@@ -412,13 +413,13 @@ export class Composer {
    * @param {number} component
    * @return {boolean} false if client is editing component but can't unlock it, otherwise returns true
    */
-  public clientStopEditingComponent(client: string, page: string, component: number): boolean {
-    if (!this.isClientEditingComponent(client, page, component)) {
+  public clientStopEditingComponent(clientId: string, page: string, component: number): boolean {
+    if (!this.isClientEditingComponent(clientId, page, component)) {
       return true;
     }
 
     this.pages[page]._whoEdits[component] = null;
-    this.clients[client].actualComponent = null;
+    this.clients[clientId].actualComponent = null;
 
     return true;
   }
@@ -485,9 +486,9 @@ export class Composer {
    * @param {string} client
    * @return {void}
    */
-  public registerClient(client: string): void {
-    this.clients[client] = {
-      id: client,
+  public registerClient(clientId: string): void {
+    this.clients[clientId] = {
+      id: clientId,
       actualPage: null,
       actualComponent: null,
     };
@@ -502,8 +503,8 @@ export class Composer {
    * @param {LooseObject} data
    * @return {boolean} true if component was added, otherwise returns false
    */
-  public clientAddComponent(client: string, page: string, data: LooseObject): boolean {
-    if (!this.isClientEditingPage(client, page)) {
+  public clientAddComponent(clientId: string, page: string, data: LooseObject): boolean {
+    if (!this.isClientEditingPage(clientId, page)) {
       return false;
     }
 
@@ -558,8 +559,8 @@ export class Composer {
    * @param {number} component
    * @return {boolean} true if component was removed, otherwise returns false
    */
-  public clientRemoveComponent(client: string, page: string, component: number): boolean {
-    if (!this.isClientEditingPage(client, page)) {
+  public clientRemoveComponent(clientId: string, page: string, component: number): boolean {
+    if (!this.isClientEditingPage(clientId, page)) {
       return false;
     }
 
@@ -624,8 +625,8 @@ export class Composer {
    * @param {number} position
    * @return {boolean} true if it was successful, otherwise returns false
    */
-  public clientMoveComponent(client: string, page: string, component: number, position: number): boolean {
-    if (!this.isClientEditingPage(client, page)) {
+  public clientMoveComponent(clientId: string, page: string, component: number, position: number): boolean {
+    if (!this.isClientEditingPage(clientId, page)) {
       return false;
     }
 
@@ -703,7 +704,7 @@ export class Composer {
    * @param {string} page
    * @return {LooseObject}
    */
-  public getInformationAboutPage(client: string, page: string): LooseObject {
+  public getInformationAboutPage(clientId: string, page: string): LooseObject {
     if (!this.isPageLoaded(page)) {
       return null;
     }
@@ -726,14 +727,14 @@ export class Composer {
    * @param {string} client
    * @return {object}
    */
-  public forceRemoveClient(client: string): LooseObject {
-    if (!this.isClientRegistered(client)) {
+  public forceRemoveClient(clientId: string): LooseObject {
+    if (!this.isClientRegistered(clientId)) {
       return { page: null, component: null };
     }
 
     // Get page and component which he edits
-    const page = this.clients[client].actualPage;
-    const component = this.clients[client].actualComponent;
+    const page = this.clients[clientId].actualPage;
+    const component = this.clients[clientId].actualComponent;
 
     const res = {
       page,
@@ -742,27 +743,27 @@ export class Composer {
 
     if (!page || page === null) {
       // Remove from storage completly
-      this.clients[client] = undefined;
+      this.clients[clientId] = undefined;
 
       return res;
     }
 
     if (component && component !== null) {
-      this.clientStopEditingComponent(client, page, component);
+      this.clientStopEditingComponent(clientId, page, component);
     }
 
     // Then remove client from editors
-    this.pages[page]._editors = this.pages[page]._editors.filter((val: string) => {
-      if (val === client) {
+    this.pages[page]._editors = this.pages[page]._editors.filter((val: LooseObject) => {
+      if (val.socketId === clientId) {
         return false;
       }
 
       return true;
     });
-    this.clients[client].actualPage = null;
+    this.clients[clientId].actualPage = null;
 
     // Remove from storage completly
-    this.clients[client] = undefined;
+    this.clients[clientId] = undefined;
 
     return res;
   }
@@ -770,7 +771,7 @@ export class Composer {
   /**
    *
    */
-  public resolveCommit(client: string, page: string, commit: LooseObject) {
+  public resolveCommit(clientId: string, page: string, commit: LooseObject) {
     const diff = this.pages[page].delta.diff(commit);
     this.pages[page].delta.forceCommit(commit.commits);
     this.pages[page].delta.push();

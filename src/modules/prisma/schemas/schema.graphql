@@ -7,8 +7,8 @@ type Mutation {
   createProject(data: ProjectCreateInput!): Project!
   createPageTranslation(data: PageTranslationCreateInput!): PageTranslation!
   createPagePlugin(data: PagePluginCreateInput!): PagePlugin!
-  createPageTask(data: PageTaskCreateInput!): PageTask!
-  createPageChat(data: PageChatCreateInput!): PageChat!
+  createPageTask(data: PageTaskCreateInput!): PageTaskWithUser!
+  createPageChat(data: PageChatCreateInput!): PageChatWithUser!
   createFile(data: FileCreateInput!): File!
   createNavigation(data: NavigationCreateInput!): Navigation!
   createNavigationNode(data: NavigationNodeCreateInput!): NavigationNode!
@@ -19,8 +19,8 @@ type Mutation {
   updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
   updatePageTranslation(data: PageTranslationUpdateInput!, where: PageTranslationWhereUniqueInput!): PageTranslation
   updatePagePlugin(data: PagePluginUpdateInput!, where: PagePluginWhereUniqueInput!): PagePlugin
-  updatePageTask(data: PageTaskUpdateInput!, where: PageTaskWhereUniqueInput!): PageTask
-  updatePageChat(data: PageChatUpdateInput!, where: PageChatWhereUniqueInput!): PageChat
+  updatePageTask(data: PageTaskUpdateInput!, where: PageTaskWhereUniqueInput!): PageTaskWithUser
+  updatePageChat(data: PageChatUpdateInput!, where: PageChatWhereUniqueInput!): PageChatWithUser
   updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
   updateNavigation(data: NavigationUpdateInput!, where: NavigationWhereUniqueInput!): Navigation
   updateNavigationNode(data: NavigationNodeUpdateInput!, where: NavigationNodeWhereUniqueInput!): NavigationNode
@@ -32,8 +32,8 @@ type Mutation {
   deleteProject(where: ProjectWhereUniqueInput!): Project
   deletePageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
   deletePagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
-  deletePageTask(where: PageTaskWhereUniqueInput!): PageTask
-  deletePageChat(where: PageChatWhereUniqueInput!): PageChat
+  deletePageTask(where: PageTaskWhereUniqueInput!): PageTaskWithUser
+  deletePageChat(where: PageChatWhereUniqueInput!): PageChatWithUser
   deleteFile(where: FileWhereUniqueInput!): File
   deleteNavigation(where: NavigationWhereUniqueInput!): Navigation
   deleteNavigationNode(where: NavigationNodeWhereUniqueInput!): NavigationNode
@@ -88,13 +88,37 @@ type Mutation {
   savePagePlugin(data: PagePluginCreateInput!): PagePlugin!
 }
 
+type User {
+  name: String!
+  avatar: String!
+  email: String!
+}
+
+type PageTaskWithUser {
+  id: ID!
+  pageTranslation(where: PageTranslationWhereInput): PageTranslation!
+  done: Boolean!
+  name: String!
+  description: String!
+  updatedAt: DateTime!
+  user: User
+}
+
+type PageChatWithUser {
+  id: ID!
+  page(where: PageWhereInput): Page!
+  text: String!
+  createdAt: DateTime!
+  user: User
+}
+
 type Query {
   # Copied from Prisma schema
-projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
+  projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
   pageTranslations(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTranslation]!
   pagePlugins(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PagePlugin]!
-  pageTasks(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTask]!
-  pageChats(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageChat]!
+  pageTasks(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTaskWithUser]!
+  pageChats(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageChatWithUser]!
   files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File]!
   navigations(where: NavigationWhereInput, orderBy: NavigationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Navigation]!
   navigationNodes(where: NavigationNodeWhereInput, orderBy: NavigationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [NavigationNode]!
@@ -106,8 +130,8 @@ projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, afte
   project(where: ProjectWhereUniqueInput!): Project
   pageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
   pagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
-  pageTask(where: PageTaskWhereUniqueInput!): PageTask
-  pageChat(where: PageChatWhereUniqueInput!): PageChat
+  pageTask(where: PageTaskWhereUniqueInput!): PageTaskWithUser
+  pageChat(where: PageChatWhereUniqueInput!): PageChatWithUser
   file(where: FileWhereUniqueInput!): File
   navigation(where: NavigationWhereUniqueInput!): Navigation
   navigationNode(where: NavigationNodeWhereUniqueInput!): NavigationNode
@@ -141,13 +165,28 @@ projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, afte
   pagesUrls(where: PagesUrlsWhereInput!): [PageUrl]
 }
 
+type PageChatWithUserSubscriptionPayload {
+  mutation: MutationType!
+  node: PageChatWithUser
+  updatedFields: [String!]
+  previousValues: PageChatPreviousValues
+}
+
+type PageTaskWithUserSubscriptionPayload {
+  mutation: MutationType!
+  node: PageTaskWithUser
+  updatedFields: [String!]
+  previousValues: PageChatPreviousValues
+}
+
+
 type Subscription {
   # Copied from Prisma schema
   project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
   pageTranslation(where: PageTranslationSubscriptionWhereInput): PageTranslationSubscriptionPayload
   pagePlugin(where: PagePluginSubscriptionWhereInput): PagePluginSubscriptionPayload
-  pageTask(where: PageTaskSubscriptionWhereInput): PageTaskSubscriptionPayload
-  pageChat(where: PageChatSubscriptionWhereInput): PageChatSubscriptionPayload
+  pageTask(where: PageTaskSubscriptionWhereInput): PageTaskWithUserSubscriptionPayload
+  pageChat(where: PageChatSubscriptionWhereInput): PageChatWithUserSubscriptionPayload
   file(where: FileSubscriptionWhereInput): FileSubscriptionPayload
   navigation(where: NavigationSubscriptionWhereInput): NavigationSubscriptionPayload
   navigationNode(where: NavigationNodeSubscriptionWhereInput): NavigationNodeSubscriptionPayload

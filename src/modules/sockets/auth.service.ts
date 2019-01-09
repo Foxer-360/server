@@ -91,6 +91,10 @@ export class AuthService {
     return true;
   }
 
+  public getInfoAboutClientById(id): any {
+    return this.storage.auth.getInfo(id);
+  }
+
   /**
    * Remove client from storage
    *

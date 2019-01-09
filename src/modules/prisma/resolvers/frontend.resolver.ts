@@ -153,10 +153,10 @@ export class FrontendResolver {
           where: {
             ...(parent ? { parent } : {}),
             website: {
-              id_in: [websiteObject.id]
+              id_in: [websiteObject.id],
             },
             translations_some: {
-              url_in: [page]
+              url_in: [page],
             },
           },
         },
@@ -183,6 +183,7 @@ export class FrontendResolver {
       id
       content
     }`;
+
     const pluginWhere = {
       page: {
         id_in: [pageObjects[pageObjects.length - 1].id],
@@ -193,6 +194,30 @@ export class FrontendResolver {
       plugin_contains: 'seo',
     };
     const plugins = await this.prisma.query.pagePlugins({ where: pluginWhere }, pluginInfo);
+
+    const navigations = await this.prisma.query.navigations(
+      {
+        where: {
+          website: {
+            id: websiteObject.id,
+          },
+        },
+      },
+        `{
+          id
+          name
+          nodes {
+            id
+            page
+            title
+            link
+            order
+            parent
+            __typename
+          }
+          __typename
+        }`,
+    );
     // tslint:disable-next-line:no-any
     let seo = null as any;
     if (plugins && plugins.length > 0) {
@@ -203,6 +228,8 @@ export class FrontendResolver {
       website: websiteObject,
       language: languageObject,
       page: pageObjects[pageObjects.length - 1],
+      navigations,
+      languages: websiteObject.languages,
       seo,
     };
 

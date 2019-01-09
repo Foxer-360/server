@@ -19,5 +19,7 @@ type Frontend {
   website: Website!
   language: Language!
   page: LocalizedPage!
-  seo: Json
+  seo: Json,
+  navigations: [Navigation!]!
+  languages: [Language!]!
 }
