@@ -18,6 +18,10 @@ import { SubscriptionsService } from 'modules/subscriptions/subscriptions.servic
 import { SubscriptionsModule } from 'modules/subscriptions/subscriptions.module';
 import { FrontendService } from './services/frontend.service';
 import { importSchema } from 'graphql-import';
+import { applyMiddleware } from 'graphql-middleware';
+import graphqlPlayground from 'graphql-playground-middleware-express';
+import authorizationMiddleware from 'foxer360-authorization';
+import { checkJwt } from '../../middleware';
 
 @Module({
   imports: [GraphQLModule, SubscriptionsModule.forRoot(5001)],
@@ -39,17 +43,29 @@ export class PrismaModule implements NestModule {
     // Create subscription server
     this.subscriptionsService.createSubscriptionServer(schema);
 
+    const schemaWithMiddleware = applyMiddleware(
+      schema,
+      authorizationMiddleware(process.env.AUTHORIZATION_API_ADDRESS),
+    );
+
     consumer
+    .apply(checkJwt)
+    .forRoutes('/graphql')
+    .apply((req, res, next, err) => {
+      if (err) return res.status(401).send(err.message);
+      next();
+    })
+    .forRoutes('/graphql')
     .apply(
-      graphiqlExpress({
-        endpointURL: '/graphql',
-        subscriptionsEndpoint: `ws://localhost:5001/subscriptions`,
+      graphqlPlayground({
+        endpoint: '/graphql',
+        subscriptionEndpoint: `ws://localhost:5001/subscriptions`,
       }),
     )
     .forRoutes('/graphiql')
     .apply(
       graphqlExpress(req => ({
-        schema,
+        schema: schemaWithMiddleware,
         rootValue: req,
         context: req,
       })),

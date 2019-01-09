@@ -175,7 +175,13 @@ export class SocketsGateway implements OnGatewayInit, OnGatewayConnection, OnGat
   @SubscribeMessage('composer/start-edit-page')
   public async startEditPage(client: any, data: any): Promise<WsResponse<StandardResponse>> {
     try {
-      const success = await this.composerService.startEditPage(client.id, data);
+      // TODO sync userInfo with auth service
+      const clientInfo = this.authService.getInfoAboutClientById(client.id);
+      const userInfo = {
+        name: clientInfo.profile.name,
+        picture: clientInfo.profile.picture,
+      };
+      const success = await this.composerService.startEditPage(client.id, data, userInfo);
 
       if (!success) {
         const response = this.response('composer/start-edit-page', {
@@ -216,7 +222,7 @@ export class SocketsGateway implements OnGatewayInit, OnGatewayConnection, OnGat
 
     return this.response('composer/get-page', {
       status: 'error',
-      message: 'No data about page was loaded. Meybe page doesnt exists.',
+      message: 'No data about page was loaded. Maybe page doesnt exists.',
     });
   }
 
@@ -442,8 +448,8 @@ export class SocketsGateway implements OnGatewayInit, OnGatewayConnection, OnGat
         });
       }
 
-      const clientIds = this.composerService.getClientsWhoEditPage(data.pageId);
-      if (!clientIds || clientIds === null) {
+      const clients = this.composerService.getClientsWhoEditPage(data.pageId);
+      if (!clients || clients === null) {
         return;
       }
 
@@ -452,10 +458,10 @@ export class SocketsGateway implements OnGatewayInit, OnGatewayConnection, OnGat
       const payload = { content, delta };
 
       // Send to all clients
-      clientIds.forEach((client: string) => {
+      clients.forEach((client: any) => {
 
         // Send event to client
-        const socket = this.server.sockets.sockets[client];
+        const socket = this.server.sockets.sockets[client.socketId];
         // If socket doesn't exist (some type of error)
         if (!socket || socket === null) {
           return;
@@ -493,8 +499,8 @@ export class SocketsGateway implements OnGatewayInit, OnGatewayConnection, OnGat
 
   // tslint:disable-next-line:no-any
   private informAboutUpdateCommit(id: string, pageId: string, data: any): void {
-    const clientIds = this.composerService.getClientsWhoEditPage(pageId);
-    if (!clientIds || clientIds === null) {
+    const clients = this.composerService.getClientsWhoEditPage(pageId);
+    if (!clients || clients === null) {
       return;
     }
 
@@ -505,9 +511,9 @@ export class SocketsGateway implements OnGatewayInit, OnGatewayConnection, OnGat
     };
 
     // Send to all clients
-    clientIds.forEach((client: string) => {
+    clients.forEach((client: any) => {
       // Skip client who fired this update
-      if (client === id) {
+      if (client.socketId === id) {
         return;
       }
 
@@ -534,8 +540,8 @@ export class SocketsGateway implements OnGatewayInit, OnGatewayConnection, OnGat
    * @return {void}
    */
   private informAboutUpdate(id: string, pageId: string, type: string, data: any): void {
-    const clientIds = this.composerService.getClientsWhoEditPage(pageId);
-    if (!clientIds || clientIds === null) {
+    const clients = this.composerService.getClientsWhoEditPage(pageId);
+    if (!clients || clients === null || clients.length === 0) {
       return;
     }
 
@@ -547,14 +553,14 @@ export class SocketsGateway implements OnGatewayInit, OnGatewayConnection, OnGat
     };
 
     // Send to all clients
-    clientIds.forEach((client: string) => {
+    clients.forEach((client: any) => {
       // Skip client who fired this update
-      if (client === id) {
+      if (client.socketId === id) {
         return;
       }
 
       // Send event to client
-      const socket = this.server.sockets.sockets[client];
+      const socket = this.server.sockets.sockets[client.socketId];
       // If socket doesn't exist (some type of error)
       if (!socket || socket === null) {
         return;

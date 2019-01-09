@@ -165,7 +165,7 @@ export class ComposerService {
    * @param {object} data
    * @return {Promise<boolean>} true if page can be edited by this client, otherwise return false
    */
-  public async startEditPage(id: string, data: any): Promise<boolean> {
+  public async startEditPage(id: string, data: any, userInfo: any): Promise<boolean> {
     const pageId = data.pageId;
     // if (!isNumber(pageId)) {
     //   return Promise.resolve(false);
@@ -173,7 +173,7 @@ export class ComposerService {
 
     // Try to start edit page
     try {
-      const success = await this.storage.composer.clientStartEditPage(id, pageId);
+      const success = await this.storage.composer.clientStartEditPage(id, pageId, userInfo);
       return Promise.resolve(success);
     } catch (e) {
       return Promise.resolve(false);
@@ -258,7 +258,6 @@ export class ComposerService {
     // if (!isNumber(pageId)) {
     //   return null;
     // }
-
     return this.storage.composer.getClientsWhoEditPage(pageId);
   }
 

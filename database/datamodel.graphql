@@ -84,6 +84,7 @@ type PageTask {
   name: String!
   description: String!
   updatedAt: DateTime!
+  auth0id: ID
 }
 
 type PageChat {
@@ -91,6 +92,7 @@ type PageChat {
   page: Page! @relation(name: "ChatUnderPage")
   text: String!
   createdAt: DateTime!
+  auth0id: ID
 }
 
 type File {
