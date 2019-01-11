@@ -1,5 +1,5 @@
-# source: http://18.195.243.10:4466
-# timestamp: Fri Jan 04 2019 11:36:14 GMT+0100 (CET)
+# source: http://localhost:4466
+# timestamp: Thu Jan 10 2019 13:10:16 GMT+0100 (CET)
 
 type AggregateFile {
   count: Int!
@@ -1525,6 +1525,7 @@ type Page implements Node {
   translations(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTranslation!]
   chats(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageChat!]
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag!]
+  plugin(where: PagePluginWhereInput): PagePlugin
 }
 
 type PageChat implements Node {
@@ -1835,6 +1836,7 @@ input PageCreateInput {
   translations: PageTranslationCreateManyWithoutPageInput
   chats: PageChatCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
+  plugin: PagePluginCreateOneWithoutPageInput
 }
 
 input PageCreateManyWithoutTagsInput {
@@ -1857,6 +1859,11 @@ input PageCreateOneWithoutChatsInput {
   connect: PageWhereUniqueInput
 }
 
+input PageCreateOneWithoutPluginInput {
+  create: PageCreateWithoutPluginInput
+  connect: PageWhereUniqueInput
+}
+
 input PageCreateOneWithoutTranslationsInput {
   create: PageCreateWithoutTranslationsInput
   connect: PageWhereUniqueInput
@@ -1868,6 +1875,16 @@ input PageCreateWithoutChatsInput {
   type: PageTypeCreateOneInput!
   translations: PageTranslationCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
+  plugin: PagePluginCreateOneWithoutPageInput
+}
+
+input PageCreateWithoutPluginInput {
+  parent: PageCreateOneInput
+  website: WebsiteCreateOneWithoutPagesInput!
+  type: PageTypeCreateOneInput!
+  translations: PageTranslationCreateManyWithoutPageInput
+  chats: PageChatCreateManyWithoutPageInput
+  tags: TagCreateManyWithoutPagesInput
 }
 
 input PageCreateWithoutTagsInput {
@@ -1876,6 +1893,7 @@ input PageCreateWithoutTagsInput {
   type: PageTypeCreateOneInput!
   translations: PageTranslationCreateManyWithoutPageInput
   chats: PageChatCreateManyWithoutPageInput
+  plugin: PagePluginCreateOneWithoutPageInput
 }
 
 input PageCreateWithoutTranslationsInput {
@@ -1884,6 +1902,7 @@ input PageCreateWithoutTranslationsInput {
   type: PageTypeCreateOneInput!
   chats: PageChatCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
+  plugin: PagePluginCreateOneWithoutPageInput
 }
 
 input PageCreateWithoutWebsiteInput {
@@ -1892,6 +1911,7 @@ input PageCreateWithoutWebsiteInput {
   translations: PageTranslationCreateManyWithoutPageInput
   chats: PageChatCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
+  plugin: PagePluginCreateOneWithoutPageInput
 }
 
 """An edge in a connection."""
@@ -1948,7 +1968,18 @@ type PagePluginConnection {
 input PagePluginCreateInput {
   plugin: String!
   content: Json
-  page: PageCreateOneInput!
+  page: PageCreateOneWithoutPluginInput!
+  language: LanguageCreateOneInput!
+}
+
+input PagePluginCreateOneWithoutPageInput {
+  create: PagePluginCreateWithoutPageInput
+  connect: PagePluginWhereUniqueInput
+}
+
+input PagePluginCreateWithoutPageInput {
+  plugin: String!
+  content: Json
   language: LanguageCreateOneInput!
 }
 
@@ -2022,8 +2053,28 @@ input PagePluginSubscriptionWhereInput {
 input PagePluginUpdateInput {
   plugin: String
   content: Json
-  page: PageUpdateOneInput
+  page: PageUpdateOneWithoutPluginInput
   language: LanguageUpdateOneInput
+}
+
+input PagePluginUpdateOneWithoutPageInput {
+  create: PagePluginCreateWithoutPageInput
+  connect: PagePluginWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: PagePluginUpdateWithoutPageDataInput
+  upsert: PagePluginUpsertWithoutPageInput
+}
+
+input PagePluginUpdateWithoutPageDataInput {
+  plugin: String
+  content: Json
+  language: LanguageUpdateOneInput
+}
+
+input PagePluginUpsertWithoutPageInput {
+  update: PagePluginUpdateWithoutPageDataInput!
+  create: PagePluginCreateWithoutPageInput!
 }
 
 input PagePluginWhereInput {
@@ -3277,6 +3328,7 @@ input PageUpdateDataInput {
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
+  plugin: PagePluginUpdateOneWithoutPageInput
 }
 
 input PageUpdateInput {
@@ -3286,6 +3338,7 @@ input PageUpdateInput {
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
+  plugin: PagePluginUpdateOneWithoutPageInput
 }
 
 input PageUpdateManyWithoutTagsInput {
@@ -3323,6 +3376,14 @@ input PageUpdateOneWithoutChatsInput {
   upsert: PageUpsertWithoutChatsInput
 }
 
+input PageUpdateOneWithoutPluginInput {
+  create: PageCreateWithoutPluginInput
+  connect: PageWhereUniqueInput
+  delete: Boolean
+  update: PageUpdateWithoutPluginDataInput
+  upsert: PageUpsertWithoutPluginInput
+}
+
 input PageUpdateOneWithoutTranslationsInput {
   create: PageCreateWithoutTranslationsInput
   connect: PageWhereUniqueInput
@@ -3337,6 +3398,16 @@ input PageUpdateWithoutChatsDataInput {
   type: PageTypeUpdateOneInput
   translations: PageTranslationUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
+  plugin: PagePluginUpdateOneWithoutPageInput
+}
+
+input PageUpdateWithoutPluginDataInput {
+  parent: PageUpdateOneInput
+  website: WebsiteUpdateOneWithoutPagesInput
+  type: PageTypeUpdateOneInput
+  translations: PageTranslationUpdateManyWithoutPageInput
+  chats: PageChatUpdateManyWithoutPageInput
+  tags: TagUpdateManyWithoutPagesInput
 }
 
 input PageUpdateWithoutTagsDataInput {
@@ -3345,6 +3416,7 @@ input PageUpdateWithoutTagsDataInput {
   type: PageTypeUpdateOneInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
+  plugin: PagePluginUpdateOneWithoutPageInput
 }
 
 input PageUpdateWithoutTranslationsDataInput {
@@ -3353,6 +3425,7 @@ input PageUpdateWithoutTranslationsDataInput {
   type: PageTypeUpdateOneInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
+  plugin: PagePluginUpdateOneWithoutPageInput
 }
 
 input PageUpdateWithoutWebsiteDataInput {
@@ -3361,6 +3434,7 @@ input PageUpdateWithoutWebsiteDataInput {
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
+  plugin: PagePluginUpdateOneWithoutPageInput
 }
 
 input PageUpdateWithWhereUniqueWithoutTagsInput {
@@ -3381,6 +3455,11 @@ input PageUpsertNestedInput {
 input PageUpsertWithoutChatsInput {
   update: PageUpdateWithoutChatsDataInput!
   create: PageCreateWithoutChatsInput!
+}
+
+input PageUpsertWithoutPluginInput {
+  update: PageUpdateWithoutPluginDataInput!
+  create: PageCreateWithoutPluginInput!
 }
 
 input PageUpsertWithoutTranslationsInput {
@@ -3461,6 +3540,7 @@ input PageWhereInput {
   tags_every: TagWhereInput
   tags_some: TagWhereInput
   tags_none: TagWhereInput
+  plugin: PagePluginWhereInput
 }
 
 input PageWhereUniqueInput {
