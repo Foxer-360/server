@@ -228,14 +228,17 @@ export class Composer {
     // } as UpdatePageDto;
 
     try {
-      await this.prisma.mutation.updatePageTranslation({
-        data: {
-          content: builder(this.pages[page].delta, {...this.pages[page].content}),
-        },
-        where: {
-          id: page,
-        },
-      }, '{ id }');
+
+      if (await this.prisma.query.pageTranslation({ where: { id: page }})) {
+        await this.prisma.mutation.updatePageTranslation({
+          data: {
+            content: builder(this.pages[page].delta, {...this.pages[page].content}),
+          },
+          where: {
+            id: page,
+          },
+        }, '{ id }');
+      }
       // await this.pageService.update(data, page);
     } catch (e) {
       return Promise.resolve(false);
