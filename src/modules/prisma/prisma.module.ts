@@ -14,6 +14,7 @@ import { PageTranslationResolver } from './resolvers/pageTranslation.resolver';
 import { FrontendResolver } from './resolvers/frontend.resolver';
 import { NavigationResolver } from './resolvers/navigation.resolvers';
 import { SubscriberResolver } from './resolvers/subscriber.resolver';
+import { InquiryResolver } from './resolvers/inquiry.resolver';
 import { TagResolver } from './resolvers/tag.resolver';
 import { SubscriptionsService } from 'modules/subscriptions/subscriptions.service';
 import { SubscriptionsModule } from 'modules/subscriptions/subscriptions.module';
@@ -29,7 +30,7 @@ import { checkJwt } from '../../middleware';
   imports: [GraphQLModule, SubscriptionsModule.forRoot(5001)],
   providers: [prismaProvider, LanguageResolver, ProjectResolver, WebsiteResolver, PageTypeResolver,
     PageResolver, PageTaskResolver, PageChatResolver, PageTranslationResolver, FrontendResolver, FrontendService, NavigationResolver,
-    TagResolver, PagePluginResolver, SubscriberResolver],
+    TagResolver, PagePluginResolver, SubscriberResolver, InquiryResolver],
   exports: [prismaProvider],
 })
 export class PrismaModule implements NestModule {
