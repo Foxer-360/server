@@ -144,8 +144,8 @@ type Query {
   project(where: ProjectWhereUniqueInput!): Project
   pageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
   pagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
-  pageTask(where: PageTaskWhereUniqueInput!): PageTask
-  pageChat(where: PageChatWhereUniqueInput!): PageChat
+  pageTask(where: PageTaskWhereUniqueInput!): PageTaskWithUser
+  pageChat(where: PageChatWhereUniqueInput!): PageChatWithUser
   file(where: FileWhereUniqueInput!): File
   navigation(where: NavigationWhereUniqueInput!): Navigation
   navigationNode(where: NavigationNodeWhereUniqueInput!): NavigationNode
