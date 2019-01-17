@@ -13,6 +13,8 @@ export interface Query {
     navigations: <T = Array<Navigation | null>>(args: { where?: NavigationWhereInput | null, orderBy?: NavigationOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     navigationNodes: <T = Array<NavigationNode | null>>(args: { where?: NavigationNodeWhereInput | null, orderBy?: NavigationNodeOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     tags: <T = Array<Tag | null>>(args: { where?: TagWhereInput | null, orderBy?: TagOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    subscribers: <T = Array<Subscriber | null>>(args: { where?: SubscriberWhereInput | null, orderBy?: SubscriberOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    inquiries: <T = Array<Inquiry | null>>(args: { where?: InquiryWhereInput | null, orderBy?: InquiryOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pages: <T = Array<Page | null>>(args: { where?: PageWhereInput | null, orderBy?: PageOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageTypes: <T = Array<PageType | null>>(args: { where?: PageTypeWhereInput | null, orderBy?: PageTypeOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     websites: <T = Array<Website | null>>(args: { where?: WebsiteWhereInput | null, orderBy?: WebsiteOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -26,6 +28,8 @@ export interface Query {
     navigation: <T = Navigation | null>(args: { where: NavigationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     navigationNode: <T = NavigationNode | null>(args: { where: NavigationNodeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     tag: <T = Tag | null>(args: { where: TagWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    subscriber: <T = Subscriber | null>(args: { where: SubscriberWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    inquiry: <T = Inquiry | null>(args: { where: InquiryWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     page: <T = Page | null>(args: { where: PageWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     pageType: <T = PageType | null>(args: { where: PageTypeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     website: <T = Website | null>(args: { where: WebsiteWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
@@ -39,6 +43,8 @@ export interface Query {
     navigationsConnection: <T = NavigationConnection>(args: { where?: NavigationWhereInput | null, orderBy?: NavigationOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     navigationNodesConnection: <T = NavigationNodeConnection>(args: { where?: NavigationNodeWhereInput | null, orderBy?: NavigationNodeOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     tagsConnection: <T = TagConnection>(args: { where?: TagWhereInput | null, orderBy?: TagOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    subscribersConnection: <T = SubscriberConnection>(args: { where?: SubscriberWhereInput | null, orderBy?: SubscriberOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    inquiriesConnection: <T = InquiryConnection>(args: { where?: InquiryWhereInput | null, orderBy?: InquiryOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pagesConnection: <T = PageConnection>(args: { where?: PageWhereInput | null, orderBy?: PageOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageTypesConnection: <T = PageTypeConnection>(args: { where?: PageTypeWhereInput | null, orderBy?: PageTypeOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     websitesConnection: <T = WebsiteConnection>(args: { where?: WebsiteWhereInput | null, orderBy?: WebsiteOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -56,6 +62,8 @@ export interface Mutation {
     createNavigation: <T = Navigation>(args: { data: NavigationCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createNavigationNode: <T = NavigationNode>(args: { data: NavigationNodeCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createTag: <T = Tag>(args: { data: TagCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    createSubscriber: <T = Subscriber>(args: { data: SubscriberCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    createInquiry: <T = Inquiry>(args: { data: InquiryCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createPage: <T = Page>(args: { data: PageCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createPageType: <T = PageType>(args: { data: PageTypeCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createWebsite: <T = Website>(args: { data: WebsiteCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -69,6 +77,8 @@ export interface Mutation {
     updateNavigation: <T = Navigation | null>(args: { data: NavigationUpdateInput, where: NavigationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updateNavigationNode: <T = NavigationNode | null>(args: { data: NavigationNodeUpdateInput, where: NavigationNodeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updateTag: <T = Tag | null>(args: { data: TagUpdateInput, where: TagWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    updateSubscriber: <T = Subscriber | null>(args: { data: SubscriberUpdateInput, where: SubscriberWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    updateInquiry: <T = Inquiry | null>(args: { data: InquiryUpdateInput, where: InquiryWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updatePage: <T = Page | null>(args: { data: PageUpdateInput, where: PageWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updatePageType: <T = PageType | null>(args: { data: PageTypeUpdateInput, where: PageTypeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updateWebsite: <T = Website | null>(args: { data: WebsiteUpdateInput, where: WebsiteWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
@@ -82,6 +92,8 @@ export interface Mutation {
     deleteNavigation: <T = Navigation | null>(args: { where: NavigationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deleteNavigationNode: <T = NavigationNode | null>(args: { where: NavigationNodeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deleteTag: <T = Tag | null>(args: { where: TagWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    deleteSubscriber: <T = Subscriber | null>(args: { where: SubscriberWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    deleteInquiry: <T = Inquiry | null>(args: { where: InquiryWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deletePage: <T = Page | null>(args: { where: PageWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deletePageType: <T = PageType | null>(args: { where: PageTypeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deleteWebsite: <T = Website | null>(args: { where: WebsiteWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
@@ -95,6 +107,8 @@ export interface Mutation {
     upsertNavigation: <T = Navigation>(args: { where: NavigationWhereUniqueInput, create: NavigationCreateInput, update: NavigationUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertNavigationNode: <T = NavigationNode>(args: { where: NavigationNodeWhereUniqueInput, create: NavigationNodeCreateInput, update: NavigationNodeUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertTag: <T = Tag>(args: { where: TagWhereUniqueInput, create: TagCreateInput, update: TagUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    upsertSubscriber: <T = Subscriber>(args: { where: SubscriberWhereUniqueInput, create: SubscriberCreateInput, update: SubscriberUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    upsertInquiry: <T = Inquiry>(args: { where: InquiryWhereUniqueInput, create: InquiryCreateInput, update: InquiryUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertPage: <T = Page>(args: { where: PageWhereUniqueInput, create: PageCreateInput, update: PageUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertPageType: <T = PageType>(args: { where: PageTypeWhereUniqueInput, create: PageTypeCreateInput, update: PageTypeUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertWebsite: <T = Website>(args: { where: WebsiteWhereUniqueInput, create: WebsiteCreateInput, update: WebsiteUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -108,6 +122,8 @@ export interface Mutation {
     updateManyNavigations: <T = BatchPayload>(args: { data: NavigationUpdateInput, where?: NavigationWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyNavigationNodes: <T = BatchPayload>(args: { data: NavigationNodeUpdateInput, where?: NavigationNodeWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyTags: <T = BatchPayload>(args: { data: TagUpdateInput, where?: TagWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManySubscribers: <T = BatchPayload>(args: { data: SubscriberUpdateInput, where?: SubscriberWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyInquiries: <T = BatchPayload>(args: { data: InquiryUpdateInput, where?: InquiryWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyPages: <T = BatchPayload>(args: { data: PageUpdateInput, where?: PageWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyPageTypes: <T = BatchPayload>(args: { data: PageTypeUpdateInput, where?: PageTypeWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyWebsites: <T = BatchPayload>(args: { data: WebsiteUpdateInput, where?: WebsiteWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -121,6 +137,8 @@ export interface Mutation {
     deleteManyNavigations: <T = BatchPayload>(args: { where?: NavigationWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyNavigationNodes: <T = BatchPayload>(args: { where?: NavigationNodeWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyTags: <T = BatchPayload>(args: { where?: TagWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    deleteManySubscribers: <T = BatchPayload>(args: { where?: SubscriberWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    deleteManyInquiries: <T = BatchPayload>(args: { where?: InquiryWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyPages: <T = BatchPayload>(args: { where?: PageWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyPageTypes: <T = BatchPayload>(args: { where?: PageTypeWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyWebsites: <T = BatchPayload>(args: { where?: WebsiteWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -137,6 +155,8 @@ export interface Subscription {
     navigation: <T = NavigationSubscriptionPayload | null>(args: { where?: NavigationSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     navigationNode: <T = NavigationNodeSubscriptionPayload | null>(args: { where?: NavigationNodeSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     tag: <T = TagSubscriptionPayload | null>(args: { where?: TagSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
+    subscriber: <T = SubscriberSubscriptionPayload | null>(args: { where?: SubscriberSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
+    inquiry: <T = InquirySubscriptionPayload | null>(args: { where?: InquirySubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     page: <T = PageSubscriptionPayload | null>(args: { where?: PageSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     pageType: <T = PageTypeSubscriptionPayload | null>(args: { where?: PageTypeSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     website: <T = WebsiteSubscriptionPayload | null>(args: { where?: WebsiteSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
@@ -153,6 +173,8 @@ export interface Exists {
   Navigation: (where?: NavigationWhereInput) => Promise<boolean>
   NavigationNode: (where?: NavigationNodeWhereInput) => Promise<boolean>
   Tag: (where?: TagWhereInput) => Promise<boolean>
+  Subscriber: (where?: SubscriberWhereInput) => Promise<boolean>
+  Inquiry: (where?: InquiryWhereInput) => Promise<boolean>
   Page: (where?: PageWhereInput) => Promise<boolean>
   PageType: (where?: PageTypeWhereInput) => Promise<boolean>
   Website: (where?: WebsiteWhereInput) => Promise<boolean>
@@ -182,6 +204,10 @@ export interface BindingConstructor<T> {
 */
 
 const typeDefs = `type AggregateFile {
+  count: Int!
+}
+
+type AggregateInquiry {
   count: Int!
 }
 
@@ -222,6 +248,10 @@ type AggregatePageType {
 }
 
 type AggregateProject {
+  count: Int!
+}
+
+type AggregateSubscriber {
   count: Int!
 }
 
@@ -637,6 +667,264 @@ input FileWhereUniqueInput {
   hash: String
 }
 
+type Inquiry implements Node {
+  id: ID!
+  message: Json!
+  url: String
+  createdAt: DateTime!
+  ip: String
+}
+
+"""A connection to a list of items."""
+type InquiryConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [InquiryEdge]!
+  aggregate: AggregateInquiry!
+}
+
+input InquiryCreateInput {
+  message: Json!
+  url: String
+  ip: String
+}
+
+"""An edge in a connection."""
+type InquiryEdge {
+  """The item at the end of the edge."""
+  node: Inquiry!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum InquiryOrderByInput {
+  id_ASC
+  id_DESC
+  message_ASC
+  message_DESC
+  url_ASC
+  url_DESC
+  createdAt_ASC
+  createdAt_DESC
+  ip_ASC
+  ip_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type InquiryPreviousValues {
+  id: ID!
+  message: Json!
+  url: String
+  createdAt: DateTime!
+  ip: String
+}
+
+type InquirySubscriptionPayload {
+  mutation: MutationType!
+  node: Inquiry
+  updatedFields: [String!]
+  previousValues: InquiryPreviousValues
+}
+
+input InquirySubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [InquirySubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [InquirySubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [InquirySubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: InquiryWhereInput
+}
+
+input InquiryUpdateInput {
+  message: Json
+  url: String
+  ip: String
+}
+
+input InquiryWhereInput {
+  """Logical AND on all given filters."""
+  AND: [InquiryWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [InquiryWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [InquiryWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  url: String
+
+  """All values that are not equal to given value."""
+  url_not: String
+
+  """All values that are contained in given list."""
+  url_in: [String!]
+
+  """All values that are not contained in given list."""
+  url_not_in: [String!]
+
+  """All values less than the given value."""
+  url_lt: String
+
+  """All values less than or equal the given value."""
+  url_lte: String
+
+  """All values greater than the given value."""
+  url_gt: String
+
+  """All values greater than or equal the given value."""
+  url_gte: String
+
+  """All values containing the given string."""
+  url_contains: String
+
+  """All values not containing the given string."""
+  url_not_contains: String
+
+  """All values starting with the given string."""
+  url_starts_with: String
+
+  """All values not starting with the given string."""
+  url_not_starts_with: String
+
+  """All values ending with the given string."""
+  url_ends_with: String
+
+  """All values not ending with the given string."""
+  url_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  ip: String
+
+  """All values that are not equal to given value."""
+  ip_not: String
+
+  """All values that are contained in given list."""
+  ip_in: [String!]
+
+  """All values that are not contained in given list."""
+  ip_not_in: [String!]
+
+  """All values less than the given value."""
+  ip_lt: String
+
+  """All values less than or equal the given value."""
+  ip_lte: String
+
+  """All values greater than the given value."""
+  ip_gt: String
+
+  """All values greater than or equal the given value."""
+  ip_gte: String
+
+  """All values containing the given string."""
+  ip_contains: String
+
+  """All values not containing the given string."""
+  ip_not_contains: String
+
+  """All values starting with the given string."""
+  ip_starts_with: String
+
+  """All values not starting with the given string."""
+  ip_not_starts_with: String
+
+  """All values ending with the given string."""
+  ip_ends_with: String
+
+  """All values not ending with the given string."""
+  ip_not_ends_with: String
+}
+
+input InquiryWhereUniqueInput {
+  id: ID
+}
+
 """Raw JSON value"""
 scalar Json
 
@@ -1001,6 +1289,8 @@ type Mutation {
   createNavigation(data: NavigationCreateInput!): Navigation!
   createNavigationNode(data: NavigationNodeCreateInput!): NavigationNode!
   createTag(data: TagCreateInput!): Tag!
+  createSubscriber(data: SubscriberCreateInput!): Subscriber!
+  createInquiry(data: InquiryCreateInput!): Inquiry!
   createPage(data: PageCreateInput!): Page!
   createPageType(data: PageTypeCreateInput!): PageType!
   createWebsite(data: WebsiteCreateInput!): Website!
@@ -1014,6 +1304,8 @@ type Mutation {
   updateNavigation(data: NavigationUpdateInput!, where: NavigationWhereUniqueInput!): Navigation
   updateNavigationNode(data: NavigationNodeUpdateInput!, where: NavigationNodeWhereUniqueInput!): NavigationNode
   updateTag(data: TagUpdateInput!, where: TagWhereUniqueInput!): Tag
+  updateSubscriber(data: SubscriberUpdateInput!, where: SubscriberWhereUniqueInput!): Subscriber
+  updateInquiry(data: InquiryUpdateInput!, where: InquiryWhereUniqueInput!): Inquiry
   updatePage(data: PageUpdateInput!, where: PageWhereUniqueInput!): Page
   updatePageType(data: PageTypeUpdateInput!, where: PageTypeWhereUniqueInput!): PageType
   updateWebsite(data: WebsiteUpdateInput!, where: WebsiteWhereUniqueInput!): Website
@@ -1027,6 +1319,8 @@ type Mutation {
   deleteNavigation(where: NavigationWhereUniqueInput!): Navigation
   deleteNavigationNode(where: NavigationNodeWhereUniqueInput!): NavigationNode
   deleteTag(where: TagWhereUniqueInput!): Tag
+  deleteSubscriber(where: SubscriberWhereUniqueInput!): Subscriber
+  deleteInquiry(where: InquiryWhereUniqueInput!): Inquiry
   deletePage(where: PageWhereUniqueInput!): Page
   deletePageType(where: PageTypeWhereUniqueInput!): PageType
   deleteWebsite(where: WebsiteWhereUniqueInput!): Website
@@ -1040,6 +1334,8 @@ type Mutation {
   upsertNavigation(where: NavigationWhereUniqueInput!, create: NavigationCreateInput!, update: NavigationUpdateInput!): Navigation!
   upsertNavigationNode(where: NavigationNodeWhereUniqueInput!, create: NavigationNodeCreateInput!, update: NavigationNodeUpdateInput!): NavigationNode!
   upsertTag(where: TagWhereUniqueInput!, create: TagCreateInput!, update: TagUpdateInput!): Tag!
+  upsertSubscriber(where: SubscriberWhereUniqueInput!, create: SubscriberCreateInput!, update: SubscriberUpdateInput!): Subscriber!
+  upsertInquiry(where: InquiryWhereUniqueInput!, create: InquiryCreateInput!, update: InquiryUpdateInput!): Inquiry!
   upsertPage(where: PageWhereUniqueInput!, create: PageCreateInput!, update: PageUpdateInput!): Page!
   upsertPageType(where: PageTypeWhereUniqueInput!, create: PageTypeCreateInput!, update: PageTypeUpdateInput!): PageType!
   upsertWebsite(where: WebsiteWhereUniqueInput!, create: WebsiteCreateInput!, update: WebsiteUpdateInput!): Website!
@@ -1053,6 +1349,8 @@ type Mutation {
   updateManyNavigations(data: NavigationUpdateInput!, where: NavigationWhereInput): BatchPayload!
   updateManyNavigationNodes(data: NavigationNodeUpdateInput!, where: NavigationNodeWhereInput): BatchPayload!
   updateManyTags(data: TagUpdateInput!, where: TagWhereInput): BatchPayload!
+  updateManySubscribers(data: SubscriberUpdateInput!, where: SubscriberWhereInput): BatchPayload!
+  updateManyInquiries(data: InquiryUpdateInput!, where: InquiryWhereInput): BatchPayload!
   updateManyPages(data: PageUpdateInput!, where: PageWhereInput): BatchPayload!
   updateManyPageTypes(data: PageTypeUpdateInput!, where: PageTypeWhereInput): BatchPayload!
   updateManyWebsites(data: WebsiteUpdateInput!, where: WebsiteWhereInput): BatchPayload!
@@ -1066,6 +1364,8 @@ type Mutation {
   deleteManyNavigations(where: NavigationWhereInput): BatchPayload!
   deleteManyNavigationNodes(where: NavigationNodeWhereInput): BatchPayload!
   deleteManyTags(where: TagWhereInput): BatchPayload!
+  deleteManySubscribers(where: SubscriberWhereInput): BatchPayload!
+  deleteManyInquiries(where: InquiryWhereInput): BatchPayload!
   deleteManyPages(where: PageWhereInput): BatchPayload!
   deleteManyPageTypes(where: PageTypeWhereInput): BatchPayload!
   deleteManyWebsites(where: WebsiteWhereInput): BatchPayload!
@@ -4021,6 +4321,8 @@ type Query {
   navigations(where: NavigationWhereInput, orderBy: NavigationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Navigation]!
   navigationNodes(where: NavigationNodeWhereInput, orderBy: NavigationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [NavigationNode]!
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag]!
+  subscribers(where: SubscriberWhereInput, orderBy: SubscriberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscriber]!
+  inquiries(where: InquiryWhereInput, orderBy: InquiryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Inquiry]!
   pages(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Page]!
   pageTypes(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageType]!
   websites(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Website]!
@@ -4034,6 +4336,8 @@ type Query {
   navigation(where: NavigationWhereUniqueInput!): Navigation
   navigationNode(where: NavigationNodeWhereUniqueInput!): NavigationNode
   tag(where: TagWhereUniqueInput!): Tag
+  subscriber(where: SubscriberWhereUniqueInput!): Subscriber
+  inquiry(where: InquiryWhereUniqueInput!): Inquiry
   page(where: PageWhereUniqueInput!): Page
   pageType(where: PageTypeWhereUniqueInput!): PageType
   website(where: WebsiteWhereUniqueInput!): Website
@@ -4047,6 +4351,8 @@ type Query {
   navigationsConnection(where: NavigationWhereInput, orderBy: NavigationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NavigationConnection!
   navigationNodesConnection(where: NavigationNodeWhereInput, orderBy: NavigationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NavigationNodeConnection!
   tagsConnection(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TagConnection!
+  subscribersConnection(where: SubscriberWhereInput, orderBy: SubscriberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SubscriberConnection!
+  inquiriesConnection(where: InquiryWhereInput, orderBy: InquiryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InquiryConnection!
   pagesConnection(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageConnection!
   pageTypesConnection(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTypeConnection!
   websitesConnection(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WebsiteConnection!
@@ -4059,6 +4365,304 @@ type Query {
   ): Node
 }
 
+type Subscriber implements Node {
+  id: ID!
+  email: String!
+  url: String
+  createdAt: DateTime!
+  ip: String
+}
+
+"""A connection to a list of items."""
+type SubscriberConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [SubscriberEdge]!
+  aggregate: AggregateSubscriber!
+}
+
+input SubscriberCreateInput {
+  email: String!
+  url: String
+  ip: String
+}
+
+"""An edge in a connection."""
+type SubscriberEdge {
+  """The item at the end of the edge."""
+  node: Subscriber!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum SubscriberOrderByInput {
+  id_ASC
+  id_DESC
+  email_ASC
+  email_DESC
+  url_ASC
+  url_DESC
+  createdAt_ASC
+  createdAt_DESC
+  ip_ASC
+  ip_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type SubscriberPreviousValues {
+  id: ID!
+  email: String!
+  url: String
+  createdAt: DateTime!
+  ip: String
+}
+
+type SubscriberSubscriptionPayload {
+  mutation: MutationType!
+  node: Subscriber
+  updatedFields: [String!]
+  previousValues: SubscriberPreviousValues
+}
+
+input SubscriberSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [SubscriberSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [SubscriberSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [SubscriberSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: SubscriberWhereInput
+}
+
+input SubscriberUpdateInput {
+  email: String
+  url: String
+  ip: String
+}
+
+input SubscriberWhereInput {
+  """Logical AND on all given filters."""
+  AND: [SubscriberWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [SubscriberWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [SubscriberWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  email: String
+
+  """All values that are not equal to given value."""
+  email_not: String
+
+  """All values that are contained in given list."""
+  email_in: [String!]
+
+  """All values that are not contained in given list."""
+  email_not_in: [String!]
+
+  """All values less than the given value."""
+  email_lt: String
+
+  """All values less than or equal the given value."""
+  email_lte: String
+
+  """All values greater than the given value."""
+  email_gt: String
+
+  """All values greater than or equal the given value."""
+  email_gte: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values not ending with the given string."""
+  email_not_ends_with: String
+  url: String
+
+  """All values that are not equal to given value."""
+  url_not: String
+
+  """All values that are contained in given list."""
+  url_in: [String!]
+
+  """All values that are not contained in given list."""
+  url_not_in: [String!]
+
+  """All values less than the given value."""
+  url_lt: String
+
+  """All values less than or equal the given value."""
+  url_lte: String
+
+  """All values greater than the given value."""
+  url_gt: String
+
+  """All values greater than or equal the given value."""
+  url_gte: String
+
+  """All values containing the given string."""
+  url_contains: String
+
+  """All values not containing the given string."""
+  url_not_contains: String
+
+  """All values starting with the given string."""
+  url_starts_with: String
+
+  """All values not starting with the given string."""
+  url_not_starts_with: String
+
+  """All values ending with the given string."""
+  url_ends_with: String
+
+  """All values not ending with the given string."""
+  url_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  ip: String
+
+  """All values that are not equal to given value."""
+  ip_not: String
+
+  """All values that are contained in given list."""
+  ip_in: [String!]
+
+  """All values that are not contained in given list."""
+  ip_not_in: [String!]
+
+  """All values less than the given value."""
+  ip_lt: String
+
+  """All values less than or equal the given value."""
+  ip_lte: String
+
+  """All values greater than the given value."""
+  ip_gt: String
+
+  """All values greater than or equal the given value."""
+  ip_gte: String
+
+  """All values containing the given string."""
+  ip_contains: String
+
+  """All values not containing the given string."""
+  ip_not_contains: String
+
+  """All values starting with the given string."""
+  ip_starts_with: String
+
+  """All values not starting with the given string."""
+  ip_not_starts_with: String
+
+  """All values ending with the given string."""
+  ip_ends_with: String
+
+  """All values not ending with the given string."""
+  ip_not_ends_with: String
+}
+
+input SubscriberWhereUniqueInput {
+  id: ID
+}
+
 type Subscription {
   project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
   pageTranslation(where: PageTranslationSubscriptionWhereInput): PageTranslationSubscriptionPayload
@@ -4069,6 +4673,8 @@ type Subscription {
   navigation(where: NavigationSubscriptionWhereInput): NavigationSubscriptionPayload
   navigationNode(where: NavigationNodeSubscriptionWhereInput): NavigationNodeSubscriptionPayload
   tag(where: TagSubscriptionWhereInput): TagSubscriptionPayload
+  subscriber(where: SubscriberSubscriptionWhereInput): SubscriberSubscriptionPayload
+  inquiry(where: InquirySubscriptionWhereInput): InquirySubscriptionPayload
   page(where: PageSubscriptionWhereInput): PageSubscriptionPayload
   pageType(where: PageTypeSubscriptionWhereInput): PageTypeSubscriptionPayload
   website(where: WebsiteSubscriptionWhereInput): WebsiteSubscriptionPayload
@@ -4810,6 +5416,19 @@ export type FileOrderByInput =   'id_ASC' |
   'updatedAt_ASC' |
   'updatedAt_DESC'
 
+export type InquiryOrderByInput =   'id_ASC' |
+  'id_DESC' |
+  'message_ASC' |
+  'message_DESC' |
+  'url_ASC' |
+  'url_DESC' |
+  'createdAt_ASC' |
+  'createdAt_DESC' |
+  'ip_ASC' |
+  'ip_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC'
+
 export type LanguageOrderByInput =   'id_ASC' |
   'id_DESC' |
   'code_ASC' |
@@ -4949,6 +5568,19 @@ export type ProjectOrderByInput =   'id_ASC' |
   'updatedAt_DESC' |
   'createdAt_ASC' |
   'createdAt_DESC'
+
+export type SubscriberOrderByInput =   'id_ASC' |
+  'id_DESC' |
+  'email_ASC' |
+  'email_DESC' |
+  'url_ASC' |
+  'url_DESC' |
+  'createdAt_ASC' |
+  'createdAt_DESC' |
+  'ip_ASC' |
+  'ip_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC'
 
 export type TagOrderByInput =   'id_ASC' |
   'id_DESC' |
@@ -5106,6 +5738,89 @@ export interface FileWhereInput {
 export interface FileWhereUniqueInput {
   id?: ID_Input | null
   hash?: String | null
+}
+
+export interface InquiryCreateInput {
+  message: Json
+  url?: String | null
+  ip?: String | null
+}
+
+export interface InquirySubscriptionWhereInput {
+  AND?: InquirySubscriptionWhereInput[] | InquirySubscriptionWhereInput | null
+  OR?: InquirySubscriptionWhereInput[] | InquirySubscriptionWhereInput | null
+  NOT?: InquirySubscriptionWhereInput[] | InquirySubscriptionWhereInput | null
+  mutation_in?: MutationType[] | MutationType | null
+  updatedFields_contains?: String | null
+  updatedFields_contains_every?: String[] | String | null
+  updatedFields_contains_some?: String[] | String | null
+  node?: InquiryWhereInput | null
+}
+
+export interface InquiryUpdateInput {
+  message?: Json | null
+  url?: String | null
+  ip?: String | null
+}
+
+export interface InquiryWhereInput {
+  AND?: InquiryWhereInput[] | InquiryWhereInput | null
+  OR?: InquiryWhereInput[] | InquiryWhereInput | null
+  NOT?: InquiryWhereInput[] | InquiryWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+  url?: String | null
+  url_not?: String | null
+  url_in?: String[] | String | null
+  url_not_in?: String[] | String | null
+  url_lt?: String | null
+  url_lte?: String | null
+  url_gt?: String | null
+  url_gte?: String | null
+  url_contains?: String | null
+  url_not_contains?: String | null
+  url_starts_with?: String | null
+  url_not_starts_with?: String | null
+  url_ends_with?: String | null
+  url_not_ends_with?: String | null
+  createdAt?: DateTime | null
+  createdAt_not?: DateTime | null
+  createdAt_in?: DateTime[] | DateTime | null
+  createdAt_not_in?: DateTime[] | DateTime | null
+  createdAt_lt?: DateTime | null
+  createdAt_lte?: DateTime | null
+  createdAt_gt?: DateTime | null
+  createdAt_gte?: DateTime | null
+  ip?: String | null
+  ip_not?: String | null
+  ip_in?: String[] | String | null
+  ip_not_in?: String[] | String | null
+  ip_lt?: String | null
+  ip_lte?: String | null
+  ip_gt?: String | null
+  ip_gte?: String | null
+  ip_contains?: String | null
+  ip_not_contains?: String | null
+  ip_starts_with?: String | null
+  ip_not_starts_with?: String | null
+  ip_ends_with?: String | null
+  ip_not_ends_with?: String | null
+}
+
+export interface InquiryWhereUniqueInput {
+  id?: ID_Input | null
 }
 
 export interface LanguageCreateInput {
@@ -6640,6 +7355,103 @@ export interface ProjectWhereUniqueInput {
   id?: ID_Input | null
 }
 
+export interface SubscriberCreateInput {
+  email: String
+  url?: String | null
+  ip?: String | null
+}
+
+export interface SubscriberSubscriptionWhereInput {
+  AND?: SubscriberSubscriptionWhereInput[] | SubscriberSubscriptionWhereInput | null
+  OR?: SubscriberSubscriptionWhereInput[] | SubscriberSubscriptionWhereInput | null
+  NOT?: SubscriberSubscriptionWhereInput[] | SubscriberSubscriptionWhereInput | null
+  mutation_in?: MutationType[] | MutationType | null
+  updatedFields_contains?: String | null
+  updatedFields_contains_every?: String[] | String | null
+  updatedFields_contains_some?: String[] | String | null
+  node?: SubscriberWhereInput | null
+}
+
+export interface SubscriberUpdateInput {
+  email?: String | null
+  url?: String | null
+  ip?: String | null
+}
+
+export interface SubscriberWhereInput {
+  AND?: SubscriberWhereInput[] | SubscriberWhereInput | null
+  OR?: SubscriberWhereInput[] | SubscriberWhereInput | null
+  NOT?: SubscriberWhereInput[] | SubscriberWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+  email?: String | null
+  email_not?: String | null
+  email_in?: String[] | String | null
+  email_not_in?: String[] | String | null
+  email_lt?: String | null
+  email_lte?: String | null
+  email_gt?: String | null
+  email_gte?: String | null
+  email_contains?: String | null
+  email_not_contains?: String | null
+  email_starts_with?: String | null
+  email_not_starts_with?: String | null
+  email_ends_with?: String | null
+  email_not_ends_with?: String | null
+  url?: String | null
+  url_not?: String | null
+  url_in?: String[] | String | null
+  url_not_in?: String[] | String | null
+  url_lt?: String | null
+  url_lte?: String | null
+  url_gt?: String | null
+  url_gte?: String | null
+  url_contains?: String | null
+  url_not_contains?: String | null
+  url_starts_with?: String | null
+  url_not_starts_with?: String | null
+  url_ends_with?: String | null
+  url_not_ends_with?: String | null
+  createdAt?: DateTime | null
+  createdAt_not?: DateTime | null
+  createdAt_in?: DateTime[] | DateTime | null
+  createdAt_not_in?: DateTime[] | DateTime | null
+  createdAt_lt?: DateTime | null
+  createdAt_lte?: DateTime | null
+  createdAt_gt?: DateTime | null
+  createdAt_gte?: DateTime | null
+  ip?: String | null
+  ip_not?: String | null
+  ip_in?: String[] | String | null
+  ip_not_in?: String[] | String | null
+  ip_lt?: String | null
+  ip_lte?: String | null
+  ip_gt?: String | null
+  ip_gte?: String | null
+  ip_contains?: String | null
+  ip_not_contains?: String | null
+  ip_starts_with?: String | null
+  ip_not_starts_with?: String | null
+  ip_ends_with?: String | null
+  ip_not_ends_with?: String | null
+}
+
+export interface SubscriberWhereUniqueInput {
+  id?: ID_Input | null
+}
+
 export interface TagCreateInput {
   name: String
   displayInNavigation?: Boolean | null
@@ -7034,6 +7846,10 @@ export interface AggregateFile {
   count: Int
 }
 
+export interface AggregateInquiry {
+  count: Int
+}
+
 export interface AggregateLanguage {
   count: Int
 }
@@ -7071,6 +7887,10 @@ export interface AggregatePageType {
 }
 
 export interface AggregateProject {
+  count: Int
+}
+
+export interface AggregateSubscriber {
   count: Int
 }
 
@@ -7132,6 +7952,48 @@ export interface FileSubscriptionPayload {
   node?: File | null
   updatedFields?: Array<String> | null
   previousValues?: FilePreviousValues | null
+}
+
+export interface Inquiry extends Node {
+  id: ID_Output
+  message: Json
+  url?: String | null
+  createdAt: DateTime
+  ip?: String | null
+}
+
+/*
+ * A connection to a list of items.
+
+ */
+export interface InquiryConnection {
+  pageInfo: PageInfo
+  edges: Array<InquiryEdge | null>
+  aggregate: AggregateInquiry
+}
+
+/*
+ * An edge in a connection.
+
+ */
+export interface InquiryEdge {
+  node: Inquiry
+  cursor: String
+}
+
+export interface InquiryPreviousValues {
+  id: ID_Output
+  message: Json
+  url?: String | null
+  createdAt: DateTime
+  ip?: String | null
+}
+
+export interface InquirySubscriptionPayload {
+  mutation: MutationType
+  node?: Inquiry | null
+  updatedFields?: Array<String> | null
+  previousValues?: InquiryPreviousValues | null
 }
 
 export interface Language extends Node {
@@ -7574,6 +8436,48 @@ export interface ProjectSubscriptionPayload {
   node?: Project | null
   updatedFields?: Array<String> | null
   previousValues?: ProjectPreviousValues | null
+}
+
+export interface Subscriber extends Node {
+  id: ID_Output
+  email: String
+  url?: String | null
+  createdAt: DateTime
+  ip?: String | null
+}
+
+/*
+ * A connection to a list of items.
+
+ */
+export interface SubscriberConnection {
+  pageInfo: PageInfo
+  edges: Array<SubscriberEdge | null>
+  aggregate: AggregateSubscriber
+}
+
+/*
+ * An edge in a connection.
+
+ */
+export interface SubscriberEdge {
+  node: Subscriber
+  cursor: String
+}
+
+export interface SubscriberPreviousValues {
+  id: ID_Output
+  email: String
+  url?: String | null
+  createdAt: DateTime
+  ip?: String | null
+}
+
+export interface SubscriberSubscriptionPayload {
+  mutation: MutationType
+  node?: Subscriber | null
+  updatedFields?: Array<String> | null
+  previousValues?: SubscriberPreviousValues | null
 }
 
 export interface Tag extends Node {
