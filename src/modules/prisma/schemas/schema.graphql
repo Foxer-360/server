@@ -7,8 +7,8 @@ type Mutation {
   createProject(data: ProjectCreateInput!): Project!
   createPageTranslation(data: PageTranslationCreateInput!): PageTranslation!
   createPagePlugin(data: PagePluginCreateInput!): PagePlugin!
-  createPageTask(data: PageTaskCreateInput!):  PageTaskWithUser!
-  createPageChat(data: PageChatCreateInput!): PageChat!
+  createPageTask(data: PageTaskCreateInput!): PageTaskWithUser!
+  createPageChat(data: PageChatCreateInput!): PageChatWithUser!
   createFile(data: FileCreateInput!): File!
   createNavigation(data: NavigationCreateInput!): Navigation!
   createNavigationNode(data: NavigationNodeCreateInput!): NavigationNode!
