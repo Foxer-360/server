@@ -13,11 +13,14 @@ import { PageChatResolver } from './resolvers/pageChat.resolver';
 import { PageTranslationResolver } from './resolvers/pageTranslation.resolver';
 import { FrontendResolver } from './resolvers/frontend.resolver';
 import { NavigationResolver } from './resolvers/navigation.resolvers';
+import { SubscriberResolver } from './resolvers/subscriber.resolver';
+import { InquiryResolver } from './resolvers/inquiry.resolver';
 import { TagResolver } from './resolvers/tag.resolver';
 import { SubscriptionsService } from 'modules/subscriptions/subscriptions.service';
 import { SubscriptionsModule } from 'modules/subscriptions/subscriptions.module';
 import { FrontendService } from './services/frontend.service';
 import { importSchema } from 'graphql-import';
+
 import { applyMiddleware } from 'graphql-middleware';
 import graphqlPlayground from 'graphql-playground-middleware-express';
 import authorizationMiddleware from 'foxer360-authorization';
@@ -27,7 +30,7 @@ import { checkJwt } from '../../middleware';
   imports: [GraphQLModule, SubscriptionsModule.forRoot(5001)],
   providers: [prismaProvider, LanguageResolver, ProjectResolver, WebsiteResolver, PageTypeResolver,
     PageResolver, PageTaskResolver, PageChatResolver, PageTranslationResolver, FrontendResolver, FrontendService, NavigationResolver,
-    TagResolver, PagePluginResolver],
+    TagResolver, PagePluginResolver, SubscriberResolver, InquiryResolver],
   exports: [prismaProvider],
 })
 export class PrismaModule implements NestModule {
@@ -45,7 +48,43 @@ export class PrismaModule implements NestModule {
 
     const schemaWithMiddleware = applyMiddleware(
       schema,
-      authorizationMiddleware(process.env.AUTHORIZATION_API_ADDRESS),
+      //authorizationMiddleware(process.env.AUTHORIZATION_API_ADDRESS),
+      /* async (resolve, root, args, context, info) => {
+        const { operation: gqlOperation } = info;
+        const authorizationToken = (
+          context
+          && context.headers
+          && context.headers.authorization
+        ) || (
+          context
+          && context.request
+          && context.request.headers
+          && context.request.headers.authorization
+        );
+
+        const token = authorizationToken && authorizationToken.includes('Bearer ')
+          ? authorizationToken.replace('Bearer ', '')
+          : authorizationToken;
+
+        const { hasUserPermission }: any = await request(
+          process.env.AUTHORIZATION_API_ADDRESS,
+          `
+          query($token: String, $isUserAnonymous: Boolean, $gqlOperation: Json!) {
+            hasUserPermission(token: $token  isUserAnonymous: $isUserAnonymous gqlOperation: $gqlOperation)
+          }
+          `,
+          {
+            ...(token ? { token } : { isUserAnonymous: true }),
+            gqlOperation,
+          },
+        );
+
+        if (hasUserPermission) {
+          return resolve(root, args, context, info);
+        }
+
+        throw new Error(`User hasn't permission for ${gqlOperation.selectionSet.selections.map(selection => selection.name.value)}`);
+      }*/
     );
 
     consumer

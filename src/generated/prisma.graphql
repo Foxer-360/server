@@ -1,7 +1,11 @@
 # source: http://localhost:4466
-# timestamp: Thu Jan 10 2019 13:10:16 GMT+0100 (CET)
+# timestamp: Wed Jan 16 2019 15:59:45 GMT+0100 (CET)
 
 type AggregateFile {
+  count: Int!
+}
+
+type AggregateInquiry {
   count: Int!
 }
 
@@ -42,6 +46,10 @@ type AggregatePageType {
 }
 
 type AggregateProject {
+  count: Int!
+}
+
+type AggregateSubscriber {
   count: Int!
 }
 
@@ -457,6 +465,264 @@ input FileWhereUniqueInput {
   hash: String
 }
 
+type Inquiry implements Node {
+  id: ID!
+  message: Json!
+  url: String
+  createdAt: DateTime!
+  ip: String
+}
+
+"""A connection to a list of items."""
+type InquiryConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [InquiryEdge]!
+  aggregate: AggregateInquiry!
+}
+
+input InquiryCreateInput {
+  message: Json!
+  url: String
+  ip: String
+}
+
+"""An edge in a connection."""
+type InquiryEdge {
+  """The item at the end of the edge."""
+  node: Inquiry!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum InquiryOrderByInput {
+  id_ASC
+  id_DESC
+  message_ASC
+  message_DESC
+  url_ASC
+  url_DESC
+  createdAt_ASC
+  createdAt_DESC
+  ip_ASC
+  ip_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type InquiryPreviousValues {
+  id: ID!
+  message: Json!
+  url: String
+  createdAt: DateTime!
+  ip: String
+}
+
+type InquirySubscriptionPayload {
+  mutation: MutationType!
+  node: Inquiry
+  updatedFields: [String!]
+  previousValues: InquiryPreviousValues
+}
+
+input InquirySubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [InquirySubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [InquirySubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [InquirySubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: InquiryWhereInput
+}
+
+input InquiryUpdateInput {
+  message: Json
+  url: String
+  ip: String
+}
+
+input InquiryWhereInput {
+  """Logical AND on all given filters."""
+  AND: [InquiryWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [InquiryWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [InquiryWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  url: String
+
+  """All values that are not equal to given value."""
+  url_not: String
+
+  """All values that are contained in given list."""
+  url_in: [String!]
+
+  """All values that are not contained in given list."""
+  url_not_in: [String!]
+
+  """All values less than the given value."""
+  url_lt: String
+
+  """All values less than or equal the given value."""
+  url_lte: String
+
+  """All values greater than the given value."""
+  url_gt: String
+
+  """All values greater than or equal the given value."""
+  url_gte: String
+
+  """All values containing the given string."""
+  url_contains: String
+
+  """All values not containing the given string."""
+  url_not_contains: String
+
+  """All values starting with the given string."""
+  url_starts_with: String
+
+  """All values not starting with the given string."""
+  url_not_starts_with: String
+
+  """All values ending with the given string."""
+  url_ends_with: String
+
+  """All values not ending with the given string."""
+  url_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  ip: String
+
+  """All values that are not equal to given value."""
+  ip_not: String
+
+  """All values that are contained in given list."""
+  ip_in: [String!]
+
+  """All values that are not contained in given list."""
+  ip_not_in: [String!]
+
+  """All values less than the given value."""
+  ip_lt: String
+
+  """All values less than or equal the given value."""
+  ip_lte: String
+
+  """All values greater than the given value."""
+  ip_gt: String
+
+  """All values greater than or equal the given value."""
+  ip_gte: String
+
+  """All values containing the given string."""
+  ip_contains: String
+
+  """All values not containing the given string."""
+  ip_not_contains: String
+
+  """All values starting with the given string."""
+  ip_starts_with: String
+
+  """All values not starting with the given string."""
+  ip_not_starts_with: String
+
+  """All values ending with the given string."""
+  ip_ends_with: String
+
+  """All values not ending with the given string."""
+  ip_not_ends_with: String
+}
+
+input InquiryWhereUniqueInput {
+  id: ID
+}
+
 """Raw JSON value"""
 scalar Json
 
@@ -821,6 +1087,8 @@ type Mutation {
   createNavigation(data: NavigationCreateInput!): Navigation!
   createNavigationNode(data: NavigationNodeCreateInput!): NavigationNode!
   createTag(data: TagCreateInput!): Tag!
+  createSubscriber(data: SubscriberCreateInput!): Subscriber!
+  createInquiry(data: InquiryCreateInput!): Inquiry!
   createPage(data: PageCreateInput!): Page!
   createPageType(data: PageTypeCreateInput!): PageType!
   createWebsite(data: WebsiteCreateInput!): Website!
@@ -834,6 +1102,8 @@ type Mutation {
   updateNavigation(data: NavigationUpdateInput!, where: NavigationWhereUniqueInput!): Navigation
   updateNavigationNode(data: NavigationNodeUpdateInput!, where: NavigationNodeWhereUniqueInput!): NavigationNode
   updateTag(data: TagUpdateInput!, where: TagWhereUniqueInput!): Tag
+  updateSubscriber(data: SubscriberUpdateInput!, where: SubscriberWhereUniqueInput!): Subscriber
+  updateInquiry(data: InquiryUpdateInput!, where: InquiryWhereUniqueInput!): Inquiry
   updatePage(data: PageUpdateInput!, where: PageWhereUniqueInput!): Page
   updatePageType(data: PageTypeUpdateInput!, where: PageTypeWhereUniqueInput!): PageType
   updateWebsite(data: WebsiteUpdateInput!, where: WebsiteWhereUniqueInput!): Website
@@ -847,6 +1117,8 @@ type Mutation {
   deleteNavigation(where: NavigationWhereUniqueInput!): Navigation
   deleteNavigationNode(where: NavigationNodeWhereUniqueInput!): NavigationNode
   deleteTag(where: TagWhereUniqueInput!): Tag
+  deleteSubscriber(where: SubscriberWhereUniqueInput!): Subscriber
+  deleteInquiry(where: InquiryWhereUniqueInput!): Inquiry
   deletePage(where: PageWhereUniqueInput!): Page
   deletePageType(where: PageTypeWhereUniqueInput!): PageType
   deleteWebsite(where: WebsiteWhereUniqueInput!): Website
@@ -860,6 +1132,8 @@ type Mutation {
   upsertNavigation(where: NavigationWhereUniqueInput!, create: NavigationCreateInput!, update: NavigationUpdateInput!): Navigation!
   upsertNavigationNode(where: NavigationNodeWhereUniqueInput!, create: NavigationNodeCreateInput!, update: NavigationNodeUpdateInput!): NavigationNode!
   upsertTag(where: TagWhereUniqueInput!, create: TagCreateInput!, update: TagUpdateInput!): Tag!
+  upsertSubscriber(where: SubscriberWhereUniqueInput!, create: SubscriberCreateInput!, update: SubscriberUpdateInput!): Subscriber!
+  upsertInquiry(where: InquiryWhereUniqueInput!, create: InquiryCreateInput!, update: InquiryUpdateInput!): Inquiry!
   upsertPage(where: PageWhereUniqueInput!, create: PageCreateInput!, update: PageUpdateInput!): Page!
   upsertPageType(where: PageTypeWhereUniqueInput!, create: PageTypeCreateInput!, update: PageTypeUpdateInput!): PageType!
   upsertWebsite(where: WebsiteWhereUniqueInput!, create: WebsiteCreateInput!, update: WebsiteUpdateInput!): Website!
@@ -873,6 +1147,8 @@ type Mutation {
   updateManyNavigations(data: NavigationUpdateInput!, where: NavigationWhereInput): BatchPayload!
   updateManyNavigationNodes(data: NavigationNodeUpdateInput!, where: NavigationNodeWhereInput): BatchPayload!
   updateManyTags(data: TagUpdateInput!, where: TagWhereInput): BatchPayload!
+  updateManySubscribers(data: SubscriberUpdateInput!, where: SubscriberWhereInput): BatchPayload!
+  updateManyInquiries(data: InquiryUpdateInput!, where: InquiryWhereInput): BatchPayload!
   updateManyPages(data: PageUpdateInput!, where: PageWhereInput): BatchPayload!
   updateManyPageTypes(data: PageTypeUpdateInput!, where: PageTypeWhereInput): BatchPayload!
   updateManyWebsites(data: WebsiteUpdateInput!, where: WebsiteWhereInput): BatchPayload!
@@ -886,6 +1162,8 @@ type Mutation {
   deleteManyNavigations(where: NavigationWhereInput): BatchPayload!
   deleteManyNavigationNodes(where: NavigationNodeWhereInput): BatchPayload!
   deleteManyTags(where: TagWhereInput): BatchPayload!
+  deleteManySubscribers(where: SubscriberWhereInput): BatchPayload!
+  deleteManyInquiries(where: InquiryWhereInput): BatchPayload!
   deleteManyPages(where: PageWhereInput): BatchPayload!
   deleteManyPageTypes(where: PageTypeWhereInput): BatchPayload!
   deleteManyWebsites(where: WebsiteWhereInput): BatchPayload!
@@ -3841,6 +4119,8 @@ type Query {
   navigations(where: NavigationWhereInput, orderBy: NavigationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Navigation]!
   navigationNodes(where: NavigationNodeWhereInput, orderBy: NavigationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [NavigationNode]!
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag]!
+  subscribers(where: SubscriberWhereInput, orderBy: SubscriberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscriber]!
+  inquiries(where: InquiryWhereInput, orderBy: InquiryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Inquiry]!
   pages(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Page]!
   pageTypes(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageType]!
   websites(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Website]!
@@ -3854,6 +4134,8 @@ type Query {
   navigation(where: NavigationWhereUniqueInput!): Navigation
   navigationNode(where: NavigationNodeWhereUniqueInput!): NavigationNode
   tag(where: TagWhereUniqueInput!): Tag
+  subscriber(where: SubscriberWhereUniqueInput!): Subscriber
+  inquiry(where: InquiryWhereUniqueInput!): Inquiry
   page(where: PageWhereUniqueInput!): Page
   pageType(where: PageTypeWhereUniqueInput!): PageType
   website(where: WebsiteWhereUniqueInput!): Website
@@ -3867,6 +4149,8 @@ type Query {
   navigationsConnection(where: NavigationWhereInput, orderBy: NavigationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NavigationConnection!
   navigationNodesConnection(where: NavigationNodeWhereInput, orderBy: NavigationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NavigationNodeConnection!
   tagsConnection(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TagConnection!
+  subscribersConnection(where: SubscriberWhereInput, orderBy: SubscriberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SubscriberConnection!
+  inquiriesConnection(where: InquiryWhereInput, orderBy: InquiryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InquiryConnection!
   pagesConnection(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageConnection!
   pageTypesConnection(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTypeConnection!
   websitesConnection(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WebsiteConnection!
@@ -3879,6 +4163,304 @@ type Query {
   ): Node
 }
 
+type Subscriber implements Node {
+  id: ID!
+  email: String!
+  url: String
+  createdAt: DateTime!
+  ip: String
+}
+
+"""A connection to a list of items."""
+type SubscriberConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [SubscriberEdge]!
+  aggregate: AggregateSubscriber!
+}
+
+input SubscriberCreateInput {
+  email: String!
+  url: String
+  ip: String
+}
+
+"""An edge in a connection."""
+type SubscriberEdge {
+  """The item at the end of the edge."""
+  node: Subscriber!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum SubscriberOrderByInput {
+  id_ASC
+  id_DESC
+  email_ASC
+  email_DESC
+  url_ASC
+  url_DESC
+  createdAt_ASC
+  createdAt_DESC
+  ip_ASC
+  ip_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type SubscriberPreviousValues {
+  id: ID!
+  email: String!
+  url: String
+  createdAt: DateTime!
+  ip: String
+}
+
+type SubscriberSubscriptionPayload {
+  mutation: MutationType!
+  node: Subscriber
+  updatedFields: [String!]
+  previousValues: SubscriberPreviousValues
+}
+
+input SubscriberSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [SubscriberSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [SubscriberSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [SubscriberSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: SubscriberWhereInput
+}
+
+input SubscriberUpdateInput {
+  email: String
+  url: String
+  ip: String
+}
+
+input SubscriberWhereInput {
+  """Logical AND on all given filters."""
+  AND: [SubscriberWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [SubscriberWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [SubscriberWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  email: String
+
+  """All values that are not equal to given value."""
+  email_not: String
+
+  """All values that are contained in given list."""
+  email_in: [String!]
+
+  """All values that are not contained in given list."""
+  email_not_in: [String!]
+
+  """All values less than the given value."""
+  email_lt: String
+
+  """All values less than or equal the given value."""
+  email_lte: String
+
+  """All values greater than the given value."""
+  email_gt: String
+
+  """All values greater than or equal the given value."""
+  email_gte: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values not ending with the given string."""
+  email_not_ends_with: String
+  url: String
+
+  """All values that are not equal to given value."""
+  url_not: String
+
+  """All values that are contained in given list."""
+  url_in: [String!]
+
+  """All values that are not contained in given list."""
+  url_not_in: [String!]
+
+  """All values less than the given value."""
+  url_lt: String
+
+  """All values less than or equal the given value."""
+  url_lte: String
+
+  """All values greater than the given value."""
+  url_gt: String
+
+  """All values greater than or equal the given value."""
+  url_gte: String
+
+  """All values containing the given string."""
+  url_contains: String
+
+  """All values not containing the given string."""
+  url_not_contains: String
+
+  """All values starting with the given string."""
+  url_starts_with: String
+
+  """All values not starting with the given string."""
+  url_not_starts_with: String
+
+  """All values ending with the given string."""
+  url_ends_with: String
+
+  """All values not ending with the given string."""
+  url_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  ip: String
+
+  """All values that are not equal to given value."""
+  ip_not: String
+
+  """All values that are contained in given list."""
+  ip_in: [String!]
+
+  """All values that are not contained in given list."""
+  ip_not_in: [String!]
+
+  """All values less than the given value."""
+  ip_lt: String
+
+  """All values less than or equal the given value."""
+  ip_lte: String
+
+  """All values greater than the given value."""
+  ip_gt: String
+
+  """All values greater than or equal the given value."""
+  ip_gte: String
+
+  """All values containing the given string."""
+  ip_contains: String
+
+  """All values not containing the given string."""
+  ip_not_contains: String
+
+  """All values starting with the given string."""
+  ip_starts_with: String
+
+  """All values not starting with the given string."""
+  ip_not_starts_with: String
+
+  """All values ending with the given string."""
+  ip_ends_with: String
+
+  """All values not ending with the given string."""
+  ip_not_ends_with: String
+}
+
+input SubscriberWhereUniqueInput {
+  id: ID
+}
+
 type Subscription {
   project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
   pageTranslation(where: PageTranslationSubscriptionWhereInput): PageTranslationSubscriptionPayload
@@ -3889,6 +4471,8 @@ type Subscription {
   navigation(where: NavigationSubscriptionWhereInput): NavigationSubscriptionPayload
   navigationNode(where: NavigationNodeSubscriptionWhereInput): NavigationNodeSubscriptionPayload
   tag(where: TagSubscriptionWhereInput): TagSubscriptionPayload
+  subscriber(where: SubscriberSubscriptionWhereInput): SubscriberSubscriptionPayload
+  inquiry(where: InquirySubscriptionWhereInput): InquirySubscriptionPayload
   page(where: PageSubscriptionWhereInput): PageSubscriptionPayload
   pageType(where: PageTypeSubscriptionWhereInput): PageTypeSubscriptionPayload
   website(where: WebsiteSubscriptionWhereInput): WebsiteSubscriptionPayload

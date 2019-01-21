@@ -133,3 +133,21 @@ type Tag {
   color: String!
   pages: [Page!]! @relation(name: "TagOnPage")
 }
+
+type Subscriber {
+  id: ID! @unique
+  email: String!
+  url: String
+  createdAt: DateTime!
+  ip: String
+}
+
+type Inquiry {
+  id: ID! @unique
+  message: Json!
+  url: String
+  createdAt: DateTime!
+  ip: String
+}
+
+
