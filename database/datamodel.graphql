@@ -150,4 +150,18 @@ type Inquiry {
   ip: String
 }
 
+type Datasource {
+  id: ID! @unique
+  type: String!
+  schema: Json!
+  displayInNavigation: Boolean
+  datasourceItems: [DatasourceItem!]!
+}
+
+type DatasourceItem {
+  id: ID! @unique
+  datasource: Datasource!
+  slug: String!
+  content: Json!
+}
 

@@ -15,6 +15,8 @@ export interface Query {
     tags: <T = Array<Tag | null>>(args: { where?: TagWhereInput | null, orderBy?: TagOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     subscribers: <T = Array<Subscriber | null>>(args: { where?: SubscriberWhereInput | null, orderBy?: SubscriberOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     inquiries: <T = Array<Inquiry | null>>(args: { where?: InquiryWhereInput | null, orderBy?: InquiryOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    datasources: <T = Array<Datasource | null>>(args: { where?: DatasourceWhereInput | null, orderBy?: DatasourceOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    datasourceItems: <T = Array<DatasourceItem | null>>(args: { where?: DatasourceItemWhereInput | null, orderBy?: DatasourceItemOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pages: <T = Array<Page | null>>(args: { where?: PageWhereInput | null, orderBy?: PageOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageTypes: <T = Array<PageType | null>>(args: { where?: PageTypeWhereInput | null, orderBy?: PageTypeOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     websites: <T = Array<Website | null>>(args: { where?: WebsiteWhereInput | null, orderBy?: WebsiteOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -30,6 +32,8 @@ export interface Query {
     tag: <T = Tag | null>(args: { where: TagWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     subscriber: <T = Subscriber | null>(args: { where: SubscriberWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     inquiry: <T = Inquiry | null>(args: { where: InquiryWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    datasource: <T = Datasource | null>(args: { where: DatasourceWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    datasourceItem: <T = DatasourceItem | null>(args: { where: DatasourceItemWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     page: <T = Page | null>(args: { where: PageWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     pageType: <T = PageType | null>(args: { where: PageTypeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     website: <T = Website | null>(args: { where: WebsiteWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
@@ -45,6 +49,8 @@ export interface Query {
     tagsConnection: <T = TagConnection>(args: { where?: TagWhereInput | null, orderBy?: TagOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     subscribersConnection: <T = SubscriberConnection>(args: { where?: SubscriberWhereInput | null, orderBy?: SubscriberOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     inquiriesConnection: <T = InquiryConnection>(args: { where?: InquiryWhereInput | null, orderBy?: InquiryOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    datasourcesConnection: <T = DatasourceConnection>(args: { where?: DatasourceWhereInput | null, orderBy?: DatasourceOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    datasourceItemsConnection: <T = DatasourceItemConnection>(args: { where?: DatasourceItemWhereInput | null, orderBy?: DatasourceItemOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pagesConnection: <T = PageConnection>(args: { where?: PageWhereInput | null, orderBy?: PageOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageTypesConnection: <T = PageTypeConnection>(args: { where?: PageTypeWhereInput | null, orderBy?: PageTypeOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     websitesConnection: <T = WebsiteConnection>(args: { where?: WebsiteWhereInput | null, orderBy?: WebsiteOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -64,6 +70,8 @@ export interface Mutation {
     createTag: <T = Tag>(args: { data: TagCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createSubscriber: <T = Subscriber>(args: { data: SubscriberCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createInquiry: <T = Inquiry>(args: { data: InquiryCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    createDatasource: <T = Datasource>(args: { data: DatasourceCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    createDatasourceItem: <T = DatasourceItem>(args: { data: DatasourceItemCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createPage: <T = Page>(args: { data: PageCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createPageType: <T = PageType>(args: { data: PageTypeCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createWebsite: <T = Website>(args: { data: WebsiteCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -79,6 +87,8 @@ export interface Mutation {
     updateTag: <T = Tag | null>(args: { data: TagUpdateInput, where: TagWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updateSubscriber: <T = Subscriber | null>(args: { data: SubscriberUpdateInput, where: SubscriberWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updateInquiry: <T = Inquiry | null>(args: { data: InquiryUpdateInput, where: InquiryWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    updateDatasource: <T = Datasource | null>(args: { data: DatasourceUpdateInput, where: DatasourceWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    updateDatasourceItem: <T = DatasourceItem | null>(args: { data: DatasourceItemUpdateInput, where: DatasourceItemWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updatePage: <T = Page | null>(args: { data: PageUpdateInput, where: PageWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updatePageType: <T = PageType | null>(args: { data: PageTypeUpdateInput, where: PageTypeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updateWebsite: <T = Website | null>(args: { data: WebsiteUpdateInput, where: WebsiteWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
@@ -94,6 +104,8 @@ export interface Mutation {
     deleteTag: <T = Tag | null>(args: { where: TagWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deleteSubscriber: <T = Subscriber | null>(args: { where: SubscriberWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deleteInquiry: <T = Inquiry | null>(args: { where: InquiryWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    deleteDatasource: <T = Datasource | null>(args: { where: DatasourceWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    deleteDatasourceItem: <T = DatasourceItem | null>(args: { where: DatasourceItemWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deletePage: <T = Page | null>(args: { where: PageWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deletePageType: <T = PageType | null>(args: { where: PageTypeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deleteWebsite: <T = Website | null>(args: { where: WebsiteWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
@@ -109,6 +121,8 @@ export interface Mutation {
     upsertTag: <T = Tag>(args: { where: TagWhereUniqueInput, create: TagCreateInput, update: TagUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertSubscriber: <T = Subscriber>(args: { where: SubscriberWhereUniqueInput, create: SubscriberCreateInput, update: SubscriberUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertInquiry: <T = Inquiry>(args: { where: InquiryWhereUniqueInput, create: InquiryCreateInput, update: InquiryUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    upsertDatasource: <T = Datasource>(args: { where: DatasourceWhereUniqueInput, create: DatasourceCreateInput, update: DatasourceUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    upsertDatasourceItem: <T = DatasourceItem>(args: { where: DatasourceItemWhereUniqueInput, create: DatasourceItemCreateInput, update: DatasourceItemUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertPage: <T = Page>(args: { where: PageWhereUniqueInput, create: PageCreateInput, update: PageUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertPageType: <T = PageType>(args: { where: PageTypeWhereUniqueInput, create: PageTypeCreateInput, update: PageTypeUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertWebsite: <T = Website>(args: { where: WebsiteWhereUniqueInput, create: WebsiteCreateInput, update: WebsiteUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -124,6 +138,8 @@ export interface Mutation {
     updateManyTags: <T = BatchPayload>(args: { data: TagUpdateInput, where?: TagWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManySubscribers: <T = BatchPayload>(args: { data: SubscriberUpdateInput, where?: SubscriberWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyInquiries: <T = BatchPayload>(args: { data: InquiryUpdateInput, where?: InquiryWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyDatasources: <T = BatchPayload>(args: { data: DatasourceUpdateInput, where?: DatasourceWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyDatasourceItems: <T = BatchPayload>(args: { data: DatasourceItemUpdateInput, where?: DatasourceItemWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyPages: <T = BatchPayload>(args: { data: PageUpdateInput, where?: PageWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyPageTypes: <T = BatchPayload>(args: { data: PageTypeUpdateInput, where?: PageTypeWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyWebsites: <T = BatchPayload>(args: { data: WebsiteUpdateInput, where?: WebsiteWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -139,6 +155,8 @@ export interface Mutation {
     deleteManyTags: <T = BatchPayload>(args: { where?: TagWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManySubscribers: <T = BatchPayload>(args: { where?: SubscriberWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyInquiries: <T = BatchPayload>(args: { where?: InquiryWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    deleteManyDatasources: <T = BatchPayload>(args: { where?: DatasourceWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    deleteManyDatasourceItems: <T = BatchPayload>(args: { where?: DatasourceItemWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyPages: <T = BatchPayload>(args: { where?: PageWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyPageTypes: <T = BatchPayload>(args: { where?: PageTypeWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyWebsites: <T = BatchPayload>(args: { where?: WebsiteWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -157,6 +175,8 @@ export interface Subscription {
     tag: <T = TagSubscriptionPayload | null>(args: { where?: TagSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     subscriber: <T = SubscriberSubscriptionPayload | null>(args: { where?: SubscriberSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     inquiry: <T = InquirySubscriptionPayload | null>(args: { where?: InquirySubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
+    datasource: <T = DatasourceSubscriptionPayload | null>(args: { where?: DatasourceSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
+    datasourceItem: <T = DatasourceItemSubscriptionPayload | null>(args: { where?: DatasourceItemSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     page: <T = PageSubscriptionPayload | null>(args: { where?: PageSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     pageType: <T = PageTypeSubscriptionPayload | null>(args: { where?: PageTypeSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     website: <T = WebsiteSubscriptionPayload | null>(args: { where?: WebsiteSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
@@ -175,6 +195,8 @@ export interface Exists {
   Tag: (where?: TagWhereInput) => Promise<boolean>
   Subscriber: (where?: SubscriberWhereInput) => Promise<boolean>
   Inquiry: (where?: InquiryWhereInput) => Promise<boolean>
+  Datasource: (where?: DatasourceWhereInput) => Promise<boolean>
+  DatasourceItem: (where?: DatasourceItemWhereInput) => Promise<boolean>
   Page: (where?: PageWhereInput) => Promise<boolean>
   PageType: (where?: PageTypeWhereInput) => Promise<boolean>
   Website: (where?: WebsiteWhereInput) => Promise<boolean>
@@ -203,7 +225,15 @@ export interface BindingConstructor<T> {
  * Type Defs
 */
 
-const typeDefs = `type AggregateFile {
+const typeDefs = `type AggregateDatasource {
+  count: Int!
+}
+
+type AggregateDatasourceItem {
+  count: Int!
+}
+
+type AggregateFile {
   count: Int!
 }
 
@@ -266,6 +296,467 @@ type AggregateWebsite {
 type BatchPayload {
   """The number of nodes that have been affected by the Batch operation."""
   count: Long!
+}
+
+type Datasource implements Node {
+  id: ID!
+  type: String!
+  schema: Json!
+  displayInNavigation: Boolean
+  datasourceItems(where: DatasourceItemWhereInput, orderBy: DatasourceItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DatasourceItem!]
+}
+
+"""A connection to a list of items."""
+type DatasourceConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [DatasourceEdge]!
+  aggregate: AggregateDatasource!
+}
+
+input DatasourceCreateInput {
+  type: String!
+  schema: Json!
+  displayInNavigation: Boolean
+  datasourceItems: DatasourceItemCreateManyWithoutDatasourceInput
+}
+
+input DatasourceCreateOneWithoutDatasourceItemsInput {
+  create: DatasourceCreateWithoutDatasourceItemsInput
+  connect: DatasourceWhereUniqueInput
+}
+
+input DatasourceCreateWithoutDatasourceItemsInput {
+  type: String!
+  schema: Json!
+  displayInNavigation: Boolean
+}
+
+"""An edge in a connection."""
+type DatasourceEdge {
+  """The item at the end of the edge."""
+  node: Datasource!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+type DatasourceItem implements Node {
+  id: ID!
+  datasource(where: DatasourceWhereInput): Datasource!
+  slug: String!
+  content: Json!
+}
+
+"""A connection to a list of items."""
+type DatasourceItemConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [DatasourceItemEdge]!
+  aggregate: AggregateDatasourceItem!
+}
+
+input DatasourceItemCreateInput {
+  slug: String!
+  content: Json!
+  datasource: DatasourceCreateOneWithoutDatasourceItemsInput!
+}
+
+input DatasourceItemCreateManyWithoutDatasourceInput {
+  create: [DatasourceItemCreateWithoutDatasourceInput!]
+  connect: [DatasourceItemWhereUniqueInput!]
+}
+
+input DatasourceItemCreateWithoutDatasourceInput {
+  slug: String!
+  content: Json!
+}
+
+"""An edge in a connection."""
+type DatasourceItemEdge {
+  """The item at the end of the edge."""
+  node: DatasourceItem!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum DatasourceItemOrderByInput {
+  id_ASC
+  id_DESC
+  slug_ASC
+  slug_DESC
+  content_ASC
+  content_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type DatasourceItemPreviousValues {
+  id: ID!
+  slug: String!
+  content: Json!
+}
+
+type DatasourceItemSubscriptionPayload {
+  mutation: MutationType!
+  node: DatasourceItem
+  updatedFields: [String!]
+  previousValues: DatasourceItemPreviousValues
+}
+
+input DatasourceItemSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [DatasourceItemSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [DatasourceItemSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DatasourceItemSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: DatasourceItemWhereInput
+}
+
+input DatasourceItemUpdateInput {
+  slug: String
+  content: Json
+  datasource: DatasourceUpdateOneWithoutDatasourceItemsInput
+}
+
+input DatasourceItemUpdateManyWithoutDatasourceInput {
+  create: [DatasourceItemCreateWithoutDatasourceInput!]
+  connect: [DatasourceItemWhereUniqueInput!]
+  disconnect: [DatasourceItemWhereUniqueInput!]
+  delete: [DatasourceItemWhereUniqueInput!]
+  update: [DatasourceItemUpdateWithWhereUniqueWithoutDatasourceInput!]
+  upsert: [DatasourceItemUpsertWithWhereUniqueWithoutDatasourceInput!]
+}
+
+input DatasourceItemUpdateWithoutDatasourceDataInput {
+  slug: String
+  content: Json
+}
+
+input DatasourceItemUpdateWithWhereUniqueWithoutDatasourceInput {
+  where: DatasourceItemWhereUniqueInput!
+  data: DatasourceItemUpdateWithoutDatasourceDataInput!
+}
+
+input DatasourceItemUpsertWithWhereUniqueWithoutDatasourceInput {
+  where: DatasourceItemWhereUniqueInput!
+  update: DatasourceItemUpdateWithoutDatasourceDataInput!
+  create: DatasourceItemCreateWithoutDatasourceInput!
+}
+
+input DatasourceItemWhereInput {
+  """Logical AND on all given filters."""
+  AND: [DatasourceItemWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [DatasourceItemWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DatasourceItemWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  slug: String
+
+  """All values that are not equal to given value."""
+  slug_not: String
+
+  """All values that are contained in given list."""
+  slug_in: [String!]
+
+  """All values that are not contained in given list."""
+  slug_not_in: [String!]
+
+  """All values less than the given value."""
+  slug_lt: String
+
+  """All values less than or equal the given value."""
+  slug_lte: String
+
+  """All values greater than the given value."""
+  slug_gt: String
+
+  """All values greater than or equal the given value."""
+  slug_gte: String
+
+  """All values containing the given string."""
+  slug_contains: String
+
+  """All values not containing the given string."""
+  slug_not_contains: String
+
+  """All values starting with the given string."""
+  slug_starts_with: String
+
+  """All values not starting with the given string."""
+  slug_not_starts_with: String
+
+  """All values ending with the given string."""
+  slug_ends_with: String
+
+  """All values not ending with the given string."""
+  slug_not_ends_with: String
+  datasource: DatasourceWhereInput
+}
+
+input DatasourceItemWhereUniqueInput {
+  id: ID
+}
+
+enum DatasourceOrderByInput {
+  id_ASC
+  id_DESC
+  type_ASC
+  type_DESC
+  schema_ASC
+  schema_DESC
+  displayInNavigation_ASC
+  displayInNavigation_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type DatasourcePreviousValues {
+  id: ID!
+  type: String!
+  schema: Json!
+  displayInNavigation: Boolean
+}
+
+type DatasourceSubscriptionPayload {
+  mutation: MutationType!
+  node: Datasource
+  updatedFields: [String!]
+  previousValues: DatasourcePreviousValues
+}
+
+input DatasourceSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [DatasourceSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [DatasourceSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DatasourceSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: DatasourceWhereInput
+}
+
+input DatasourceUpdateInput {
+  type: String
+  schema: Json
+  displayInNavigation: Boolean
+  datasourceItems: DatasourceItemUpdateManyWithoutDatasourceInput
+}
+
+input DatasourceUpdateOneWithoutDatasourceItemsInput {
+  create: DatasourceCreateWithoutDatasourceItemsInput
+  connect: DatasourceWhereUniqueInput
+  delete: Boolean
+  update: DatasourceUpdateWithoutDatasourceItemsDataInput
+  upsert: DatasourceUpsertWithoutDatasourceItemsInput
+}
+
+input DatasourceUpdateWithoutDatasourceItemsDataInput {
+  type: String
+  schema: Json
+  displayInNavigation: Boolean
+}
+
+input DatasourceUpsertWithoutDatasourceItemsInput {
+  update: DatasourceUpdateWithoutDatasourceItemsDataInput!
+  create: DatasourceCreateWithoutDatasourceItemsInput!
+}
+
+input DatasourceWhereInput {
+  """Logical AND on all given filters."""
+  AND: [DatasourceWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [DatasourceWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DatasourceWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  type: String
+
+  """All values that are not equal to given value."""
+  type_not: String
+
+  """All values that are contained in given list."""
+  type_in: [String!]
+
+  """All values that are not contained in given list."""
+  type_not_in: [String!]
+
+  """All values less than the given value."""
+  type_lt: String
+
+  """All values less than or equal the given value."""
+  type_lte: String
+
+  """All values greater than the given value."""
+  type_gt: String
+
+  """All values greater than or equal the given value."""
+  type_gte: String
+
+  """All values containing the given string."""
+  type_contains: String
+
+  """All values not containing the given string."""
+  type_not_contains: String
+
+  """All values starting with the given string."""
+  type_starts_with: String
+
+  """All values not starting with the given string."""
+  type_not_starts_with: String
+
+  """All values ending with the given string."""
+  type_ends_with: String
+
+  """All values not ending with the given string."""
+  type_not_ends_with: String
+  displayInNavigation: Boolean
+
+  """All values that are not equal to given value."""
+  displayInNavigation_not: Boolean
+  datasourceItems_every: DatasourceItemWhereInput
+  datasourceItems_some: DatasourceItemWhereInput
+  datasourceItems_none: DatasourceItemWhereInput
+}
+
+input DatasourceWhereUniqueInput {
+  id: ID
 }
 
 scalar DateTime
@@ -1291,6 +1782,8 @@ type Mutation {
   createTag(data: TagCreateInput!): Tag!
   createSubscriber(data: SubscriberCreateInput!): Subscriber!
   createInquiry(data: InquiryCreateInput!): Inquiry!
+  createDatasource(data: DatasourceCreateInput!): Datasource!
+  createDatasourceItem(data: DatasourceItemCreateInput!): DatasourceItem!
   createPage(data: PageCreateInput!): Page!
   createPageType(data: PageTypeCreateInput!): PageType!
   createWebsite(data: WebsiteCreateInput!): Website!
@@ -1306,6 +1799,8 @@ type Mutation {
   updateTag(data: TagUpdateInput!, where: TagWhereUniqueInput!): Tag
   updateSubscriber(data: SubscriberUpdateInput!, where: SubscriberWhereUniqueInput!): Subscriber
   updateInquiry(data: InquiryUpdateInput!, where: InquiryWhereUniqueInput!): Inquiry
+  updateDatasource(data: DatasourceUpdateInput!, where: DatasourceWhereUniqueInput!): Datasource
+  updateDatasourceItem(data: DatasourceItemUpdateInput!, where: DatasourceItemWhereUniqueInput!): DatasourceItem
   updatePage(data: PageUpdateInput!, where: PageWhereUniqueInput!): Page
   updatePageType(data: PageTypeUpdateInput!, where: PageTypeWhereUniqueInput!): PageType
   updateWebsite(data: WebsiteUpdateInput!, where: WebsiteWhereUniqueInput!): Website
@@ -1321,6 +1816,8 @@ type Mutation {
   deleteTag(where: TagWhereUniqueInput!): Tag
   deleteSubscriber(where: SubscriberWhereUniqueInput!): Subscriber
   deleteInquiry(where: InquiryWhereUniqueInput!): Inquiry
+  deleteDatasource(where: DatasourceWhereUniqueInput!): Datasource
+  deleteDatasourceItem(where: DatasourceItemWhereUniqueInput!): DatasourceItem
   deletePage(where: PageWhereUniqueInput!): Page
   deletePageType(where: PageTypeWhereUniqueInput!): PageType
   deleteWebsite(where: WebsiteWhereUniqueInput!): Website
@@ -1336,6 +1833,8 @@ type Mutation {
   upsertTag(where: TagWhereUniqueInput!, create: TagCreateInput!, update: TagUpdateInput!): Tag!
   upsertSubscriber(where: SubscriberWhereUniqueInput!, create: SubscriberCreateInput!, update: SubscriberUpdateInput!): Subscriber!
   upsertInquiry(where: InquiryWhereUniqueInput!, create: InquiryCreateInput!, update: InquiryUpdateInput!): Inquiry!
+  upsertDatasource(where: DatasourceWhereUniqueInput!, create: DatasourceCreateInput!, update: DatasourceUpdateInput!): Datasource!
+  upsertDatasourceItem(where: DatasourceItemWhereUniqueInput!, create: DatasourceItemCreateInput!, update: DatasourceItemUpdateInput!): DatasourceItem!
   upsertPage(where: PageWhereUniqueInput!, create: PageCreateInput!, update: PageUpdateInput!): Page!
   upsertPageType(where: PageTypeWhereUniqueInput!, create: PageTypeCreateInput!, update: PageTypeUpdateInput!): PageType!
   upsertWebsite(where: WebsiteWhereUniqueInput!, create: WebsiteCreateInput!, update: WebsiteUpdateInput!): Website!
@@ -1351,6 +1850,8 @@ type Mutation {
   updateManyTags(data: TagUpdateInput!, where: TagWhereInput): BatchPayload!
   updateManySubscribers(data: SubscriberUpdateInput!, where: SubscriberWhereInput): BatchPayload!
   updateManyInquiries(data: InquiryUpdateInput!, where: InquiryWhereInput): BatchPayload!
+  updateManyDatasources(data: DatasourceUpdateInput!, where: DatasourceWhereInput): BatchPayload!
+  updateManyDatasourceItems(data: DatasourceItemUpdateInput!, where: DatasourceItemWhereInput): BatchPayload!
   updateManyPages(data: PageUpdateInput!, where: PageWhereInput): BatchPayload!
   updateManyPageTypes(data: PageTypeUpdateInput!, where: PageTypeWhereInput): BatchPayload!
   updateManyWebsites(data: WebsiteUpdateInput!, where: WebsiteWhereInput): BatchPayload!
@@ -1366,6 +1867,8 @@ type Mutation {
   deleteManyTags(where: TagWhereInput): BatchPayload!
   deleteManySubscribers(where: SubscriberWhereInput): BatchPayload!
   deleteManyInquiries(where: InquiryWhereInput): BatchPayload!
+  deleteManyDatasources(where: DatasourceWhereInput): BatchPayload!
+  deleteManyDatasourceItems(where: DatasourceItemWhereInput): BatchPayload!
   deleteManyPages(where: PageWhereInput): BatchPayload!
   deleteManyPageTypes(where: PageTypeWhereInput): BatchPayload!
   deleteManyWebsites(where: WebsiteWhereInput): BatchPayload!
@@ -4323,6 +4826,8 @@ type Query {
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag]!
   subscribers(where: SubscriberWhereInput, orderBy: SubscriberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscriber]!
   inquiries(where: InquiryWhereInput, orderBy: InquiryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Inquiry]!
+  datasources(where: DatasourceWhereInput, orderBy: DatasourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Datasource]!
+  datasourceItems(where: DatasourceItemWhereInput, orderBy: DatasourceItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DatasourceItem]!
   pages(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Page]!
   pageTypes(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageType]!
   websites(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Website]!
@@ -4338,6 +4843,8 @@ type Query {
   tag(where: TagWhereUniqueInput!): Tag
   subscriber(where: SubscriberWhereUniqueInput!): Subscriber
   inquiry(where: InquiryWhereUniqueInput!): Inquiry
+  datasource(where: DatasourceWhereUniqueInput!): Datasource
+  datasourceItem(where: DatasourceItemWhereUniqueInput!): DatasourceItem
   page(where: PageWhereUniqueInput!): Page
   pageType(where: PageTypeWhereUniqueInput!): PageType
   website(where: WebsiteWhereUniqueInput!): Website
@@ -4353,6 +4860,8 @@ type Query {
   tagsConnection(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TagConnection!
   subscribersConnection(where: SubscriberWhereInput, orderBy: SubscriberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SubscriberConnection!
   inquiriesConnection(where: InquiryWhereInput, orderBy: InquiryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InquiryConnection!
+  datasourcesConnection(where: DatasourceWhereInput, orderBy: DatasourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DatasourceConnection!
+  datasourceItemsConnection(where: DatasourceItemWhereInput, orderBy: DatasourceItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DatasourceItemConnection!
   pagesConnection(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageConnection!
   pageTypesConnection(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTypeConnection!
   websitesConnection(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WebsiteConnection!
@@ -4675,6 +5184,8 @@ type Subscription {
   tag(where: TagSubscriptionWhereInput): TagSubscriptionPayload
   subscriber(where: SubscriberSubscriptionWhereInput): SubscriberSubscriptionPayload
   inquiry(where: InquirySubscriptionWhereInput): InquirySubscriptionPayload
+  datasource(where: DatasourceSubscriptionWhereInput): DatasourceSubscriptionPayload
+  datasourceItem(where: DatasourceItemSubscriptionWhereInput): DatasourceItemSubscriptionPayload
   page(where: PageSubscriptionWhereInput): PageSubscriptionPayload
   pageType(where: PageTypeSubscriptionWhereInput): PageTypeSubscriptionPayload
   website(where: WebsiteSubscriptionWhereInput): WebsiteSubscriptionPayload
@@ -5399,6 +5910,30 @@ export const Prisma = makePrismaBindingClass<BindingConstructor<Prisma>>({typeDe
  * Types
 */
 
+export type DatasourceItemOrderByInput =   'id_ASC' |
+  'id_DESC' |
+  'slug_ASC' |
+  'slug_DESC' |
+  'content_ASC' |
+  'content_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC' |
+  'createdAt_ASC' |
+  'createdAt_DESC'
+
+export type DatasourceOrderByInput =   'id_ASC' |
+  'id_DESC' |
+  'type_ASC' |
+  'type_DESC' |
+  'schema_ASC' |
+  'schema_DESC' |
+  'displayInNavigation_ASC' |
+  'displayInNavigation_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC' |
+  'createdAt_ASC' |
+  'createdAt_DESC'
+
 export type FileOrderByInput =   'id_ASC' |
   'id_DESC' |
   'hash_ASC' |
@@ -5607,6 +6142,201 @@ export type WebsiteOrderByInput =   'id_ASC' |
   'updatedAt_DESC' |
   'createdAt_ASC' |
   'createdAt_DESC'
+
+export interface DatasourceCreateInput {
+  type: String
+  schema: Json
+  displayInNavigation?: Boolean | null
+  datasourceItems?: DatasourceItemCreateManyWithoutDatasourceInput | null
+}
+
+export interface DatasourceCreateOneWithoutDatasourceItemsInput {
+  create?: DatasourceCreateWithoutDatasourceItemsInput | null
+  connect?: DatasourceWhereUniqueInput | null
+}
+
+export interface DatasourceCreateWithoutDatasourceItemsInput {
+  type: String
+  schema: Json
+  displayInNavigation?: Boolean | null
+}
+
+export interface DatasourceItemCreateInput {
+  slug: String
+  content: Json
+  datasource: DatasourceCreateOneWithoutDatasourceItemsInput
+}
+
+export interface DatasourceItemCreateManyWithoutDatasourceInput {
+  create?: DatasourceItemCreateWithoutDatasourceInput[] | DatasourceItemCreateWithoutDatasourceInput | null
+  connect?: DatasourceItemWhereUniqueInput[] | DatasourceItemWhereUniqueInput | null
+}
+
+export interface DatasourceItemCreateWithoutDatasourceInput {
+  slug: String
+  content: Json
+}
+
+export interface DatasourceItemSubscriptionWhereInput {
+  AND?: DatasourceItemSubscriptionWhereInput[] | DatasourceItemSubscriptionWhereInput | null
+  OR?: DatasourceItemSubscriptionWhereInput[] | DatasourceItemSubscriptionWhereInput | null
+  NOT?: DatasourceItemSubscriptionWhereInput[] | DatasourceItemSubscriptionWhereInput | null
+  mutation_in?: MutationType[] | MutationType | null
+  updatedFields_contains?: String | null
+  updatedFields_contains_every?: String[] | String | null
+  updatedFields_contains_some?: String[] | String | null
+  node?: DatasourceItemWhereInput | null
+}
+
+export interface DatasourceItemUpdateInput {
+  slug?: String | null
+  content?: Json | null
+  datasource?: DatasourceUpdateOneWithoutDatasourceItemsInput | null
+}
+
+export interface DatasourceItemUpdateManyWithoutDatasourceInput {
+  create?: DatasourceItemCreateWithoutDatasourceInput[] | DatasourceItemCreateWithoutDatasourceInput | null
+  connect?: DatasourceItemWhereUniqueInput[] | DatasourceItemWhereUniqueInput | null
+  disconnect?: DatasourceItemWhereUniqueInput[] | DatasourceItemWhereUniqueInput | null
+  delete?: DatasourceItemWhereUniqueInput[] | DatasourceItemWhereUniqueInput | null
+  update?: DatasourceItemUpdateWithWhereUniqueWithoutDatasourceInput[] | DatasourceItemUpdateWithWhereUniqueWithoutDatasourceInput | null
+  upsert?: DatasourceItemUpsertWithWhereUniqueWithoutDatasourceInput[] | DatasourceItemUpsertWithWhereUniqueWithoutDatasourceInput | null
+}
+
+export interface DatasourceItemUpdateWithoutDatasourceDataInput {
+  slug?: String | null
+  content?: Json | null
+}
+
+export interface DatasourceItemUpdateWithWhereUniqueWithoutDatasourceInput {
+  where: DatasourceItemWhereUniqueInput
+  data: DatasourceItemUpdateWithoutDatasourceDataInput
+}
+
+export interface DatasourceItemUpsertWithWhereUniqueWithoutDatasourceInput {
+  where: DatasourceItemWhereUniqueInput
+  update: DatasourceItemUpdateWithoutDatasourceDataInput
+  create: DatasourceItemCreateWithoutDatasourceInput
+}
+
+export interface DatasourceItemWhereInput {
+  AND?: DatasourceItemWhereInput[] | DatasourceItemWhereInput | null
+  OR?: DatasourceItemWhereInput[] | DatasourceItemWhereInput | null
+  NOT?: DatasourceItemWhereInput[] | DatasourceItemWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+  slug?: String | null
+  slug_not?: String | null
+  slug_in?: String[] | String | null
+  slug_not_in?: String[] | String | null
+  slug_lt?: String | null
+  slug_lte?: String | null
+  slug_gt?: String | null
+  slug_gte?: String | null
+  slug_contains?: String | null
+  slug_not_contains?: String | null
+  slug_starts_with?: String | null
+  slug_not_starts_with?: String | null
+  slug_ends_with?: String | null
+  slug_not_ends_with?: String | null
+  datasource?: DatasourceWhereInput | null
+}
+
+export interface DatasourceItemWhereUniqueInput {
+  id?: ID_Input | null
+}
+
+export interface DatasourceSubscriptionWhereInput {
+  AND?: DatasourceSubscriptionWhereInput[] | DatasourceSubscriptionWhereInput | null
+  OR?: DatasourceSubscriptionWhereInput[] | DatasourceSubscriptionWhereInput | null
+  NOT?: DatasourceSubscriptionWhereInput[] | DatasourceSubscriptionWhereInput | null
+  mutation_in?: MutationType[] | MutationType | null
+  updatedFields_contains?: String | null
+  updatedFields_contains_every?: String[] | String | null
+  updatedFields_contains_some?: String[] | String | null
+  node?: DatasourceWhereInput | null
+}
+
+export interface DatasourceUpdateInput {
+  type?: String | null
+  schema?: Json | null
+  displayInNavigation?: Boolean | null
+  datasourceItems?: DatasourceItemUpdateManyWithoutDatasourceInput | null
+}
+
+export interface DatasourceUpdateOneWithoutDatasourceItemsInput {
+  create?: DatasourceCreateWithoutDatasourceItemsInput | null
+  connect?: DatasourceWhereUniqueInput | null
+  delete?: Boolean | null
+  update?: DatasourceUpdateWithoutDatasourceItemsDataInput | null
+  upsert?: DatasourceUpsertWithoutDatasourceItemsInput | null
+}
+
+export interface DatasourceUpdateWithoutDatasourceItemsDataInput {
+  type?: String | null
+  schema?: Json | null
+  displayInNavigation?: Boolean | null
+}
+
+export interface DatasourceUpsertWithoutDatasourceItemsInput {
+  update: DatasourceUpdateWithoutDatasourceItemsDataInput
+  create: DatasourceCreateWithoutDatasourceItemsInput
+}
+
+export interface DatasourceWhereInput {
+  AND?: DatasourceWhereInput[] | DatasourceWhereInput | null
+  OR?: DatasourceWhereInput[] | DatasourceWhereInput | null
+  NOT?: DatasourceWhereInput[] | DatasourceWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+  type?: String | null
+  type_not?: String | null
+  type_in?: String[] | String | null
+  type_not_in?: String[] | String | null
+  type_lt?: String | null
+  type_lte?: String | null
+  type_gt?: String | null
+  type_gte?: String | null
+  type_contains?: String | null
+  type_not_contains?: String | null
+  type_starts_with?: String | null
+  type_not_starts_with?: String | null
+  type_ends_with?: String | null
+  type_not_ends_with?: String | null
+  displayInNavigation?: Boolean | null
+  displayInNavigation_not?: Boolean | null
+  datasourceItems_every?: DatasourceItemWhereInput | null
+  datasourceItems_some?: DatasourceItemWhereInput | null
+  datasourceItems_none?: DatasourceItemWhereInput | null
+}
+
+export interface DatasourceWhereUniqueInput {
+  id?: ID_Input | null
+}
 
 export interface FileCreateInput {
   hash: String
@@ -7842,6 +8572,14 @@ export interface Node {
   id: ID_Output
 }
 
+export interface AggregateDatasource {
+  count: Int
+}
+
+export interface AggregateDatasourceItem {
+  count: Int
+}
+
 export interface AggregateFile {
   count: Int
 }
@@ -7904,6 +8642,86 @@ export interface AggregateWebsite {
 
 export interface BatchPayload {
   count: Long
+}
+
+export interface Datasource extends Node {
+  id: ID_Output
+  type: String
+  schema: Json
+  displayInNavigation?: Boolean | null
+  datasourceItems?: Array<DatasourceItem> | null
+}
+
+/*
+ * A connection to a list of items.
+
+ */
+export interface DatasourceConnection {
+  pageInfo: PageInfo
+  edges: Array<DatasourceEdge | null>
+  aggregate: AggregateDatasource
+}
+
+/*
+ * An edge in a connection.
+
+ */
+export interface DatasourceEdge {
+  node: Datasource
+  cursor: String
+}
+
+export interface DatasourceItem extends Node {
+  id: ID_Output
+  datasource: Datasource
+  slug: String
+  content: Json
+}
+
+/*
+ * A connection to a list of items.
+
+ */
+export interface DatasourceItemConnection {
+  pageInfo: PageInfo
+  edges: Array<DatasourceItemEdge | null>
+  aggregate: AggregateDatasourceItem
+}
+
+/*
+ * An edge in a connection.
+
+ */
+export interface DatasourceItemEdge {
+  node: DatasourceItem
+  cursor: String
+}
+
+export interface DatasourceItemPreviousValues {
+  id: ID_Output
+  slug: String
+  content: Json
+}
+
+export interface DatasourceItemSubscriptionPayload {
+  mutation: MutationType
+  node?: DatasourceItem | null
+  updatedFields?: Array<String> | null
+  previousValues?: DatasourceItemPreviousValues | null
+}
+
+export interface DatasourcePreviousValues {
+  id: ID_Output
+  type: String
+  schema: Json
+  displayInNavigation?: Boolean | null
+}
+
+export interface DatasourceSubscriptionPayload {
+  mutation: MutationType
+  node?: Datasource | null
+  updatedFields?: Array<String> | null
+  previousValues?: DatasourcePreviousValues | null
 }
 
 export interface File extends Node {
