@@ -9,7 +9,7 @@ const getUsers = async () => {
     `
     query {
       users {
-        name
+        username
         avatar
         email
         auth0id
