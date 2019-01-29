@@ -1,5 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Mon Jan 21 2019 16:46:21 GMT+0100 (CET)
+# timestamp: Tue Jan 29 2019 13:09:07 GMT+0100 (CET)
 
 type AggregateDatasource {
   count: Int!
@@ -78,8 +78,11 @@ type Datasource implements Node {
   id: ID!
   type: String!
   schema: Json!
+  uiSchema: Json
   displayInNavigation: Boolean
+  slug: [String!]!
   datasourceItems(where: DatasourceItemWhereInput, orderBy: DatasourceItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DatasourceItem!]
+  page(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Page!]
 }
 
 """A connection to a list of items."""
@@ -95,8 +98,16 @@ type DatasourceConnection {
 input DatasourceCreateInput {
   type: String!
   schema: Json!
+  uiSchema: Json
   displayInNavigation: Boolean
+  slug: DatasourceCreateslugInput
   datasourceItems: DatasourceItemCreateManyWithoutDatasourceInput
+  page: PageCreateManyWithoutDatasourcesInput
+}
+
+input DatasourceCreateManyWithoutPageInput {
+  create: [DatasourceCreateWithoutPageInput!]
+  connect: [DatasourceWhereUniqueInput!]
 }
 
 input DatasourceCreateOneWithoutDatasourceItemsInput {
@@ -104,10 +115,26 @@ input DatasourceCreateOneWithoutDatasourceItemsInput {
   connect: DatasourceWhereUniqueInput
 }
 
+input DatasourceCreateslugInput {
+  set: [String!]
+}
+
 input DatasourceCreateWithoutDatasourceItemsInput {
   type: String!
   schema: Json!
+  uiSchema: Json
   displayInNavigation: Boolean
+  slug: DatasourceCreateslugInput
+  page: PageCreateManyWithoutDatasourcesInput
+}
+
+input DatasourceCreateWithoutPageInput {
+  type: String!
+  schema: Json!
+  uiSchema: Json
+  displayInNavigation: Boolean
+  slug: DatasourceCreateslugInput
+  datasourceItems: DatasourceItemCreateManyWithoutDatasourceInput
 }
 
 """An edge in a connection."""
@@ -124,6 +151,8 @@ type DatasourceItem implements Node {
   datasource(where: DatasourceWhereInput): Datasource!
   slug: String!
   content: Json!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -168,16 +197,18 @@ enum DatasourceItemOrderByInput {
   slug_DESC
   content_ASC
   content_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type DatasourceItemPreviousValues {
   id: ID!
   slug: String!
   content: Json!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type DatasourceItemSubscriptionPayload {
@@ -339,6 +370,50 @@ input DatasourceItemWhereInput {
 
   """All values not ending with the given string."""
   slug_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
   datasource: DatasourceWhereInput
 }
 
@@ -353,6 +428,8 @@ enum DatasourceOrderByInput {
   type_DESC
   schema_ASC
   schema_DESC
+  uiSchema_ASC
+  uiSchema_DESC
   displayInNavigation_ASC
   displayInNavigation_DESC
   updatedAt_ASC
@@ -365,7 +442,9 @@ type DatasourcePreviousValues {
   id: ID!
   type: String!
   schema: Json!
+  uiSchema: Json
   displayInNavigation: Boolean
+  slug: [String!]!
 }
 
 type DatasourceSubscriptionPayload {
@@ -410,8 +489,20 @@ input DatasourceSubscriptionWhereInput {
 input DatasourceUpdateInput {
   type: String
   schema: Json
+  uiSchema: Json
   displayInNavigation: Boolean
+  slug: DatasourceUpdateslugInput
   datasourceItems: DatasourceItemUpdateManyWithoutDatasourceInput
+  page: PageUpdateManyWithoutDatasourcesInput
+}
+
+input DatasourceUpdateManyWithoutPageInput {
+  create: [DatasourceCreateWithoutPageInput!]
+  connect: [DatasourceWhereUniqueInput!]
+  disconnect: [DatasourceWhereUniqueInput!]
+  delete: [DatasourceWhereUniqueInput!]
+  update: [DatasourceUpdateWithWhereUniqueWithoutPageInput!]
+  upsert: [DatasourceUpsertWithWhereUniqueWithoutPageInput!]
 }
 
 input DatasourceUpdateOneWithoutDatasourceItemsInput {
@@ -422,15 +513,42 @@ input DatasourceUpdateOneWithoutDatasourceItemsInput {
   upsert: DatasourceUpsertWithoutDatasourceItemsInput
 }
 
+input DatasourceUpdateslugInput {
+  set: [String!]
+}
+
 input DatasourceUpdateWithoutDatasourceItemsDataInput {
   type: String
   schema: Json
+  uiSchema: Json
   displayInNavigation: Boolean
+  slug: DatasourceUpdateslugInput
+  page: PageUpdateManyWithoutDatasourcesInput
+}
+
+input DatasourceUpdateWithoutPageDataInput {
+  type: String
+  schema: Json
+  uiSchema: Json
+  displayInNavigation: Boolean
+  slug: DatasourceUpdateslugInput
+  datasourceItems: DatasourceItemUpdateManyWithoutDatasourceInput
+}
+
+input DatasourceUpdateWithWhereUniqueWithoutPageInput {
+  where: DatasourceWhereUniqueInput!
+  data: DatasourceUpdateWithoutPageDataInput!
 }
 
 input DatasourceUpsertWithoutDatasourceItemsInput {
   update: DatasourceUpdateWithoutDatasourceItemsDataInput!
   create: DatasourceCreateWithoutDatasourceItemsInput!
+}
+
+input DatasourceUpsertWithWhereUniqueWithoutPageInput {
+  where: DatasourceWhereUniqueInput!
+  update: DatasourceUpdateWithoutPageDataInput!
+  create: DatasourceCreateWithoutPageInput!
 }
 
 input DatasourceWhereInput {
@@ -529,6 +647,9 @@ input DatasourceWhereInput {
   datasourceItems_every: DatasourceItemWhereInput
   datasourceItems_some: DatasourceItemWhereInput
   datasourceItems_none: DatasourceItemWhereInput
+  page_every: PageWhereInput
+  page_some: PageWhereInput
+  page_none: PageWhereInput
 }
 
 input DatasourceWhereUniqueInput {
@@ -2285,6 +2406,7 @@ type Page implements Node {
   chats(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageChat!]
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag!]
   plugin(where: PagePluginWhereInput): PagePlugin
+  datasources(where: DatasourceWhereInput, orderBy: DatasourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Datasource!]
 }
 
 type PageChat implements Node {
@@ -2596,6 +2718,12 @@ input PageCreateInput {
   chats: PageChatCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
   plugin: PagePluginCreateOneWithoutPageInput
+  datasources: DatasourceCreateManyWithoutPageInput
+}
+
+input PageCreateManyWithoutDatasourcesInput {
+  create: [PageCreateWithoutDatasourcesInput!]
+  connect: [PageWhereUniqueInput!]
 }
 
 input PageCreateManyWithoutTagsInput {
@@ -2635,6 +2763,17 @@ input PageCreateWithoutChatsInput {
   translations: PageTranslationCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
   plugin: PagePluginCreateOneWithoutPageInput
+  datasources: DatasourceCreateManyWithoutPageInput
+}
+
+input PageCreateWithoutDatasourcesInput {
+  parent: PageCreateOneInput
+  website: WebsiteCreateOneWithoutPagesInput!
+  type: PageTypeCreateOneInput!
+  translations: PageTranslationCreateManyWithoutPageInput
+  chats: PageChatCreateManyWithoutPageInput
+  tags: TagCreateManyWithoutPagesInput
+  plugin: PagePluginCreateOneWithoutPageInput
 }
 
 input PageCreateWithoutPluginInput {
@@ -2644,6 +2783,7 @@ input PageCreateWithoutPluginInput {
   translations: PageTranslationCreateManyWithoutPageInput
   chats: PageChatCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
+  datasources: DatasourceCreateManyWithoutPageInput
 }
 
 input PageCreateWithoutTagsInput {
@@ -2653,6 +2793,7 @@ input PageCreateWithoutTagsInput {
   translations: PageTranslationCreateManyWithoutPageInput
   chats: PageChatCreateManyWithoutPageInput
   plugin: PagePluginCreateOneWithoutPageInput
+  datasources: DatasourceCreateManyWithoutPageInput
 }
 
 input PageCreateWithoutTranslationsInput {
@@ -2662,6 +2803,7 @@ input PageCreateWithoutTranslationsInput {
   chats: PageChatCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
   plugin: PagePluginCreateOneWithoutPageInput
+  datasources: DatasourceCreateManyWithoutPageInput
 }
 
 input PageCreateWithoutWebsiteInput {
@@ -2671,6 +2813,7 @@ input PageCreateWithoutWebsiteInput {
   chats: PageChatCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
   plugin: PagePluginCreateOneWithoutPageInput
+  datasources: DatasourceCreateManyWithoutPageInput
 }
 
 """An edge in a connection."""
@@ -4088,6 +4231,7 @@ input PageUpdateDataInput {
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
   plugin: PagePluginUpdateOneWithoutPageInput
+  datasources: DatasourceUpdateManyWithoutPageInput
 }
 
 input PageUpdateInput {
@@ -4098,6 +4242,16 @@ input PageUpdateInput {
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
   plugin: PagePluginUpdateOneWithoutPageInput
+  datasources: DatasourceUpdateManyWithoutPageInput
+}
+
+input PageUpdateManyWithoutDatasourcesInput {
+  create: [PageCreateWithoutDatasourcesInput!]
+  connect: [PageWhereUniqueInput!]
+  disconnect: [PageWhereUniqueInput!]
+  delete: [PageWhereUniqueInput!]
+  update: [PageUpdateWithWhereUniqueWithoutDatasourcesInput!]
+  upsert: [PageUpsertWithWhereUniqueWithoutDatasourcesInput!]
 }
 
 input PageUpdateManyWithoutTagsInput {
@@ -4158,6 +4312,17 @@ input PageUpdateWithoutChatsDataInput {
   translations: PageTranslationUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
   plugin: PagePluginUpdateOneWithoutPageInput
+  datasources: DatasourceUpdateManyWithoutPageInput
+}
+
+input PageUpdateWithoutDatasourcesDataInput {
+  parent: PageUpdateOneInput
+  website: WebsiteUpdateOneWithoutPagesInput
+  type: PageTypeUpdateOneInput
+  translations: PageTranslationUpdateManyWithoutPageInput
+  chats: PageChatUpdateManyWithoutPageInput
+  tags: TagUpdateManyWithoutPagesInput
+  plugin: PagePluginUpdateOneWithoutPageInput
 }
 
 input PageUpdateWithoutPluginDataInput {
@@ -4167,6 +4332,7 @@ input PageUpdateWithoutPluginDataInput {
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
+  datasources: DatasourceUpdateManyWithoutPageInput
 }
 
 input PageUpdateWithoutTagsDataInput {
@@ -4176,6 +4342,7 @@ input PageUpdateWithoutTagsDataInput {
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   plugin: PagePluginUpdateOneWithoutPageInput
+  datasources: DatasourceUpdateManyWithoutPageInput
 }
 
 input PageUpdateWithoutTranslationsDataInput {
@@ -4185,6 +4352,7 @@ input PageUpdateWithoutTranslationsDataInput {
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
   plugin: PagePluginUpdateOneWithoutPageInput
+  datasources: DatasourceUpdateManyWithoutPageInput
 }
 
 input PageUpdateWithoutWebsiteDataInput {
@@ -4194,6 +4362,12 @@ input PageUpdateWithoutWebsiteDataInput {
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
   plugin: PagePluginUpdateOneWithoutPageInput
+  datasources: DatasourceUpdateManyWithoutPageInput
+}
+
+input PageUpdateWithWhereUniqueWithoutDatasourcesInput {
+  where: PageWhereUniqueInput!
+  data: PageUpdateWithoutDatasourcesDataInput!
 }
 
 input PageUpdateWithWhereUniqueWithoutTagsInput {
@@ -4224,6 +4398,12 @@ input PageUpsertWithoutPluginInput {
 input PageUpsertWithoutTranslationsInput {
   update: PageUpdateWithoutTranslationsDataInput!
   create: PageCreateWithoutTranslationsInput!
+}
+
+input PageUpsertWithWhereUniqueWithoutDatasourcesInput {
+  where: PageWhereUniqueInput!
+  update: PageUpdateWithoutDatasourcesDataInput!
+  create: PageCreateWithoutDatasourcesInput!
 }
 
 input PageUpsertWithWhereUniqueWithoutTagsInput {
@@ -4300,6 +4480,9 @@ input PageWhereInput {
   tags_some: TagWhereInput
   tags_none: TagWhereInput
   plugin: PagePluginWhereInput
+  datasources_every: DatasourceWhereInput
+  datasources_some: DatasourceWhereInput
+  datasources_none: DatasourceWhereInput
 }
 
 input PageWhereUniqueInput {

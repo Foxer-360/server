@@ -1,10 +1,17 @@
 import { Query, Resolver } from '@nestjs/graphql';
 import { Prisma } from 'generated/prisma';
 import { FrontendService } from '../services/frontend.service';
+import { PageResolver } from './page.resolver';
+
+
 
 @Resolver('frontend')
 export class FrontendResolver {
-  constructor(private readonly prisma: Prisma, private readonly frontendService: FrontendService) {}
+
+  pageResolver: PageResolver;
+  constructor(private readonly prisma: Prisma, private readonly frontendService: FrontendService) {
+    this.pageResolver = new PageResolver(prisma);
+  }
 
   @Query('frontend')
   public async getLanguage(obj, args, context, info): Promise<any> {
@@ -13,6 +20,26 @@ export class FrontendResolver {
     const emptyRes = null;
 
     const resolvedUrl = this.frontendService.resolveUrl(url);
+
+    const pagesUrls = await this.pageResolver.getPagesUrls(null, { where: { languageCode: resolvedUrl.language } }, null, null);
+
+    const pageUrl = pagesUrls.find(item => {
+      if (item.url === url) {
+        return true;
+      }
+
+      const urlFragments = item.url.split('/').filter(slug => slug !== '');
+      let isPageDynamic = true;
+
+      resolvedUrl.pages.forEach((slug, key) => {
+        if (urlFragments[key] !== slug || urlFragments[key].length < 4 || urlFragments[key].substring(0, 3) !== 'ds:') {
+          isPageDynamic = false;
+        }
+      });
+      return isPageDynamic;
+    });
+
+    console.log(pageUrl);
 
     // Flow:
     // Resolve website..
@@ -96,7 +123,7 @@ export class FrontendResolver {
       return Promise.resolve(emptyRes);
       // throw new Error(`No language for website was found...`);
     }
-
+    console.log(resolvedUrl);
     // Now page
     let pages = [];
     if (resolvedUrl.pages && resolvedUrl.pages.length > 0) {
@@ -114,7 +141,7 @@ export class FrontendResolver {
     const pageObjects = [];
     const pageInfo = `{
       id
-      tags{
+      tags {
         id
         name
       }
