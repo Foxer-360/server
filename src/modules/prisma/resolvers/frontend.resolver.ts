@@ -3,8 +3,6 @@ import { Prisma } from 'generated/prisma';
 import { FrontendService } from '../services/frontend.service';
 import { PageResolver } from './page.resolver';
 
-
-
 @Resolver('frontend')
 export class FrontendResolver {
 
@@ -20,26 +18,62 @@ export class FrontendResolver {
     const emptyRes = null;
 
     const resolvedUrl = this.frontendService.resolveUrl(url);
-
     const pagesUrls = await this.pageResolver.getPagesUrls(null, { where: { languageCode: resolvedUrl.language } }, null, null);
 
+    const datasources = await this.prisma.query.datasources(
+      {},
+      `{
+        type
+        datasourceItems {
+          id
+          content
+          slug
+          datasource {
+            type
+          }
+        }
+      }`,
+    );
+
+    // Possible datasource items
+    const pageDatasourceItems = [];
+    // try to find page in pagesUrls
     const pageUrl = pagesUrls.find(item => {
       if (item.url === url) {
         return true;
       }
 
       const urlFragments = item.url.split('/').filter(slug => slug !== '');
-      let isPageDynamic = true;
+      const askedUrlFragments = [resolvedUrl.language, ...resolvedUrl.pages];
 
-      resolvedUrl.pages.forEach((slug, key) => {
-        if (urlFragments[key] !== slug || urlFragments[key].length < 4 || urlFragments[key].substring(0, 3) !== 'ds:') {
-          isPageDynamic = false;
+      for (let i = 0; i <= resolvedUrl.pages.length; i++) {
+        const res = urlFragments[i] && urlFragments[i].match(/^ds\:(.*)/);
+
+        if (urlFragments[i] !== askedUrlFragments[i] && !(res && res[1])) { return false; }
+        if (res && res[1]) {
+          const { 1: type } = res;
+          const datasource = datasources.find(d => d.type.toLocaleLowerCase() === type);
+          if (!datasource) { return false; }
+          const datasourceItem = datasource.datasourceItems.find(d => d.slug === askedUrlFragments[i]);
+
+          if (
+            datasourceItem
+          ) {
+            if (!pageDatasourceItems.some(dItem => dItem.id === datasourceItem.id )) {
+              pageDatasourceItems.push(datasourceItem);
+            }
+          } else {
+            return false;
+          }
+
         }
-      });
-      return isPageDynamic;
+      }
+      return true;
     });
 
-    console.log(pageUrl);
+    if (!pageUrl) {
+      return Promise.resolve(emptyRes);
+    }
 
     // Flow:
     // Resolve website..
@@ -123,7 +157,6 @@ export class FrontendResolver {
       return Promise.resolve(emptyRes);
       // throw new Error(`No language for website was found...`);
     }
-    console.log(resolvedUrl);
     // Now page
     let pages = [];
     if (resolvedUrl.pages && resolvedUrl.pages.length > 0) {
@@ -138,7 +171,6 @@ export class FrontendResolver {
       pages.push('');
     }
 
-    const pageObjects = [];
     const pageInfo = `{
       id
       tags {
@@ -166,43 +198,27 @@ export class FrontendResolver {
         createdAt
       },
     }`;
-
-    for (const page of pages) {
-      let parent = null;
-      if (pageObjects.length > 0) {
-        parent = {
-          id_in: [pageObjects[pageObjects.length - 1].id],
-        };
-      }
-
-      const p = await this.prisma.query.pages(
-        {
-          where: {
-            ...(parent ? { parent } : {}),
-            website: {
-              id_in: [websiteObject.id],
-            },
-            translations_some: {
-              url_in: [page],
-            },
+    const p = await this.prisma.query.pages(
+      {
+        where: {
+          website: {
+            id_in: [websiteObject.id],
           },
+          id: pageUrl.page,
         },
-        pageInfo,
-      );
-
-      if (!p || p.length < 1) {
-        return Promise.resolve(emptyRes);
-        // throw new Error(`Page ${page} was not found...`);
-      }
-
-      const pn = {
-        ...p[0].translations[0],
+      },
+      pageInfo,
+    );
+    let page;
+    if (p[0]) {
+      page = {
         ...p[0],
+        ...p[0].translations[0],
       };
 
-      delete pn.translations;
-
-      pageObjects.push(pn);
+      delete page.translations;
+    } else {
+      return Promise.resolve(emptyRes);
     }
 
     // Get SEO from plugin for page
@@ -213,7 +229,7 @@ export class FrontendResolver {
 
     const pluginWhere = {
       page: {
-        id_in: [pageObjects[pageObjects.length - 1].id],
+        id_in: [page.id],
       },
       language: {
         id_in: [languageObject.id],
@@ -254,10 +270,11 @@ export class FrontendResolver {
     const res = {
       website: websiteObject,
       language: languageObject,
-      page: pageObjects[pageObjects.length - 1],
+      page,
       navigations,
       languages: websiteObject.languages,
       seo,
+      datasourceItems: pageDatasourceItems,
     };
 
     return Promise.resolve(res);
