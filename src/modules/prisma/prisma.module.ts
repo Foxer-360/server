@@ -20,6 +20,7 @@ import { SubscriptionsService } from 'modules/subscriptions/subscriptions.servic
 import { SubscriptionsModule } from 'modules/subscriptions/subscriptions.module';
 import { FrontendService } from './services/frontend.service';
 import { importSchema } from 'graphql-import';
+import { PageAnnotationResolver } from './resolvers/pageAnnotation.resolver';
 
 import { applyMiddleware } from 'graphql-middleware';
 import graphqlPlayground from 'graphql-playground-middleware-express';
@@ -30,7 +31,7 @@ import { checkJwt } from '../../middleware';
   imports: [GraphQLModule, SubscriptionsModule.forRoot(5001)],
   providers: [prismaProvider, LanguageResolver, ProjectResolver, WebsiteResolver, PageTypeResolver,
     PageResolver, PageTaskResolver, PageChatResolver, PageTranslationResolver, FrontendResolver, FrontendService, NavigationResolver,
-    TagResolver, PagePluginResolver, SubscriberResolver, InquiryResolver],
+    TagResolver, PagePluginResolver, SubscriberResolver, InquiryResolver, PageAnnotationResolver],
   exports: [prismaProvider],
 })
 export class PrismaModule implements NestModule {

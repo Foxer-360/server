@@ -7,8 +7,9 @@ type Mutation {
   createProject(data: ProjectCreateInput!): Project!
   createPageTranslation(data: PageTranslationCreateInput!): PageTranslation!
   createPagePlugin(data: PagePluginCreateInput!): PagePlugin!
-  createPageTask(data: PageTaskCreateInput!): PageTaskWithUser!
-  createPageChat(data: PageChatCreateInput!): PageChatWithUser!
+  createPageTask(data: PageTaskCreateInput!): PageTask!
+  createPageChat(data: PageChatCreateInput!): PageChat!
+  createPageAnnotation(data: PageAnnotationCreateInput!): PageAnnotation!
   createFile(data: FileCreateInput!): File!
   createNavigation(data: NavigationCreateInput!): Navigation!
   createNavigationNode(data: NavigationNodeCreateInput!): NavigationNode!
@@ -21,8 +22,9 @@ type Mutation {
   updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
   updatePageTranslation(data: PageTranslationUpdateInput!, where: PageTranslationWhereUniqueInput!): PageTranslation
   updatePagePlugin(data: PagePluginUpdateInput!, where: PagePluginWhereUniqueInput!): PagePlugin
-  updatePageTask(data: PageTaskUpdateInput!, where: PageTaskWhereUniqueInput!): PageTaskWithUser
-  updatePageChat(data: PageChatUpdateInput!, where: PageChatWhereUniqueInput!): PageChatWithUser
+  updatePageTask(data: PageTaskUpdateInput!, where: PageTaskWhereUniqueInput!): PageTask
+  updatePageChat(data: PageChatUpdateInput!, where: PageChatWhereUniqueInput!): PageChat
+  updatePageAnnotation(data: PageAnnotationUpdateInput!, where: PageAnnotationWhereUniqueInput!): PageAnnotation
   updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
   updateNavigation(data: NavigationUpdateInput!, where: NavigationWhereUniqueInput!): Navigation
   updateNavigationNode(data: NavigationNodeUpdateInput!, where: NavigationNodeWhereUniqueInput!): NavigationNode
@@ -36,8 +38,9 @@ type Mutation {
   deleteProject(where: ProjectWhereUniqueInput!): Project
   deletePageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
   deletePagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
-  deletePageTask(where: PageTaskWhereUniqueInput!): PageTaskWithUser
-  deletePageChat(where: PageChatWhereUniqueInput!): PageChatWithUser
+  deletePageTask(where: PageTaskWhereUniqueInput!): PageTask
+  deletePageChat(where: PageChatWhereUniqueInput!): PageChat
+  deletePageAnnotation(where: PageAnnotationWhereUniqueInput!): PageAnnotation
   deleteFile(where: FileWhereUniqueInput!): File
   deleteNavigation(where: NavigationWhereUniqueInput!): Navigation
   deleteNavigationNode(where: NavigationNodeWhereUniqueInput!): NavigationNode
@@ -51,8 +54,9 @@ type Mutation {
   upsertProject(where: ProjectWhereUniqueInput!, create: ProjectCreateInput!, update: ProjectUpdateInput!): Project!
   upsertPageTranslation(where: PageTranslationWhereUniqueInput!, create: PageTranslationCreateInput!, update: PageTranslationUpdateInput!): PageTranslation!
   upsertPagePlugin(where: PagePluginWhereUniqueInput!, create: PagePluginCreateInput!, update: PagePluginUpdateInput!): PagePlugin!
-  upsertPageTask(where: PageTaskWhereUniqueInput!, create: PageTaskCreateInput!, update: PageTaskUpdateInput!): PageTaskWithUser!
-  upsertPageChat(where: PageChatWhereUniqueInput!, create: PageChatCreateInput!, update: PageChatUpdateInput!): PageChatWithUser!
+  upsertPageTask(where: PageTaskWhereUniqueInput!, create: PageTaskCreateInput!, update: PageTaskUpdateInput!): PageTask!
+  upsertPageChat(where: PageChatWhereUniqueInput!, create: PageChatCreateInput!, update: PageChatUpdateInput!): PageChat!
+  upsertPageAnnotation(where: PageAnnotationWhereUniqueInput!, create: PageAnnotationCreateInput!, update: PageAnnotationUpdateInput!): PageAnnotation!
   upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
   upsertNavigation(where: NavigationWhereUniqueInput!, create: NavigationCreateInput!, update: NavigationUpdateInput!): Navigation!
   upsertNavigationNode(where: NavigationNodeWhereUniqueInput!, create: NavigationNodeCreateInput!, update: NavigationNodeUpdateInput!): NavigationNode!
@@ -63,26 +67,27 @@ type Mutation {
   upsertPageType(where: PageTypeWhereUniqueInput!, create: PageTypeCreateInput!, update: PageTypeUpdateInput!): PageType!
   upsertWebsite(where: WebsiteWhereUniqueInput!, create: WebsiteCreateInput!, update: WebsiteUpdateInput!): Website!
   upsertLanguage(where: LanguageWhereUniqueInput!, create: LanguageCreateInput!, update: LanguageUpdateInput!): Language!
-  updateManyProjects(data: ProjectUpdateInput!, where: ProjectWhereInput): BatchPayload!
-  updateManyPageTranslations(data: PageTranslationUpdateInput!, where: PageTranslationWhereInput): BatchPayload!
-  updateManyPagePlugins(data: PagePluginUpdateInput!, where: PagePluginWhereInput): BatchPayload!
-  updateManyPageTasks(data: PageTaskUpdateInput!, where: PageTaskWhereInput): BatchPayload!
-  updateManyPageChats(data: PageChatUpdateInput!, where: PageChatWhereInput): BatchPayload!
-  updateManyFiles(data: FileUpdateInput!, where: FileWhereInput): BatchPayload!
-  updateManyNavigations(data: NavigationUpdateInput!, where: NavigationWhereInput): BatchPayload!
-  updateManyNavigationNodes(data: NavigationNodeUpdateInput!, where: NavigationNodeWhereInput): BatchPayload!
-  updateManyTags(data: TagUpdateInput!, where: TagWhereInput): BatchPayload!
-  updateManySubscribers(data: SubscriberUpdateInput!, where: SubscriberWhereInput): BatchPayload!
-  updateManyInquiries(data: InquiryUpdateInput!, where: InquiryWhereInput): BatchPayload!
-  updateManyPages(data: PageUpdateInput!, where: PageWhereInput): BatchPayload!
-  updateManyPageTypes(data: PageTypeUpdateInput!, where: PageTypeWhereInput): BatchPayload!
-  updateManyWebsites(data: WebsiteUpdateInput!, where: WebsiteWhereInput): BatchPayload!
-  updateManyLanguages(data: LanguageUpdateInput!, where: LanguageWhereInput): BatchPayload!
+  updateManyProjects(data: ProjectUpdateManyMutationInput!, where: ProjectWhereInput): BatchPayload!
+  updateManyPageTranslations(data: PageTranslationUpdateManyMutationInput!, where: PageTranslationWhereInput): BatchPayload!
+  updateManyPagePlugins(data: PagePluginUpdateManyMutationInput!, where: PagePluginWhereInput): BatchPayload!
+  updateManyPageTasks(data: PageTaskUpdateManyMutationInput!, where: PageTaskWhereInput): BatchPayload!
+  updateManyPageChats(data: PageChatUpdateManyMutationInput!, where: PageChatWhereInput): BatchPayload!
+  updateManyPageAnnotations(data: PageAnnotationUpdateManyMutationInput!, where: PageAnnotationWhereInput): BatchPayload!
+  updateManyFiles(data: FileUpdateManyMutationInput!, where: FileWhereInput): BatchPayload!
+  updateManyNavigations(data: NavigationUpdateManyMutationInput!, where: NavigationWhereInput): BatchPayload!
+  updateManyNavigationNodes(data: NavigationNodeUpdateManyMutationInput!, where: NavigationNodeWhereInput): BatchPayload!
+  updateManyTags(data: TagUpdateManyMutationInput!, where: TagWhereInput): BatchPayload!
+  updateManySubscribers(data: SubscriberUpdateManyMutationInput!, where: SubscriberWhereInput): BatchPayload!
+  updateManyInquiries(data: InquiryUpdateManyMutationInput!, where: InquiryWhereInput): BatchPayload!
+  updateManyPageTypes(data: PageTypeUpdateManyMutationInput!, where: PageTypeWhereInput): BatchPayload!
+  updateManyWebsites(data: WebsiteUpdateManyMutationInput!, where: WebsiteWhereInput): BatchPayload!
+  updateManyLanguages(data: LanguageUpdateManyMutationInput!, where: LanguageWhereInput): BatchPayload!
   deleteManyProjects(where: ProjectWhereInput): BatchPayload!
   deleteManyPageTranslations(where: PageTranslationWhereInput): BatchPayload!
   deleteManyPagePlugins(where: PagePluginWhereInput): BatchPayload!
   deleteManyPageTasks(where: PageTaskWhereInput): BatchPayload!
   deleteManyPageChats(where: PageChatWhereInput): BatchPayload!
+  deleteManyPageAnnotations(where: PageAnnotationWhereInput): BatchPayload!
   deleteManyFiles(where: FileWhereInput): BatchPayload!
   deleteManyNavigations(where: NavigationWhereInput): BatchPayload!
   deleteManyNavigationNodes(where: NavigationNodeWhereInput): BatchPayload!
@@ -129,8 +134,9 @@ type Query {
   projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
   pageTranslations(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTranslation]!
   pagePlugins(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PagePlugin]!
-  pageTasks(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTaskWithUser]!
-  pageChats(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageChatWithUser]!
+  pageTasks(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTask]!
+  pageChats(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageChat]!
+  pageAnnotations(where: PageAnnotationWhereInput, orderBy: PageAnnotationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageAnnotation]!
   files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File]!
   navigations(where: NavigationWhereInput, orderBy: NavigationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Navigation]!
   navigationNodes(where: NavigationNodeWhereInput, orderBy: NavigationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [NavigationNode]!
@@ -144,8 +150,9 @@ type Query {
   project(where: ProjectWhereUniqueInput!): Project
   pageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
   pagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
-  pageTask(where: PageTaskWhereUniqueInput!): PageTaskWithUser
-  pageChat(where: PageChatWhereUniqueInput!): PageChatWithUser
+  pageTask(where: PageTaskWhereUniqueInput!): PageTask
+  pageChat(where: PageChatWhereUniqueInput!): PageChat
+  pageAnnotation(where: PageAnnotationWhereUniqueInput!): PageAnnotation
   file(where: FileWhereUniqueInput!): File
   navigation(where: NavigationWhereUniqueInput!): Navigation
   navigationNode(where: NavigationNodeWhereUniqueInput!): NavigationNode
@@ -161,6 +168,7 @@ type Query {
   pagePluginsConnection(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PagePluginConnection!
   pageTasksConnection(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTaskConnection!
   pageChatsConnection(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageChatConnection!
+  pageAnnotationsConnection(where: PageAnnotationWhereInput, orderBy: PageAnnotationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageAnnotationConnection!
   filesConnection(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
   navigationsConnection(where: NavigationWhereInput, orderBy: NavigationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NavigationConnection!
   navigationNodesConnection(where: NavigationNodeWhereInput, orderBy: NavigationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NavigationNodeConnection!

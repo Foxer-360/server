@@ -9,6 +9,7 @@ export interface Query {
     pagePlugins: <T = Array<PagePlugin | null>>(args: { where?: PagePluginWhereInput | null, orderBy?: PagePluginOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageTasks: <T = Array<PageTask | null>>(args: { where?: PageTaskWhereInput | null, orderBy?: PageTaskOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageChats: <T = Array<PageChat | null>>(args: { where?: PageChatWhereInput | null, orderBy?: PageChatOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    pageAnnotations: <T = Array<PageAnnotation | null>>(args: { where?: PageAnnotationWhereInput | null, orderBy?: PageAnnotationOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     files: <T = Array<File | null>>(args: { where?: FileWhereInput | null, orderBy?: FileOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     navigations: <T = Array<Navigation | null>>(args: { where?: NavigationWhereInput | null, orderBy?: NavigationOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     navigationNodes: <T = Array<NavigationNode | null>>(args: { where?: NavigationNodeWhereInput | null, orderBy?: NavigationNodeOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -24,6 +25,7 @@ export interface Query {
     pagePlugin: <T = PagePlugin | null>(args: { where: PagePluginWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     pageTask: <T = PageTask | null>(args: { where: PageTaskWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     pageChat: <T = PageChat | null>(args: { where: PageChatWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    pageAnnotation: <T = PageAnnotation | null>(args: { where: PageAnnotationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     file: <T = File | null>(args: { where: FileWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     navigation: <T = Navigation | null>(args: { where: NavigationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     navigationNode: <T = NavigationNode | null>(args: { where: NavigationNodeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
@@ -39,6 +41,7 @@ export interface Query {
     pagePluginsConnection: <T = PagePluginConnection>(args: { where?: PagePluginWhereInput | null, orderBy?: PagePluginOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageTasksConnection: <T = PageTaskConnection>(args: { where?: PageTaskWhereInput | null, orderBy?: PageTaskOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageChatsConnection: <T = PageChatConnection>(args: { where?: PageChatWhereInput | null, orderBy?: PageChatOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    pageAnnotationsConnection: <T = PageAnnotationConnection>(args: { where?: PageAnnotationWhereInput | null, orderBy?: PageAnnotationOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     filesConnection: <T = FileConnection>(args: { where?: FileWhereInput | null, orderBy?: FileOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     navigationsConnection: <T = NavigationConnection>(args: { where?: NavigationWhereInput | null, orderBy?: NavigationOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     navigationNodesConnection: <T = NavigationNodeConnection>(args: { where?: NavigationNodeWhereInput | null, orderBy?: NavigationNodeOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -58,6 +61,7 @@ export interface Mutation {
     createPagePlugin: <T = PagePlugin>(args: { data: PagePluginCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createPageTask: <T = PageTask>(args: { data: PageTaskCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createPageChat: <T = PageChat>(args: { data: PageChatCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    createPageAnnotation: <T = PageAnnotation>(args: { data: PageAnnotationCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createFile: <T = File>(args: { data: FileCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createNavigation: <T = Navigation>(args: { data: NavigationCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createNavigationNode: <T = NavigationNode>(args: { data: NavigationNodeCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -73,6 +77,7 @@ export interface Mutation {
     updatePagePlugin: <T = PagePlugin | null>(args: { data: PagePluginUpdateInput, where: PagePluginWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updatePageTask: <T = PageTask | null>(args: { data: PageTaskUpdateInput, where: PageTaskWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updatePageChat: <T = PageChat | null>(args: { data: PageChatUpdateInput, where: PageChatWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    updatePageAnnotation: <T = PageAnnotation | null>(args: { data: PageAnnotationUpdateInput, where: PageAnnotationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updateFile: <T = File | null>(args: { data: FileUpdateInput, where: FileWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updateNavigation: <T = Navigation | null>(args: { data: NavigationUpdateInput, where: NavigationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updateNavigationNode: <T = NavigationNode | null>(args: { data: NavigationNodeUpdateInput, where: NavigationNodeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
@@ -88,6 +93,7 @@ export interface Mutation {
     deletePagePlugin: <T = PagePlugin | null>(args: { where: PagePluginWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deletePageTask: <T = PageTask | null>(args: { where: PageTaskWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deletePageChat: <T = PageChat | null>(args: { where: PageChatWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    deletePageAnnotation: <T = PageAnnotation | null>(args: { where: PageAnnotationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deleteFile: <T = File | null>(args: { where: FileWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deleteNavigation: <T = Navigation | null>(args: { where: NavigationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deleteNavigationNode: <T = NavigationNode | null>(args: { where: NavigationNodeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
@@ -103,6 +109,7 @@ export interface Mutation {
     upsertPagePlugin: <T = PagePlugin>(args: { where: PagePluginWhereUniqueInput, create: PagePluginCreateInput, update: PagePluginUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertPageTask: <T = PageTask>(args: { where: PageTaskWhereUniqueInput, create: PageTaskCreateInput, update: PageTaskUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertPageChat: <T = PageChat>(args: { where: PageChatWhereUniqueInput, create: PageChatCreateInput, update: PageChatUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    upsertPageAnnotation: <T = PageAnnotation>(args: { where: PageAnnotationWhereUniqueInput, create: PageAnnotationCreateInput, update: PageAnnotationUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertFile: <T = File>(args: { where: FileWhereUniqueInput, create: FileCreateInput, update: FileUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertNavigation: <T = Navigation>(args: { where: NavigationWhereUniqueInput, create: NavigationCreateInput, update: NavigationUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertNavigationNode: <T = NavigationNode>(args: { where: NavigationNodeWhereUniqueInput, create: NavigationNodeCreateInput, update: NavigationNodeUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -113,26 +120,27 @@ export interface Mutation {
     upsertPageType: <T = PageType>(args: { where: PageTypeWhereUniqueInput, create: PageTypeCreateInput, update: PageTypeUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertWebsite: <T = Website>(args: { where: WebsiteWhereUniqueInput, create: WebsiteCreateInput, update: WebsiteUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertLanguage: <T = Language>(args: { where: LanguageWhereUniqueInput, create: LanguageCreateInput, update: LanguageUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyProjects: <T = BatchPayload>(args: { data: ProjectUpdateInput, where?: ProjectWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyPageTranslations: <T = BatchPayload>(args: { data: PageTranslationUpdateInput, where?: PageTranslationWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyPagePlugins: <T = BatchPayload>(args: { data: PagePluginUpdateInput, where?: PagePluginWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyPageTasks: <T = BatchPayload>(args: { data: PageTaskUpdateInput, where?: PageTaskWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyPageChats: <T = BatchPayload>(args: { data: PageChatUpdateInput, where?: PageChatWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyFiles: <T = BatchPayload>(args: { data: FileUpdateInput, where?: FileWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyNavigations: <T = BatchPayload>(args: { data: NavigationUpdateInput, where?: NavigationWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyNavigationNodes: <T = BatchPayload>(args: { data: NavigationNodeUpdateInput, where?: NavigationNodeWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyTags: <T = BatchPayload>(args: { data: TagUpdateInput, where?: TagWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManySubscribers: <T = BatchPayload>(args: { data: SubscriberUpdateInput, where?: SubscriberWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyInquiries: <T = BatchPayload>(args: { data: InquiryUpdateInput, where?: InquiryWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyPages: <T = BatchPayload>(args: { data: PageUpdateInput, where?: PageWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyPageTypes: <T = BatchPayload>(args: { data: PageTypeUpdateInput, where?: PageTypeWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyWebsites: <T = BatchPayload>(args: { data: WebsiteUpdateInput, where?: WebsiteWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyLanguages: <T = BatchPayload>(args: { data: LanguageUpdateInput, where?: LanguageWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyProjects: <T = BatchPayload>(args: { data: ProjectUpdateManyMutationInput, where?: ProjectWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyPageTranslations: <T = BatchPayload>(args: { data: PageTranslationUpdateManyMutationInput, where?: PageTranslationWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyPagePlugins: <T = BatchPayload>(args: { data: PagePluginUpdateManyMutationInput, where?: PagePluginWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyPageTasks: <T = BatchPayload>(args: { data: PageTaskUpdateManyMutationInput, where?: PageTaskWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyPageChats: <T = BatchPayload>(args: { data: PageChatUpdateManyMutationInput, where?: PageChatWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyPageAnnotations: <T = BatchPayload>(args: { data: PageAnnotationUpdateManyMutationInput, where?: PageAnnotationWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyFiles: <T = BatchPayload>(args: { data: FileUpdateManyMutationInput, where?: FileWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyNavigations: <T = BatchPayload>(args: { data: NavigationUpdateManyMutationInput, where?: NavigationWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyNavigationNodes: <T = BatchPayload>(args: { data: NavigationNodeUpdateManyMutationInput, where?: NavigationNodeWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyTags: <T = BatchPayload>(args: { data: TagUpdateManyMutationInput, where?: TagWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManySubscribers: <T = BatchPayload>(args: { data: SubscriberUpdateManyMutationInput, where?: SubscriberWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyInquiries: <T = BatchPayload>(args: { data: InquiryUpdateManyMutationInput, where?: InquiryWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyPageTypes: <T = BatchPayload>(args: { data: PageTypeUpdateManyMutationInput, where?: PageTypeWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyWebsites: <T = BatchPayload>(args: { data: WebsiteUpdateManyMutationInput, where?: WebsiteWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyLanguages: <T = BatchPayload>(args: { data: LanguageUpdateManyMutationInput, where?: LanguageWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyProjects: <T = BatchPayload>(args: { where?: ProjectWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyPageTranslations: <T = BatchPayload>(args: { where?: PageTranslationWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyPagePlugins: <T = BatchPayload>(args: { where?: PagePluginWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyPageTasks: <T = BatchPayload>(args: { where?: PageTaskWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyPageChats: <T = BatchPayload>(args: { where?: PageChatWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    deleteManyPageAnnotations: <T = BatchPayload>(args: { where?: PageAnnotationWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyFiles: <T = BatchPayload>(args: { where?: FileWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyNavigations: <T = BatchPayload>(args: { where?: NavigationWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyNavigationNodes: <T = BatchPayload>(args: { where?: NavigationNodeWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -151,6 +159,7 @@ export interface Subscription {
     pagePlugin: <T = PagePluginSubscriptionPayload | null>(args: { where?: PagePluginSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     pageTask: <T = PageTaskSubscriptionPayload | null>(args: { where?: PageTaskSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     pageChat: <T = PageChatSubscriptionPayload | null>(args: { where?: PageChatSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
+    pageAnnotation: <T = PageAnnotationSubscriptionPayload | null>(args: { where?: PageAnnotationSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     file: <T = FileSubscriptionPayload | null>(args: { where?: FileSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     navigation: <T = NavigationSubscriptionPayload | null>(args: { where?: NavigationSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     navigationNode: <T = NavigationNodeSubscriptionPayload | null>(args: { where?: NavigationNodeSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
@@ -169,6 +178,7 @@ export interface Exists {
   PagePlugin: (where?: PagePluginWhereInput) => Promise<boolean>
   PageTask: (where?: PageTaskWhereInput) => Promise<boolean>
   PageChat: (where?: PageChatWhereInput) => Promise<boolean>
+  PageAnnotation: (where?: PageAnnotationWhereInput) => Promise<boolean>
   File: (where?: FileWhereInput) => Promise<boolean>
   Navigation: (where?: NavigationWhereInput) => Promise<boolean>
   NavigationNode: (where?: NavigationNodeWhereInput) => Promise<boolean>
@@ -224,6 +234,10 @@ type AggregateNavigationNode {
 }
 
 type AggregatePage {
+  count: Int!
+}
+
+type AggregatePageAnnotation {
   count: Int!
 }
 
@@ -378,6 +392,14 @@ input FileSubscriptionWhereInput {
 }
 
 input FileUpdateInput {
+  hash: String
+  category: String
+  filename: String
+  mimetype: String
+  size: Int
+}
+
+input FileUpdateManyMutationInput {
   hash: String
   category: String
   filename: String
@@ -768,6 +790,12 @@ input InquiryUpdateInput {
   ip: String
 }
 
+input InquiryUpdateManyMutationInput {
+  message: Json
+  url: String
+  ip: String
+}
+
 input InquiryWhereInput {
   """Logical AND on all given filters."""
   AND: [InquiryWhereInput!]
@@ -1002,6 +1030,185 @@ type LanguagePreviousValues {
   isEnabled: Boolean!
 }
 
+input LanguageScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [LanguageScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [LanguageScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [LanguageScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  code: String
+
+  """All values that are not equal to given value."""
+  code_not: String
+
+  """All values that are contained in given list."""
+  code_in: [String!]
+
+  """All values that are not contained in given list."""
+  code_not_in: [String!]
+
+  """All values less than the given value."""
+  code_lt: String
+
+  """All values less than or equal the given value."""
+  code_lte: String
+
+  """All values greater than the given value."""
+  code_gt: String
+
+  """All values greater than or equal the given value."""
+  code_gte: String
+
+  """All values containing the given string."""
+  code_contains: String
+
+  """All values not containing the given string."""
+  code_not_contains: String
+
+  """All values starting with the given string."""
+  code_starts_with: String
+
+  """All values not starting with the given string."""
+  code_not_starts_with: String
+
+  """All values ending with the given string."""
+  code_ends_with: String
+
+  """All values not ending with the given string."""
+  code_not_ends_with: String
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  englishName: String
+
+  """All values that are not equal to given value."""
+  englishName_not: String
+
+  """All values that are contained in given list."""
+  englishName_in: [String!]
+
+  """All values that are not contained in given list."""
+  englishName_not_in: [String!]
+
+  """All values less than the given value."""
+  englishName_lt: String
+
+  """All values less than or equal the given value."""
+  englishName_lte: String
+
+  """All values greater than the given value."""
+  englishName_gt: String
+
+  """All values greater than or equal the given value."""
+  englishName_gte: String
+
+  """All values containing the given string."""
+  englishName_contains: String
+
+  """All values not containing the given string."""
+  englishName_not_contains: String
+
+  """All values starting with the given string."""
+  englishName_starts_with: String
+
+  """All values not starting with the given string."""
+  englishName_not_starts_with: String
+
+  """All values ending with the given string."""
+  englishName_ends_with: String
+
+  """All values not ending with the given string."""
+  englishName_not_ends_with: String
+  isDefault: Boolean
+
+  """All values that are not equal to given value."""
+  isDefault_not: Boolean
+  isEnabled: Boolean
+
+  """All values that are not equal to given value."""
+  isEnabled_not: Boolean
+}
+
 type LanguageSubscriptionPayload {
   mutation: MutationType!
   node: Language
@@ -1057,19 +1264,42 @@ input LanguageUpdateInput {
   isEnabled: Boolean
 }
 
+input LanguageUpdateManyDataInput {
+  code: String
+  name: String
+  englishName: String
+  isDefault: Boolean
+  isEnabled: Boolean
+}
+
 input LanguageUpdateManyInput {
   create: [LanguageCreateInput!]
   connect: [LanguageWhereUniqueInput!]
+  set: [LanguageWhereUniqueInput!]
   disconnect: [LanguageWhereUniqueInput!]
   delete: [LanguageWhereUniqueInput!]
   update: [LanguageUpdateWithWhereUniqueNestedInput!]
+  updateMany: [LanguageUpdateManyWithWhereNestedInput!]
+  deleteMany: [LanguageScalarWhereInput!]
   upsert: [LanguageUpsertWithWhereUniqueNestedInput!]
 }
 
-input LanguageUpdateOneInput {
+input LanguageUpdateManyMutationInput {
+  code: String
+  name: String
+  englishName: String
+  isDefault: Boolean
+  isEnabled: Boolean
+}
+
+input LanguageUpdateManyWithWhereNestedInput {
+  where: LanguageScalarWhereInput!
+  data: LanguageUpdateManyDataInput!
+}
+
+input LanguageUpdateOneRequiredInput {
   create: LanguageCreateInput
   connect: LanguageWhereUniqueInput
-  delete: Boolean
   update: LanguageUpdateDataInput
   upsert: LanguageUpsertNestedInput
 }
@@ -1285,6 +1515,7 @@ type Mutation {
   createPagePlugin(data: PagePluginCreateInput!): PagePlugin!
   createPageTask(data: PageTaskCreateInput!): PageTask!
   createPageChat(data: PageChatCreateInput!): PageChat!
+  createPageAnnotation(data: PageAnnotationCreateInput!): PageAnnotation!
   createFile(data: FileCreateInput!): File!
   createNavigation(data: NavigationCreateInput!): Navigation!
   createNavigationNode(data: NavigationNodeCreateInput!): NavigationNode!
@@ -1300,6 +1531,7 @@ type Mutation {
   updatePagePlugin(data: PagePluginUpdateInput!, where: PagePluginWhereUniqueInput!): PagePlugin
   updatePageTask(data: PageTaskUpdateInput!, where: PageTaskWhereUniqueInput!): PageTask
   updatePageChat(data: PageChatUpdateInput!, where: PageChatWhereUniqueInput!): PageChat
+  updatePageAnnotation(data: PageAnnotationUpdateInput!, where: PageAnnotationWhereUniqueInput!): PageAnnotation
   updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
   updateNavigation(data: NavigationUpdateInput!, where: NavigationWhereUniqueInput!): Navigation
   updateNavigationNode(data: NavigationNodeUpdateInput!, where: NavigationNodeWhereUniqueInput!): NavigationNode
@@ -1315,6 +1547,7 @@ type Mutation {
   deletePagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
   deletePageTask(where: PageTaskWhereUniqueInput!): PageTask
   deletePageChat(where: PageChatWhereUniqueInput!): PageChat
+  deletePageAnnotation(where: PageAnnotationWhereUniqueInput!): PageAnnotation
   deleteFile(where: FileWhereUniqueInput!): File
   deleteNavigation(where: NavigationWhereUniqueInput!): Navigation
   deleteNavigationNode(where: NavigationNodeWhereUniqueInput!): NavigationNode
@@ -1330,6 +1563,7 @@ type Mutation {
   upsertPagePlugin(where: PagePluginWhereUniqueInput!, create: PagePluginCreateInput!, update: PagePluginUpdateInput!): PagePlugin!
   upsertPageTask(where: PageTaskWhereUniqueInput!, create: PageTaskCreateInput!, update: PageTaskUpdateInput!): PageTask!
   upsertPageChat(where: PageChatWhereUniqueInput!, create: PageChatCreateInput!, update: PageChatUpdateInput!): PageChat!
+  upsertPageAnnotation(where: PageAnnotationWhereUniqueInput!, create: PageAnnotationCreateInput!, update: PageAnnotationUpdateInput!): PageAnnotation!
   upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
   upsertNavigation(where: NavigationWhereUniqueInput!, create: NavigationCreateInput!, update: NavigationUpdateInput!): Navigation!
   upsertNavigationNode(where: NavigationNodeWhereUniqueInput!, create: NavigationNodeCreateInput!, update: NavigationNodeUpdateInput!): NavigationNode!
@@ -1340,26 +1574,27 @@ type Mutation {
   upsertPageType(where: PageTypeWhereUniqueInput!, create: PageTypeCreateInput!, update: PageTypeUpdateInput!): PageType!
   upsertWebsite(where: WebsiteWhereUniqueInput!, create: WebsiteCreateInput!, update: WebsiteUpdateInput!): Website!
   upsertLanguage(where: LanguageWhereUniqueInput!, create: LanguageCreateInput!, update: LanguageUpdateInput!): Language!
-  updateManyProjects(data: ProjectUpdateInput!, where: ProjectWhereInput): BatchPayload!
-  updateManyPageTranslations(data: PageTranslationUpdateInput!, where: PageTranslationWhereInput): BatchPayload!
-  updateManyPagePlugins(data: PagePluginUpdateInput!, where: PagePluginWhereInput): BatchPayload!
-  updateManyPageTasks(data: PageTaskUpdateInput!, where: PageTaskWhereInput): BatchPayload!
-  updateManyPageChats(data: PageChatUpdateInput!, where: PageChatWhereInput): BatchPayload!
-  updateManyFiles(data: FileUpdateInput!, where: FileWhereInput): BatchPayload!
-  updateManyNavigations(data: NavigationUpdateInput!, where: NavigationWhereInput): BatchPayload!
-  updateManyNavigationNodes(data: NavigationNodeUpdateInput!, where: NavigationNodeWhereInput): BatchPayload!
-  updateManyTags(data: TagUpdateInput!, where: TagWhereInput): BatchPayload!
-  updateManySubscribers(data: SubscriberUpdateInput!, where: SubscriberWhereInput): BatchPayload!
-  updateManyInquiries(data: InquiryUpdateInput!, where: InquiryWhereInput): BatchPayload!
-  updateManyPages(data: PageUpdateInput!, where: PageWhereInput): BatchPayload!
-  updateManyPageTypes(data: PageTypeUpdateInput!, where: PageTypeWhereInput): BatchPayload!
-  updateManyWebsites(data: WebsiteUpdateInput!, where: WebsiteWhereInput): BatchPayload!
-  updateManyLanguages(data: LanguageUpdateInput!, where: LanguageWhereInput): BatchPayload!
+  updateManyProjects(data: ProjectUpdateManyMutationInput!, where: ProjectWhereInput): BatchPayload!
+  updateManyPageTranslations(data: PageTranslationUpdateManyMutationInput!, where: PageTranslationWhereInput): BatchPayload!
+  updateManyPagePlugins(data: PagePluginUpdateManyMutationInput!, where: PagePluginWhereInput): BatchPayload!
+  updateManyPageTasks(data: PageTaskUpdateManyMutationInput!, where: PageTaskWhereInput): BatchPayload!
+  updateManyPageChats(data: PageChatUpdateManyMutationInput!, where: PageChatWhereInput): BatchPayload!
+  updateManyPageAnnotations(data: PageAnnotationUpdateManyMutationInput!, where: PageAnnotationWhereInput): BatchPayload!
+  updateManyFiles(data: FileUpdateManyMutationInput!, where: FileWhereInput): BatchPayload!
+  updateManyNavigations(data: NavigationUpdateManyMutationInput!, where: NavigationWhereInput): BatchPayload!
+  updateManyNavigationNodes(data: NavigationNodeUpdateManyMutationInput!, where: NavigationNodeWhereInput): BatchPayload!
+  updateManyTags(data: TagUpdateManyMutationInput!, where: TagWhereInput): BatchPayload!
+  updateManySubscribers(data: SubscriberUpdateManyMutationInput!, where: SubscriberWhereInput): BatchPayload!
+  updateManyInquiries(data: InquiryUpdateManyMutationInput!, where: InquiryWhereInput): BatchPayload!
+  updateManyPageTypes(data: PageTypeUpdateManyMutationInput!, where: PageTypeWhereInput): BatchPayload!
+  updateManyWebsites(data: WebsiteUpdateManyMutationInput!, where: WebsiteWhereInput): BatchPayload!
+  updateManyLanguages(data: LanguageUpdateManyMutationInput!, where: LanguageWhereInput): BatchPayload!
   deleteManyProjects(where: ProjectWhereInput): BatchPayload!
   deleteManyPageTranslations(where: PageTranslationWhereInput): BatchPayload!
   deleteManyPagePlugins(where: PagePluginWhereInput): BatchPayload!
   deleteManyPageTasks(where: PageTaskWhereInput): BatchPayload!
   deleteManyPageChats(where: PageChatWhereInput): BatchPayload!
+  deleteManyPageAnnotations(where: PageAnnotationWhereInput): BatchPayload!
   deleteManyFiles(where: FileWhereInput): BatchPayload!
   deleteManyNavigations(where: NavigationWhereInput): BatchPayload!
   deleteManyNavigationNodes(where: NavigationNodeWhereInput): BatchPayload!
@@ -1381,7 +1616,7 @@ enum MutationType {
 type Navigation implements Node {
   id: ID!
   name: String!
-  website(where: WebsiteWhereInput): Website!
+  website: Website!
   nodes(where: NavigationNodeWhereInput, orderBy: NavigationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [NavigationNode!]
 }
 
@@ -1422,7 +1657,7 @@ type NavigationEdge {
 
 type NavigationNode implements Node {
   id: ID!
-  navigation(where: NavigationWhereInput): Navigation!
+  navigation: Navigation!
   page: ID
   title: String
   link: String
@@ -1499,6 +1734,239 @@ type NavigationNodePreviousValues {
   parent: ID
 }
 
+input NavigationNodeScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [NavigationNodeScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [NavigationNodeScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [NavigationNodeScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  page: ID
+
+  """All values that are not equal to given value."""
+  page_not: ID
+
+  """All values that are contained in given list."""
+  page_in: [ID!]
+
+  """All values that are not contained in given list."""
+  page_not_in: [ID!]
+
+  """All values less than the given value."""
+  page_lt: ID
+
+  """All values less than or equal the given value."""
+  page_lte: ID
+
+  """All values greater than the given value."""
+  page_gt: ID
+
+  """All values greater than or equal the given value."""
+  page_gte: ID
+
+  """All values containing the given string."""
+  page_contains: ID
+
+  """All values not containing the given string."""
+  page_not_contains: ID
+
+  """All values starting with the given string."""
+  page_starts_with: ID
+
+  """All values not starting with the given string."""
+  page_not_starts_with: ID
+
+  """All values ending with the given string."""
+  page_ends_with: ID
+
+  """All values not ending with the given string."""
+  page_not_ends_with: ID
+  title: String
+
+  """All values that are not equal to given value."""
+  title_not: String
+
+  """All values that are contained in given list."""
+  title_in: [String!]
+
+  """All values that are not contained in given list."""
+  title_not_in: [String!]
+
+  """All values less than the given value."""
+  title_lt: String
+
+  """All values less than or equal the given value."""
+  title_lte: String
+
+  """All values greater than the given value."""
+  title_gt: String
+
+  """All values greater than or equal the given value."""
+  title_gte: String
+
+  """All values containing the given string."""
+  title_contains: String
+
+  """All values not containing the given string."""
+  title_not_contains: String
+
+  """All values starting with the given string."""
+  title_starts_with: String
+
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+
+  """All values ending with the given string."""
+  title_ends_with: String
+
+  """All values not ending with the given string."""
+  title_not_ends_with: String
+  link: String
+
+  """All values that are not equal to given value."""
+  link_not: String
+
+  """All values that are contained in given list."""
+  link_in: [String!]
+
+  """All values that are not contained in given list."""
+  link_not_in: [String!]
+
+  """All values less than the given value."""
+  link_lt: String
+
+  """All values less than or equal the given value."""
+  link_lte: String
+
+  """All values greater than the given value."""
+  link_gt: String
+
+  """All values greater than or equal the given value."""
+  link_gte: String
+
+  """All values containing the given string."""
+  link_contains: String
+
+  """All values not containing the given string."""
+  link_not_contains: String
+
+  """All values starting with the given string."""
+  link_starts_with: String
+
+  """All values not starting with the given string."""
+  link_not_starts_with: String
+
+  """All values ending with the given string."""
+  link_ends_with: String
+
+  """All values not ending with the given string."""
+  link_not_ends_with: String
+  order: Int
+
+  """All values that are not equal to given value."""
+  order_not: Int
+
+  """All values that are contained in given list."""
+  order_in: [Int!]
+
+  """All values that are not contained in given list."""
+  order_not_in: [Int!]
+
+  """All values less than the given value."""
+  order_lt: Int
+
+  """All values less than or equal the given value."""
+  order_lte: Int
+
+  """All values greater than the given value."""
+  order_gt: Int
+
+  """All values greater than or equal the given value."""
+  order_gte: Int
+  parent: ID
+
+  """All values that are not equal to given value."""
+  parent_not: ID
+
+  """All values that are contained in given list."""
+  parent_in: [ID!]
+
+  """All values that are not contained in given list."""
+  parent_not_in: [ID!]
+
+  """All values less than the given value."""
+  parent_lt: ID
+
+  """All values less than or equal the given value."""
+  parent_lte: ID
+
+  """All values greater than the given value."""
+  parent_gt: ID
+
+  """All values greater than or equal the given value."""
+  parent_gte: ID
+
+  """All values containing the given string."""
+  parent_contains: ID
+
+  """All values not containing the given string."""
+  parent_not_contains: ID
+
+  """All values starting with the given string."""
+  parent_starts_with: ID
+
+  """All values not starting with the given string."""
+  parent_not_starts_with: ID
+
+  """All values ending with the given string."""
+  parent_ends_with: ID
+
+  """All values not ending with the given string."""
+  parent_not_ends_with: ID
+}
+
 type NavigationNodeSubscriptionPayload {
   mutation: MutationType!
   node: NavigationNode
@@ -1544,16 +2012,40 @@ input NavigationNodeUpdateInput {
   link: String
   order: Int
   parent: ID
-  navigation: NavigationUpdateOneWithoutNodesInput
+  navigation: NavigationUpdateOneRequiredWithoutNodesInput
+}
+
+input NavigationNodeUpdateManyDataInput {
+  page: ID
+  title: String
+  link: String
+  order: Int
+  parent: ID
+}
+
+input NavigationNodeUpdateManyMutationInput {
+  page: ID
+  title: String
+  link: String
+  order: Int
+  parent: ID
 }
 
 input NavigationNodeUpdateManyWithoutNavigationInput {
   create: [NavigationNodeCreateWithoutNavigationInput!]
   connect: [NavigationNodeWhereUniqueInput!]
+  set: [NavigationNodeWhereUniqueInput!]
   disconnect: [NavigationNodeWhereUniqueInput!]
   delete: [NavigationNodeWhereUniqueInput!]
   update: [NavigationNodeUpdateWithWhereUniqueWithoutNavigationInput!]
+  updateMany: [NavigationNodeUpdateManyWithWhereNestedInput!]
+  deleteMany: [NavigationNodeScalarWhereInput!]
   upsert: [NavigationNodeUpsertWithWhereUniqueWithoutNavigationInput!]
+}
+
+input NavigationNodeUpdateManyWithWhereNestedInput {
+  where: NavigationNodeScalarWhereInput!
+  data: NavigationNodeUpdateManyDataInput!
 }
 
 input NavigationNodeUpdateWithoutNavigationDataInput {
@@ -1870,21 +2362,24 @@ input NavigationSubscriptionWhereInput {
 
 input NavigationUpdateInput {
   name: String
-  website: WebsiteUpdateOneInput
+  website: WebsiteUpdateOneRequiredInput
   nodes: NavigationNodeUpdateManyWithoutNavigationInput
 }
 
-input NavigationUpdateOneWithoutNodesInput {
+input NavigationUpdateManyMutationInput {
+  name: String
+}
+
+input NavigationUpdateOneRequiredWithoutNodesInput {
   create: NavigationCreateWithoutNodesInput
   connect: NavigationWhereUniqueInput
-  delete: Boolean
   update: NavigationUpdateWithoutNodesDataInput
   upsert: NavigationUpsertWithoutNodesInput
 }
 
 input NavigationUpdateWithoutNodesDataInput {
   name: String
-  website: WebsiteUpdateOneInput
+  website: WebsiteUpdateOneRequiredInput
 }
 
 input NavigationUpsertWithoutNodesInput {
@@ -1999,18 +2494,434 @@ interface Node {
 
 type Page implements Node {
   id: ID!
-  parent(where: PageWhereInput): Page
-  website(where: WebsiteWhereInput): Website!
-  type(where: PageTypeWhereInput): PageType!
+  parent: Page
+  website: Website!
+  type: PageType!
   translations(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTranslation!]
   chats(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageChat!]
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag!]
-  plugin(where: PagePluginWhereInput): PagePlugin
+  plugin: PagePlugin
+}
+
+type PageAnnotation implements Node {
+  id: ID!
+  pageTranslation: PageTranslation!
+  key: String!
+  value: String!
+}
+
+"""A connection to a list of items."""
+type PageAnnotationConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [PageAnnotationEdge]!
+  aggregate: AggregatePageAnnotation!
+}
+
+input PageAnnotationCreateInput {
+  key: String!
+  value: String!
+  pageTranslation: PageTranslationCreateOneWithoutAnnotationsInput!
+}
+
+input PageAnnotationCreateManyWithoutPageTranslationInput {
+  create: [PageAnnotationCreateWithoutPageTranslationInput!]
+  connect: [PageAnnotationWhereUniqueInput!]
+}
+
+input PageAnnotationCreateWithoutPageTranslationInput {
+  key: String!
+  value: String!
+}
+
+"""An edge in a connection."""
+type PageAnnotationEdge {
+  """The item at the end of the edge."""
+  node: PageAnnotation!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum PageAnnotationOrderByInput {
+  id_ASC
+  id_DESC
+  key_ASC
+  key_DESC
+  value_ASC
+  value_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type PageAnnotationPreviousValues {
+  id: ID!
+  key: String!
+  value: String!
+}
+
+input PageAnnotationScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PageAnnotationScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PageAnnotationScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PageAnnotationScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  key: String
+
+  """All values that are not equal to given value."""
+  key_not: String
+
+  """All values that are contained in given list."""
+  key_in: [String!]
+
+  """All values that are not contained in given list."""
+  key_not_in: [String!]
+
+  """All values less than the given value."""
+  key_lt: String
+
+  """All values less than or equal the given value."""
+  key_lte: String
+
+  """All values greater than the given value."""
+  key_gt: String
+
+  """All values greater than or equal the given value."""
+  key_gte: String
+
+  """All values containing the given string."""
+  key_contains: String
+
+  """All values not containing the given string."""
+  key_not_contains: String
+
+  """All values starting with the given string."""
+  key_starts_with: String
+
+  """All values not starting with the given string."""
+  key_not_starts_with: String
+
+  """All values ending with the given string."""
+  key_ends_with: String
+
+  """All values not ending with the given string."""
+  key_not_ends_with: String
+  value: String
+
+  """All values that are not equal to given value."""
+  value_not: String
+
+  """All values that are contained in given list."""
+  value_in: [String!]
+
+  """All values that are not contained in given list."""
+  value_not_in: [String!]
+
+  """All values less than the given value."""
+  value_lt: String
+
+  """All values less than or equal the given value."""
+  value_lte: String
+
+  """All values greater than the given value."""
+  value_gt: String
+
+  """All values greater than or equal the given value."""
+  value_gte: String
+
+  """All values containing the given string."""
+  value_contains: String
+
+  """All values not containing the given string."""
+  value_not_contains: String
+
+  """All values starting with the given string."""
+  value_starts_with: String
+
+  """All values not starting with the given string."""
+  value_not_starts_with: String
+
+  """All values ending with the given string."""
+  value_ends_with: String
+
+  """All values not ending with the given string."""
+  value_not_ends_with: String
+}
+
+type PageAnnotationSubscriptionPayload {
+  mutation: MutationType!
+  node: PageAnnotation
+  updatedFields: [String!]
+  previousValues: PageAnnotationPreviousValues
+}
+
+input PageAnnotationSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PageAnnotationSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PageAnnotationSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PageAnnotationSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: PageAnnotationWhereInput
+}
+
+input PageAnnotationUpdateInput {
+  key: String
+  value: String
+  pageTranslation: PageTranslationUpdateOneRequiredWithoutAnnotationsInput
+}
+
+input PageAnnotationUpdateManyDataInput {
+  key: String
+  value: String
+}
+
+input PageAnnotationUpdateManyMutationInput {
+  key: String
+  value: String
+}
+
+input PageAnnotationUpdateManyWithoutPageTranslationInput {
+  create: [PageAnnotationCreateWithoutPageTranslationInput!]
+  connect: [PageAnnotationWhereUniqueInput!]
+  set: [PageAnnotationWhereUniqueInput!]
+  disconnect: [PageAnnotationWhereUniqueInput!]
+  delete: [PageAnnotationWhereUniqueInput!]
+  update: [PageAnnotationUpdateWithWhereUniqueWithoutPageTranslationInput!]
+  updateMany: [PageAnnotationUpdateManyWithWhereNestedInput!]
+  deleteMany: [PageAnnotationScalarWhereInput!]
+  upsert: [PageAnnotationUpsertWithWhereUniqueWithoutPageTranslationInput!]
+}
+
+input PageAnnotationUpdateManyWithWhereNestedInput {
+  where: PageAnnotationScalarWhereInput!
+  data: PageAnnotationUpdateManyDataInput!
+}
+
+input PageAnnotationUpdateWithoutPageTranslationDataInput {
+  key: String
+  value: String
+}
+
+input PageAnnotationUpdateWithWhereUniqueWithoutPageTranslationInput {
+  where: PageAnnotationWhereUniqueInput!
+  data: PageAnnotationUpdateWithoutPageTranslationDataInput!
+}
+
+input PageAnnotationUpsertWithWhereUniqueWithoutPageTranslationInput {
+  where: PageAnnotationWhereUniqueInput!
+  update: PageAnnotationUpdateWithoutPageTranslationDataInput!
+  create: PageAnnotationCreateWithoutPageTranslationInput!
+}
+
+input PageAnnotationWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PageAnnotationWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PageAnnotationWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PageAnnotationWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  key: String
+
+  """All values that are not equal to given value."""
+  key_not: String
+
+  """All values that are contained in given list."""
+  key_in: [String!]
+
+  """All values that are not contained in given list."""
+  key_not_in: [String!]
+
+  """All values less than the given value."""
+  key_lt: String
+
+  """All values less than or equal the given value."""
+  key_lte: String
+
+  """All values greater than the given value."""
+  key_gt: String
+
+  """All values greater than or equal the given value."""
+  key_gte: String
+
+  """All values containing the given string."""
+  key_contains: String
+
+  """All values not containing the given string."""
+  key_not_contains: String
+
+  """All values starting with the given string."""
+  key_starts_with: String
+
+  """All values not starting with the given string."""
+  key_not_starts_with: String
+
+  """All values ending with the given string."""
+  key_ends_with: String
+
+  """All values not ending with the given string."""
+  key_not_ends_with: String
+  value: String
+
+  """All values that are not equal to given value."""
+  value_not: String
+
+  """All values that are contained in given list."""
+  value_in: [String!]
+
+  """All values that are not contained in given list."""
+  value_not_in: [String!]
+
+  """All values less than the given value."""
+  value_lt: String
+
+  """All values less than or equal the given value."""
+  value_lte: String
+
+  """All values greater than the given value."""
+  value_gt: String
+
+  """All values greater than or equal the given value."""
+  value_gte: String
+
+  """All values containing the given string."""
+  value_contains: String
+
+  """All values not containing the given string."""
+  value_not_contains: String
+
+  """All values starting with the given string."""
+  value_starts_with: String
+
+  """All values not starting with the given string."""
+  value_not_starts_with: String
+
+  """All values ending with the given string."""
+  value_ends_with: String
+
+  """All values not ending with the given string."""
+  value_not_ends_with: String
+  pageTranslation: PageTranslationWhereInput
+}
+
+input PageAnnotationWhereUniqueInput {
+  id: ID
 }
 
 type PageChat implements Node {
   id: ID!
-  page(where: PageWhereInput): Page!
+  page: Page!
   text: String!
   createdAt: DateTime!
   auth0id: ID
@@ -2071,6 +2982,159 @@ type PageChatPreviousValues {
   auth0id: ID
 }
 
+input PageChatScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PageChatScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PageChatScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PageChatScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  text: String
+
+  """All values that are not equal to given value."""
+  text_not: String
+
+  """All values that are contained in given list."""
+  text_in: [String!]
+
+  """All values that are not contained in given list."""
+  text_not_in: [String!]
+
+  """All values less than the given value."""
+  text_lt: String
+
+  """All values less than or equal the given value."""
+  text_lte: String
+
+  """All values greater than the given value."""
+  text_gt: String
+
+  """All values greater than or equal the given value."""
+  text_gte: String
+
+  """All values containing the given string."""
+  text_contains: String
+
+  """All values not containing the given string."""
+  text_not_contains: String
+
+  """All values starting with the given string."""
+  text_starts_with: String
+
+  """All values not starting with the given string."""
+  text_not_starts_with: String
+
+  """All values ending with the given string."""
+  text_ends_with: String
+
+  """All values not ending with the given string."""
+  text_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  auth0id: ID
+
+  """All values that are not equal to given value."""
+  auth0id_not: ID
+
+  """All values that are contained in given list."""
+  auth0id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  auth0id_not_in: [ID!]
+
+  """All values less than the given value."""
+  auth0id_lt: ID
+
+  """All values less than or equal the given value."""
+  auth0id_lte: ID
+
+  """All values greater than the given value."""
+  auth0id_gt: ID
+
+  """All values greater than or equal the given value."""
+  auth0id_gte: ID
+
+  """All values containing the given string."""
+  auth0id_contains: ID
+
+  """All values not containing the given string."""
+  auth0id_not_contains: ID
+
+  """All values starting with the given string."""
+  auth0id_starts_with: ID
+
+  """All values not starting with the given string."""
+  auth0id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  auth0id_ends_with: ID
+
+  """All values not ending with the given string."""
+  auth0id_not_ends_with: ID
+}
+
 type PageChatSubscriptionPayload {
   mutation: MutationType!
   node: PageChat
@@ -2113,16 +3177,34 @@ input PageChatSubscriptionWhereInput {
 input PageChatUpdateInput {
   text: String
   auth0id: ID
-  page: PageUpdateOneWithoutChatsInput
+  page: PageUpdateOneRequiredWithoutChatsInput
+}
+
+input PageChatUpdateManyDataInput {
+  text: String
+  auth0id: ID
+}
+
+input PageChatUpdateManyMutationInput {
+  text: String
+  auth0id: ID
 }
 
 input PageChatUpdateManyWithoutPageInput {
   create: [PageChatCreateWithoutPageInput!]
   connect: [PageChatWhereUniqueInput!]
+  set: [PageChatWhereUniqueInput!]
   disconnect: [PageChatWhereUniqueInput!]
   delete: [PageChatWhereUniqueInput!]
   update: [PageChatUpdateWithWhereUniqueWithoutPageInput!]
+  updateMany: [PageChatUpdateManyWithWhereNestedInput!]
+  deleteMany: [PageChatScalarWhereInput!]
   upsert: [PageChatUpsertWithWhereUniqueWithoutPageInput!]
+}
+
+input PageChatUpdateManyWithWhereNestedInput {
+  where: PageChatScalarWhereInput!
+  data: PageChatUpdateManyDataInput!
 }
 
 input PageChatUpdateWithoutPageDataInput {
@@ -2429,8 +3511,8 @@ enum PageOrderByInput {
 
 type PagePlugin implements Node {
   id: ID!
-  page(where: PageWhereInput): Page!
-  language(where: LanguageWhereInput): Language!
+  page: Page!
+  language: Language!
   plugin: String!
   content: Json!
 }
@@ -2533,8 +3615,13 @@ input PagePluginSubscriptionWhereInput {
 input PagePluginUpdateInput {
   plugin: String
   content: Json
-  page: PageUpdateOneWithoutPluginInput
-  language: LanguageUpdateOneInput
+  page: PageUpdateOneRequiredWithoutPluginInput
+  language: LanguageUpdateOneRequiredInput
+}
+
+input PagePluginUpdateManyMutationInput {
+  plugin: String
+  content: Json
 }
 
 input PagePluginUpdateOneWithoutPageInput {
@@ -2549,7 +3636,7 @@ input PagePluginUpdateOneWithoutPageInput {
 input PagePluginUpdateWithoutPageDataInput {
   plugin: String
   content: Json
-  language: LanguageUpdateOneInput
+  language: LanguageUpdateOneRequiredInput
 }
 
 input PagePluginUpsertWithoutPageInput {
@@ -2658,6 +3745,57 @@ type PagePreviousValues {
   id: ID!
 }
 
+input PageScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PageScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PageScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PageScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+}
+
 enum PageStatus {
   DRAFT
   PENDING
@@ -2705,7 +3843,7 @@ input PageSubscriptionWhereInput {
 
 type PageTask implements Node {
   id: ID!
-  pageTranslation(where: PageTranslationWhereInput): PageTranslation!
+  pageTranslation: PageTranslation!
   done: Boolean!
   name: String!
   description: String!
@@ -2778,6 +3916,203 @@ type PageTaskPreviousValues {
   auth0id: ID
 }
 
+input PageTaskScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PageTaskScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PageTaskScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PageTaskScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  done: Boolean
+
+  """All values that are not equal to given value."""
+  done_not: Boolean
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+  auth0id: ID
+
+  """All values that are not equal to given value."""
+  auth0id_not: ID
+
+  """All values that are contained in given list."""
+  auth0id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  auth0id_not_in: [ID!]
+
+  """All values less than the given value."""
+  auth0id_lt: ID
+
+  """All values less than or equal the given value."""
+  auth0id_lte: ID
+
+  """All values greater than the given value."""
+  auth0id_gt: ID
+
+  """All values greater than or equal the given value."""
+  auth0id_gte: ID
+
+  """All values containing the given string."""
+  auth0id_contains: ID
+
+  """All values not containing the given string."""
+  auth0id_not_contains: ID
+
+  """All values starting with the given string."""
+  auth0id_starts_with: ID
+
+  """All values not starting with the given string."""
+  auth0id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  auth0id_ends_with: ID
+
+  """All values not ending with the given string."""
+  auth0id_not_ends_with: ID
+}
+
 type PageTaskSubscriptionPayload {
   mutation: MutationType!
   node: PageTask
@@ -2822,16 +4157,38 @@ input PageTaskUpdateInput {
   name: String
   description: String
   auth0id: ID
-  pageTranslation: PageTranslationUpdateOneWithoutTasksInput
+  pageTranslation: PageTranslationUpdateOneRequiredWithoutTasksInput
+}
+
+input PageTaskUpdateManyDataInput {
+  done: Boolean
+  name: String
+  description: String
+  auth0id: ID
+}
+
+input PageTaskUpdateManyMutationInput {
+  done: Boolean
+  name: String
+  description: String
+  auth0id: ID
 }
 
 input PageTaskUpdateManyWithoutPageTranslationInput {
   create: [PageTaskCreateWithoutPageTranslationInput!]
   connect: [PageTaskWhereUniqueInput!]
+  set: [PageTaskWhereUniqueInput!]
   disconnect: [PageTaskWhereUniqueInput!]
   delete: [PageTaskWhereUniqueInput!]
   update: [PageTaskUpdateWithWhereUniqueWithoutPageTranslationInput!]
+  updateMany: [PageTaskUpdateManyWithWhereNestedInput!]
+  deleteMany: [PageTaskScalarWhereInput!]
   upsert: [PageTaskUpsertWithWhereUniqueWithoutPageTranslationInput!]
+}
+
+input PageTaskUpdateManyWithWhereNestedInput {
+  where: PageTaskScalarWhereInput!
+  data: PageTaskUpdateManyDataInput!
 }
 
 input PageTaskUpdateWithoutPageTranslationDataInput {
@@ -3056,8 +4413,8 @@ input PageTaskWhereUniqueInput {
 
 type PageTranslation implements Node {
   id: ID!
-  page(where: PageWhereInput): Page!
-  language(where: LanguageWhereInput): Language!
+  page: Page!
+  language: Language!
   url: String!
   content: Json!
   name: String!
@@ -3066,6 +4423,7 @@ type PageTranslation implements Node {
   publishedFrom: DateTime
   publishedTo: DateTime
   tasks(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTask!]
+  annotations(where: PageAnnotationWhereInput, orderBy: PageAnnotationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageAnnotation!]
   createdAt: DateTime!
 }
 
@@ -3090,6 +4448,7 @@ input PageTranslationCreateInput {
   page: PageCreateOneWithoutTranslationsInput!
   language: LanguageCreateOneInput!
   tasks: PageTaskCreateManyWithoutPageTranslationInput
+  annotations: PageAnnotationCreateManyWithoutPageTranslationInput
 }
 
 input PageTranslationCreateManyWithoutPageInput {
@@ -3097,9 +4456,27 @@ input PageTranslationCreateManyWithoutPageInput {
   connect: [PageTranslationWhereUniqueInput!]
 }
 
+input PageTranslationCreateOneWithoutAnnotationsInput {
+  create: PageTranslationCreateWithoutAnnotationsInput
+  connect: PageTranslationWhereUniqueInput
+}
+
 input PageTranslationCreateOneWithoutTasksInput {
   create: PageTranslationCreateWithoutTasksInput
   connect: PageTranslationWhereUniqueInput
+}
+
+input PageTranslationCreateWithoutAnnotationsInput {
+  url: String!
+  content: Json
+  name: String
+  status: PageStatus
+  description: String
+  publishedFrom: DateTime
+  publishedTo: DateTime
+  page: PageCreateOneWithoutTranslationsInput!
+  language: LanguageCreateOneInput!
+  tasks: PageTaskCreateManyWithoutPageTranslationInput
 }
 
 input PageTranslationCreateWithoutPageInput {
@@ -3112,6 +4489,7 @@ input PageTranslationCreateWithoutPageInput {
   publishedTo: DateTime
   language: LanguageCreateOneInput!
   tasks: PageTaskCreateManyWithoutPageTranslationInput
+  annotations: PageAnnotationCreateManyWithoutPageTranslationInput
 }
 
 input PageTranslationCreateWithoutTasksInput {
@@ -3124,6 +4502,7 @@ input PageTranslationCreateWithoutTasksInput {
   publishedTo: DateTime
   page: PageCreateOneWithoutTranslationsInput!
   language: LanguageCreateOneInput!
+  annotations: PageAnnotationCreateManyWithoutPageTranslationInput
 }
 
 """An edge in a connection."""
@@ -3168,6 +4547,253 @@ type PageTranslationPreviousValues {
   publishedFrom: DateTime
   publishedTo: DateTime
   createdAt: DateTime!
+}
+
+input PageTranslationScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PageTranslationScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PageTranslationScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PageTranslationScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  url: String
+
+  """All values that are not equal to given value."""
+  url_not: String
+
+  """All values that are contained in given list."""
+  url_in: [String!]
+
+  """All values that are not contained in given list."""
+  url_not_in: [String!]
+
+  """All values less than the given value."""
+  url_lt: String
+
+  """All values less than or equal the given value."""
+  url_lte: String
+
+  """All values greater than the given value."""
+  url_gt: String
+
+  """All values greater than or equal the given value."""
+  url_gte: String
+
+  """All values containing the given string."""
+  url_contains: String
+
+  """All values not containing the given string."""
+  url_not_contains: String
+
+  """All values starting with the given string."""
+  url_starts_with: String
+
+  """All values not starting with the given string."""
+  url_not_starts_with: String
+
+  """All values ending with the given string."""
+  url_ends_with: String
+
+  """All values not ending with the given string."""
+  url_not_ends_with: String
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  status: PageStatus
+
+  """All values that are not equal to given value."""
+  status_not: PageStatus
+
+  """All values that are contained in given list."""
+  status_in: [PageStatus!]
+
+  """All values that are not contained in given list."""
+  status_not_in: [PageStatus!]
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
+  publishedFrom: DateTime
+
+  """All values that are not equal to given value."""
+  publishedFrom_not: DateTime
+
+  """All values that are contained in given list."""
+  publishedFrom_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  publishedFrom_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  publishedFrom_lt: DateTime
+
+  """All values less than or equal the given value."""
+  publishedFrom_lte: DateTime
+
+  """All values greater than the given value."""
+  publishedFrom_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  publishedFrom_gte: DateTime
+  publishedTo: DateTime
+
+  """All values that are not equal to given value."""
+  publishedTo_not: DateTime
+
+  """All values that are contained in given list."""
+  publishedTo_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  publishedTo_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  publishedTo_lt: DateTime
+
+  """All values less than or equal the given value."""
+  publishedTo_lte: DateTime
+
+  """All values greater than the given value."""
+  publishedTo_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  publishedTo_gte: DateTime
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
 }
 
 type PageTranslationSubscriptionPayload {
@@ -3217,26 +4843,74 @@ input PageTranslationUpdateInput {
   description: String
   publishedFrom: DateTime
   publishedTo: DateTime
-  page: PageUpdateOneWithoutTranslationsInput
-  language: LanguageUpdateOneInput
+  page: PageUpdateOneRequiredWithoutTranslationsInput
+  language: LanguageUpdateOneRequiredInput
   tasks: PageTaskUpdateManyWithoutPageTranslationInput
+  annotations: PageAnnotationUpdateManyWithoutPageTranslationInput
+}
+
+input PageTranslationUpdateManyDataInput {
+  url: String
+  content: Json
+  name: String
+  status: PageStatus
+  description: String
+  publishedFrom: DateTime
+  publishedTo: DateTime
+}
+
+input PageTranslationUpdateManyMutationInput {
+  url: String
+  content: Json
+  name: String
+  status: PageStatus
+  description: String
+  publishedFrom: DateTime
+  publishedTo: DateTime
 }
 
 input PageTranslationUpdateManyWithoutPageInput {
   create: [PageTranslationCreateWithoutPageInput!]
   connect: [PageTranslationWhereUniqueInput!]
+  set: [PageTranslationWhereUniqueInput!]
   disconnect: [PageTranslationWhereUniqueInput!]
   delete: [PageTranslationWhereUniqueInput!]
   update: [PageTranslationUpdateWithWhereUniqueWithoutPageInput!]
+  updateMany: [PageTranslationUpdateManyWithWhereNestedInput!]
+  deleteMany: [PageTranslationScalarWhereInput!]
   upsert: [PageTranslationUpsertWithWhereUniqueWithoutPageInput!]
 }
 
-input PageTranslationUpdateOneWithoutTasksInput {
+input PageTranslationUpdateManyWithWhereNestedInput {
+  where: PageTranslationScalarWhereInput!
+  data: PageTranslationUpdateManyDataInput!
+}
+
+input PageTranslationUpdateOneRequiredWithoutAnnotationsInput {
+  create: PageTranslationCreateWithoutAnnotationsInput
+  connect: PageTranslationWhereUniqueInput
+  update: PageTranslationUpdateWithoutAnnotationsDataInput
+  upsert: PageTranslationUpsertWithoutAnnotationsInput
+}
+
+input PageTranslationUpdateOneRequiredWithoutTasksInput {
   create: PageTranslationCreateWithoutTasksInput
   connect: PageTranslationWhereUniqueInput
-  delete: Boolean
   update: PageTranslationUpdateWithoutTasksDataInput
   upsert: PageTranslationUpsertWithoutTasksInput
+}
+
+input PageTranslationUpdateWithoutAnnotationsDataInput {
+  url: String
+  content: Json
+  name: String
+  status: PageStatus
+  description: String
+  publishedFrom: DateTime
+  publishedTo: DateTime
+  page: PageUpdateOneRequiredWithoutTranslationsInput
+  language: LanguageUpdateOneRequiredInput
+  tasks: PageTaskUpdateManyWithoutPageTranslationInput
 }
 
 input PageTranslationUpdateWithoutPageDataInput {
@@ -3247,8 +4921,9 @@ input PageTranslationUpdateWithoutPageDataInput {
   description: String
   publishedFrom: DateTime
   publishedTo: DateTime
-  language: LanguageUpdateOneInput
+  language: LanguageUpdateOneRequiredInput
   tasks: PageTaskUpdateManyWithoutPageTranslationInput
+  annotations: PageAnnotationUpdateManyWithoutPageTranslationInput
 }
 
 input PageTranslationUpdateWithoutTasksDataInput {
@@ -3259,13 +4934,19 @@ input PageTranslationUpdateWithoutTasksDataInput {
   description: String
   publishedFrom: DateTime
   publishedTo: DateTime
-  page: PageUpdateOneWithoutTranslationsInput
-  language: LanguageUpdateOneInput
+  page: PageUpdateOneRequiredWithoutTranslationsInput
+  language: LanguageUpdateOneRequiredInput
+  annotations: PageAnnotationUpdateManyWithoutPageTranslationInput
 }
 
 input PageTranslationUpdateWithWhereUniqueWithoutPageInput {
   where: PageTranslationWhereUniqueInput!
   data: PageTranslationUpdateWithoutPageDataInput!
+}
+
+input PageTranslationUpsertWithoutAnnotationsInput {
+  update: PageTranslationUpdateWithoutAnnotationsDataInput!
+  create: PageTranslationCreateWithoutAnnotationsInput!
 }
 
 input PageTranslationUpsertWithoutTasksInput {
@@ -3529,6 +5210,9 @@ input PageTranslationWhereInput {
   tasks_every: PageTaskWhereInput
   tasks_some: PageTaskWhereInput
   tasks_none: PageTaskWhereInput
+  annotations_every: PageAnnotationWhereInput
+  annotations_some: PageAnnotationWhereInput
+  annotations_none: PageAnnotationWhereInput
 }
 
 input PageTranslationWhereUniqueInput {
@@ -3539,7 +5223,7 @@ type PageType implements Node {
   id: ID!
   name: String!
   content: Json!
-  website(where: WebsiteWhereInput): Website!
+  website: Website!
   plugins: [String!]!
 }
 
@@ -3609,6 +5293,97 @@ type PageTypePreviousValues {
   plugins: [String!]!
 }
 
+input PageTypeScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PageTypeScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PageTypeScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PageTypeScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+}
+
 type PageTypeSubscriptionPayload {
   mutation: MutationType!
   node: PageType
@@ -3652,29 +5427,48 @@ input PageTypeUpdateDataInput {
   name: String
   content: Json
   plugins: PageTypeUpdatepluginsInput
-  website: WebsiteUpdateOneWithoutPageTypesInput
+  website: WebsiteUpdateOneRequiredWithoutPageTypesInput
 }
 
 input PageTypeUpdateInput {
   name: String
   content: Json
   plugins: PageTypeUpdatepluginsInput
-  website: WebsiteUpdateOneWithoutPageTypesInput
+  website: WebsiteUpdateOneRequiredWithoutPageTypesInput
+}
+
+input PageTypeUpdateManyDataInput {
+  name: String
+  content: Json
+  plugins: PageTypeUpdatepluginsInput
+}
+
+input PageTypeUpdateManyMutationInput {
+  name: String
+  content: Json
+  plugins: PageTypeUpdatepluginsInput
 }
 
 input PageTypeUpdateManyWithoutWebsiteInput {
   create: [PageTypeCreateWithoutWebsiteInput!]
   connect: [PageTypeWhereUniqueInput!]
+  set: [PageTypeWhereUniqueInput!]
   disconnect: [PageTypeWhereUniqueInput!]
   delete: [PageTypeWhereUniqueInput!]
   update: [PageTypeUpdateWithWhereUniqueWithoutWebsiteInput!]
+  updateMany: [PageTypeUpdateManyWithWhereNestedInput!]
+  deleteMany: [PageTypeScalarWhereInput!]
   upsert: [PageTypeUpsertWithWhereUniqueWithoutWebsiteInput!]
 }
 
-input PageTypeUpdateOneInput {
+input PageTypeUpdateManyWithWhereNestedInput {
+  where: PageTypeScalarWhereInput!
+  data: PageTypeUpdateManyDataInput!
+}
+
+input PageTypeUpdateOneRequiredInput {
   create: PageTypeCreateInput
   connect: PageTypeWhereUniqueInput
-  delete: Boolean
   update: PageTypeUpdateDataInput
   upsert: PageTypeUpsertNestedInput
 }
@@ -3803,8 +5597,8 @@ input PageTypeWhereUniqueInput {
 
 input PageUpdateDataInput {
   parent: PageUpdateOneInput
-  website: WebsiteUpdateOneWithoutPagesInput
-  type: PageTypeUpdateOneInput
+  website: WebsiteUpdateOneRequiredWithoutPagesInput
+  type: PageTypeUpdateOneRequiredInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
@@ -3813,8 +5607,8 @@ input PageUpdateDataInput {
 
 input PageUpdateInput {
   parent: PageUpdateOneInput
-  website: WebsiteUpdateOneWithoutPagesInput
-  type: PageTypeUpdateOneInput
+  website: WebsiteUpdateOneRequiredWithoutPagesInput
+  type: PageTypeUpdateOneRequiredInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
@@ -3824,18 +5618,22 @@ input PageUpdateInput {
 input PageUpdateManyWithoutTagsInput {
   create: [PageCreateWithoutTagsInput!]
   connect: [PageWhereUniqueInput!]
+  set: [PageWhereUniqueInput!]
   disconnect: [PageWhereUniqueInput!]
   delete: [PageWhereUniqueInput!]
   update: [PageUpdateWithWhereUniqueWithoutTagsInput!]
+  deleteMany: [PageScalarWhereInput!]
   upsert: [PageUpsertWithWhereUniqueWithoutTagsInput!]
 }
 
 input PageUpdateManyWithoutWebsiteInput {
   create: [PageCreateWithoutWebsiteInput!]
   connect: [PageWhereUniqueInput!]
+  set: [PageWhereUniqueInput!]
   disconnect: [PageWhereUniqueInput!]
   delete: [PageWhereUniqueInput!]
   update: [PageUpdateWithWhereUniqueWithoutWebsiteInput!]
+  deleteMany: [PageScalarWhereInput!]
   upsert: [PageUpsertWithWhereUniqueWithoutWebsiteInput!]
 }
 
@@ -3848,34 +5646,31 @@ input PageUpdateOneInput {
   upsert: PageUpsertNestedInput
 }
 
-input PageUpdateOneWithoutChatsInput {
+input PageUpdateOneRequiredWithoutChatsInput {
   create: PageCreateWithoutChatsInput
   connect: PageWhereUniqueInput
-  delete: Boolean
   update: PageUpdateWithoutChatsDataInput
   upsert: PageUpsertWithoutChatsInput
 }
 
-input PageUpdateOneWithoutPluginInput {
+input PageUpdateOneRequiredWithoutPluginInput {
   create: PageCreateWithoutPluginInput
   connect: PageWhereUniqueInput
-  delete: Boolean
   update: PageUpdateWithoutPluginDataInput
   upsert: PageUpsertWithoutPluginInput
 }
 
-input PageUpdateOneWithoutTranslationsInput {
+input PageUpdateOneRequiredWithoutTranslationsInput {
   create: PageCreateWithoutTranslationsInput
   connect: PageWhereUniqueInput
-  delete: Boolean
   update: PageUpdateWithoutTranslationsDataInput
   upsert: PageUpsertWithoutTranslationsInput
 }
 
 input PageUpdateWithoutChatsDataInput {
   parent: PageUpdateOneInput
-  website: WebsiteUpdateOneWithoutPagesInput
-  type: PageTypeUpdateOneInput
+  website: WebsiteUpdateOneRequiredWithoutPagesInput
+  type: PageTypeUpdateOneRequiredInput
   translations: PageTranslationUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
   plugin: PagePluginUpdateOneWithoutPageInput
@@ -3883,8 +5678,8 @@ input PageUpdateWithoutChatsDataInput {
 
 input PageUpdateWithoutPluginDataInput {
   parent: PageUpdateOneInput
-  website: WebsiteUpdateOneWithoutPagesInput
-  type: PageTypeUpdateOneInput
+  website: WebsiteUpdateOneRequiredWithoutPagesInput
+  type: PageTypeUpdateOneRequiredInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
@@ -3892,8 +5687,8 @@ input PageUpdateWithoutPluginDataInput {
 
 input PageUpdateWithoutTagsDataInput {
   parent: PageUpdateOneInput
-  website: WebsiteUpdateOneWithoutPagesInput
-  type: PageTypeUpdateOneInput
+  website: WebsiteUpdateOneRequiredWithoutPagesInput
+  type: PageTypeUpdateOneRequiredInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   plugin: PagePluginUpdateOneWithoutPageInput
@@ -3901,8 +5696,8 @@ input PageUpdateWithoutTagsDataInput {
 
 input PageUpdateWithoutTranslationsDataInput {
   parent: PageUpdateOneInput
-  website: WebsiteUpdateOneWithoutPagesInput
-  type: PageTypeUpdateOneInput
+  website: WebsiteUpdateOneRequiredWithoutPagesInput
+  type: PageTypeUpdateOneRequiredInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
   plugin: PagePluginUpdateOneWithoutPageInput
@@ -3910,7 +5705,7 @@ input PageUpdateWithoutTranslationsDataInput {
 
 input PageUpdateWithoutWebsiteDataInput {
   parent: PageUpdateOneInput
-  type: PageTypeUpdateOneInput
+  type: PageTypeUpdateOneRequiredInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
@@ -4032,7 +5827,7 @@ type Project implements Node {
   name: String!
   defaultName: String!
   languages(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Language!]
-  defaultLanguage(where: LanguageWhereInput): Language!
+  defaultLanguage: Language!
   settings: Json!
   websites(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Website!]
 }
@@ -4144,14 +5939,19 @@ input ProjectUpdateInput {
   defaultName: String
   settings: Json
   languages: LanguageUpdateManyInput
-  defaultLanguage: LanguageUpdateOneInput
+  defaultLanguage: LanguageUpdateOneRequiredInput
   websites: WebsiteUpdateManyWithoutProjectInput
 }
 
-input ProjectUpdateOneWithoutWebsitesInput {
+input ProjectUpdateManyMutationInput {
+  name: String
+  defaultName: String
+  settings: Json
+}
+
+input ProjectUpdateOneRequiredWithoutWebsitesInput {
   create: ProjectCreateWithoutWebsitesInput
   connect: ProjectWhereUniqueInput
-  delete: Boolean
   update: ProjectUpdateWithoutWebsitesDataInput
   upsert: ProjectUpsertWithoutWebsitesInput
 }
@@ -4161,7 +5961,7 @@ input ProjectUpdateWithoutWebsitesDataInput {
   defaultName: String
   settings: Json
   languages: LanguageUpdateManyInput
-  defaultLanguage: LanguageUpdateOneInput
+  defaultLanguage: LanguageUpdateOneRequiredInput
 }
 
 input ProjectUpsertWithoutWebsitesInput {
@@ -4317,6 +6117,7 @@ type Query {
   pagePlugins(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PagePlugin]!
   pageTasks(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTask]!
   pageChats(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageChat]!
+  pageAnnotations(where: PageAnnotationWhereInput, orderBy: PageAnnotationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageAnnotation]!
   files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File]!
   navigations(where: NavigationWhereInput, orderBy: NavigationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Navigation]!
   navigationNodes(where: NavigationNodeWhereInput, orderBy: NavigationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [NavigationNode]!
@@ -4332,6 +6133,7 @@ type Query {
   pagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
   pageTask(where: PageTaskWhereUniqueInput!): PageTask
   pageChat(where: PageChatWhereUniqueInput!): PageChat
+  pageAnnotation(where: PageAnnotationWhereUniqueInput!): PageAnnotation
   file(where: FileWhereUniqueInput!): File
   navigation(where: NavigationWhereUniqueInput!): Navigation
   navigationNode(where: NavigationNodeWhereUniqueInput!): NavigationNode
@@ -4347,6 +6149,7 @@ type Query {
   pagePluginsConnection(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PagePluginConnection!
   pageTasksConnection(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTaskConnection!
   pageChatsConnection(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageChatConnection!
+  pageAnnotationsConnection(where: PageAnnotationWhereInput, orderBy: PageAnnotationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageAnnotationConnection!
   filesConnection(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
   navigationsConnection(where: NavigationWhereInput, orderBy: NavigationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NavigationConnection!
   navigationNodesConnection(where: NavigationNodeWhereInput, orderBy: NavigationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NavigationNodeConnection!
@@ -4461,6 +6264,12 @@ input SubscriberSubscriptionWhereInput {
 }
 
 input SubscriberUpdateInput {
+  email: String
+  url: String
+  ip: String
+}
+
+input SubscriberUpdateManyMutationInput {
   email: String
   url: String
   ip: String
@@ -4669,6 +6478,7 @@ type Subscription {
   pagePlugin(where: PagePluginSubscriptionWhereInput): PagePluginSubscriptionPayload
   pageTask(where: PageTaskSubscriptionWhereInput): PageTaskSubscriptionPayload
   pageChat(where: PageChatSubscriptionWhereInput): PageChatSubscriptionPayload
+  pageAnnotation(where: PageAnnotationSubscriptionWhereInput): PageAnnotationSubscriptionPayload
   file(where: FileSubscriptionWhereInput): FileSubscriptionPayload
   navigation(where: NavigationSubscriptionWhereInput): NavigationSubscriptionPayload
   navigationNode(where: NavigationNodeSubscriptionWhereInput): NavigationNodeSubscriptionPayload
@@ -4683,7 +6493,7 @@ type Subscription {
 
 type Tag implements Node {
   id: ID!
-  website(where: WebsiteWhereInput): Website!
+  website: Website!
   name: String!
   displayInNavigation: Boolean
   plugins: [String!]!
@@ -4759,6 +6569,141 @@ type TagPreviousValues {
   color: String!
 }
 
+input TagScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [TagScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [TagScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [TagScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  displayInNavigation: Boolean
+
+  """All values that are not equal to given value."""
+  displayInNavigation_not: Boolean
+  color: String
+
+  """All values that are not equal to given value."""
+  color_not: String
+
+  """All values that are contained in given list."""
+  color_in: [String!]
+
+  """All values that are not contained in given list."""
+  color_not_in: [String!]
+
+  """All values less than the given value."""
+  color_lt: String
+
+  """All values less than or equal the given value."""
+  color_lte: String
+
+  """All values greater than the given value."""
+  color_gt: String
+
+  """All values greater than or equal the given value."""
+  color_gte: String
+
+  """All values containing the given string."""
+  color_contains: String
+
+  """All values not containing the given string."""
+  color_not_contains: String
+
+  """All values starting with the given string."""
+  color_starts_with: String
+
+  """All values not starting with the given string."""
+  color_not_starts_with: String
+
+  """All values ending with the given string."""
+  color_ends_with: String
+
+  """All values not ending with the given string."""
+  color_not_ends_with: String
+}
+
 type TagSubscriptionPayload {
   mutation: MutationType!
   node: Tag
@@ -4803,17 +6748,39 @@ input TagUpdateInput {
   displayInNavigation: Boolean
   color: String
   plugins: TagUpdatepluginsInput
-  website: WebsiteUpdateOneInput
+  website: WebsiteUpdateOneRequiredInput
   pages: PageUpdateManyWithoutTagsInput
+}
+
+input TagUpdateManyDataInput {
+  name: String
+  displayInNavigation: Boolean
+  color: String
+  plugins: TagUpdatepluginsInput
+}
+
+input TagUpdateManyMutationInput {
+  name: String
+  displayInNavigation: Boolean
+  color: String
+  plugins: TagUpdatepluginsInput
 }
 
 input TagUpdateManyWithoutPagesInput {
   create: [TagCreateWithoutPagesInput!]
   connect: [TagWhereUniqueInput!]
+  set: [TagWhereUniqueInput!]
   disconnect: [TagWhereUniqueInput!]
   delete: [TagWhereUniqueInput!]
   update: [TagUpdateWithWhereUniqueWithoutPagesInput!]
+  updateMany: [TagUpdateManyWithWhereNestedInput!]
+  deleteMany: [TagScalarWhereInput!]
   upsert: [TagUpsertWithWhereUniqueWithoutPagesInput!]
+}
+
+input TagUpdateManyWithWhereNestedInput {
+  where: TagScalarWhereInput!
+  data: TagUpdateManyDataInput!
 }
 
 input TagUpdatepluginsInput {
@@ -4825,7 +6792,7 @@ input TagUpdateWithoutPagesDataInput {
   displayInNavigation: Boolean
   color: String
   plugins: TagUpdatepluginsInput
-  website: WebsiteUpdateOneInput
+  website: WebsiteUpdateOneRequiredInput
 }
 
 input TagUpdateWithWhereUniqueWithoutPagesInput {
@@ -4985,9 +6952,9 @@ input TagWhereUniqueInput {
 type Website implements Node {
   id: ID!
   title: String!
-  project(where: ProjectWhereInput): Project!
+  project: Project!
   languages(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Language!]
-  defaultLanguage(where: LanguageWhereInput): Language!
+  defaultLanguage: Language!
   urlMask: String!
   settings: Json!
   pageTypes(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageType!]
@@ -5096,6 +7063,137 @@ type WebsitePreviousValues {
   settings: Json!
 }
 
+input WebsiteScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [WebsiteScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [WebsiteScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [WebsiteScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  title: String
+
+  """All values that are not equal to given value."""
+  title_not: String
+
+  """All values that are contained in given list."""
+  title_in: [String!]
+
+  """All values that are not contained in given list."""
+  title_not_in: [String!]
+
+  """All values less than the given value."""
+  title_lt: String
+
+  """All values less than or equal the given value."""
+  title_lte: String
+
+  """All values greater than the given value."""
+  title_gt: String
+
+  """All values greater than or equal the given value."""
+  title_gte: String
+
+  """All values containing the given string."""
+  title_contains: String
+
+  """All values not containing the given string."""
+  title_not_contains: String
+
+  """All values starting with the given string."""
+  title_starts_with: String
+
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+
+  """All values ending with the given string."""
+  title_ends_with: String
+
+  """All values not ending with the given string."""
+  title_not_ends_with: String
+  urlMask: String
+
+  """All values that are not equal to given value."""
+  urlMask_not: String
+
+  """All values that are contained in given list."""
+  urlMask_in: [String!]
+
+  """All values that are not contained in given list."""
+  urlMask_not_in: [String!]
+
+  """All values less than the given value."""
+  urlMask_lt: String
+
+  """All values less than or equal the given value."""
+  urlMask_lte: String
+
+  """All values greater than the given value."""
+  urlMask_gt: String
+
+  """All values greater than or equal the given value."""
+  urlMask_gte: String
+
+  """All values containing the given string."""
+  urlMask_contains: String
+
+  """All values not containing the given string."""
+  urlMask_not_contains: String
+
+  """All values starting with the given string."""
+  urlMask_starts_with: String
+
+  """All values not starting with the given string."""
+  urlMask_not_starts_with: String
+
+  """All values ending with the given string."""
+  urlMask_ends_with: String
+
+  """All values not ending with the given string."""
+  urlMask_not_ends_with: String
+}
+
 type WebsiteSubscriptionPayload {
   mutation: MutationType!
   node: Website
@@ -5139,9 +7237,9 @@ input WebsiteUpdateDataInput {
   title: String
   urlMask: String
   settings: Json
-  project: ProjectUpdateOneWithoutWebsitesInput
+  project: ProjectUpdateOneRequiredWithoutWebsitesInput
   languages: LanguageUpdateManyInput
-  defaultLanguage: LanguageUpdateOneInput
+  defaultLanguage: LanguageUpdateOneRequiredInput
   pageTypes: PageTypeUpdateManyWithoutWebsiteInput
   pages: PageUpdateManyWithoutWebsiteInput
 }
@@ -5150,42 +7248,59 @@ input WebsiteUpdateInput {
   title: String
   urlMask: String
   settings: Json
-  project: ProjectUpdateOneWithoutWebsitesInput
+  project: ProjectUpdateOneRequiredWithoutWebsitesInput
   languages: LanguageUpdateManyInput
-  defaultLanguage: LanguageUpdateOneInput
+  defaultLanguage: LanguageUpdateOneRequiredInput
   pageTypes: PageTypeUpdateManyWithoutWebsiteInput
   pages: PageUpdateManyWithoutWebsiteInput
+}
+
+input WebsiteUpdateManyDataInput {
+  title: String
+  urlMask: String
+  settings: Json
+}
+
+input WebsiteUpdateManyMutationInput {
+  title: String
+  urlMask: String
+  settings: Json
 }
 
 input WebsiteUpdateManyWithoutProjectInput {
   create: [WebsiteCreateWithoutProjectInput!]
   connect: [WebsiteWhereUniqueInput!]
+  set: [WebsiteWhereUniqueInput!]
   disconnect: [WebsiteWhereUniqueInput!]
   delete: [WebsiteWhereUniqueInput!]
   update: [WebsiteUpdateWithWhereUniqueWithoutProjectInput!]
+  updateMany: [WebsiteUpdateManyWithWhereNestedInput!]
+  deleteMany: [WebsiteScalarWhereInput!]
   upsert: [WebsiteUpsertWithWhereUniqueWithoutProjectInput!]
 }
 
-input WebsiteUpdateOneInput {
+input WebsiteUpdateManyWithWhereNestedInput {
+  where: WebsiteScalarWhereInput!
+  data: WebsiteUpdateManyDataInput!
+}
+
+input WebsiteUpdateOneRequiredInput {
   create: WebsiteCreateInput
   connect: WebsiteWhereUniqueInput
-  delete: Boolean
   update: WebsiteUpdateDataInput
   upsert: WebsiteUpsertNestedInput
 }
 
-input WebsiteUpdateOneWithoutPagesInput {
+input WebsiteUpdateOneRequiredWithoutPagesInput {
   create: WebsiteCreateWithoutPagesInput
   connect: WebsiteWhereUniqueInput
-  delete: Boolean
   update: WebsiteUpdateWithoutPagesDataInput
   upsert: WebsiteUpsertWithoutPagesInput
 }
 
-input WebsiteUpdateOneWithoutPageTypesInput {
+input WebsiteUpdateOneRequiredWithoutPageTypesInput {
   create: WebsiteCreateWithoutPageTypesInput
   connect: WebsiteWhereUniqueInput
-  delete: Boolean
   update: WebsiteUpdateWithoutPageTypesDataInput
   upsert: WebsiteUpsertWithoutPageTypesInput
 }
@@ -5194,9 +7309,9 @@ input WebsiteUpdateWithoutPagesDataInput {
   title: String
   urlMask: String
   settings: Json
-  project: ProjectUpdateOneWithoutWebsitesInput
+  project: ProjectUpdateOneRequiredWithoutWebsitesInput
   languages: LanguageUpdateManyInput
-  defaultLanguage: LanguageUpdateOneInput
+  defaultLanguage: LanguageUpdateOneRequiredInput
   pageTypes: PageTypeUpdateManyWithoutWebsiteInput
 }
 
@@ -5204,9 +7319,9 @@ input WebsiteUpdateWithoutPageTypesDataInput {
   title: String
   urlMask: String
   settings: Json
-  project: ProjectUpdateOneWithoutWebsitesInput
+  project: ProjectUpdateOneRequiredWithoutWebsitesInput
   languages: LanguageUpdateManyInput
-  defaultLanguage: LanguageUpdateOneInput
+  defaultLanguage: LanguageUpdateOneRequiredInput
   pages: PageUpdateManyWithoutWebsiteInput
 }
 
@@ -5215,7 +7330,7 @@ input WebsiteUpdateWithoutProjectDataInput {
   urlMask: String
   settings: Json
   languages: LanguageUpdateManyInput
-  defaultLanguage: LanguageUpdateOneInput
+  defaultLanguage: LanguageUpdateOneRequiredInput
   pageTypes: PageTypeUpdateManyWithoutWebsiteInput
   pages: PageUpdateManyWithoutWebsiteInput
 }
@@ -5476,6 +7591,17 @@ export type NavigationOrderByInput =   'id_ASC' |
   'createdAt_ASC' |
   'createdAt_DESC'
 
+export type PageAnnotationOrderByInput =   'id_ASC' |
+  'id_DESC' |
+  'key_ASC' |
+  'key_DESC' |
+  'value_ASC' |
+  'value_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC' |
+  'createdAt_ASC' |
+  'createdAt_DESC'
+
 export type PageChatOrderByInput =   'id_ASC' |
   'id_DESC' |
   'text_ASC' |
@@ -5635,6 +7761,14 @@ export interface FileUpdateInput {
   size?: Int | null
 }
 
+export interface FileUpdateManyMutationInput {
+  hash?: String | null
+  category?: String | null
+  filename?: String | null
+  mimetype?: String | null
+  size?: Int | null
+}
+
 export interface FileWhereInput {
   AND?: FileWhereInput[] | FileWhereInput | null
   OR?: FileWhereInput[] | FileWhereInput | null
@@ -5763,6 +7897,12 @@ export interface InquiryUpdateInput {
   ip?: String | null
 }
 
+export interface InquiryUpdateManyMutationInput {
+  message?: Json | null
+  url?: String | null
+  ip?: String | null
+}
+
 export interface InquiryWhereInput {
   AND?: InquiryWhereInput[] | InquiryWhereInput | null
   OR?: InquiryWhereInput[] | InquiryWhereInput | null
@@ -5841,6 +7981,72 @@ export interface LanguageCreateOneInput {
   connect?: LanguageWhereUniqueInput | null
 }
 
+export interface LanguageScalarWhereInput {
+  AND?: LanguageScalarWhereInput[] | LanguageScalarWhereInput | null
+  OR?: LanguageScalarWhereInput[] | LanguageScalarWhereInput | null
+  NOT?: LanguageScalarWhereInput[] | LanguageScalarWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+  code?: String | null
+  code_not?: String | null
+  code_in?: String[] | String | null
+  code_not_in?: String[] | String | null
+  code_lt?: String | null
+  code_lte?: String | null
+  code_gt?: String | null
+  code_gte?: String | null
+  code_contains?: String | null
+  code_not_contains?: String | null
+  code_starts_with?: String | null
+  code_not_starts_with?: String | null
+  code_ends_with?: String | null
+  code_not_ends_with?: String | null
+  name?: String | null
+  name_not?: String | null
+  name_in?: String[] | String | null
+  name_not_in?: String[] | String | null
+  name_lt?: String | null
+  name_lte?: String | null
+  name_gt?: String | null
+  name_gte?: String | null
+  name_contains?: String | null
+  name_not_contains?: String | null
+  name_starts_with?: String | null
+  name_not_starts_with?: String | null
+  name_ends_with?: String | null
+  name_not_ends_with?: String | null
+  englishName?: String | null
+  englishName_not?: String | null
+  englishName_in?: String[] | String | null
+  englishName_not_in?: String[] | String | null
+  englishName_lt?: String | null
+  englishName_lte?: String | null
+  englishName_gt?: String | null
+  englishName_gte?: String | null
+  englishName_contains?: String | null
+  englishName_not_contains?: String | null
+  englishName_starts_with?: String | null
+  englishName_not_starts_with?: String | null
+  englishName_ends_with?: String | null
+  englishName_not_ends_with?: String | null
+  isDefault?: Boolean | null
+  isDefault_not?: Boolean | null
+  isEnabled?: Boolean | null
+  isEnabled_not?: Boolean | null
+}
+
 export interface LanguageSubscriptionWhereInput {
   AND?: LanguageSubscriptionWhereInput[] | LanguageSubscriptionWhereInput | null
   OR?: LanguageSubscriptionWhereInput[] | LanguageSubscriptionWhereInput | null
@@ -5868,19 +8074,42 @@ export interface LanguageUpdateInput {
   isEnabled?: Boolean | null
 }
 
+export interface LanguageUpdateManyDataInput {
+  code?: String | null
+  name?: String | null
+  englishName?: String | null
+  isDefault?: Boolean | null
+  isEnabled?: Boolean | null
+}
+
 export interface LanguageUpdateManyInput {
   create?: LanguageCreateInput[] | LanguageCreateInput | null
   connect?: LanguageWhereUniqueInput[] | LanguageWhereUniqueInput | null
+  set?: LanguageWhereUniqueInput[] | LanguageWhereUniqueInput | null
   disconnect?: LanguageWhereUniqueInput[] | LanguageWhereUniqueInput | null
   delete?: LanguageWhereUniqueInput[] | LanguageWhereUniqueInput | null
   update?: LanguageUpdateWithWhereUniqueNestedInput[] | LanguageUpdateWithWhereUniqueNestedInput | null
+  updateMany?: LanguageUpdateManyWithWhereNestedInput[] | LanguageUpdateManyWithWhereNestedInput | null
+  deleteMany?: LanguageScalarWhereInput[] | LanguageScalarWhereInput | null
   upsert?: LanguageUpsertWithWhereUniqueNestedInput[] | LanguageUpsertWithWhereUniqueNestedInput | null
 }
 
-export interface LanguageUpdateOneInput {
+export interface LanguageUpdateManyMutationInput {
+  code?: String | null
+  name?: String | null
+  englishName?: String | null
+  isDefault?: Boolean | null
+  isEnabled?: Boolean | null
+}
+
+export interface LanguageUpdateManyWithWhereNestedInput {
+  where: LanguageScalarWhereInput
+  data: LanguageUpdateManyDataInput
+}
+
+export interface LanguageUpdateOneRequiredInput {
   create?: LanguageCreateInput | null
   connect?: LanguageWhereUniqueInput | null
-  delete?: Boolean | null
   update?: LanguageUpdateDataInput | null
   upsert?: LanguageUpsertNestedInput | null
 }
@@ -6009,6 +8238,90 @@ export interface NavigationNodeCreateWithoutNavigationInput {
   parent?: ID_Input | null
 }
 
+export interface NavigationNodeScalarWhereInput {
+  AND?: NavigationNodeScalarWhereInput[] | NavigationNodeScalarWhereInput | null
+  OR?: NavigationNodeScalarWhereInput[] | NavigationNodeScalarWhereInput | null
+  NOT?: NavigationNodeScalarWhereInput[] | NavigationNodeScalarWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+  page?: ID_Input | null
+  page_not?: ID_Input | null
+  page_in?: ID_Output[] | ID_Output | null
+  page_not_in?: ID_Output[] | ID_Output | null
+  page_lt?: ID_Input | null
+  page_lte?: ID_Input | null
+  page_gt?: ID_Input | null
+  page_gte?: ID_Input | null
+  page_contains?: ID_Input | null
+  page_not_contains?: ID_Input | null
+  page_starts_with?: ID_Input | null
+  page_not_starts_with?: ID_Input | null
+  page_ends_with?: ID_Input | null
+  page_not_ends_with?: ID_Input | null
+  title?: String | null
+  title_not?: String | null
+  title_in?: String[] | String | null
+  title_not_in?: String[] | String | null
+  title_lt?: String | null
+  title_lte?: String | null
+  title_gt?: String | null
+  title_gte?: String | null
+  title_contains?: String | null
+  title_not_contains?: String | null
+  title_starts_with?: String | null
+  title_not_starts_with?: String | null
+  title_ends_with?: String | null
+  title_not_ends_with?: String | null
+  link?: String | null
+  link_not?: String | null
+  link_in?: String[] | String | null
+  link_not_in?: String[] | String | null
+  link_lt?: String | null
+  link_lte?: String | null
+  link_gt?: String | null
+  link_gte?: String | null
+  link_contains?: String | null
+  link_not_contains?: String | null
+  link_starts_with?: String | null
+  link_not_starts_with?: String | null
+  link_ends_with?: String | null
+  link_not_ends_with?: String | null
+  order?: Int | null
+  order_not?: Int | null
+  order_in?: Int[] | Int | null
+  order_not_in?: Int[] | Int | null
+  order_lt?: Int | null
+  order_lte?: Int | null
+  order_gt?: Int | null
+  order_gte?: Int | null
+  parent?: ID_Input | null
+  parent_not?: ID_Input | null
+  parent_in?: ID_Output[] | ID_Output | null
+  parent_not_in?: ID_Output[] | ID_Output | null
+  parent_lt?: ID_Input | null
+  parent_lte?: ID_Input | null
+  parent_gt?: ID_Input | null
+  parent_gte?: ID_Input | null
+  parent_contains?: ID_Input | null
+  parent_not_contains?: ID_Input | null
+  parent_starts_with?: ID_Input | null
+  parent_not_starts_with?: ID_Input | null
+  parent_ends_with?: ID_Input | null
+  parent_not_ends_with?: ID_Input | null
+}
+
 export interface NavigationNodeSubscriptionWhereInput {
   AND?: NavigationNodeSubscriptionWhereInput[] | NavigationNodeSubscriptionWhereInput | null
   OR?: NavigationNodeSubscriptionWhereInput[] | NavigationNodeSubscriptionWhereInput | null
@@ -6026,16 +8339,40 @@ export interface NavigationNodeUpdateInput {
   link?: String | null
   order?: Int | null
   parent?: ID_Input | null
-  navigation?: NavigationUpdateOneWithoutNodesInput | null
+  navigation?: NavigationUpdateOneRequiredWithoutNodesInput | null
+}
+
+export interface NavigationNodeUpdateManyDataInput {
+  page?: ID_Input | null
+  title?: String | null
+  link?: String | null
+  order?: Int | null
+  parent?: ID_Input | null
+}
+
+export interface NavigationNodeUpdateManyMutationInput {
+  page?: ID_Input | null
+  title?: String | null
+  link?: String | null
+  order?: Int | null
+  parent?: ID_Input | null
 }
 
 export interface NavigationNodeUpdateManyWithoutNavigationInput {
   create?: NavigationNodeCreateWithoutNavigationInput[] | NavigationNodeCreateWithoutNavigationInput | null
   connect?: NavigationNodeWhereUniqueInput[] | NavigationNodeWhereUniqueInput | null
+  set?: NavigationNodeWhereUniqueInput[] | NavigationNodeWhereUniqueInput | null
   disconnect?: NavigationNodeWhereUniqueInput[] | NavigationNodeWhereUniqueInput | null
   delete?: NavigationNodeWhereUniqueInput[] | NavigationNodeWhereUniqueInput | null
   update?: NavigationNodeUpdateWithWhereUniqueWithoutNavigationInput[] | NavigationNodeUpdateWithWhereUniqueWithoutNavigationInput | null
+  updateMany?: NavigationNodeUpdateManyWithWhereNestedInput[] | NavigationNodeUpdateManyWithWhereNestedInput | null
+  deleteMany?: NavigationNodeScalarWhereInput[] | NavigationNodeScalarWhereInput | null
   upsert?: NavigationNodeUpsertWithWhereUniqueWithoutNavigationInput[] | NavigationNodeUpsertWithWhereUniqueWithoutNavigationInput | null
+}
+
+export interface NavigationNodeUpdateManyWithWhereNestedInput {
+  where: NavigationNodeScalarWhereInput
+  data: NavigationNodeUpdateManyDataInput
 }
 
 export interface NavigationNodeUpdateWithoutNavigationDataInput {
@@ -6159,21 +8496,24 @@ export interface NavigationSubscriptionWhereInput {
 
 export interface NavigationUpdateInput {
   name?: String | null
-  website?: WebsiteUpdateOneInput | null
+  website?: WebsiteUpdateOneRequiredInput | null
   nodes?: NavigationNodeUpdateManyWithoutNavigationInput | null
 }
 
-export interface NavigationUpdateOneWithoutNodesInput {
+export interface NavigationUpdateManyMutationInput {
+  name?: String | null
+}
+
+export interface NavigationUpdateOneRequiredWithoutNodesInput {
   create?: NavigationCreateWithoutNodesInput | null
   connect?: NavigationWhereUniqueInput | null
-  delete?: Boolean | null
   update?: NavigationUpdateWithoutNodesDataInput | null
   upsert?: NavigationUpsertWithoutNodesInput | null
 }
 
 export interface NavigationUpdateWithoutNodesDataInput {
   name?: String | null
-  website?: WebsiteUpdateOneInput | null
+  website?: WebsiteUpdateOneRequiredInput | null
 }
 
 export interface NavigationUpsertWithoutNodesInput {
@@ -6223,6 +8563,183 @@ export interface NavigationWhereUniqueInput {
   id?: ID_Input | null
 }
 
+export interface PageAnnotationCreateInput {
+  key: String
+  value: String
+  pageTranslation: PageTranslationCreateOneWithoutAnnotationsInput
+}
+
+export interface PageAnnotationCreateManyWithoutPageTranslationInput {
+  create?: PageAnnotationCreateWithoutPageTranslationInput[] | PageAnnotationCreateWithoutPageTranslationInput | null
+  connect?: PageAnnotationWhereUniqueInput[] | PageAnnotationWhereUniqueInput | null
+}
+
+export interface PageAnnotationCreateWithoutPageTranslationInput {
+  key: String
+  value: String
+}
+
+export interface PageAnnotationScalarWhereInput {
+  AND?: PageAnnotationScalarWhereInput[] | PageAnnotationScalarWhereInput | null
+  OR?: PageAnnotationScalarWhereInput[] | PageAnnotationScalarWhereInput | null
+  NOT?: PageAnnotationScalarWhereInput[] | PageAnnotationScalarWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+  key?: String | null
+  key_not?: String | null
+  key_in?: String[] | String | null
+  key_not_in?: String[] | String | null
+  key_lt?: String | null
+  key_lte?: String | null
+  key_gt?: String | null
+  key_gte?: String | null
+  key_contains?: String | null
+  key_not_contains?: String | null
+  key_starts_with?: String | null
+  key_not_starts_with?: String | null
+  key_ends_with?: String | null
+  key_not_ends_with?: String | null
+  value?: String | null
+  value_not?: String | null
+  value_in?: String[] | String | null
+  value_not_in?: String[] | String | null
+  value_lt?: String | null
+  value_lte?: String | null
+  value_gt?: String | null
+  value_gte?: String | null
+  value_contains?: String | null
+  value_not_contains?: String | null
+  value_starts_with?: String | null
+  value_not_starts_with?: String | null
+  value_ends_with?: String | null
+  value_not_ends_with?: String | null
+}
+
+export interface PageAnnotationSubscriptionWhereInput {
+  AND?: PageAnnotationSubscriptionWhereInput[] | PageAnnotationSubscriptionWhereInput | null
+  OR?: PageAnnotationSubscriptionWhereInput[] | PageAnnotationSubscriptionWhereInput | null
+  NOT?: PageAnnotationSubscriptionWhereInput[] | PageAnnotationSubscriptionWhereInput | null
+  mutation_in?: MutationType[] | MutationType | null
+  updatedFields_contains?: String | null
+  updatedFields_contains_every?: String[] | String | null
+  updatedFields_contains_some?: String[] | String | null
+  node?: PageAnnotationWhereInput | null
+}
+
+export interface PageAnnotationUpdateInput {
+  key?: String | null
+  value?: String | null
+  pageTranslation?: PageTranslationUpdateOneRequiredWithoutAnnotationsInput | null
+}
+
+export interface PageAnnotationUpdateManyDataInput {
+  key?: String | null
+  value?: String | null
+}
+
+export interface PageAnnotationUpdateManyMutationInput {
+  key?: String | null
+  value?: String | null
+}
+
+export interface PageAnnotationUpdateManyWithoutPageTranslationInput {
+  create?: PageAnnotationCreateWithoutPageTranslationInput[] | PageAnnotationCreateWithoutPageTranslationInput | null
+  connect?: PageAnnotationWhereUniqueInput[] | PageAnnotationWhereUniqueInput | null
+  set?: PageAnnotationWhereUniqueInput[] | PageAnnotationWhereUniqueInput | null
+  disconnect?: PageAnnotationWhereUniqueInput[] | PageAnnotationWhereUniqueInput | null
+  delete?: PageAnnotationWhereUniqueInput[] | PageAnnotationWhereUniqueInput | null
+  update?: PageAnnotationUpdateWithWhereUniqueWithoutPageTranslationInput[] | PageAnnotationUpdateWithWhereUniqueWithoutPageTranslationInput | null
+  updateMany?: PageAnnotationUpdateManyWithWhereNestedInput[] | PageAnnotationUpdateManyWithWhereNestedInput | null
+  deleteMany?: PageAnnotationScalarWhereInput[] | PageAnnotationScalarWhereInput | null
+  upsert?: PageAnnotationUpsertWithWhereUniqueWithoutPageTranslationInput[] | PageAnnotationUpsertWithWhereUniqueWithoutPageTranslationInput | null
+}
+
+export interface PageAnnotationUpdateManyWithWhereNestedInput {
+  where: PageAnnotationScalarWhereInput
+  data: PageAnnotationUpdateManyDataInput
+}
+
+export interface PageAnnotationUpdateWithoutPageTranslationDataInput {
+  key?: String | null
+  value?: String | null
+}
+
+export interface PageAnnotationUpdateWithWhereUniqueWithoutPageTranslationInput {
+  where: PageAnnotationWhereUniqueInput
+  data: PageAnnotationUpdateWithoutPageTranslationDataInput
+}
+
+export interface PageAnnotationUpsertWithWhereUniqueWithoutPageTranslationInput {
+  where: PageAnnotationWhereUniqueInput
+  update: PageAnnotationUpdateWithoutPageTranslationDataInput
+  create: PageAnnotationCreateWithoutPageTranslationInput
+}
+
+export interface PageAnnotationWhereInput {
+  AND?: PageAnnotationWhereInput[] | PageAnnotationWhereInput | null
+  OR?: PageAnnotationWhereInput[] | PageAnnotationWhereInput | null
+  NOT?: PageAnnotationWhereInput[] | PageAnnotationWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+  key?: String | null
+  key_not?: String | null
+  key_in?: String[] | String | null
+  key_not_in?: String[] | String | null
+  key_lt?: String | null
+  key_lte?: String | null
+  key_gt?: String | null
+  key_gte?: String | null
+  key_contains?: String | null
+  key_not_contains?: String | null
+  key_starts_with?: String | null
+  key_not_starts_with?: String | null
+  key_ends_with?: String | null
+  key_not_ends_with?: String | null
+  value?: String | null
+  value_not?: String | null
+  value_in?: String[] | String | null
+  value_not_in?: String[] | String | null
+  value_lt?: String | null
+  value_lte?: String | null
+  value_gt?: String | null
+  value_gte?: String | null
+  value_contains?: String | null
+  value_not_contains?: String | null
+  value_starts_with?: String | null
+  value_not_starts_with?: String | null
+  value_ends_with?: String | null
+  value_not_ends_with?: String | null
+  pageTranslation?: PageTranslationWhereInput | null
+}
+
+export interface PageAnnotationWhereUniqueInput {
+  id?: ID_Input | null
+}
+
 export interface PageChatCreateInput {
   text: String
   auth0id?: ID_Input | null
@@ -6239,6 +8756,62 @@ export interface PageChatCreateWithoutPageInput {
   auth0id?: ID_Input | null
 }
 
+export interface PageChatScalarWhereInput {
+  AND?: PageChatScalarWhereInput[] | PageChatScalarWhereInput | null
+  OR?: PageChatScalarWhereInput[] | PageChatScalarWhereInput | null
+  NOT?: PageChatScalarWhereInput[] | PageChatScalarWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+  text?: String | null
+  text_not?: String | null
+  text_in?: String[] | String | null
+  text_not_in?: String[] | String | null
+  text_lt?: String | null
+  text_lte?: String | null
+  text_gt?: String | null
+  text_gte?: String | null
+  text_contains?: String | null
+  text_not_contains?: String | null
+  text_starts_with?: String | null
+  text_not_starts_with?: String | null
+  text_ends_with?: String | null
+  text_not_ends_with?: String | null
+  createdAt?: DateTime | null
+  createdAt_not?: DateTime | null
+  createdAt_in?: DateTime[] | DateTime | null
+  createdAt_not_in?: DateTime[] | DateTime | null
+  createdAt_lt?: DateTime | null
+  createdAt_lte?: DateTime | null
+  createdAt_gt?: DateTime | null
+  createdAt_gte?: DateTime | null
+  auth0id?: ID_Input | null
+  auth0id_not?: ID_Input | null
+  auth0id_in?: ID_Output[] | ID_Output | null
+  auth0id_not_in?: ID_Output[] | ID_Output | null
+  auth0id_lt?: ID_Input | null
+  auth0id_lte?: ID_Input | null
+  auth0id_gt?: ID_Input | null
+  auth0id_gte?: ID_Input | null
+  auth0id_contains?: ID_Input | null
+  auth0id_not_contains?: ID_Input | null
+  auth0id_starts_with?: ID_Input | null
+  auth0id_not_starts_with?: ID_Input | null
+  auth0id_ends_with?: ID_Input | null
+  auth0id_not_ends_with?: ID_Input | null
+}
+
 export interface PageChatSubscriptionWhereInput {
   AND?: PageChatSubscriptionWhereInput[] | PageChatSubscriptionWhereInput | null
   OR?: PageChatSubscriptionWhereInput[] | PageChatSubscriptionWhereInput | null
@@ -6253,16 +8826,34 @@ export interface PageChatSubscriptionWhereInput {
 export interface PageChatUpdateInput {
   text?: String | null
   auth0id?: ID_Input | null
-  page?: PageUpdateOneWithoutChatsInput | null
+  page?: PageUpdateOneRequiredWithoutChatsInput | null
+}
+
+export interface PageChatUpdateManyDataInput {
+  text?: String | null
+  auth0id?: ID_Input | null
+}
+
+export interface PageChatUpdateManyMutationInput {
+  text?: String | null
+  auth0id?: ID_Input | null
 }
 
 export interface PageChatUpdateManyWithoutPageInput {
   create?: PageChatCreateWithoutPageInput[] | PageChatCreateWithoutPageInput | null
   connect?: PageChatWhereUniqueInput[] | PageChatWhereUniqueInput | null
+  set?: PageChatWhereUniqueInput[] | PageChatWhereUniqueInput | null
   disconnect?: PageChatWhereUniqueInput[] | PageChatWhereUniqueInput | null
   delete?: PageChatWhereUniqueInput[] | PageChatWhereUniqueInput | null
   update?: PageChatUpdateWithWhereUniqueWithoutPageInput[] | PageChatUpdateWithWhereUniqueWithoutPageInput | null
+  updateMany?: PageChatUpdateManyWithWhereNestedInput[] | PageChatUpdateManyWithWhereNestedInput | null
+  deleteMany?: PageChatScalarWhereInput[] | PageChatScalarWhereInput | null
   upsert?: PageChatUpsertWithWhereUniqueWithoutPageInput[] | PageChatUpsertWithWhereUniqueWithoutPageInput | null
+}
+
+export interface PageChatUpdateManyWithWhereNestedInput {
+  where: PageChatScalarWhereInput
+  data: PageChatUpdateManyDataInput
 }
 
 export interface PageChatUpdateWithoutPageDataInput {
@@ -6459,8 +9050,13 @@ export interface PagePluginSubscriptionWhereInput {
 export interface PagePluginUpdateInput {
   plugin?: String | null
   content?: Json | null
-  page?: PageUpdateOneWithoutPluginInput | null
-  language?: LanguageUpdateOneInput | null
+  page?: PageUpdateOneRequiredWithoutPluginInput | null
+  language?: LanguageUpdateOneRequiredInput | null
+}
+
+export interface PagePluginUpdateManyMutationInput {
+  plugin?: String | null
+  content?: Json | null
 }
 
 export interface PagePluginUpdateOneWithoutPageInput {
@@ -6475,7 +9071,7 @@ export interface PagePluginUpdateOneWithoutPageInput {
 export interface PagePluginUpdateWithoutPageDataInput {
   plugin?: String | null
   content?: Json | null
-  language?: LanguageUpdateOneInput | null
+  language?: LanguageUpdateOneRequiredInput | null
 }
 
 export interface PagePluginUpsertWithoutPageInput {
@@ -6523,6 +9119,26 @@ export interface PagePluginWhereUniqueInput {
   id?: ID_Input | null
 }
 
+export interface PageScalarWhereInput {
+  AND?: PageScalarWhereInput[] | PageScalarWhereInput | null
+  OR?: PageScalarWhereInput[] | PageScalarWhereInput | null
+  NOT?: PageScalarWhereInput[] | PageScalarWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+}
+
 export interface PageSubscriptionWhereInput {
   AND?: PageSubscriptionWhereInput[] | PageSubscriptionWhereInput | null
   OR?: PageSubscriptionWhereInput[] | PageSubscriptionWhereInput | null
@@ -6554,6 +9170,78 @@ export interface PageTaskCreateWithoutPageTranslationInput {
   auth0id?: ID_Input | null
 }
 
+export interface PageTaskScalarWhereInput {
+  AND?: PageTaskScalarWhereInput[] | PageTaskScalarWhereInput | null
+  OR?: PageTaskScalarWhereInput[] | PageTaskScalarWhereInput | null
+  NOT?: PageTaskScalarWhereInput[] | PageTaskScalarWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+  done?: Boolean | null
+  done_not?: Boolean | null
+  name?: String | null
+  name_not?: String | null
+  name_in?: String[] | String | null
+  name_not_in?: String[] | String | null
+  name_lt?: String | null
+  name_lte?: String | null
+  name_gt?: String | null
+  name_gte?: String | null
+  name_contains?: String | null
+  name_not_contains?: String | null
+  name_starts_with?: String | null
+  name_not_starts_with?: String | null
+  name_ends_with?: String | null
+  name_not_ends_with?: String | null
+  description?: String | null
+  description_not?: String | null
+  description_in?: String[] | String | null
+  description_not_in?: String[] | String | null
+  description_lt?: String | null
+  description_lte?: String | null
+  description_gt?: String | null
+  description_gte?: String | null
+  description_contains?: String | null
+  description_not_contains?: String | null
+  description_starts_with?: String | null
+  description_not_starts_with?: String | null
+  description_ends_with?: String | null
+  description_not_ends_with?: String | null
+  updatedAt?: DateTime | null
+  updatedAt_not?: DateTime | null
+  updatedAt_in?: DateTime[] | DateTime | null
+  updatedAt_not_in?: DateTime[] | DateTime | null
+  updatedAt_lt?: DateTime | null
+  updatedAt_lte?: DateTime | null
+  updatedAt_gt?: DateTime | null
+  updatedAt_gte?: DateTime | null
+  auth0id?: ID_Input | null
+  auth0id_not?: ID_Input | null
+  auth0id_in?: ID_Output[] | ID_Output | null
+  auth0id_not_in?: ID_Output[] | ID_Output | null
+  auth0id_lt?: ID_Input | null
+  auth0id_lte?: ID_Input | null
+  auth0id_gt?: ID_Input | null
+  auth0id_gte?: ID_Input | null
+  auth0id_contains?: ID_Input | null
+  auth0id_not_contains?: ID_Input | null
+  auth0id_starts_with?: ID_Input | null
+  auth0id_not_starts_with?: ID_Input | null
+  auth0id_ends_with?: ID_Input | null
+  auth0id_not_ends_with?: ID_Input | null
+}
+
 export interface PageTaskSubscriptionWhereInput {
   AND?: PageTaskSubscriptionWhereInput[] | PageTaskSubscriptionWhereInput | null
   OR?: PageTaskSubscriptionWhereInput[] | PageTaskSubscriptionWhereInput | null
@@ -6570,16 +9258,38 @@ export interface PageTaskUpdateInput {
   name?: String | null
   description?: String | null
   auth0id?: ID_Input | null
-  pageTranslation?: PageTranslationUpdateOneWithoutTasksInput | null
+  pageTranslation?: PageTranslationUpdateOneRequiredWithoutTasksInput | null
+}
+
+export interface PageTaskUpdateManyDataInput {
+  done?: Boolean | null
+  name?: String | null
+  description?: String | null
+  auth0id?: ID_Input | null
+}
+
+export interface PageTaskUpdateManyMutationInput {
+  done?: Boolean | null
+  name?: String | null
+  description?: String | null
+  auth0id?: ID_Input | null
 }
 
 export interface PageTaskUpdateManyWithoutPageTranslationInput {
   create?: PageTaskCreateWithoutPageTranslationInput[] | PageTaskCreateWithoutPageTranslationInput | null
   connect?: PageTaskWhereUniqueInput[] | PageTaskWhereUniqueInput | null
+  set?: PageTaskWhereUniqueInput[] | PageTaskWhereUniqueInput | null
   disconnect?: PageTaskWhereUniqueInput[] | PageTaskWhereUniqueInput | null
   delete?: PageTaskWhereUniqueInput[] | PageTaskWhereUniqueInput | null
   update?: PageTaskUpdateWithWhereUniqueWithoutPageTranslationInput[] | PageTaskUpdateWithWhereUniqueWithoutPageTranslationInput | null
+  updateMany?: PageTaskUpdateManyWithWhereNestedInput[] | PageTaskUpdateManyWithWhereNestedInput | null
+  deleteMany?: PageTaskScalarWhereInput[] | PageTaskScalarWhereInput | null
   upsert?: PageTaskUpsertWithWhereUniqueWithoutPageTranslationInput[] | PageTaskUpsertWithWhereUniqueWithoutPageTranslationInput | null
+}
+
+export interface PageTaskUpdateManyWithWhereNestedInput {
+  where: PageTaskScalarWhereInput
+  data: PageTaskUpdateManyDataInput
 }
 
 export interface PageTaskUpdateWithoutPageTranslationDataInput {
@@ -6688,6 +9398,7 @@ export interface PageTranslationCreateInput {
   page: PageCreateOneWithoutTranslationsInput
   language: LanguageCreateOneInput
   tasks?: PageTaskCreateManyWithoutPageTranslationInput | null
+  annotations?: PageAnnotationCreateManyWithoutPageTranslationInput | null
 }
 
 export interface PageTranslationCreateManyWithoutPageInput {
@@ -6695,9 +9406,27 @@ export interface PageTranslationCreateManyWithoutPageInput {
   connect?: PageTranslationWhereUniqueInput[] | PageTranslationWhereUniqueInput | null
 }
 
+export interface PageTranslationCreateOneWithoutAnnotationsInput {
+  create?: PageTranslationCreateWithoutAnnotationsInput | null
+  connect?: PageTranslationWhereUniqueInput | null
+}
+
 export interface PageTranslationCreateOneWithoutTasksInput {
   create?: PageTranslationCreateWithoutTasksInput | null
   connect?: PageTranslationWhereUniqueInput | null
+}
+
+export interface PageTranslationCreateWithoutAnnotationsInput {
+  url: String
+  content?: Json | null
+  name?: String | null
+  status?: PageStatus | null
+  description?: String | null
+  publishedFrom?: DateTime | null
+  publishedTo?: DateTime | null
+  page: PageCreateOneWithoutTranslationsInput
+  language: LanguageCreateOneInput
+  tasks?: PageTaskCreateManyWithoutPageTranslationInput | null
 }
 
 export interface PageTranslationCreateWithoutPageInput {
@@ -6710,6 +9439,7 @@ export interface PageTranslationCreateWithoutPageInput {
   publishedTo?: DateTime | null
   language: LanguageCreateOneInput
   tasks?: PageTaskCreateManyWithoutPageTranslationInput | null
+  annotations?: PageAnnotationCreateManyWithoutPageTranslationInput | null
 }
 
 export interface PageTranslationCreateWithoutTasksInput {
@@ -6722,6 +9452,97 @@ export interface PageTranslationCreateWithoutTasksInput {
   publishedTo?: DateTime | null
   page: PageCreateOneWithoutTranslationsInput
   language: LanguageCreateOneInput
+  annotations?: PageAnnotationCreateManyWithoutPageTranslationInput | null
+}
+
+export interface PageTranslationScalarWhereInput {
+  AND?: PageTranslationScalarWhereInput[] | PageTranslationScalarWhereInput | null
+  OR?: PageTranslationScalarWhereInput[] | PageTranslationScalarWhereInput | null
+  NOT?: PageTranslationScalarWhereInput[] | PageTranslationScalarWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+  url?: String | null
+  url_not?: String | null
+  url_in?: String[] | String | null
+  url_not_in?: String[] | String | null
+  url_lt?: String | null
+  url_lte?: String | null
+  url_gt?: String | null
+  url_gte?: String | null
+  url_contains?: String | null
+  url_not_contains?: String | null
+  url_starts_with?: String | null
+  url_not_starts_with?: String | null
+  url_ends_with?: String | null
+  url_not_ends_with?: String | null
+  name?: String | null
+  name_not?: String | null
+  name_in?: String[] | String | null
+  name_not_in?: String[] | String | null
+  name_lt?: String | null
+  name_lte?: String | null
+  name_gt?: String | null
+  name_gte?: String | null
+  name_contains?: String | null
+  name_not_contains?: String | null
+  name_starts_with?: String | null
+  name_not_starts_with?: String | null
+  name_ends_with?: String | null
+  name_not_ends_with?: String | null
+  status?: PageStatus | null
+  status_not?: PageStatus | null
+  status_in?: PageStatus[] | PageStatus | null
+  status_not_in?: PageStatus[] | PageStatus | null
+  description?: String | null
+  description_not?: String | null
+  description_in?: String[] | String | null
+  description_not_in?: String[] | String | null
+  description_lt?: String | null
+  description_lte?: String | null
+  description_gt?: String | null
+  description_gte?: String | null
+  description_contains?: String | null
+  description_not_contains?: String | null
+  description_starts_with?: String | null
+  description_not_starts_with?: String | null
+  description_ends_with?: String | null
+  description_not_ends_with?: String | null
+  publishedFrom?: DateTime | null
+  publishedFrom_not?: DateTime | null
+  publishedFrom_in?: DateTime[] | DateTime | null
+  publishedFrom_not_in?: DateTime[] | DateTime | null
+  publishedFrom_lt?: DateTime | null
+  publishedFrom_lte?: DateTime | null
+  publishedFrom_gt?: DateTime | null
+  publishedFrom_gte?: DateTime | null
+  publishedTo?: DateTime | null
+  publishedTo_not?: DateTime | null
+  publishedTo_in?: DateTime[] | DateTime | null
+  publishedTo_not_in?: DateTime[] | DateTime | null
+  publishedTo_lt?: DateTime | null
+  publishedTo_lte?: DateTime | null
+  publishedTo_gt?: DateTime | null
+  publishedTo_gte?: DateTime | null
+  createdAt?: DateTime | null
+  createdAt_not?: DateTime | null
+  createdAt_in?: DateTime[] | DateTime | null
+  createdAt_not_in?: DateTime[] | DateTime | null
+  createdAt_lt?: DateTime | null
+  createdAt_lte?: DateTime | null
+  createdAt_gt?: DateTime | null
+  createdAt_gte?: DateTime | null
 }
 
 export interface PageTranslationSubscriptionWhereInput {
@@ -6743,26 +9564,74 @@ export interface PageTranslationUpdateInput {
   description?: String | null
   publishedFrom?: DateTime | null
   publishedTo?: DateTime | null
-  page?: PageUpdateOneWithoutTranslationsInput | null
-  language?: LanguageUpdateOneInput | null
+  page?: PageUpdateOneRequiredWithoutTranslationsInput | null
+  language?: LanguageUpdateOneRequiredInput | null
   tasks?: PageTaskUpdateManyWithoutPageTranslationInput | null
+  annotations?: PageAnnotationUpdateManyWithoutPageTranslationInput | null
+}
+
+export interface PageTranslationUpdateManyDataInput {
+  url?: String | null
+  content?: Json | null
+  name?: String | null
+  status?: PageStatus | null
+  description?: String | null
+  publishedFrom?: DateTime | null
+  publishedTo?: DateTime | null
+}
+
+export interface PageTranslationUpdateManyMutationInput {
+  url?: String | null
+  content?: Json | null
+  name?: String | null
+  status?: PageStatus | null
+  description?: String | null
+  publishedFrom?: DateTime | null
+  publishedTo?: DateTime | null
 }
 
 export interface PageTranslationUpdateManyWithoutPageInput {
   create?: PageTranslationCreateWithoutPageInput[] | PageTranslationCreateWithoutPageInput | null
   connect?: PageTranslationWhereUniqueInput[] | PageTranslationWhereUniqueInput | null
+  set?: PageTranslationWhereUniqueInput[] | PageTranslationWhereUniqueInput | null
   disconnect?: PageTranslationWhereUniqueInput[] | PageTranslationWhereUniqueInput | null
   delete?: PageTranslationWhereUniqueInput[] | PageTranslationWhereUniqueInput | null
   update?: PageTranslationUpdateWithWhereUniqueWithoutPageInput[] | PageTranslationUpdateWithWhereUniqueWithoutPageInput | null
+  updateMany?: PageTranslationUpdateManyWithWhereNestedInput[] | PageTranslationUpdateManyWithWhereNestedInput | null
+  deleteMany?: PageTranslationScalarWhereInput[] | PageTranslationScalarWhereInput | null
   upsert?: PageTranslationUpsertWithWhereUniqueWithoutPageInput[] | PageTranslationUpsertWithWhereUniqueWithoutPageInput | null
 }
 
-export interface PageTranslationUpdateOneWithoutTasksInput {
+export interface PageTranslationUpdateManyWithWhereNestedInput {
+  where: PageTranslationScalarWhereInput
+  data: PageTranslationUpdateManyDataInput
+}
+
+export interface PageTranslationUpdateOneRequiredWithoutAnnotationsInput {
+  create?: PageTranslationCreateWithoutAnnotationsInput | null
+  connect?: PageTranslationWhereUniqueInput | null
+  update?: PageTranslationUpdateWithoutAnnotationsDataInput | null
+  upsert?: PageTranslationUpsertWithoutAnnotationsInput | null
+}
+
+export interface PageTranslationUpdateOneRequiredWithoutTasksInput {
   create?: PageTranslationCreateWithoutTasksInput | null
   connect?: PageTranslationWhereUniqueInput | null
-  delete?: Boolean | null
   update?: PageTranslationUpdateWithoutTasksDataInput | null
   upsert?: PageTranslationUpsertWithoutTasksInput | null
+}
+
+export interface PageTranslationUpdateWithoutAnnotationsDataInput {
+  url?: String | null
+  content?: Json | null
+  name?: String | null
+  status?: PageStatus | null
+  description?: String | null
+  publishedFrom?: DateTime | null
+  publishedTo?: DateTime | null
+  page?: PageUpdateOneRequiredWithoutTranslationsInput | null
+  language?: LanguageUpdateOneRequiredInput | null
+  tasks?: PageTaskUpdateManyWithoutPageTranslationInput | null
 }
 
 export interface PageTranslationUpdateWithoutPageDataInput {
@@ -6773,8 +9642,9 @@ export interface PageTranslationUpdateWithoutPageDataInput {
   description?: String | null
   publishedFrom?: DateTime | null
   publishedTo?: DateTime | null
-  language?: LanguageUpdateOneInput | null
+  language?: LanguageUpdateOneRequiredInput | null
   tasks?: PageTaskUpdateManyWithoutPageTranslationInput | null
+  annotations?: PageAnnotationUpdateManyWithoutPageTranslationInput | null
 }
 
 export interface PageTranslationUpdateWithoutTasksDataInput {
@@ -6785,13 +9655,19 @@ export interface PageTranslationUpdateWithoutTasksDataInput {
   description?: String | null
   publishedFrom?: DateTime | null
   publishedTo?: DateTime | null
-  page?: PageUpdateOneWithoutTranslationsInput | null
-  language?: LanguageUpdateOneInput | null
+  page?: PageUpdateOneRequiredWithoutTranslationsInput | null
+  language?: LanguageUpdateOneRequiredInput | null
+  annotations?: PageAnnotationUpdateManyWithoutPageTranslationInput | null
 }
 
 export interface PageTranslationUpdateWithWhereUniqueWithoutPageInput {
   where: PageTranslationWhereUniqueInput
   data: PageTranslationUpdateWithoutPageDataInput
+}
+
+export interface PageTranslationUpsertWithoutAnnotationsInput {
+  update: PageTranslationUpdateWithoutAnnotationsDataInput
+  create: PageTranslationCreateWithoutAnnotationsInput
 }
 
 export interface PageTranslationUpsertWithoutTasksInput {
@@ -6898,6 +9774,9 @@ export interface PageTranslationWhereInput {
   tasks_every?: PageTaskWhereInput | null
   tasks_some?: PageTaskWhereInput | null
   tasks_none?: PageTaskWhereInput | null
+  annotations_every?: PageAnnotationWhereInput | null
+  annotations_some?: PageAnnotationWhereInput | null
+  annotations_none?: PageAnnotationWhereInput | null
 }
 
 export interface PageTranslationWhereUniqueInput {
@@ -6931,6 +9810,40 @@ export interface PageTypeCreateWithoutWebsiteInput {
   plugins?: PageTypeCreatepluginsInput | null
 }
 
+export interface PageTypeScalarWhereInput {
+  AND?: PageTypeScalarWhereInput[] | PageTypeScalarWhereInput | null
+  OR?: PageTypeScalarWhereInput[] | PageTypeScalarWhereInput | null
+  NOT?: PageTypeScalarWhereInput[] | PageTypeScalarWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+  name?: String | null
+  name_not?: String | null
+  name_in?: String[] | String | null
+  name_not_in?: String[] | String | null
+  name_lt?: String | null
+  name_lte?: String | null
+  name_gt?: String | null
+  name_gte?: String | null
+  name_contains?: String | null
+  name_not_contains?: String | null
+  name_starts_with?: String | null
+  name_not_starts_with?: String | null
+  name_ends_with?: String | null
+  name_not_ends_with?: String | null
+}
+
 export interface PageTypeSubscriptionWhereInput {
   AND?: PageTypeSubscriptionWhereInput[] | PageTypeSubscriptionWhereInput | null
   OR?: PageTypeSubscriptionWhereInput[] | PageTypeSubscriptionWhereInput | null
@@ -6946,29 +9859,48 @@ export interface PageTypeUpdateDataInput {
   name?: String | null
   content?: Json | null
   plugins?: PageTypeUpdatepluginsInput | null
-  website?: WebsiteUpdateOneWithoutPageTypesInput | null
+  website?: WebsiteUpdateOneRequiredWithoutPageTypesInput | null
 }
 
 export interface PageTypeUpdateInput {
   name?: String | null
   content?: Json | null
   plugins?: PageTypeUpdatepluginsInput | null
-  website?: WebsiteUpdateOneWithoutPageTypesInput | null
+  website?: WebsiteUpdateOneRequiredWithoutPageTypesInput | null
+}
+
+export interface PageTypeUpdateManyDataInput {
+  name?: String | null
+  content?: Json | null
+  plugins?: PageTypeUpdatepluginsInput | null
+}
+
+export interface PageTypeUpdateManyMutationInput {
+  name?: String | null
+  content?: Json | null
+  plugins?: PageTypeUpdatepluginsInput | null
 }
 
 export interface PageTypeUpdateManyWithoutWebsiteInput {
   create?: PageTypeCreateWithoutWebsiteInput[] | PageTypeCreateWithoutWebsiteInput | null
   connect?: PageTypeWhereUniqueInput[] | PageTypeWhereUniqueInput | null
+  set?: PageTypeWhereUniqueInput[] | PageTypeWhereUniqueInput | null
   disconnect?: PageTypeWhereUniqueInput[] | PageTypeWhereUniqueInput | null
   delete?: PageTypeWhereUniqueInput[] | PageTypeWhereUniqueInput | null
   update?: PageTypeUpdateWithWhereUniqueWithoutWebsiteInput[] | PageTypeUpdateWithWhereUniqueWithoutWebsiteInput | null
+  updateMany?: PageTypeUpdateManyWithWhereNestedInput[] | PageTypeUpdateManyWithWhereNestedInput | null
+  deleteMany?: PageTypeScalarWhereInput[] | PageTypeScalarWhereInput | null
   upsert?: PageTypeUpsertWithWhereUniqueWithoutWebsiteInput[] | PageTypeUpsertWithWhereUniqueWithoutWebsiteInput | null
 }
 
-export interface PageTypeUpdateOneInput {
+export interface PageTypeUpdateManyWithWhereNestedInput {
+  where: PageTypeScalarWhereInput
+  data: PageTypeUpdateManyDataInput
+}
+
+export interface PageTypeUpdateOneRequiredInput {
   create?: PageTypeCreateInput | null
   connect?: PageTypeWhereUniqueInput | null
-  delete?: Boolean | null
   update?: PageTypeUpdateDataInput | null
   upsert?: PageTypeUpsertNestedInput | null
 }
@@ -7040,8 +9972,8 @@ export interface PageTypeWhereUniqueInput {
 
 export interface PageUpdateDataInput {
   parent?: PageUpdateOneInput | null
-  website?: WebsiteUpdateOneWithoutPagesInput | null
-  type?: PageTypeUpdateOneInput | null
+  website?: WebsiteUpdateOneRequiredWithoutPagesInput | null
+  type?: PageTypeUpdateOneRequiredInput | null
   translations?: PageTranslationUpdateManyWithoutPageInput | null
   chats?: PageChatUpdateManyWithoutPageInput | null
   tags?: TagUpdateManyWithoutPagesInput | null
@@ -7050,8 +9982,8 @@ export interface PageUpdateDataInput {
 
 export interface PageUpdateInput {
   parent?: PageUpdateOneInput | null
-  website?: WebsiteUpdateOneWithoutPagesInput | null
-  type?: PageTypeUpdateOneInput | null
+  website?: WebsiteUpdateOneRequiredWithoutPagesInput | null
+  type?: PageTypeUpdateOneRequiredInput | null
   translations?: PageTranslationUpdateManyWithoutPageInput | null
   chats?: PageChatUpdateManyWithoutPageInput | null
   tags?: TagUpdateManyWithoutPagesInput | null
@@ -7061,18 +9993,22 @@ export interface PageUpdateInput {
 export interface PageUpdateManyWithoutTagsInput {
   create?: PageCreateWithoutTagsInput[] | PageCreateWithoutTagsInput | null
   connect?: PageWhereUniqueInput[] | PageWhereUniqueInput | null
+  set?: PageWhereUniqueInput[] | PageWhereUniqueInput | null
   disconnect?: PageWhereUniqueInput[] | PageWhereUniqueInput | null
   delete?: PageWhereUniqueInput[] | PageWhereUniqueInput | null
   update?: PageUpdateWithWhereUniqueWithoutTagsInput[] | PageUpdateWithWhereUniqueWithoutTagsInput | null
+  deleteMany?: PageScalarWhereInput[] | PageScalarWhereInput | null
   upsert?: PageUpsertWithWhereUniqueWithoutTagsInput[] | PageUpsertWithWhereUniqueWithoutTagsInput | null
 }
 
 export interface PageUpdateManyWithoutWebsiteInput {
   create?: PageCreateWithoutWebsiteInput[] | PageCreateWithoutWebsiteInput | null
   connect?: PageWhereUniqueInput[] | PageWhereUniqueInput | null
+  set?: PageWhereUniqueInput[] | PageWhereUniqueInput | null
   disconnect?: PageWhereUniqueInput[] | PageWhereUniqueInput | null
   delete?: PageWhereUniqueInput[] | PageWhereUniqueInput | null
   update?: PageUpdateWithWhereUniqueWithoutWebsiteInput[] | PageUpdateWithWhereUniqueWithoutWebsiteInput | null
+  deleteMany?: PageScalarWhereInput[] | PageScalarWhereInput | null
   upsert?: PageUpsertWithWhereUniqueWithoutWebsiteInput[] | PageUpsertWithWhereUniqueWithoutWebsiteInput | null
 }
 
@@ -7085,34 +10021,31 @@ export interface PageUpdateOneInput {
   upsert?: PageUpsertNestedInput | null
 }
 
-export interface PageUpdateOneWithoutChatsInput {
+export interface PageUpdateOneRequiredWithoutChatsInput {
   create?: PageCreateWithoutChatsInput | null
   connect?: PageWhereUniqueInput | null
-  delete?: Boolean | null
   update?: PageUpdateWithoutChatsDataInput | null
   upsert?: PageUpsertWithoutChatsInput | null
 }
 
-export interface PageUpdateOneWithoutPluginInput {
+export interface PageUpdateOneRequiredWithoutPluginInput {
   create?: PageCreateWithoutPluginInput | null
   connect?: PageWhereUniqueInput | null
-  delete?: Boolean | null
   update?: PageUpdateWithoutPluginDataInput | null
   upsert?: PageUpsertWithoutPluginInput | null
 }
 
-export interface PageUpdateOneWithoutTranslationsInput {
+export interface PageUpdateOneRequiredWithoutTranslationsInput {
   create?: PageCreateWithoutTranslationsInput | null
   connect?: PageWhereUniqueInput | null
-  delete?: Boolean | null
   update?: PageUpdateWithoutTranslationsDataInput | null
   upsert?: PageUpsertWithoutTranslationsInput | null
 }
 
 export interface PageUpdateWithoutChatsDataInput {
   parent?: PageUpdateOneInput | null
-  website?: WebsiteUpdateOneWithoutPagesInput | null
-  type?: PageTypeUpdateOneInput | null
+  website?: WebsiteUpdateOneRequiredWithoutPagesInput | null
+  type?: PageTypeUpdateOneRequiredInput | null
   translations?: PageTranslationUpdateManyWithoutPageInput | null
   tags?: TagUpdateManyWithoutPagesInput | null
   plugin?: PagePluginUpdateOneWithoutPageInput | null
@@ -7120,8 +10053,8 @@ export interface PageUpdateWithoutChatsDataInput {
 
 export interface PageUpdateWithoutPluginDataInput {
   parent?: PageUpdateOneInput | null
-  website?: WebsiteUpdateOneWithoutPagesInput | null
-  type?: PageTypeUpdateOneInput | null
+  website?: WebsiteUpdateOneRequiredWithoutPagesInput | null
+  type?: PageTypeUpdateOneRequiredInput | null
   translations?: PageTranslationUpdateManyWithoutPageInput | null
   chats?: PageChatUpdateManyWithoutPageInput | null
   tags?: TagUpdateManyWithoutPagesInput | null
@@ -7129,8 +10062,8 @@ export interface PageUpdateWithoutPluginDataInput {
 
 export interface PageUpdateWithoutTagsDataInput {
   parent?: PageUpdateOneInput | null
-  website?: WebsiteUpdateOneWithoutPagesInput | null
-  type?: PageTypeUpdateOneInput | null
+  website?: WebsiteUpdateOneRequiredWithoutPagesInput | null
+  type?: PageTypeUpdateOneRequiredInput | null
   translations?: PageTranslationUpdateManyWithoutPageInput | null
   chats?: PageChatUpdateManyWithoutPageInput | null
   plugin?: PagePluginUpdateOneWithoutPageInput | null
@@ -7138,8 +10071,8 @@ export interface PageUpdateWithoutTagsDataInput {
 
 export interface PageUpdateWithoutTranslationsDataInput {
   parent?: PageUpdateOneInput | null
-  website?: WebsiteUpdateOneWithoutPagesInput | null
-  type?: PageTypeUpdateOneInput | null
+  website?: WebsiteUpdateOneRequiredWithoutPagesInput | null
+  type?: PageTypeUpdateOneRequiredInput | null
   chats?: PageChatUpdateManyWithoutPageInput | null
   tags?: TagUpdateManyWithoutPagesInput | null
   plugin?: PagePluginUpdateOneWithoutPageInput | null
@@ -7147,7 +10080,7 @@ export interface PageUpdateWithoutTranslationsDataInput {
 
 export interface PageUpdateWithoutWebsiteDataInput {
   parent?: PageUpdateOneInput | null
-  type?: PageTypeUpdateOneInput | null
+  type?: PageTypeUpdateOneRequiredInput | null
   translations?: PageTranslationUpdateManyWithoutPageInput | null
   chats?: PageChatUpdateManyWithoutPageInput | null
   tags?: TagUpdateManyWithoutPagesInput | null
@@ -7271,14 +10204,19 @@ export interface ProjectUpdateInput {
   defaultName?: String | null
   settings?: Json | null
   languages?: LanguageUpdateManyInput | null
-  defaultLanguage?: LanguageUpdateOneInput | null
+  defaultLanguage?: LanguageUpdateOneRequiredInput | null
   websites?: WebsiteUpdateManyWithoutProjectInput | null
 }
 
-export interface ProjectUpdateOneWithoutWebsitesInput {
+export interface ProjectUpdateManyMutationInput {
+  name?: String | null
+  defaultName?: String | null
+  settings?: Json | null
+}
+
+export interface ProjectUpdateOneRequiredWithoutWebsitesInput {
   create?: ProjectCreateWithoutWebsitesInput | null
   connect?: ProjectWhereUniqueInput | null
-  delete?: Boolean | null
   update?: ProjectUpdateWithoutWebsitesDataInput | null
   upsert?: ProjectUpsertWithoutWebsitesInput | null
 }
@@ -7288,7 +10226,7 @@ export interface ProjectUpdateWithoutWebsitesDataInput {
   defaultName?: String | null
   settings?: Json | null
   languages?: LanguageUpdateManyInput | null
-  defaultLanguage?: LanguageUpdateOneInput | null
+  defaultLanguage?: LanguageUpdateOneRequiredInput | null
 }
 
 export interface ProjectUpsertWithoutWebsitesInput {
@@ -7373,6 +10311,12 @@ export interface SubscriberSubscriptionWhereInput {
 }
 
 export interface SubscriberUpdateInput {
+  email?: String | null
+  url?: String | null
+  ip?: String | null
+}
+
+export interface SubscriberUpdateManyMutationInput {
   email?: String | null
   url?: String | null
   ip?: String | null
@@ -7478,6 +10422,56 @@ export interface TagCreateWithoutPagesInput {
   website: WebsiteCreateOneInput
 }
 
+export interface TagScalarWhereInput {
+  AND?: TagScalarWhereInput[] | TagScalarWhereInput | null
+  OR?: TagScalarWhereInput[] | TagScalarWhereInput | null
+  NOT?: TagScalarWhereInput[] | TagScalarWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+  name?: String | null
+  name_not?: String | null
+  name_in?: String[] | String | null
+  name_not_in?: String[] | String | null
+  name_lt?: String | null
+  name_lte?: String | null
+  name_gt?: String | null
+  name_gte?: String | null
+  name_contains?: String | null
+  name_not_contains?: String | null
+  name_starts_with?: String | null
+  name_not_starts_with?: String | null
+  name_ends_with?: String | null
+  name_not_ends_with?: String | null
+  displayInNavigation?: Boolean | null
+  displayInNavigation_not?: Boolean | null
+  color?: String | null
+  color_not?: String | null
+  color_in?: String[] | String | null
+  color_not_in?: String[] | String | null
+  color_lt?: String | null
+  color_lte?: String | null
+  color_gt?: String | null
+  color_gte?: String | null
+  color_contains?: String | null
+  color_not_contains?: String | null
+  color_starts_with?: String | null
+  color_not_starts_with?: String | null
+  color_ends_with?: String | null
+  color_not_ends_with?: String | null
+}
+
 export interface TagSubscriptionWhereInput {
   AND?: TagSubscriptionWhereInput[] | TagSubscriptionWhereInput | null
   OR?: TagSubscriptionWhereInput[] | TagSubscriptionWhereInput | null
@@ -7494,17 +10488,39 @@ export interface TagUpdateInput {
   displayInNavigation?: Boolean | null
   color?: String | null
   plugins?: TagUpdatepluginsInput | null
-  website?: WebsiteUpdateOneInput | null
+  website?: WebsiteUpdateOneRequiredInput | null
   pages?: PageUpdateManyWithoutTagsInput | null
+}
+
+export interface TagUpdateManyDataInput {
+  name?: String | null
+  displayInNavigation?: Boolean | null
+  color?: String | null
+  plugins?: TagUpdatepluginsInput | null
+}
+
+export interface TagUpdateManyMutationInput {
+  name?: String | null
+  displayInNavigation?: Boolean | null
+  color?: String | null
+  plugins?: TagUpdatepluginsInput | null
 }
 
 export interface TagUpdateManyWithoutPagesInput {
   create?: TagCreateWithoutPagesInput[] | TagCreateWithoutPagesInput | null
   connect?: TagWhereUniqueInput[] | TagWhereUniqueInput | null
+  set?: TagWhereUniqueInput[] | TagWhereUniqueInput | null
   disconnect?: TagWhereUniqueInput[] | TagWhereUniqueInput | null
   delete?: TagWhereUniqueInput[] | TagWhereUniqueInput | null
   update?: TagUpdateWithWhereUniqueWithoutPagesInput[] | TagUpdateWithWhereUniqueWithoutPagesInput | null
+  updateMany?: TagUpdateManyWithWhereNestedInput[] | TagUpdateManyWithWhereNestedInput | null
+  deleteMany?: TagScalarWhereInput[] | TagScalarWhereInput | null
   upsert?: TagUpsertWithWhereUniqueWithoutPagesInput[] | TagUpsertWithWhereUniqueWithoutPagesInput | null
+}
+
+export interface TagUpdateManyWithWhereNestedInput {
+  where: TagScalarWhereInput
+  data: TagUpdateManyDataInput
 }
 
 export interface TagUpdatepluginsInput {
@@ -7516,7 +10532,7 @@ export interface TagUpdateWithoutPagesDataInput {
   displayInNavigation?: Boolean | null
   color?: String | null
   plugins?: TagUpdatepluginsInput | null
-  website?: WebsiteUpdateOneInput | null
+  website?: WebsiteUpdateOneRequiredInput | null
 }
 
 export interface TagUpdateWithWhereUniqueWithoutPagesInput {
@@ -7649,6 +10665,54 @@ export interface WebsiteCreateWithoutProjectInput {
   pages?: PageCreateManyWithoutWebsiteInput | null
 }
 
+export interface WebsiteScalarWhereInput {
+  AND?: WebsiteScalarWhereInput[] | WebsiteScalarWhereInput | null
+  OR?: WebsiteScalarWhereInput[] | WebsiteScalarWhereInput | null
+  NOT?: WebsiteScalarWhereInput[] | WebsiteScalarWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+  title?: String | null
+  title_not?: String | null
+  title_in?: String[] | String | null
+  title_not_in?: String[] | String | null
+  title_lt?: String | null
+  title_lte?: String | null
+  title_gt?: String | null
+  title_gte?: String | null
+  title_contains?: String | null
+  title_not_contains?: String | null
+  title_starts_with?: String | null
+  title_not_starts_with?: String | null
+  title_ends_with?: String | null
+  title_not_ends_with?: String | null
+  urlMask?: String | null
+  urlMask_not?: String | null
+  urlMask_in?: String[] | String | null
+  urlMask_not_in?: String[] | String | null
+  urlMask_lt?: String | null
+  urlMask_lte?: String | null
+  urlMask_gt?: String | null
+  urlMask_gte?: String | null
+  urlMask_contains?: String | null
+  urlMask_not_contains?: String | null
+  urlMask_starts_with?: String | null
+  urlMask_not_starts_with?: String | null
+  urlMask_ends_with?: String | null
+  urlMask_not_ends_with?: String | null
+}
+
 export interface WebsiteSubscriptionWhereInput {
   AND?: WebsiteSubscriptionWhereInput[] | WebsiteSubscriptionWhereInput | null
   OR?: WebsiteSubscriptionWhereInput[] | WebsiteSubscriptionWhereInput | null
@@ -7664,9 +10728,9 @@ export interface WebsiteUpdateDataInput {
   title?: String | null
   urlMask?: String | null
   settings?: Json | null
-  project?: ProjectUpdateOneWithoutWebsitesInput | null
+  project?: ProjectUpdateOneRequiredWithoutWebsitesInput | null
   languages?: LanguageUpdateManyInput | null
-  defaultLanguage?: LanguageUpdateOneInput | null
+  defaultLanguage?: LanguageUpdateOneRequiredInput | null
   pageTypes?: PageTypeUpdateManyWithoutWebsiteInput | null
   pages?: PageUpdateManyWithoutWebsiteInput | null
 }
@@ -7675,42 +10739,59 @@ export interface WebsiteUpdateInput {
   title?: String | null
   urlMask?: String | null
   settings?: Json | null
-  project?: ProjectUpdateOneWithoutWebsitesInput | null
+  project?: ProjectUpdateOneRequiredWithoutWebsitesInput | null
   languages?: LanguageUpdateManyInput | null
-  defaultLanguage?: LanguageUpdateOneInput | null
+  defaultLanguage?: LanguageUpdateOneRequiredInput | null
   pageTypes?: PageTypeUpdateManyWithoutWebsiteInput | null
   pages?: PageUpdateManyWithoutWebsiteInput | null
+}
+
+export interface WebsiteUpdateManyDataInput {
+  title?: String | null
+  urlMask?: String | null
+  settings?: Json | null
+}
+
+export interface WebsiteUpdateManyMutationInput {
+  title?: String | null
+  urlMask?: String | null
+  settings?: Json | null
 }
 
 export interface WebsiteUpdateManyWithoutProjectInput {
   create?: WebsiteCreateWithoutProjectInput[] | WebsiteCreateWithoutProjectInput | null
   connect?: WebsiteWhereUniqueInput[] | WebsiteWhereUniqueInput | null
+  set?: WebsiteWhereUniqueInput[] | WebsiteWhereUniqueInput | null
   disconnect?: WebsiteWhereUniqueInput[] | WebsiteWhereUniqueInput | null
   delete?: WebsiteWhereUniqueInput[] | WebsiteWhereUniqueInput | null
   update?: WebsiteUpdateWithWhereUniqueWithoutProjectInput[] | WebsiteUpdateWithWhereUniqueWithoutProjectInput | null
+  updateMany?: WebsiteUpdateManyWithWhereNestedInput[] | WebsiteUpdateManyWithWhereNestedInput | null
+  deleteMany?: WebsiteScalarWhereInput[] | WebsiteScalarWhereInput | null
   upsert?: WebsiteUpsertWithWhereUniqueWithoutProjectInput[] | WebsiteUpsertWithWhereUniqueWithoutProjectInput | null
 }
 
-export interface WebsiteUpdateOneInput {
+export interface WebsiteUpdateManyWithWhereNestedInput {
+  where: WebsiteScalarWhereInput
+  data: WebsiteUpdateManyDataInput
+}
+
+export interface WebsiteUpdateOneRequiredInput {
   create?: WebsiteCreateInput | null
   connect?: WebsiteWhereUniqueInput | null
-  delete?: Boolean | null
   update?: WebsiteUpdateDataInput | null
   upsert?: WebsiteUpsertNestedInput | null
 }
 
-export interface WebsiteUpdateOneWithoutPagesInput {
+export interface WebsiteUpdateOneRequiredWithoutPagesInput {
   create?: WebsiteCreateWithoutPagesInput | null
   connect?: WebsiteWhereUniqueInput | null
-  delete?: Boolean | null
   update?: WebsiteUpdateWithoutPagesDataInput | null
   upsert?: WebsiteUpsertWithoutPagesInput | null
 }
 
-export interface WebsiteUpdateOneWithoutPageTypesInput {
+export interface WebsiteUpdateOneRequiredWithoutPageTypesInput {
   create?: WebsiteCreateWithoutPageTypesInput | null
   connect?: WebsiteWhereUniqueInput | null
-  delete?: Boolean | null
   update?: WebsiteUpdateWithoutPageTypesDataInput | null
   upsert?: WebsiteUpsertWithoutPageTypesInput | null
 }
@@ -7719,9 +10800,9 @@ export interface WebsiteUpdateWithoutPagesDataInput {
   title?: String | null
   urlMask?: String | null
   settings?: Json | null
-  project?: ProjectUpdateOneWithoutWebsitesInput | null
+  project?: ProjectUpdateOneRequiredWithoutWebsitesInput | null
   languages?: LanguageUpdateManyInput | null
-  defaultLanguage?: LanguageUpdateOneInput | null
+  defaultLanguage?: LanguageUpdateOneRequiredInput | null
   pageTypes?: PageTypeUpdateManyWithoutWebsiteInput | null
 }
 
@@ -7729,9 +10810,9 @@ export interface WebsiteUpdateWithoutPageTypesDataInput {
   title?: String | null
   urlMask?: String | null
   settings?: Json | null
-  project?: ProjectUpdateOneWithoutWebsitesInput | null
+  project?: ProjectUpdateOneRequiredWithoutWebsitesInput | null
   languages?: LanguageUpdateManyInput | null
-  defaultLanguage?: LanguageUpdateOneInput | null
+  defaultLanguage?: LanguageUpdateOneRequiredInput | null
   pages?: PageUpdateManyWithoutWebsiteInput | null
 }
 
@@ -7740,7 +10821,7 @@ export interface WebsiteUpdateWithoutProjectDataInput {
   urlMask?: String | null
   settings?: Json | null
   languages?: LanguageUpdateManyInput | null
-  defaultLanguage?: LanguageUpdateOneInput | null
+  defaultLanguage?: LanguageUpdateOneRequiredInput | null
   pageTypes?: PageTypeUpdateManyWithoutWebsiteInput | null
   pages?: PageUpdateManyWithoutWebsiteInput | null
 }
@@ -7863,6 +10944,10 @@ export interface AggregateNavigationNode {
 }
 
 export interface AggregatePage {
+  count: Int
+}
+
+export interface AggregatePageAnnotation {
   count: Int
 }
 
@@ -8134,6 +11219,45 @@ export interface Page extends Node {
   plugin?: PagePlugin | null
 }
 
+export interface PageAnnotation extends Node {
+  id: ID_Output
+  pageTranslation: PageTranslation
+  key: String
+  value: String
+}
+
+/*
+ * A connection to a list of items.
+
+ */
+export interface PageAnnotationConnection {
+  pageInfo: PageInfo
+  edges: Array<PageAnnotationEdge | null>
+  aggregate: AggregatePageAnnotation
+}
+
+/*
+ * An edge in a connection.
+
+ */
+export interface PageAnnotationEdge {
+  node: PageAnnotation
+  cursor: String
+}
+
+export interface PageAnnotationPreviousValues {
+  id: ID_Output
+  key: String
+  value: String
+}
+
+export interface PageAnnotationSubscriptionPayload {
+  mutation: MutationType
+  node?: PageAnnotation | null
+  updatedFields?: Array<String> | null
+  previousValues?: PageAnnotationPreviousValues | null
+}
+
 export interface PageChat extends Node {
   id: ID_Output
   page: Page
@@ -8313,6 +11437,7 @@ export interface PageTranslation extends Node {
   publishedFrom?: DateTime | null
   publishedTo?: DateTime | null
   tasks?: Array<PageTask> | null
+  annotations?: Array<PageAnnotation> | null
   createdAt: DateTime
 }
 

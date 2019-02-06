@@ -67,6 +67,7 @@ type PageTranslation {
   publishedFrom: DateTime
   publishedTo: DateTime
   tasks: [PageTask!]! @relation(name: "TaskUnderPage", onDelete: CASCADE)
+  annotations: [PageAnnotation!]! @relation(name: "AnnotationUnderPage", onDelete: CASCADE)
   createdAt: DateTime!
 }
 
@@ -94,6 +95,13 @@ type PageChat {
   text: String!
   createdAt: DateTime!
   auth0id: ID
+}
+
+type PageAnnotation {
+  id: ID! @unique
+  pageTranslation: PageTranslation! @relation(name: "AnnotationUnderPage")
+  key: String!
+  value: String!
 }
 
 type File {
