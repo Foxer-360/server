@@ -53,6 +53,7 @@ type Page {
   chats: [PageChat!]! @relation(name: "ChatUnderPage", onDelete: CASCADE)
   tags: [Tag!]! @relation(name: "TagOnPage")
   plugin: PagePlugin @relation(name: "PluginForPage", onDelete: CASCADE)
+  datasources: [Datasource!]! @relation(name: "DatasourceOnPage")
 }
 
 type PageTranslation {
@@ -150,4 +151,23 @@ type Inquiry {
   ip: String
 }
 
+type Datasource {
+  id: ID! @unique
+  type: String!
+  schema: Json!
+  uiSchema: Json
+  displayInNavigation: Boolean
+  slug: [String!]!
+  datasourceItems: [DatasourceItem!]! @relation(name: "DatasourceItemForPage", onDelete: CASCADE)
+  page: [Page!]! @relation(name: "DatasourceOnPage")
+}
+
+type DatasourceItem {
+  id: ID! @unique
+  datasource: Datasource! @relation(name: "DatasourceItemForPage")
+  slug: String!
+  content: Json!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
 

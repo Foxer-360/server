@@ -15,6 +15,8 @@ type Mutation {
   createTag(data: TagCreateInput!): Tag!
   createSubscriber(data: SubscriberCreateInput!): Subscriber!
   createInquiry(data: InquiryCreateInput!): Inquiry!
+  createDatasource(data: DatasourceCreateInput!): Datasource!
+  createDatasourceItem(data: DatasourceItemCreateInput!): DatasourceItem!
   createPageType(data: PageTypeCreateInput!): PageType!
   createWebsite(data: WebsiteCreateInput!): Website!
   createLanguage(data: LanguageCreateInput!): Language!
@@ -29,6 +31,8 @@ type Mutation {
   updateTag(data: TagUpdateInput!, where: TagWhereUniqueInput!): Tag
   updateSubscriber(data: SubscriberUpdateInput!, where: SubscriberWhereUniqueInput!): Subscriber
   updateInquiry(data: InquiryUpdateInput!, where: InquiryWhereUniqueInput!): Inquiry
+  updateDatasource(data: DatasourceUpdateInput!, where: DatasourceWhereUniqueInput!): Datasource
+  updateDatasourceItem(data: DatasourceItemUpdateInput!, where: DatasourceItemWhereUniqueInput!): DatasourceItem
   updatePage(data: PageUpdateInput!, where: PageWhereUniqueInput!): Page
   updatePageType(data: PageTypeUpdateInput!, where: PageTypeWhereUniqueInput!): PageType
   updateWebsite(data: WebsiteUpdateInput!, where: WebsiteWhereUniqueInput!): Website
@@ -44,6 +48,8 @@ type Mutation {
   deleteTag(where: TagWhereUniqueInput!): Tag
   deleteSubscriber(where: SubscriberWhereUniqueInput!): Subscriber
   deleteInquiry(where: InquiryWhereUniqueInput!): Inquiry
+  deleteDatasource(where: DatasourceWhereUniqueInput!): Datasource
+  deleteDatasourceItem(where: DatasourceItemWhereUniqueInput!): DatasourceItem
   deletePage(where: PageWhereUniqueInput!): Page
   deletePageType(where: PageTypeWhereUniqueInput!): PageType
   deleteWebsite(where: WebsiteWhereUniqueInput!): Website
@@ -59,6 +65,8 @@ type Mutation {
   upsertTag(where: TagWhereUniqueInput!, create: TagCreateInput!, update: TagUpdateInput!): Tag!
   upsertSubscriber(where: SubscriberWhereUniqueInput!, create: SubscriberCreateInput!, update: SubscriberUpdateInput!): Subscriber!
   upsertInquiry(where: InquiryWhereUniqueInput!, create: InquiryCreateInput!, update: InquiryUpdateInput!): Inquiry!
+  upsertDatasource(where: DatasourceWhereUniqueInput!, create: DatasourceCreateInput!, update: DatasourceUpdateInput!): Datasource!
+  upsertDatasourceItem(where: DatasourceItemWhereUniqueInput!, create: DatasourceItemCreateInput!, update: DatasourceItemUpdateInput!): DatasourceItem!
   upsertPage(where: PageWhereUniqueInput!, create: PageCreateInput!, update: PageUpdateInput!): Page!
   upsertPageType(where: PageTypeWhereUniqueInput!, create: PageTypeCreateInput!, update: PageTypeUpdateInput!): PageType!
   upsertWebsite(where: WebsiteWhereUniqueInput!, create: WebsiteCreateInput!, update: WebsiteUpdateInput!): Website!
@@ -74,6 +82,8 @@ type Mutation {
   updateManyTags(data: TagUpdateInput!, where: TagWhereInput): BatchPayload!
   updateManySubscribers(data: SubscriberUpdateInput!, where: SubscriberWhereInput): BatchPayload!
   updateManyInquiries(data: InquiryUpdateInput!, where: InquiryWhereInput): BatchPayload!
+  updateManyDatasources(data: DatasourceUpdateInput!, where: DatasourceWhereInput): BatchPayload!
+  updateManyDatasourceItems(data: DatasourceItemUpdateInput!, where: DatasourceItemWhereInput): BatchPayload!
   updateManyPages(data: PageUpdateInput!, where: PageWhereInput): BatchPayload!
   updateManyPageTypes(data: PageTypeUpdateInput!, where: PageTypeWhereInput): BatchPayload!
   updateManyWebsites(data: WebsiteUpdateInput!, where: WebsiteWhereInput): BatchPayload!
@@ -89,6 +99,8 @@ type Mutation {
   deleteManyTags(where: TagWhereInput): BatchPayload!
   deleteManySubscribers(where: SubscriberWhereInput): BatchPayload!
   deleteManyInquiries(where: InquiryWhereInput): BatchPayload!
+  deleteManyDatasources(where: DatasourceWhereInput): BatchPayload!
+  deleteManyDatasourceItems(where: DatasourceItemWhereInput): BatchPayload!
   deleteManyPages(where: PageWhereInput): BatchPayload!
   deleteManyPageTypes(where: PageTypeWhereInput): BatchPayload!
   deleteManyWebsites(where: WebsiteWhereInput): BatchPayload!
@@ -137,6 +149,8 @@ type Query {
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag]!
   subscribers(where: SubscriberWhereInput, orderBy: SubscriberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscriber]!
   inquiries(where: InquiryWhereInput, orderBy: InquiryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Inquiry]!
+  datasources(where: DatasourceWhereInput, orderBy: DatasourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Datasource]!
+  datasourceItems(where: DatasourceItemWhereInput, orderBy: DatasourceItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DatasourceItem]!
   pages(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Page]!
   pageTypes(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageType]!
   websites(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Website]!
@@ -152,6 +166,8 @@ type Query {
   tag(where: TagWhereUniqueInput!): Tag
   subscriber(where: SubscriberWhereUniqueInput!): Subscriber
   inquiry(where: InquiryWhereUniqueInput!): Inquiry
+  datasource(where: DatasourceWhereUniqueInput!): Datasource
+  datasourceItem(where: DatasourceItemWhereUniqueInput!): DatasourceItem
   page(where: PageWhereUniqueInput!): Page
   pageType(where: PageTypeWhereUniqueInput!): PageType
   website(where: WebsiteWhereUniqueInput!): Website
@@ -167,6 +183,8 @@ type Query {
   tagsConnection(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TagConnection!
   subscribersConnection(where: SubscriberWhereInput, orderBy: SubscriberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SubscriberConnection!
   inquiriesConnection(where: InquiryWhereInput, orderBy: InquiryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InquiryConnection!
+  datasourcesConnection(where: DatasourceWhereInput, orderBy: DatasourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DatasourceConnection!
+  datasourceItemsConnection(where: DatasourceItemWhereInput, orderBy: DatasourceItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DatasourceItemConnection!
   pagesConnection(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageConnection!
   pageTypesConnection(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTypeConnection!
   websitesConnection(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WebsiteConnection!
