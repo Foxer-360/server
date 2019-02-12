@@ -1,5 +1,6 @@
 # source: http://localhost:4466
-# timestamp: Mon Feb 11 2019 16:58:18 GMT+0100 (CET)
+
+# timestamp: Tue Feb 12 2019 11:59:14 GMT+0100 (Central European Standard Time)
 
 type AggregateDatasource {
   count: Int!
@@ -148,7 +149,7 @@ type DatasourceEdge {
 
 type DatasourceItem implements Node {
   id: ID!
-  datasource(where: DatasourceWhereInput): Datasource!
+  datasource: Datasource!
   slug: String!
   content: Json!
   createdAt: DateTime!
@@ -211,6 +212,141 @@ type DatasourceItemPreviousValues {
   updatedAt: DateTime!
 }
 
+input DatasourceItemScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [DatasourceItemScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [DatasourceItemScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DatasourceItemScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  slug: String
+
+  """All values that are not equal to given value."""
+  slug_not: String
+
+  """All values that are contained in given list."""
+  slug_in: [String!]
+
+  """All values that are not contained in given list."""
+  slug_not_in: [String!]
+
+  """All values less than the given value."""
+  slug_lt: String
+
+  """All values less than or equal the given value."""
+  slug_lte: String
+
+  """All values greater than the given value."""
+  slug_gt: String
+
+  """All values greater than or equal the given value."""
+  slug_gte: String
+
+  """All values containing the given string."""
+  slug_contains: String
+
+  """All values not containing the given string."""
+  slug_not_contains: String
+
+  """All values starting with the given string."""
+  slug_starts_with: String
+
+  """All values not starting with the given string."""
+  slug_not_starts_with: String
+
+  """All values ending with the given string."""
+  slug_ends_with: String
+
+  """All values not ending with the given string."""
+  slug_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+}
+
 type DatasourceItemSubscriptionPayload {
   mutation: MutationType!
   node: DatasourceItem
@@ -253,16 +389,34 @@ input DatasourceItemSubscriptionWhereInput {
 input DatasourceItemUpdateInput {
   slug: String
   content: Json
-  datasource: DatasourceUpdateOneWithoutDatasourceItemsInput
+  datasource: DatasourceUpdateOneRequiredWithoutDatasourceItemsInput
+}
+
+input DatasourceItemUpdateManyDataInput {
+  slug: String
+  content: Json
+}
+
+input DatasourceItemUpdateManyMutationInput {
+  slug: String
+  content: Json
 }
 
 input DatasourceItemUpdateManyWithoutDatasourceInput {
   create: [DatasourceItemCreateWithoutDatasourceInput!]
   connect: [DatasourceItemWhereUniqueInput!]
+  set: [DatasourceItemWhereUniqueInput!]
   disconnect: [DatasourceItemWhereUniqueInput!]
   delete: [DatasourceItemWhereUniqueInput!]
   update: [DatasourceItemUpdateWithWhereUniqueWithoutDatasourceInput!]
+  updateMany: [DatasourceItemUpdateManyWithWhereNestedInput!]
+  deleteMany: [DatasourceItemScalarWhereInput!]
   upsert: [DatasourceItemUpsertWithWhereUniqueWithoutDatasourceInput!]
+}
+
+input DatasourceItemUpdateManyWithWhereNestedInput {
+  where: DatasourceItemScalarWhereInput!
+  data: DatasourceItemUpdateManyDataInput!
 }
 
 input DatasourceItemUpdateWithoutDatasourceDataInput {
@@ -447,6 +601,101 @@ type DatasourcePreviousValues {
   slug: [String!]!
 }
 
+input DatasourceScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [DatasourceScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [DatasourceScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DatasourceScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  type: String
+
+  """All values that are not equal to given value."""
+  type_not: String
+
+  """All values that are contained in given list."""
+  type_in: [String!]
+
+  """All values that are not contained in given list."""
+  type_not_in: [String!]
+
+  """All values less than the given value."""
+  type_lt: String
+
+  """All values less than or equal the given value."""
+  type_lte: String
+
+  """All values greater than the given value."""
+  type_gt: String
+
+  """All values greater than or equal the given value."""
+  type_gte: String
+
+  """All values containing the given string."""
+  type_contains: String
+
+  """All values not containing the given string."""
+  type_not_contains: String
+
+  """All values starting with the given string."""
+  type_starts_with: String
+
+  """All values not starting with the given string."""
+  type_not_starts_with: String
+
+  """All values ending with the given string."""
+  type_ends_with: String
+
+  """All values not ending with the given string."""
+  type_not_ends_with: String
+  displayInNavigation: Boolean
+
+  """All values that are not equal to given value."""
+  displayInNavigation_not: Boolean
+}
+
 type DatasourceSubscriptionPayload {
   mutation: MutationType!
   node: Datasource
@@ -496,19 +745,42 @@ input DatasourceUpdateInput {
   page: PageUpdateManyWithoutDatasourcesInput
 }
 
+input DatasourceUpdateManyDataInput {
+  type: String
+  schema: Json
+  uiSchema: Json
+  displayInNavigation: Boolean
+  slug: DatasourceUpdateslugInput
+}
+
+input DatasourceUpdateManyMutationInput {
+  type: String
+  schema: Json
+  uiSchema: Json
+  displayInNavigation: Boolean
+  slug: DatasourceUpdateslugInput
+}
+
 input DatasourceUpdateManyWithoutPageInput {
   create: [DatasourceCreateWithoutPageInput!]
   connect: [DatasourceWhereUniqueInput!]
+  set: [DatasourceWhereUniqueInput!]
   disconnect: [DatasourceWhereUniqueInput!]
   delete: [DatasourceWhereUniqueInput!]
   update: [DatasourceUpdateWithWhereUniqueWithoutPageInput!]
+  updateMany: [DatasourceUpdateManyWithWhereNestedInput!]
+  deleteMany: [DatasourceScalarWhereInput!]
   upsert: [DatasourceUpsertWithWhereUniqueWithoutPageInput!]
 }
 
-input DatasourceUpdateOneWithoutDatasourceItemsInput {
+input DatasourceUpdateManyWithWhereNestedInput {
+  where: DatasourceScalarWhereInput!
+  data: DatasourceUpdateManyDataInput!
+}
+
+input DatasourceUpdateOneRequiredWithoutDatasourceItemsInput {
   create: DatasourceCreateWithoutDatasourceItemsInput
   connect: DatasourceWhereUniqueInput
-  delete: Boolean
   update: DatasourceUpdateWithoutDatasourceItemsDataInput
   upsert: DatasourceUpsertWithoutDatasourceItemsInput
 }
@@ -766,6 +1038,14 @@ input FileSubscriptionWhereInput {
 }
 
 input FileUpdateInput {
+  hash: String
+  category: String
+  filename: String
+  mimetype: String
+  size: Int
+}
+
+input FileUpdateManyMutationInput {
   hash: String
   category: String
   filename: String
@@ -1162,6 +1442,12 @@ input InquiryUpdateInput {
   ip: String
 }
 
+input InquiryUpdateManyMutationInput {
+  message: Json
+  url: String
+  ip: String
+}
+
 input InquiryWhereInput {
   """Logical AND on all given filters."""
   AND: [InquiryWhereInput!]
@@ -1436,6 +1722,185 @@ type LanguagePreviousValues {
   isEnabled: Boolean!
 }
 
+input LanguageScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [LanguageScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [LanguageScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [LanguageScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  code: String
+
+  """All values that are not equal to given value."""
+  code_not: String
+
+  """All values that are contained in given list."""
+  code_in: [String!]
+
+  """All values that are not contained in given list."""
+  code_not_in: [String!]
+
+  """All values less than the given value."""
+  code_lt: String
+
+  """All values less than or equal the given value."""
+  code_lte: String
+
+  """All values greater than the given value."""
+  code_gt: String
+
+  """All values greater than or equal the given value."""
+  code_gte: String
+
+  """All values containing the given string."""
+  code_contains: String
+
+  """All values not containing the given string."""
+  code_not_contains: String
+
+  """All values starting with the given string."""
+  code_starts_with: String
+
+  """All values not starting with the given string."""
+  code_not_starts_with: String
+
+  """All values ending with the given string."""
+  code_ends_with: String
+
+  """All values not ending with the given string."""
+  code_not_ends_with: String
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  englishName: String
+
+  """All values that are not equal to given value."""
+  englishName_not: String
+
+  """All values that are contained in given list."""
+  englishName_in: [String!]
+
+  """All values that are not contained in given list."""
+  englishName_not_in: [String!]
+
+  """All values less than the given value."""
+  englishName_lt: String
+
+  """All values less than or equal the given value."""
+  englishName_lte: String
+
+  """All values greater than the given value."""
+  englishName_gt: String
+
+  """All values greater than or equal the given value."""
+  englishName_gte: String
+
+  """All values containing the given string."""
+  englishName_contains: String
+
+  """All values not containing the given string."""
+  englishName_not_contains: String
+
+  """All values starting with the given string."""
+  englishName_starts_with: String
+
+  """All values not starting with the given string."""
+  englishName_not_starts_with: String
+
+  """All values ending with the given string."""
+  englishName_ends_with: String
+
+  """All values not ending with the given string."""
+  englishName_not_ends_with: String
+  isDefault: Boolean
+
+  """All values that are not equal to given value."""
+  isDefault_not: Boolean
+  isEnabled: Boolean
+
+  """All values that are not equal to given value."""
+  isEnabled_not: Boolean
+}
+
 type LanguageSubscriptionPayload {
   mutation: MutationType!
   node: Language
@@ -1491,19 +1956,42 @@ input LanguageUpdateInput {
   isEnabled: Boolean
 }
 
+input LanguageUpdateManyDataInput {
+  code: String
+  name: String
+  englishName: String
+  isDefault: Boolean
+  isEnabled: Boolean
+}
+
 input LanguageUpdateManyInput {
   create: [LanguageCreateInput!]
   connect: [LanguageWhereUniqueInput!]
+  set: [LanguageWhereUniqueInput!]
   disconnect: [LanguageWhereUniqueInput!]
   delete: [LanguageWhereUniqueInput!]
   update: [LanguageUpdateWithWhereUniqueNestedInput!]
+  updateMany: [LanguageUpdateManyWithWhereNestedInput!]
+  deleteMany: [LanguageScalarWhereInput!]
   upsert: [LanguageUpsertWithWhereUniqueNestedInput!]
 }
 
-input LanguageUpdateOneInput {
+input LanguageUpdateManyMutationInput {
+  code: String
+  name: String
+  englishName: String
+  isDefault: Boolean
+  isEnabled: Boolean
+}
+
+input LanguageUpdateManyWithWhereNestedInput {
+  where: LanguageScalarWhereInput!
+  data: LanguageUpdateManyDataInput!
+}
+
+input LanguageUpdateOneRequiredInput {
   create: LanguageCreateInput
   connect: LanguageWhereUniqueInput
-  delete: Boolean
   update: LanguageUpdateDataInput
   upsert: LanguageUpsertNestedInput
 }
@@ -1782,23 +2270,22 @@ type Mutation {
   upsertPageType(where: PageTypeWhereUniqueInput!, create: PageTypeCreateInput!, update: PageTypeUpdateInput!): PageType!
   upsertWebsite(where: WebsiteWhereUniqueInput!, create: WebsiteCreateInput!, update: WebsiteUpdateInput!): Website!
   upsertLanguage(where: LanguageWhereUniqueInput!, create: LanguageCreateInput!, update: LanguageUpdateInput!): Language!
-  updateManyProjects(data: ProjectUpdateInput!, where: ProjectWhereInput): BatchPayload!
-  updateManyPageTranslations(data: PageTranslationUpdateInput!, where: PageTranslationWhereInput): BatchPayload!
-  updateManyPagePlugins(data: PagePluginUpdateInput!, where: PagePluginWhereInput): BatchPayload!
-  updateManyPageTasks(data: PageTaskUpdateInput!, where: PageTaskWhereInput): BatchPayload!
-  updateManyPageChats(data: PageChatUpdateInput!, where: PageChatWhereInput): BatchPayload!
-  updateManyFiles(data: FileUpdateInput!, where: FileWhereInput): BatchPayload!
-  updateManyNavigations(data: NavigationUpdateInput!, where: NavigationWhereInput): BatchPayload!
-  updateManyNavigationNodes(data: NavigationNodeUpdateInput!, where: NavigationNodeWhereInput): BatchPayload!
-  updateManyTags(data: TagUpdateInput!, where: TagWhereInput): BatchPayload!
-  updateManySubscribers(data: SubscriberUpdateInput!, where: SubscriberWhereInput): BatchPayload!
-  updateManyInquiries(data: InquiryUpdateInput!, where: InquiryWhereInput): BatchPayload!
-  updateManyDatasources(data: DatasourceUpdateInput!, where: DatasourceWhereInput): BatchPayload!
-  updateManyDatasourceItems(data: DatasourceItemUpdateInput!, where: DatasourceItemWhereInput): BatchPayload!
-  updateManyPages(data: PageUpdateInput!, where: PageWhereInput): BatchPayload!
-  updateManyPageTypes(data: PageTypeUpdateInput!, where: PageTypeWhereInput): BatchPayload!
-  updateManyWebsites(data: WebsiteUpdateInput!, where: WebsiteWhereInput): BatchPayload!
-  updateManyLanguages(data: LanguageUpdateInput!, where: LanguageWhereInput): BatchPayload!
+  updateManyProjects(data: ProjectUpdateManyMutationInput!, where: ProjectWhereInput): BatchPayload!
+  updateManyPageTranslations(data: PageTranslationUpdateManyMutationInput!, where: PageTranslationWhereInput): BatchPayload!
+  updateManyPagePlugins(data: PagePluginUpdateManyMutationInput!, where: PagePluginWhereInput): BatchPayload!
+  updateManyPageTasks(data: PageTaskUpdateManyMutationInput!, where: PageTaskWhereInput): BatchPayload!
+  updateManyPageChats(data: PageChatUpdateManyMutationInput!, where: PageChatWhereInput): BatchPayload!
+  updateManyFiles(data: FileUpdateManyMutationInput!, where: FileWhereInput): BatchPayload!
+  updateManyNavigations(data: NavigationUpdateManyMutationInput!, where: NavigationWhereInput): BatchPayload!
+  updateManyNavigationNodes(data: NavigationNodeUpdateManyMutationInput!, where: NavigationNodeWhereInput): BatchPayload!
+  updateManyTags(data: TagUpdateManyMutationInput!, where: TagWhereInput): BatchPayload!
+  updateManySubscribers(data: SubscriberUpdateManyMutationInput!, where: SubscriberWhereInput): BatchPayload!
+  updateManyInquiries(data: InquiryUpdateManyMutationInput!, where: InquiryWhereInput): BatchPayload!
+  updateManyDatasources(data: DatasourceUpdateManyMutationInput!, where: DatasourceWhereInput): BatchPayload!
+  updateManyDatasourceItems(data: DatasourceItemUpdateManyMutationInput!, where: DatasourceItemWhereInput): BatchPayload!
+  updateManyPageTypes(data: PageTypeUpdateManyMutationInput!, where: PageTypeWhereInput): BatchPayload!
+  updateManyWebsites(data: WebsiteUpdateManyMutationInput!, where: WebsiteWhereInput): BatchPayload!
+  updateManyLanguages(data: LanguageUpdateManyMutationInput!, where: LanguageWhereInput): BatchPayload!
   deleteManyProjects(where: ProjectWhereInput): BatchPayload!
   deleteManyPageTranslations(where: PageTranslationWhereInput): BatchPayload!
   deleteManyPagePlugins(where: PagePluginWhereInput): BatchPayload!
@@ -1827,7 +2314,7 @@ enum MutationType {
 type Navigation implements Node {
   id: ID!
   name: String!
-  website(where: WebsiteWhereInput): Website!
+  website: Website!
   nodes(where: NavigationNodeWhereInput, orderBy: NavigationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [NavigationNode!]
 }
 
@@ -1868,7 +2355,7 @@ type NavigationEdge {
 
 type NavigationNode implements Node {
   id: ID!
-  navigation(where: NavigationWhereInput): Navigation!
+  navigation: Navigation!
   page: ID
   title: String
   link: String
@@ -1945,6 +2432,239 @@ type NavigationNodePreviousValues {
   parent: ID
 }
 
+input NavigationNodeScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [NavigationNodeScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [NavigationNodeScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [NavigationNodeScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  page: ID
+
+  """All values that are not equal to given value."""
+  page_not: ID
+
+  """All values that are contained in given list."""
+  page_in: [ID!]
+
+  """All values that are not contained in given list."""
+  page_not_in: [ID!]
+
+  """All values less than the given value."""
+  page_lt: ID
+
+  """All values less than or equal the given value."""
+  page_lte: ID
+
+  """All values greater than the given value."""
+  page_gt: ID
+
+  """All values greater than or equal the given value."""
+  page_gte: ID
+
+  """All values containing the given string."""
+  page_contains: ID
+
+  """All values not containing the given string."""
+  page_not_contains: ID
+
+  """All values starting with the given string."""
+  page_starts_with: ID
+
+  """All values not starting with the given string."""
+  page_not_starts_with: ID
+
+  """All values ending with the given string."""
+  page_ends_with: ID
+
+  """All values not ending with the given string."""
+  page_not_ends_with: ID
+  title: String
+
+  """All values that are not equal to given value."""
+  title_not: String
+
+  """All values that are contained in given list."""
+  title_in: [String!]
+
+  """All values that are not contained in given list."""
+  title_not_in: [String!]
+
+  """All values less than the given value."""
+  title_lt: String
+
+  """All values less than or equal the given value."""
+  title_lte: String
+
+  """All values greater than the given value."""
+  title_gt: String
+
+  """All values greater than or equal the given value."""
+  title_gte: String
+
+  """All values containing the given string."""
+  title_contains: String
+
+  """All values not containing the given string."""
+  title_not_contains: String
+
+  """All values starting with the given string."""
+  title_starts_with: String
+
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+
+  """All values ending with the given string."""
+  title_ends_with: String
+
+  """All values not ending with the given string."""
+  title_not_ends_with: String
+  link: String
+
+  """All values that are not equal to given value."""
+  link_not: String
+
+  """All values that are contained in given list."""
+  link_in: [String!]
+
+  """All values that are not contained in given list."""
+  link_not_in: [String!]
+
+  """All values less than the given value."""
+  link_lt: String
+
+  """All values less than or equal the given value."""
+  link_lte: String
+
+  """All values greater than the given value."""
+  link_gt: String
+
+  """All values greater than or equal the given value."""
+  link_gte: String
+
+  """All values containing the given string."""
+  link_contains: String
+
+  """All values not containing the given string."""
+  link_not_contains: String
+
+  """All values starting with the given string."""
+  link_starts_with: String
+
+  """All values not starting with the given string."""
+  link_not_starts_with: String
+
+  """All values ending with the given string."""
+  link_ends_with: String
+
+  """All values not ending with the given string."""
+  link_not_ends_with: String
+  order: Int
+
+  """All values that are not equal to given value."""
+  order_not: Int
+
+  """All values that are contained in given list."""
+  order_in: [Int!]
+
+  """All values that are not contained in given list."""
+  order_not_in: [Int!]
+
+  """All values less than the given value."""
+  order_lt: Int
+
+  """All values less than or equal the given value."""
+  order_lte: Int
+
+  """All values greater than the given value."""
+  order_gt: Int
+
+  """All values greater than or equal the given value."""
+  order_gte: Int
+  parent: ID
+
+  """All values that are not equal to given value."""
+  parent_not: ID
+
+  """All values that are contained in given list."""
+  parent_in: [ID!]
+
+  """All values that are not contained in given list."""
+  parent_not_in: [ID!]
+
+  """All values less than the given value."""
+  parent_lt: ID
+
+  """All values less than or equal the given value."""
+  parent_lte: ID
+
+  """All values greater than the given value."""
+  parent_gt: ID
+
+  """All values greater than or equal the given value."""
+  parent_gte: ID
+
+  """All values containing the given string."""
+  parent_contains: ID
+
+  """All values not containing the given string."""
+  parent_not_contains: ID
+
+  """All values starting with the given string."""
+  parent_starts_with: ID
+
+  """All values not starting with the given string."""
+  parent_not_starts_with: ID
+
+  """All values ending with the given string."""
+  parent_ends_with: ID
+
+  """All values not ending with the given string."""
+  parent_not_ends_with: ID
+}
+
 type NavigationNodeSubscriptionPayload {
   mutation: MutationType!
   node: NavigationNode
@@ -1990,16 +2710,40 @@ input NavigationNodeUpdateInput {
   link: String
   order: Int
   parent: ID
-  navigation: NavigationUpdateOneWithoutNodesInput
+  navigation: NavigationUpdateOneRequiredWithoutNodesInput
+}
+
+input NavigationNodeUpdateManyDataInput {
+  page: ID
+  title: String
+  link: String
+  order: Int
+  parent: ID
+}
+
+input NavigationNodeUpdateManyMutationInput {
+  page: ID
+  title: String
+  link: String
+  order: Int
+  parent: ID
 }
 
 input NavigationNodeUpdateManyWithoutNavigationInput {
   create: [NavigationNodeCreateWithoutNavigationInput!]
   connect: [NavigationNodeWhereUniqueInput!]
+  set: [NavigationNodeWhereUniqueInput!]
   disconnect: [NavigationNodeWhereUniqueInput!]
   delete: [NavigationNodeWhereUniqueInput!]
   update: [NavigationNodeUpdateWithWhereUniqueWithoutNavigationInput!]
+  updateMany: [NavigationNodeUpdateManyWithWhereNestedInput!]
+  deleteMany: [NavigationNodeScalarWhereInput!]
   upsert: [NavigationNodeUpsertWithWhereUniqueWithoutNavigationInput!]
+}
+
+input NavigationNodeUpdateManyWithWhereNestedInput {
+  where: NavigationNodeScalarWhereInput!
+  data: NavigationNodeUpdateManyDataInput!
 }
 
 input NavigationNodeUpdateWithoutNavigationDataInput {
@@ -2316,21 +3060,24 @@ input NavigationSubscriptionWhereInput {
 
 input NavigationUpdateInput {
   name: String
-  website: WebsiteUpdateOneInput
+  website: WebsiteUpdateOneRequiredInput
   nodes: NavigationNodeUpdateManyWithoutNavigationInput
 }
 
-input NavigationUpdateOneWithoutNodesInput {
+input NavigationUpdateManyMutationInput {
+  name: String
+}
+
+input NavigationUpdateOneRequiredWithoutNodesInput {
   create: NavigationCreateWithoutNodesInput
   connect: NavigationWhereUniqueInput
-  delete: Boolean
   update: NavigationUpdateWithoutNodesDataInput
   upsert: NavigationUpsertWithoutNodesInput
 }
 
 input NavigationUpdateWithoutNodesDataInput {
   name: String
-  website: WebsiteUpdateOneInput
+  website: WebsiteUpdateOneRequiredInput
 }
 
 input NavigationUpsertWithoutNodesInput {
@@ -2445,19 +3192,19 @@ interface Node {
 
 type Page implements Node {
   id: ID!
-  parent(where: PageWhereInput): Page
-  website(where: WebsiteWhereInput): Website!
-  type(where: PageTypeWhereInput): PageType!
+  parent: Page
+  website: Website!
+  type: PageType!
   translations(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTranslation!]
   chats(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageChat!]
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag!]
-  plugin(where: PagePluginWhereInput): PagePlugin
+  plugin: PagePlugin
   datasources(where: DatasourceWhereInput, orderBy: DatasourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Datasource!]
 }
 
 type PageChat implements Node {
   id: ID!
-  page(where: PageWhereInput): Page!
+  page: Page!
   text: String!
   createdAt: DateTime!
   auth0id: ID
@@ -2518,6 +3265,159 @@ type PageChatPreviousValues {
   auth0id: ID
 }
 
+input PageChatScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PageChatScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PageChatScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PageChatScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  text: String
+
+  """All values that are not equal to given value."""
+  text_not: String
+
+  """All values that are contained in given list."""
+  text_in: [String!]
+
+  """All values that are not contained in given list."""
+  text_not_in: [String!]
+
+  """All values less than the given value."""
+  text_lt: String
+
+  """All values less than or equal the given value."""
+  text_lte: String
+
+  """All values greater than the given value."""
+  text_gt: String
+
+  """All values greater than or equal the given value."""
+  text_gte: String
+
+  """All values containing the given string."""
+  text_contains: String
+
+  """All values not containing the given string."""
+  text_not_contains: String
+
+  """All values starting with the given string."""
+  text_starts_with: String
+
+  """All values not starting with the given string."""
+  text_not_starts_with: String
+
+  """All values ending with the given string."""
+  text_ends_with: String
+
+  """All values not ending with the given string."""
+  text_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  auth0id: ID
+
+  """All values that are not equal to given value."""
+  auth0id_not: ID
+
+  """All values that are contained in given list."""
+  auth0id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  auth0id_not_in: [ID!]
+
+  """All values less than the given value."""
+  auth0id_lt: ID
+
+  """All values less than or equal the given value."""
+  auth0id_lte: ID
+
+  """All values greater than the given value."""
+  auth0id_gt: ID
+
+  """All values greater than or equal the given value."""
+  auth0id_gte: ID
+
+  """All values containing the given string."""
+  auth0id_contains: ID
+
+  """All values not containing the given string."""
+  auth0id_not_contains: ID
+
+  """All values starting with the given string."""
+  auth0id_starts_with: ID
+
+  """All values not starting with the given string."""
+  auth0id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  auth0id_ends_with: ID
+
+  """All values not ending with the given string."""
+  auth0id_not_ends_with: ID
+}
+
 type PageChatSubscriptionPayload {
   mutation: MutationType!
   node: PageChat
@@ -2560,16 +3460,34 @@ input PageChatSubscriptionWhereInput {
 input PageChatUpdateInput {
   text: String
   auth0id: ID
-  page: PageUpdateOneWithoutChatsInput
+  page: PageUpdateOneRequiredWithoutChatsInput
+}
+
+input PageChatUpdateManyDataInput {
+  text: String
+  auth0id: ID
+}
+
+input PageChatUpdateManyMutationInput {
+  text: String
+  auth0id: ID
 }
 
 input PageChatUpdateManyWithoutPageInput {
   create: [PageChatCreateWithoutPageInput!]
   connect: [PageChatWhereUniqueInput!]
+  set: [PageChatWhereUniqueInput!]
   disconnect: [PageChatWhereUniqueInput!]
   delete: [PageChatWhereUniqueInput!]
   update: [PageChatUpdateWithWhereUniqueWithoutPageInput!]
+  updateMany: [PageChatUpdateManyWithWhereNestedInput!]
+  deleteMany: [PageChatScalarWhereInput!]
   upsert: [PageChatUpsertWithWhereUniqueWithoutPageInput!]
+}
+
+input PageChatUpdateManyWithWhereNestedInput {
+  where: PageChatScalarWhereInput!
+  data: PageChatUpdateManyDataInput!
 }
 
 input PageChatUpdateWithoutPageDataInput {
@@ -2897,8 +3815,8 @@ enum PageOrderByInput {
 
 type PagePlugin implements Node {
   id: ID!
-  page(where: PageWhereInput): Page!
-  language(where: LanguageWhereInput): Language!
+  page: Page!
+  language: Language!
   plugin: String!
   content: Json!
 }
@@ -3001,8 +3919,13 @@ input PagePluginSubscriptionWhereInput {
 input PagePluginUpdateInput {
   plugin: String
   content: Json
-  page: PageUpdateOneWithoutPluginInput
-  language: LanguageUpdateOneInput
+  page: PageUpdateOneRequiredWithoutPluginInput
+  language: LanguageUpdateOneRequiredInput
+}
+
+input PagePluginUpdateManyMutationInput {
+  plugin: String
+  content: Json
 }
 
 input PagePluginUpdateOneWithoutPageInput {
@@ -3017,7 +3940,7 @@ input PagePluginUpdateOneWithoutPageInput {
 input PagePluginUpdateWithoutPageDataInput {
   plugin: String
   content: Json
-  language: LanguageUpdateOneInput
+  language: LanguageUpdateOneRequiredInput
 }
 
 input PagePluginUpsertWithoutPageInput {
@@ -3126,6 +4049,57 @@ type PagePreviousValues {
   id: ID!
 }
 
+input PageScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PageScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PageScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PageScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+}
+
 enum PageStatus {
   DRAFT
   PENDING
@@ -3173,7 +4147,7 @@ input PageSubscriptionWhereInput {
 
 type PageTask implements Node {
   id: ID!
-  pageTranslation(where: PageTranslationWhereInput): PageTranslation!
+  pageTranslation: PageTranslation!
   done: Boolean!
   name: String!
   description: String!
@@ -3246,6 +4220,203 @@ type PageTaskPreviousValues {
   auth0id: ID
 }
 
+input PageTaskScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PageTaskScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PageTaskScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PageTaskScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  done: Boolean
+
+  """All values that are not equal to given value."""
+  done_not: Boolean
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+  auth0id: ID
+
+  """All values that are not equal to given value."""
+  auth0id_not: ID
+
+  """All values that are contained in given list."""
+  auth0id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  auth0id_not_in: [ID!]
+
+  """All values less than the given value."""
+  auth0id_lt: ID
+
+  """All values less than or equal the given value."""
+  auth0id_lte: ID
+
+  """All values greater than the given value."""
+  auth0id_gt: ID
+
+  """All values greater than or equal the given value."""
+  auth0id_gte: ID
+
+  """All values containing the given string."""
+  auth0id_contains: ID
+
+  """All values not containing the given string."""
+  auth0id_not_contains: ID
+
+  """All values starting with the given string."""
+  auth0id_starts_with: ID
+
+  """All values not starting with the given string."""
+  auth0id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  auth0id_ends_with: ID
+
+  """All values not ending with the given string."""
+  auth0id_not_ends_with: ID
+}
+
 type PageTaskSubscriptionPayload {
   mutation: MutationType!
   node: PageTask
@@ -3290,16 +4461,38 @@ input PageTaskUpdateInput {
   name: String
   description: String
   auth0id: ID
-  pageTranslation: PageTranslationUpdateOneWithoutTasksInput
+  pageTranslation: PageTranslationUpdateOneRequiredWithoutTasksInput
+}
+
+input PageTaskUpdateManyDataInput {
+  done: Boolean
+  name: String
+  description: String
+  auth0id: ID
+}
+
+input PageTaskUpdateManyMutationInput {
+  done: Boolean
+  name: String
+  description: String
+  auth0id: ID
 }
 
 input PageTaskUpdateManyWithoutPageTranslationInput {
   create: [PageTaskCreateWithoutPageTranslationInput!]
   connect: [PageTaskWhereUniqueInput!]
+  set: [PageTaskWhereUniqueInput!]
   disconnect: [PageTaskWhereUniqueInput!]
   delete: [PageTaskWhereUniqueInput!]
   update: [PageTaskUpdateWithWhereUniqueWithoutPageTranslationInput!]
+  updateMany: [PageTaskUpdateManyWithWhereNestedInput!]
+  deleteMany: [PageTaskScalarWhereInput!]
   upsert: [PageTaskUpsertWithWhereUniqueWithoutPageTranslationInput!]
+}
+
+input PageTaskUpdateManyWithWhereNestedInput {
+  where: PageTaskScalarWhereInput!
+  data: PageTaskUpdateManyDataInput!
 }
 
 input PageTaskUpdateWithoutPageTranslationDataInput {
@@ -3524,8 +4717,8 @@ input PageTaskWhereUniqueInput {
 
 type PageTranslation implements Node {
   id: ID!
-  page(where: PageWhereInput): Page!
-  language(where: LanguageWhereInput): Language!
+  page: Page!
+  language: Language!
   url: String!
   content: Json!
   name: String!
@@ -3638,6 +4831,253 @@ type PageTranslationPreviousValues {
   createdAt: DateTime!
 }
 
+input PageTranslationScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PageTranslationScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PageTranslationScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PageTranslationScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  url: String
+
+  """All values that are not equal to given value."""
+  url_not: String
+
+  """All values that are contained in given list."""
+  url_in: [String!]
+
+  """All values that are not contained in given list."""
+  url_not_in: [String!]
+
+  """All values less than the given value."""
+  url_lt: String
+
+  """All values less than or equal the given value."""
+  url_lte: String
+
+  """All values greater than the given value."""
+  url_gt: String
+
+  """All values greater than or equal the given value."""
+  url_gte: String
+
+  """All values containing the given string."""
+  url_contains: String
+
+  """All values not containing the given string."""
+  url_not_contains: String
+
+  """All values starting with the given string."""
+  url_starts_with: String
+
+  """All values not starting with the given string."""
+  url_not_starts_with: String
+
+  """All values ending with the given string."""
+  url_ends_with: String
+
+  """All values not ending with the given string."""
+  url_not_ends_with: String
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  status: PageStatus
+
+  """All values that are not equal to given value."""
+  status_not: PageStatus
+
+  """All values that are contained in given list."""
+  status_in: [PageStatus!]
+
+  """All values that are not contained in given list."""
+  status_not_in: [PageStatus!]
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
+  publishedFrom: DateTime
+
+  """All values that are not equal to given value."""
+  publishedFrom_not: DateTime
+
+  """All values that are contained in given list."""
+  publishedFrom_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  publishedFrom_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  publishedFrom_lt: DateTime
+
+  """All values less than or equal the given value."""
+  publishedFrom_lte: DateTime
+
+  """All values greater than the given value."""
+  publishedFrom_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  publishedFrom_gte: DateTime
+  publishedTo: DateTime
+
+  """All values that are not equal to given value."""
+  publishedTo_not: DateTime
+
+  """All values that are contained in given list."""
+  publishedTo_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  publishedTo_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  publishedTo_lt: DateTime
+
+  """All values less than or equal the given value."""
+  publishedTo_lte: DateTime
+
+  """All values greater than the given value."""
+  publishedTo_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  publishedTo_gte: DateTime
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+}
+
 type PageTranslationSubscriptionPayload {
   mutation: MutationType!
   node: PageTranslation
@@ -3685,24 +5125,51 @@ input PageTranslationUpdateInput {
   description: String
   publishedFrom: DateTime
   publishedTo: DateTime
-  page: PageUpdateOneWithoutTranslationsInput
-  language: LanguageUpdateOneInput
+  page: PageUpdateOneRequiredWithoutTranslationsInput
+  language: LanguageUpdateOneRequiredInput
   tasks: PageTaskUpdateManyWithoutPageTranslationInput
+}
+
+input PageTranslationUpdateManyDataInput {
+  url: String
+  content: Json
+  name: String
+  status: PageStatus
+  description: String
+  publishedFrom: DateTime
+  publishedTo: DateTime
+}
+
+input PageTranslationUpdateManyMutationInput {
+  url: String
+  content: Json
+  name: String
+  status: PageStatus
+  description: String
+  publishedFrom: DateTime
+  publishedTo: DateTime
 }
 
 input PageTranslationUpdateManyWithoutPageInput {
   create: [PageTranslationCreateWithoutPageInput!]
   connect: [PageTranslationWhereUniqueInput!]
+  set: [PageTranslationWhereUniqueInput!]
   disconnect: [PageTranslationWhereUniqueInput!]
   delete: [PageTranslationWhereUniqueInput!]
   update: [PageTranslationUpdateWithWhereUniqueWithoutPageInput!]
+  updateMany: [PageTranslationUpdateManyWithWhereNestedInput!]
+  deleteMany: [PageTranslationScalarWhereInput!]
   upsert: [PageTranslationUpsertWithWhereUniqueWithoutPageInput!]
 }
 
-input PageTranslationUpdateOneWithoutTasksInput {
+input PageTranslationUpdateManyWithWhereNestedInput {
+  where: PageTranslationScalarWhereInput!
+  data: PageTranslationUpdateManyDataInput!
+}
+
+input PageTranslationUpdateOneRequiredWithoutTasksInput {
   create: PageTranslationCreateWithoutTasksInput
   connect: PageTranslationWhereUniqueInput
-  delete: Boolean
   update: PageTranslationUpdateWithoutTasksDataInput
   upsert: PageTranslationUpsertWithoutTasksInput
 }
@@ -3715,7 +5182,7 @@ input PageTranslationUpdateWithoutPageDataInput {
   description: String
   publishedFrom: DateTime
   publishedTo: DateTime
-  language: LanguageUpdateOneInput
+  language: LanguageUpdateOneRequiredInput
   tasks: PageTaskUpdateManyWithoutPageTranslationInput
 }
 
@@ -3727,8 +5194,8 @@ input PageTranslationUpdateWithoutTasksDataInput {
   description: String
   publishedFrom: DateTime
   publishedTo: DateTime
-  page: PageUpdateOneWithoutTranslationsInput
-  language: LanguageUpdateOneInput
+  page: PageUpdateOneRequiredWithoutTranslationsInput
+  language: LanguageUpdateOneRequiredInput
 }
 
 input PageTranslationUpdateWithWhereUniqueWithoutPageInput {
@@ -4007,7 +5474,7 @@ type PageType implements Node {
   id: ID!
   name: String!
   content: Json!
-  website(where: WebsiteWhereInput): Website!
+  website: Website!
   plugins: [String!]!
 }
 
@@ -4077,6 +5544,97 @@ type PageTypePreviousValues {
   plugins: [String!]!
 }
 
+input PageTypeScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PageTypeScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PageTypeScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PageTypeScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+}
+
 type PageTypeSubscriptionPayload {
   mutation: MutationType!
   node: PageType
@@ -4120,29 +5678,48 @@ input PageTypeUpdateDataInput {
   name: String
   content: Json
   plugins: PageTypeUpdatepluginsInput
-  website: WebsiteUpdateOneWithoutPageTypesInput
+  website: WebsiteUpdateOneRequiredWithoutPageTypesInput
 }
 
 input PageTypeUpdateInput {
   name: String
   content: Json
   plugins: PageTypeUpdatepluginsInput
-  website: WebsiteUpdateOneWithoutPageTypesInput
+  website: WebsiteUpdateOneRequiredWithoutPageTypesInput
+}
+
+input PageTypeUpdateManyDataInput {
+  name: String
+  content: Json
+  plugins: PageTypeUpdatepluginsInput
+}
+
+input PageTypeUpdateManyMutationInput {
+  name: String
+  content: Json
+  plugins: PageTypeUpdatepluginsInput
 }
 
 input PageTypeUpdateManyWithoutWebsiteInput {
   create: [PageTypeCreateWithoutWebsiteInput!]
   connect: [PageTypeWhereUniqueInput!]
+  set: [PageTypeWhereUniqueInput!]
   disconnect: [PageTypeWhereUniqueInput!]
   delete: [PageTypeWhereUniqueInput!]
   update: [PageTypeUpdateWithWhereUniqueWithoutWebsiteInput!]
+  updateMany: [PageTypeUpdateManyWithWhereNestedInput!]
+  deleteMany: [PageTypeScalarWhereInput!]
   upsert: [PageTypeUpsertWithWhereUniqueWithoutWebsiteInput!]
 }
 
-input PageTypeUpdateOneInput {
+input PageTypeUpdateManyWithWhereNestedInput {
+  where: PageTypeScalarWhereInput!
+  data: PageTypeUpdateManyDataInput!
+}
+
+input PageTypeUpdateOneRequiredInput {
   create: PageTypeCreateInput
   connect: PageTypeWhereUniqueInput
-  delete: Boolean
   update: PageTypeUpdateDataInput
   upsert: PageTypeUpsertNestedInput
 }
@@ -4271,8 +5848,8 @@ input PageTypeWhereUniqueInput {
 
 input PageUpdateDataInput {
   parent: PageUpdateOneInput
-  website: WebsiteUpdateOneWithoutPagesInput
-  type: PageTypeUpdateOneInput
+  website: WebsiteUpdateOneRequiredWithoutPagesInput
+  type: PageTypeUpdateOneRequiredInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
@@ -4282,8 +5859,8 @@ input PageUpdateDataInput {
 
 input PageUpdateInput {
   parent: PageUpdateOneInput
-  website: WebsiteUpdateOneWithoutPagesInput
-  type: PageTypeUpdateOneInput
+  website: WebsiteUpdateOneRequiredWithoutPagesInput
+  type: PageTypeUpdateOneRequiredInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
@@ -4294,27 +5871,33 @@ input PageUpdateInput {
 input PageUpdateManyWithoutDatasourcesInput {
   create: [PageCreateWithoutDatasourcesInput!]
   connect: [PageWhereUniqueInput!]
+  set: [PageWhereUniqueInput!]
   disconnect: [PageWhereUniqueInput!]
   delete: [PageWhereUniqueInput!]
   update: [PageUpdateWithWhereUniqueWithoutDatasourcesInput!]
+  deleteMany: [PageScalarWhereInput!]
   upsert: [PageUpsertWithWhereUniqueWithoutDatasourcesInput!]
 }
 
 input PageUpdateManyWithoutTagsInput {
   create: [PageCreateWithoutTagsInput!]
   connect: [PageWhereUniqueInput!]
+  set: [PageWhereUniqueInput!]
   disconnect: [PageWhereUniqueInput!]
   delete: [PageWhereUniqueInput!]
   update: [PageUpdateWithWhereUniqueWithoutTagsInput!]
+  deleteMany: [PageScalarWhereInput!]
   upsert: [PageUpsertWithWhereUniqueWithoutTagsInput!]
 }
 
 input PageUpdateManyWithoutWebsiteInput {
   create: [PageCreateWithoutWebsiteInput!]
   connect: [PageWhereUniqueInput!]
+  set: [PageWhereUniqueInput!]
   disconnect: [PageWhereUniqueInput!]
   delete: [PageWhereUniqueInput!]
   update: [PageUpdateWithWhereUniqueWithoutWebsiteInput!]
+  deleteMany: [PageScalarWhereInput!]
   upsert: [PageUpsertWithWhereUniqueWithoutWebsiteInput!]
 }
 
@@ -4327,34 +5910,31 @@ input PageUpdateOneInput {
   upsert: PageUpsertNestedInput
 }
 
-input PageUpdateOneWithoutChatsInput {
+input PageUpdateOneRequiredWithoutChatsInput {
   create: PageCreateWithoutChatsInput
   connect: PageWhereUniqueInput
-  delete: Boolean
   update: PageUpdateWithoutChatsDataInput
   upsert: PageUpsertWithoutChatsInput
 }
 
-input PageUpdateOneWithoutPluginInput {
+input PageUpdateOneRequiredWithoutPluginInput {
   create: PageCreateWithoutPluginInput
   connect: PageWhereUniqueInput
-  delete: Boolean
   update: PageUpdateWithoutPluginDataInput
   upsert: PageUpsertWithoutPluginInput
 }
 
-input PageUpdateOneWithoutTranslationsInput {
+input PageUpdateOneRequiredWithoutTranslationsInput {
   create: PageCreateWithoutTranslationsInput
   connect: PageWhereUniqueInput
-  delete: Boolean
   update: PageUpdateWithoutTranslationsDataInput
   upsert: PageUpsertWithoutTranslationsInput
 }
 
 input PageUpdateWithoutChatsDataInput {
   parent: PageUpdateOneInput
-  website: WebsiteUpdateOneWithoutPagesInput
-  type: PageTypeUpdateOneInput
+  website: WebsiteUpdateOneRequiredWithoutPagesInput
+  type: PageTypeUpdateOneRequiredInput
   translations: PageTranslationUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
   plugin: PagePluginUpdateOneWithoutPageInput
@@ -4363,8 +5943,8 @@ input PageUpdateWithoutChatsDataInput {
 
 input PageUpdateWithoutDatasourcesDataInput {
   parent: PageUpdateOneInput
-  website: WebsiteUpdateOneWithoutPagesInput
-  type: PageTypeUpdateOneInput
+  website: WebsiteUpdateOneRequiredWithoutPagesInput
+  type: PageTypeUpdateOneRequiredInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
@@ -4373,8 +5953,8 @@ input PageUpdateWithoutDatasourcesDataInput {
 
 input PageUpdateWithoutPluginDataInput {
   parent: PageUpdateOneInput
-  website: WebsiteUpdateOneWithoutPagesInput
-  type: PageTypeUpdateOneInput
+  website: WebsiteUpdateOneRequiredWithoutPagesInput
+  type: PageTypeUpdateOneRequiredInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
@@ -4383,8 +5963,8 @@ input PageUpdateWithoutPluginDataInput {
 
 input PageUpdateWithoutTagsDataInput {
   parent: PageUpdateOneInput
-  website: WebsiteUpdateOneWithoutPagesInput
-  type: PageTypeUpdateOneInput
+  website: WebsiteUpdateOneRequiredWithoutPagesInput
+  type: PageTypeUpdateOneRequiredInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   plugin: PagePluginUpdateOneWithoutPageInput
@@ -4393,8 +5973,8 @@ input PageUpdateWithoutTagsDataInput {
 
 input PageUpdateWithoutTranslationsDataInput {
   parent: PageUpdateOneInput
-  website: WebsiteUpdateOneWithoutPagesInput
-  type: PageTypeUpdateOneInput
+  website: WebsiteUpdateOneRequiredWithoutPagesInput
+  type: PageTypeUpdateOneRequiredInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
   plugin: PagePluginUpdateOneWithoutPageInput
@@ -4403,7 +5983,7 @@ input PageUpdateWithoutTranslationsDataInput {
 
 input PageUpdateWithoutWebsiteDataInput {
   parent: PageUpdateOneInput
-  type: PageTypeUpdateOneInput
+  type: PageTypeUpdateOneRequiredInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
@@ -4540,9 +6120,10 @@ type Project implements Node {
   name: String!
   defaultName: String!
   languages(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Language!]
-  defaultLanguage(where: LanguageWhereInput): Language!
+  defaultLanguage: Language!
   settings: Json!
   websites(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Website!]
+  components: String
 }
 
 """A connection to a list of items."""
@@ -4559,6 +6140,7 @@ input ProjectCreateInput {
   name: String!
   defaultName: String!
   settings: Json
+  components: String
   languages: LanguageCreateManyInput
   defaultLanguage: LanguageCreateOneInput!
   websites: WebsiteCreateManyWithoutProjectInput
@@ -4573,6 +6155,7 @@ input ProjectCreateWithoutWebsitesInput {
   name: String!
   defaultName: String!
   settings: Json
+  components: String
   languages: LanguageCreateManyInput
   defaultLanguage: LanguageCreateOneInput!
 }
@@ -4595,6 +6178,8 @@ enum ProjectOrderByInput {
   defaultName_DESC
   settings_ASC
   settings_DESC
+  components_ASC
+  components_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -4606,6 +6191,7 @@ type ProjectPreviousValues {
   name: String!
   defaultName: String!
   settings: Json!
+  components: String
 }
 
 type ProjectSubscriptionPayload {
@@ -4651,15 +6237,22 @@ input ProjectUpdateInput {
   name: String
   defaultName: String
   settings: Json
+  components: String
   languages: LanguageUpdateManyInput
-  defaultLanguage: LanguageUpdateOneInput
+  defaultLanguage: LanguageUpdateOneRequiredInput
   websites: WebsiteUpdateManyWithoutProjectInput
 }
 
-input ProjectUpdateOneWithoutWebsitesInput {
+input ProjectUpdateManyMutationInput {
+  name: String
+  defaultName: String
+  settings: Json
+  components: String
+}
+
+input ProjectUpdateOneRequiredWithoutWebsitesInput {
   create: ProjectCreateWithoutWebsitesInput
   connect: ProjectWhereUniqueInput
-  delete: Boolean
   update: ProjectUpdateWithoutWebsitesDataInput
   upsert: ProjectUpsertWithoutWebsitesInput
 }
@@ -4668,8 +6261,9 @@ input ProjectUpdateWithoutWebsitesDataInput {
   name: String
   defaultName: String
   settings: Json
+  components: String
   languages: LanguageUpdateManyInput
-  defaultLanguage: LanguageUpdateOneInput
+  defaultLanguage: LanguageUpdateOneRequiredInput
 }
 
 input ProjectUpsertWithoutWebsitesInput {
@@ -4806,6 +6400,46 @@ input ProjectWhereInput {
 
   """All values not ending with the given string."""
   defaultName_not_ends_with: String
+  components: String
+
+  """All values that are not equal to given value."""
+  components_not: String
+
+  """All values that are contained in given list."""
+  components_in: [String!]
+
+  """All values that are not contained in given list."""
+  components_not_in: [String!]
+
+  """All values less than the given value."""
+  components_lt: String
+
+  """All values less than or equal the given value."""
+  components_lte: String
+
+  """All values greater than the given value."""
+  components_gt: String
+
+  """All values greater than or equal the given value."""
+  components_gte: String
+
+  """All values containing the given string."""
+  components_contains: String
+
+  """All values not containing the given string."""
+  components_not_contains: String
+
+  """All values starting with the given string."""
+  components_starts_with: String
+
+  """All values not starting with the given string."""
+  components_not_starts_with: String
+
+  """All values ending with the given string."""
+  components_ends_with: String
+
+  """All values not ending with the given string."""
+  components_not_ends_with: String
   languages_every: LanguageWhereInput
   languages_some: LanguageWhereInput
   languages_none: LanguageWhereInput
@@ -4975,6 +6609,12 @@ input SubscriberSubscriptionWhereInput {
 }
 
 input SubscriberUpdateInput {
+  email: String
+  url: String
+  ip: String
+}
+
+input SubscriberUpdateManyMutationInput {
   email: String
   url: String
   ip: String
@@ -5199,7 +6839,7 @@ type Subscription {
 
 type Tag implements Node {
   id: ID!
-  website(where: WebsiteWhereInput): Website!
+  website: Website!
   name: String!
   displayInNavigation: Boolean
   plugins: [String!]!
@@ -5275,6 +6915,141 @@ type TagPreviousValues {
   color: String!
 }
 
+input TagScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [TagScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [TagScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [TagScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  displayInNavigation: Boolean
+
+  """All values that are not equal to given value."""
+  displayInNavigation_not: Boolean
+  color: String
+
+  """All values that are not equal to given value."""
+  color_not: String
+
+  """All values that are contained in given list."""
+  color_in: [String!]
+
+  """All values that are not contained in given list."""
+  color_not_in: [String!]
+
+  """All values less than the given value."""
+  color_lt: String
+
+  """All values less than or equal the given value."""
+  color_lte: String
+
+  """All values greater than the given value."""
+  color_gt: String
+
+  """All values greater than or equal the given value."""
+  color_gte: String
+
+  """All values containing the given string."""
+  color_contains: String
+
+  """All values not containing the given string."""
+  color_not_contains: String
+
+  """All values starting with the given string."""
+  color_starts_with: String
+
+  """All values not starting with the given string."""
+  color_not_starts_with: String
+
+  """All values ending with the given string."""
+  color_ends_with: String
+
+  """All values not ending with the given string."""
+  color_not_ends_with: String
+}
+
 type TagSubscriptionPayload {
   mutation: MutationType!
   node: Tag
@@ -5319,17 +7094,39 @@ input TagUpdateInput {
   displayInNavigation: Boolean
   color: String
   plugins: TagUpdatepluginsInput
-  website: WebsiteUpdateOneInput
+  website: WebsiteUpdateOneRequiredInput
   pages: PageUpdateManyWithoutTagsInput
+}
+
+input TagUpdateManyDataInput {
+  name: String
+  displayInNavigation: Boolean
+  color: String
+  plugins: TagUpdatepluginsInput
+}
+
+input TagUpdateManyMutationInput {
+  name: String
+  displayInNavigation: Boolean
+  color: String
+  plugins: TagUpdatepluginsInput
 }
 
 input TagUpdateManyWithoutPagesInput {
   create: [TagCreateWithoutPagesInput!]
   connect: [TagWhereUniqueInput!]
+  set: [TagWhereUniqueInput!]
   disconnect: [TagWhereUniqueInput!]
   delete: [TagWhereUniqueInput!]
   update: [TagUpdateWithWhereUniqueWithoutPagesInput!]
+  updateMany: [TagUpdateManyWithWhereNestedInput!]
+  deleteMany: [TagScalarWhereInput!]
   upsert: [TagUpsertWithWhereUniqueWithoutPagesInput!]
+}
+
+input TagUpdateManyWithWhereNestedInput {
+  where: TagScalarWhereInput!
+  data: TagUpdateManyDataInput!
 }
 
 input TagUpdatepluginsInput {
@@ -5341,7 +7138,7 @@ input TagUpdateWithoutPagesDataInput {
   displayInNavigation: Boolean
   color: String
   plugins: TagUpdatepluginsInput
-  website: WebsiteUpdateOneInput
+  website: WebsiteUpdateOneRequiredInput
 }
 
 input TagUpdateWithWhereUniqueWithoutPagesInput {
@@ -5501,9 +7298,9 @@ input TagWhereUniqueInput {
 type Website implements Node {
   id: ID!
   title: String!
-  project(where: ProjectWhereInput): Project!
+  project: Project!
   languages(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Language!]
-  defaultLanguage(where: LanguageWhereInput): Language!
+  defaultLanguage: Language!
   urlMask: String!
   settings: Json!
   pageTypes(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageType!]
@@ -5612,6 +7409,137 @@ type WebsitePreviousValues {
   settings: Json!
 }
 
+input WebsiteScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [WebsiteScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [WebsiteScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [WebsiteScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  title: String
+
+  """All values that are not equal to given value."""
+  title_not: String
+
+  """All values that are contained in given list."""
+  title_in: [String!]
+
+  """All values that are not contained in given list."""
+  title_not_in: [String!]
+
+  """All values less than the given value."""
+  title_lt: String
+
+  """All values less than or equal the given value."""
+  title_lte: String
+
+  """All values greater than the given value."""
+  title_gt: String
+
+  """All values greater than or equal the given value."""
+  title_gte: String
+
+  """All values containing the given string."""
+  title_contains: String
+
+  """All values not containing the given string."""
+  title_not_contains: String
+
+  """All values starting with the given string."""
+  title_starts_with: String
+
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+
+  """All values ending with the given string."""
+  title_ends_with: String
+
+  """All values not ending with the given string."""
+  title_not_ends_with: String
+  urlMask: String
+
+  """All values that are not equal to given value."""
+  urlMask_not: String
+
+  """All values that are contained in given list."""
+  urlMask_in: [String!]
+
+  """All values that are not contained in given list."""
+  urlMask_not_in: [String!]
+
+  """All values less than the given value."""
+  urlMask_lt: String
+
+  """All values less than or equal the given value."""
+  urlMask_lte: String
+
+  """All values greater than the given value."""
+  urlMask_gt: String
+
+  """All values greater than or equal the given value."""
+  urlMask_gte: String
+
+  """All values containing the given string."""
+  urlMask_contains: String
+
+  """All values not containing the given string."""
+  urlMask_not_contains: String
+
+  """All values starting with the given string."""
+  urlMask_starts_with: String
+
+  """All values not starting with the given string."""
+  urlMask_not_starts_with: String
+
+  """All values ending with the given string."""
+  urlMask_ends_with: String
+
+  """All values not ending with the given string."""
+  urlMask_not_ends_with: String
+}
+
 type WebsiteSubscriptionPayload {
   mutation: MutationType!
   node: Website
@@ -5655,9 +7583,9 @@ input WebsiteUpdateDataInput {
   title: String
   urlMask: String
   settings: Json
-  project: ProjectUpdateOneWithoutWebsitesInput
+  project: ProjectUpdateOneRequiredWithoutWebsitesInput
   languages: LanguageUpdateManyInput
-  defaultLanguage: LanguageUpdateOneInput
+  defaultLanguage: LanguageUpdateOneRequiredInput
   pageTypes: PageTypeUpdateManyWithoutWebsiteInput
   pages: PageUpdateManyWithoutWebsiteInput
 }
@@ -5666,42 +7594,59 @@ input WebsiteUpdateInput {
   title: String
   urlMask: String
   settings: Json
-  project: ProjectUpdateOneWithoutWebsitesInput
+  project: ProjectUpdateOneRequiredWithoutWebsitesInput
   languages: LanguageUpdateManyInput
-  defaultLanguage: LanguageUpdateOneInput
+  defaultLanguage: LanguageUpdateOneRequiredInput
   pageTypes: PageTypeUpdateManyWithoutWebsiteInput
   pages: PageUpdateManyWithoutWebsiteInput
+}
+
+input WebsiteUpdateManyDataInput {
+  title: String
+  urlMask: String
+  settings: Json
+}
+
+input WebsiteUpdateManyMutationInput {
+  title: String
+  urlMask: String
+  settings: Json
 }
 
 input WebsiteUpdateManyWithoutProjectInput {
   create: [WebsiteCreateWithoutProjectInput!]
   connect: [WebsiteWhereUniqueInput!]
+  set: [WebsiteWhereUniqueInput!]
   disconnect: [WebsiteWhereUniqueInput!]
   delete: [WebsiteWhereUniqueInput!]
   update: [WebsiteUpdateWithWhereUniqueWithoutProjectInput!]
+  updateMany: [WebsiteUpdateManyWithWhereNestedInput!]
+  deleteMany: [WebsiteScalarWhereInput!]
   upsert: [WebsiteUpsertWithWhereUniqueWithoutProjectInput!]
 }
 
-input WebsiteUpdateOneInput {
+input WebsiteUpdateManyWithWhereNestedInput {
+  where: WebsiteScalarWhereInput!
+  data: WebsiteUpdateManyDataInput!
+}
+
+input WebsiteUpdateOneRequiredInput {
   create: WebsiteCreateInput
   connect: WebsiteWhereUniqueInput
-  delete: Boolean
   update: WebsiteUpdateDataInput
   upsert: WebsiteUpsertNestedInput
 }
 
-input WebsiteUpdateOneWithoutPagesInput {
+input WebsiteUpdateOneRequiredWithoutPagesInput {
   create: WebsiteCreateWithoutPagesInput
   connect: WebsiteWhereUniqueInput
-  delete: Boolean
   update: WebsiteUpdateWithoutPagesDataInput
   upsert: WebsiteUpsertWithoutPagesInput
 }
 
-input WebsiteUpdateOneWithoutPageTypesInput {
+input WebsiteUpdateOneRequiredWithoutPageTypesInput {
   create: WebsiteCreateWithoutPageTypesInput
   connect: WebsiteWhereUniqueInput
-  delete: Boolean
   update: WebsiteUpdateWithoutPageTypesDataInput
   upsert: WebsiteUpsertWithoutPageTypesInput
 }
@@ -5710,9 +7655,9 @@ input WebsiteUpdateWithoutPagesDataInput {
   title: String
   urlMask: String
   settings: Json
-  project: ProjectUpdateOneWithoutWebsitesInput
+  project: ProjectUpdateOneRequiredWithoutWebsitesInput
   languages: LanguageUpdateManyInput
-  defaultLanguage: LanguageUpdateOneInput
+  defaultLanguage: LanguageUpdateOneRequiredInput
   pageTypes: PageTypeUpdateManyWithoutWebsiteInput
 }
 
@@ -5720,9 +7665,9 @@ input WebsiteUpdateWithoutPageTypesDataInput {
   title: String
   urlMask: String
   settings: Json
-  project: ProjectUpdateOneWithoutWebsitesInput
+  project: ProjectUpdateOneRequiredWithoutWebsitesInput
   languages: LanguageUpdateManyInput
-  defaultLanguage: LanguageUpdateOneInput
+  defaultLanguage: LanguageUpdateOneRequiredInput
   pages: PageUpdateManyWithoutWebsiteInput
 }
 
@@ -5731,7 +7676,7 @@ input WebsiteUpdateWithoutProjectDataInput {
   urlMask: String
   settings: Json
   languages: LanguageUpdateManyInput
-  defaultLanguage: LanguageUpdateOneInput
+  defaultLanguage: LanguageUpdateOneRequiredInput
   pageTypes: PageTypeUpdateManyWithoutWebsiteInput
   pages: PageUpdateManyWithoutWebsiteInput
 }
