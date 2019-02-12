@@ -35,7 +35,6 @@ export class FrontendResolver {
       }`,
     );
 
-
     // Flow:
     // Resolve website..
     //   If website is null, then it must have empty prefix ('' or '/')
@@ -62,6 +61,7 @@ export class FrontendResolver {
           code
           name
         }
+        components
       }
       languages {
         id
@@ -274,6 +274,7 @@ export class FrontendResolver {
       languages: websiteObject.languages,
       seo,
       datasourceItems: pageDatasourceItems,
+      project: websiteObject.project,
     };
 
     return Promise.resolve(res);
