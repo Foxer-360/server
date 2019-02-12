@@ -4721,6 +4721,7 @@ type Project implements Node {
   defaultLanguage(where: LanguageWhereInput): Language!
   settings: Json!
   websites(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Website!]
+  components: String
 }
 
 """A connection to a list of items."""
@@ -4737,6 +4738,7 @@ input ProjectCreateInput {
   name: String!
   defaultName: String!
   settings: Json
+  components: String
   languages: LanguageCreateManyInput
   defaultLanguage: LanguageCreateOneInput!
   websites: WebsiteCreateManyWithoutProjectInput
@@ -4751,6 +4753,7 @@ input ProjectCreateWithoutWebsitesInput {
   name: String!
   defaultName: String!
   settings: Json
+  components: String
   languages: LanguageCreateManyInput
   defaultLanguage: LanguageCreateOneInput!
 }
@@ -4773,6 +4776,8 @@ enum ProjectOrderByInput {
   defaultName_DESC
   settings_ASC
   settings_DESC
+  components_ASC
+  components_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -4784,6 +4789,7 @@ type ProjectPreviousValues {
   name: String!
   defaultName: String!
   settings: Json!
+  components: String
 }
 
 type ProjectSubscriptionPayload {
@@ -4829,6 +4835,7 @@ input ProjectUpdateInput {
   name: String
   defaultName: String
   settings: Json
+  components: String
   languages: LanguageUpdateManyInput
   defaultLanguage: LanguageUpdateOneInput
   websites: WebsiteUpdateManyWithoutProjectInput
@@ -4846,6 +4853,7 @@ input ProjectUpdateWithoutWebsitesDataInput {
   name: String
   defaultName: String
   settings: Json
+  components: String
   languages: LanguageUpdateManyInput
   defaultLanguage: LanguageUpdateOneInput
 }
@@ -4984,6 +4992,46 @@ input ProjectWhereInput {
 
   """All values not ending with the given string."""
   defaultName_not_ends_with: String
+  components: String
+
+  """All values that are not equal to given value."""
+  components_not: String
+
+  """All values that are contained in given list."""
+  components_in: [String!]
+
+  """All values that are not contained in given list."""
+  components_not_in: [String!]
+
+  """All values less than the given value."""
+  components_lt: String
+
+  """All values less than or equal the given value."""
+  components_lte: String
+
+  """All values greater than the given value."""
+  components_gt: String
+
+  """All values greater than or equal the given value."""
+  components_gte: String
+
+  """All values containing the given string."""
+  components_contains: String
+
+  """All values not containing the given string."""
+  components_not_contains: String
+
+  """All values starting with the given string."""
+  components_starts_with: String
+
+  """All values not starting with the given string."""
+  components_not_starts_with: String
+
+  """All values ending with the given string."""
+  components_ends_with: String
+
+  """All values not ending with the given string."""
+  components_not_ends_with: String
   languages_every: LanguageWhereInput
   languages_some: LanguageWhereInput
   languages_none: LanguageWhereInput
@@ -6284,6 +6332,8 @@ export type ProjectOrderByInput =   'id_ASC' |
   'defaultName_DESC' |
   'settings_ASC' |
   'settings_DESC' |
+  'components_ASC' |
+  'components_DESC' |
   'updatedAt_ASC' |
   'updatedAt_DESC' |
   'createdAt_ASC' |
@@ -8295,6 +8345,7 @@ export interface ProjectCreateInput {
   name: String
   defaultName: String
   settings?: Json | null
+  components?: String | null
   languages?: LanguageCreateManyInput | null
   defaultLanguage: LanguageCreateOneInput
   websites?: WebsiteCreateManyWithoutProjectInput | null
@@ -8309,6 +8360,7 @@ export interface ProjectCreateWithoutWebsitesInput {
   name: String
   defaultName: String
   settings?: Json | null
+  components?: String | null
   languages?: LanguageCreateManyInput | null
   defaultLanguage: LanguageCreateOneInput
 }
@@ -8328,6 +8380,7 @@ export interface ProjectUpdateInput {
   name?: String | null
   defaultName?: String | null
   settings?: Json | null
+  components?: String | null
   languages?: LanguageUpdateManyInput | null
   defaultLanguage?: LanguageUpdateOneInput | null
   websites?: WebsiteUpdateManyWithoutProjectInput | null
@@ -8345,6 +8398,7 @@ export interface ProjectUpdateWithoutWebsitesDataInput {
   name?: String | null
   defaultName?: String | null
   settings?: Json | null
+  components?: String | null
   languages?: LanguageUpdateManyInput | null
   defaultLanguage?: LanguageUpdateOneInput | null
 }
@@ -8400,6 +8454,20 @@ export interface ProjectWhereInput {
   defaultName_not_starts_with?: String | null
   defaultName_ends_with?: String | null
   defaultName_not_ends_with?: String | null
+  components?: String | null
+  components_not?: String | null
+  components_in?: String[] | String | null
+  components_not_in?: String[] | String | null
+  components_lt?: String | null
+  components_lte?: String | null
+  components_gt?: String | null
+  components_gte?: String | null
+  components_contains?: String | null
+  components_not_contains?: String | null
+  components_starts_with?: String | null
+  components_not_starts_with?: String | null
+  components_ends_with?: String | null
+  components_not_ends_with?: String | null
   languages_every?: LanguageWhereInput | null
   languages_some?: LanguageWhereInput | null
   languages_none?: LanguageWhereInput | null
@@ -9559,6 +9627,7 @@ export interface Project extends Node {
   defaultLanguage: Language
   settings: Json
   websites?: Array<Website> | null
+  components?: String | null
 }
 
 /*
@@ -9585,6 +9654,7 @@ export interface ProjectPreviousValues {
   name: String
   defaultName: String
   settings: Json
+  components?: String | null
 }
 
 export interface ProjectSubscriptionPayload {

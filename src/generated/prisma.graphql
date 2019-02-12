@@ -1,13 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Tue Jan 29 2019 13:09:07 GMT+0100 (CET)
-
-type AggregateDatasource {
-  count: Int!
-}
-
-type AggregateDatasourceItem {
-  count: Int!
-}
+# timestamp: Wed Feb 06 2019 20:25:12 GMT+0100 (Central European Standard Time)
 
 type AggregateFile {
   count: Int!
@@ -4497,6 +4489,7 @@ type Project implements Node {
   defaultLanguage(where: LanguageWhereInput): Language!
   settings: Json!
   websites(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Website!]
+  components: String
 }
 
 """A connection to a list of items."""
@@ -4513,6 +4506,7 @@ input ProjectCreateInput {
   name: String!
   defaultName: String!
   settings: Json
+  components: String
   languages: LanguageCreateManyInput
   defaultLanguage: LanguageCreateOneInput!
   websites: WebsiteCreateManyWithoutProjectInput
@@ -4527,6 +4521,7 @@ input ProjectCreateWithoutWebsitesInput {
   name: String!
   defaultName: String!
   settings: Json
+  components: String
   languages: LanguageCreateManyInput
   defaultLanguage: LanguageCreateOneInput!
 }
@@ -4549,6 +4544,8 @@ enum ProjectOrderByInput {
   defaultName_DESC
   settings_ASC
   settings_DESC
+  components_ASC
+  components_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -4560,6 +4557,7 @@ type ProjectPreviousValues {
   name: String!
   defaultName: String!
   settings: Json!
+  components: String
 }
 
 type ProjectSubscriptionPayload {
@@ -4605,6 +4603,7 @@ input ProjectUpdateInput {
   name: String
   defaultName: String
   settings: Json
+  components: String
   languages: LanguageUpdateManyInput
   defaultLanguage: LanguageUpdateOneInput
   websites: WebsiteUpdateManyWithoutProjectInput
@@ -4622,6 +4621,7 @@ input ProjectUpdateWithoutWebsitesDataInput {
   name: String
   defaultName: String
   settings: Json
+  components: String
   languages: LanguageUpdateManyInput
   defaultLanguage: LanguageUpdateOneInput
 }
@@ -4760,6 +4760,46 @@ input ProjectWhereInput {
 
   """All values not ending with the given string."""
   defaultName_not_ends_with: String
+  components: String
+
+  """All values that are not equal to given value."""
+  components_not: String
+
+  """All values that are contained in given list."""
+  components_in: [String!]
+
+  """All values that are not contained in given list."""
+  components_not_in: [String!]
+
+  """All values less than the given value."""
+  components_lt: String
+
+  """All values less than or equal the given value."""
+  components_lte: String
+
+  """All values greater than the given value."""
+  components_gt: String
+
+  """All values greater than or equal the given value."""
+  components_gte: String
+
+  """All values containing the given string."""
+  components_contains: String
+
+  """All values not containing the given string."""
+  components_not_contains: String
+
+  """All values starting with the given string."""
+  components_starts_with: String
+
+  """All values not starting with the given string."""
+  components_not_starts_with: String
+
+  """All values ending with the given string."""
+  components_ends_with: String
+
+  """All values not ending with the given string."""
+  components_not_ends_with: String
   languages_every: LanguageWhereInput
   languages_some: LanguageWhereInput
   languages_none: LanguageWhereInput
