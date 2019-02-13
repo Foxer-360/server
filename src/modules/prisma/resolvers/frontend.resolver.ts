@@ -35,46 +35,6 @@ export class FrontendResolver {
       }`,
     );
 
-    // Possible datasource items
-    const pageDatasourceItems = [];
-    // try to find page in pagesUrls
-    const pageUrl = pagesUrls.find(item => {
-      if (item.url === url) {
-        return true;
-      }
-
-      const urlFragments = item.url.split('/').filter(slug => slug !== '');
-      const askedUrlFragments = [resolvedUrl.language, ...resolvedUrl.pages];
-
-      for (let i = 0; i <= resolvedUrl.pages.length; i++) {
-        const res = urlFragments[i] && urlFragments[i].match(/^ds\:(.*)/);
-
-        if (urlFragments[i] !== askedUrlFragments[i] && !(res && res[1])) { return false; }
-        if (res && res[1]) {
-          const { 1: type } = res;
-          const datasource = datasources.find(d => d.type.toLocaleLowerCase() === type);
-          if (!datasource) { return false; }
-          const datasourceItem = datasource.datasourceItems.find(d => d.slug === askedUrlFragments[i]);
-
-          if (
-            datasourceItem
-          ) {
-            if (!pageDatasourceItems.some(dItem => dItem.id === datasourceItem.id )) {
-              pageDatasourceItems.push(datasourceItem);
-            }
-          } else {
-            return false;
-          }
-
-        }
-      }
-      return true;
-    });
-
-    if (!pageUrl) {
-      return Promise.resolve(emptyRes);
-    }
-
     // Flow:
     // Resolve website..
     //   If website is null, then it must have empty prefix ('' or '/')
@@ -101,6 +61,7 @@ export class FrontendResolver {
           code
           name
         }
+        components
       }
       languages {
         id
@@ -135,6 +96,44 @@ export class FrontendResolver {
     }
 
     const websiteObject = qWs[0];
+    // Possible datasource items
+    const pageDatasourceItems = [];
+    // try to find page in pagesUrls
+    const pageUrl = pagesUrls.find(item => {
+      if (item.url === url) {
+        return true;
+      }
+
+      const urlFragments = item.url.split('/').filter(slug => slug !== '');
+      const askedUrlFragments = [...([websiteObject.urlMask.replace('/', '')] || []), resolvedUrl.language, ...(resolvedUrl.pages || [])];
+      for (let i = 0; i < askedUrlFragments.length; i++) {
+        const res = urlFragments[i] && urlFragments[i].match(/^ds\:(.*)/);
+
+        if (urlFragments[i] !== askedUrlFragments[i] && !(res && res[1])) { return false; }
+        if (res && res[1]) {
+          const { 1: type } = res;
+          const datasource = datasources.find(d => d.type.toLocaleLowerCase() === type);
+          if (!datasource) { return false; }
+          const datasourceItem = datasource.datasourceItems.find(d => d.slug === askedUrlFragments[i]);
+
+          if (
+            datasourceItem
+          ) {
+            if (!pageDatasourceItems.some(dItem => dItem.id === datasourceItem.id )) {
+              pageDatasourceItems.push(datasourceItem);
+            }
+          } else {
+            return false;
+          }
+
+        }
+      }
+      return true;
+    });
+
+    if (!pageUrl) {
+      return Promise.resolve(emptyRes);
+    }
 
     // Now Language
     let languageObject = null;
@@ -275,6 +274,7 @@ export class FrontendResolver {
       languages: websiteObject.languages,
       seo,
       datasourceItems: pageDatasourceItems,
+      project: websiteObject.project,
     };
 
     return Promise.resolve(res);

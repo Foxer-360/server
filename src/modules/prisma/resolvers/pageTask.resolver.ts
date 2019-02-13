@@ -10,7 +10,7 @@ const getUsers = async () => {
     `
     query {
       users {
-        name
+        username
         avatar
         email
         auth0id
@@ -24,12 +24,10 @@ const getUsers = async () => {
 
 @Resolver('pageTask')
 export class PageTaskResolver {
-
   constructor(private readonly prisma: Prisma) {}
 
   @Query('pageTask')
   public async getPageTask(obj, args, context, info): Promise<any> {
-
     const users: any = await getUsers();
 
     const pageTask: any = await this.prisma.query.pageTask(args, info);
@@ -40,12 +38,10 @@ export class PageTaskResolver {
 
   @Query('pageTasks')
   public async getPageTasks(obj, args, context, info): Promise<any> {
-
     const users: any = await getUsers();
 
     const pageTasks = await this.prisma.query.pageTasks(args, info);
     const pageTasksWithAuth0id = await this.prisma.query.pageTasks(args, '{ id auth0id }');
-
     return pageTasks
       .map((pageTask: any) => ({ ...pageTask, ...(pageTasksWithAuth0id.find(p => p.id === pageTask.id) || {}) }))
       .map((pageTask: any) => {
@@ -55,12 +51,11 @@ export class PageTaskResolver {
           pageTask.user = null;
         }
         return pageTask;
-    });
+      });
   }
 
   @Mutation('createPageTask')
   public async createPageTask(obj, args, context, info): Promise<any> {
-
     const users: any = await getUsers();
 
     const auth0id = context.user && context.user.sub.split('|')[1];
@@ -72,7 +67,6 @@ export class PageTaskResolver {
 
   @Mutation('updatePageTask')
   public async updatePageTask(obj, args, context, info): Promise<any> {
-
     const users: any = await getUsers();
 
     const pageTask: any = await this.prisma.mutation.updatePageTask(args, info);
@@ -83,7 +77,6 @@ export class PageTaskResolver {
 
   @Mutation('deletePageTask')
   public async deletePageTask(obj, args, context, info): Promise<any> {
-
     const pageTask: any = await this.prisma.mutation.deletePageTask(args, info);
     return pageTask;
   }
@@ -106,5 +99,4 @@ export class PageTaskResolver {
       },
     };
   }
-
 }

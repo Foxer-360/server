@@ -34,4 +34,5 @@ type Frontend {
   navigations: [Navigation!]!
   languages: [Language!]!
   datasourceItems: [FrontendDatasourceItem!]!
+  project: Project!
 }
