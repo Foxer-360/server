@@ -1562,6 +1562,7 @@ type Inquiry implements Node {
   message: Json!
   url: String
   createdAt: DateTime!
+  formType: String
   ip: String
 }
 
@@ -1578,6 +1579,7 @@ type InquiryConnection {
 input InquiryCreateInput {
   message: Json!
   url: String
+  formType: String
   ip: String
 }
 
@@ -1599,6 +1601,8 @@ enum InquiryOrderByInput {
   url_DESC
   createdAt_ASC
   createdAt_DESC
+  formType_ASC
+  formType_DESC
   ip_ASC
   ip_DESC
   updatedAt_ASC
@@ -1610,6 +1614,7 @@ type InquiryPreviousValues {
   message: Json!
   url: String
   createdAt: DateTime!
+  formType: String
   ip: String
 }
 
@@ -1655,6 +1660,7 @@ input InquirySubscriptionWhereInput {
 input InquiryUpdateInput {
   message: Json
   url: String
+  formType: String
   ip: String
 }
 
@@ -1775,6 +1781,46 @@ input InquiryWhereInput {
 
   """All values greater than or equal the given value."""
   createdAt_gte: DateTime
+  formType: String
+
+  """All values that are not equal to given value."""
+  formType_not: String
+
+  """All values that are contained in given list."""
+  formType_in: [String!]
+
+  """All values that are not contained in given list."""
+  formType_not_in: [String!]
+
+  """All values less than the given value."""
+  formType_lt: String
+
+  """All values less than or equal the given value."""
+  formType_lte: String
+
+  """All values greater than the given value."""
+  formType_gt: String
+
+  """All values greater than or equal the given value."""
+  formType_gte: String
+
+  """All values containing the given string."""
+  formType_contains: String
+
+  """All values not containing the given string."""
+  formType_not_contains: String
+
+  """All values starting with the given string."""
+  formType_starts_with: String
+
+  """All values not starting with the given string."""
+  formType_not_starts_with: String
+
+  """All values ending with the given string."""
+  formType_ends_with: String
+
+  """All values not ending with the given string."""
+  formType_not_ends_with: String
   ip: String
 
   """All values that are not equal to given value."""
@@ -8087,6 +8133,8 @@ export type InquiryOrderByInput =   'id_ASC' |
   'url_DESC' |
   'createdAt_ASC' |
   'createdAt_DESC' |
+  'formType_ASC' |
+  'formType_DESC' |
   'ip_ASC' |
   'ip_DESC' |
   'updatedAt_ASC' |
@@ -8820,6 +8868,7 @@ export interface FileWhereUniqueInput {
 export interface InquiryCreateInput {
   message: Json
   url?: String | null
+  formType?: String | null
   ip?: String | null
 }
 
@@ -8837,6 +8886,7 @@ export interface InquirySubscriptionWhereInput {
 export interface InquiryUpdateInput {
   message?: Json | null
   url?: String | null
+  formType?: String | null
   ip?: String | null
 }
 
@@ -8886,6 +8936,20 @@ export interface InquiryWhereInput {
   createdAt_lte?: DateTime | null
   createdAt_gt?: DateTime | null
   createdAt_gte?: DateTime | null
+  formType?: String | null
+  formType_not?: String | null
+  formType_in?: String[] | String | null
+  formType_not_in?: String[] | String | null
+  formType_lt?: String | null
+  formType_lte?: String | null
+  formType_gt?: String | null
+  formType_gte?: String | null
+  formType_contains?: String | null
+  formType_not_contains?: String | null
+  formType_starts_with?: String | null
+  formType_not_starts_with?: String | null
+  formType_ends_with?: String | null
+  formType_not_ends_with?: String | null
   ip?: String | null
   ip_not?: String | null
   ip_in?: String[] | String | null
@@ -11933,6 +11997,7 @@ export interface Inquiry extends Node {
   message: Json
   url?: String | null
   createdAt: DateTime
+  formType?: String | null
   ip?: String | null
 }
 
@@ -11960,6 +12025,7 @@ export interface InquiryPreviousValues {
   message: Json
   url?: String | null
   createdAt: DateTime
+  formType?: String | null
   ip?: String | null
 }
 

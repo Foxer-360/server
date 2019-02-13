@@ -1,5 +1,6 @@
 # source: http://localhost:4466
-# timestamp: Wed Feb 13 2019 12:11:12 GMT+0100 (CET)
+
+# timestamp: Tue Feb 12 2019 11:59:14 GMT+0100 (Central European Standard Time)
 
 type AggregateDatasource {
   count: Int!
@@ -1339,6 +1340,7 @@ type Inquiry implements Node {
   message: Json!
   url: String
   createdAt: DateTime!
+  formType: String
   ip: String
 }
 
@@ -1355,6 +1357,7 @@ type InquiryConnection {
 input InquiryCreateInput {
   message: Json!
   url: String
+  formType: String
   ip: String
 }
 
@@ -1376,6 +1379,8 @@ enum InquiryOrderByInput {
   url_DESC
   createdAt_ASC
   createdAt_DESC
+  formType_ASC
+  formType_DESC
   ip_ASC
   ip_DESC
   updatedAt_ASC
@@ -1387,6 +1392,7 @@ type InquiryPreviousValues {
   message: Json!
   url: String
   createdAt: DateTime!
+  formType: String
   ip: String
 }
 
@@ -1432,6 +1438,7 @@ input InquirySubscriptionWhereInput {
 input InquiryUpdateInput {
   message: Json
   url: String
+  formType: String
   ip: String
 }
 
@@ -1552,6 +1559,46 @@ input InquiryWhereInput {
 
   """All values greater than or equal the given value."""
   createdAt_gte: DateTime
+  formType: String
+
+  """All values that are not equal to given value."""
+  formType_not: String
+
+  """All values that are contained in given list."""
+  formType_in: [String!]
+
+  """All values that are not contained in given list."""
+  formType_not_in: [String!]
+
+  """All values less than the given value."""
+  formType_lt: String
+
+  """All values less than or equal the given value."""
+  formType_lte: String
+
+  """All values greater than the given value."""
+  formType_gt: String
+
+  """All values greater than or equal the given value."""
+  formType_gte: String
+
+  """All values containing the given string."""
+  formType_contains: String
+
+  """All values not containing the given string."""
+  formType_not_contains: String
+
+  """All values starting with the given string."""
+  formType_starts_with: String
+
+  """All values not starting with the given string."""
+  formType_not_starts_with: String
+
+  """All values ending with the given string."""
+  formType_ends_with: String
+
+  """All values not ending with the given string."""
+  formType_not_ends_with: String
   ip: String
 
   """All values that are not equal to given value."""

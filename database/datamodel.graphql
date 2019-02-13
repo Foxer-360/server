@@ -149,6 +149,7 @@ type Inquiry {
   message: Json!
   url: String
   createdAt: DateTime!
+  formType: String
   ip: String
 }
 
