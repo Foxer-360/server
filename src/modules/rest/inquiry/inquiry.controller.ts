@@ -20,19 +20,26 @@ export class InquiryController {
   @Post('upload')
   @UseInterceptors(FileInterceptor('file', { dest: '/tmp' }))
   public async upload(@UploadedFile() file, @Req() req, @Res() res) {
+    let formData = null;
+    let result = null;
 
-    const formData = {
-      file: fs.createReadStream(file.path),
-    };
+    if (file && file.path) {
+      formData = {
+        file: fs.createReadStream(file.path),
+      };
+    }
+
     try {
-      const result = await request.post({
-        url: `${process.env.MEDIA_LIBRARY_SERVER}/upload`
-        + `?category=${process.env.MEDIA_LIBRARY_SERVER__CATEGORY}`,
-        formData,
-        json: true,
-      });
+      if (formData) {
+        result = await request.post({
+          url: `${process.env.MEDIA_LIBRARY_SERVER}/upload`
+          + `?category=${process.env.MEDIA_LIBRARY_SERVER__CATEGORY}`,
+          formData,
+          json: true,
+        });
+      }
       const ip = req.headers['x-forwarded-for'] || req.ip || 'Ip address didn\'t captured.';
-      console.log(result.file);
+
       const inquiry = await this.prisma.mutation.createInquiry({
         data: {
           message: {
@@ -41,10 +48,11 @@ export class InquiryController {
             phone: req.body.phone,
             email: req.body.email,
             text: req.body.text,
-            attachment: `${process.env.AWS_ADDRESS}${result.file.category}${result.file.hash}_${result.file.filename}`,
+            attachment: result ? `${process.env.AWS_ADDRESS}${result.file.category}${result.file.hash}_${result.file.filename}` : null,
             subject: req.body.subject,
           },
           url: req.body.url,
+          formType: req.body.formType,
           ip,
         },
       });

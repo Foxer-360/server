@@ -7,8 +7,6 @@ type Mutation {
   createProject(data: ProjectCreateInput!): Project!
   createPageTranslation(data: PageTranslationCreateInput!): PageTranslation!
   createPagePlugin(data: PagePluginCreateInput!): PagePlugin!
-  createPageTask(data: PageTaskCreateInput!): PageTask!
-  createPageChat(data: PageChatCreateInput!): PageChat!
   createPageAnnotation(data: PageAnnotationCreateInput!): PageAnnotation!
   createFile(data: FileCreateInput!): File!
   createNavigation(data: NavigationCreateInput!): Navigation!
@@ -16,14 +14,14 @@ type Mutation {
   createTag(data: TagCreateInput!): Tag!
   createSubscriber(data: SubscriberCreateInput!): Subscriber!
   createInquiry(data: InquiryCreateInput!): Inquiry!
+  createDatasource(data: DatasourceCreateInput!): Datasource!
+  createDatasourceItem(data: DatasourceItemCreateInput!): DatasourceItem!
   createPageType(data: PageTypeCreateInput!): PageType!
   createWebsite(data: WebsiteCreateInput!): Website!
   createLanguage(data: LanguageCreateInput!): Language!
   updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
   updatePageTranslation(data: PageTranslationUpdateInput!, where: PageTranslationWhereUniqueInput!): PageTranslation
   updatePagePlugin(data: PagePluginUpdateInput!, where: PagePluginWhereUniqueInput!): PagePlugin
-  updatePageTask(data: PageTaskUpdateInput!, where: PageTaskWhereUniqueInput!): PageTask
-  updatePageChat(data: PageChatUpdateInput!, where: PageChatWhereUniqueInput!): PageChat
   updatePageAnnotation(data: PageAnnotationUpdateInput!, where: PageAnnotationWhereUniqueInput!): PageAnnotation
   updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
   updateNavigation(data: NavigationUpdateInput!, where: NavigationWhereUniqueInput!): Navigation
@@ -31,6 +29,8 @@ type Mutation {
   updateTag(data: TagUpdateInput!, where: TagWhereUniqueInput!): Tag
   updateSubscriber(data: SubscriberUpdateInput!, where: SubscriberWhereUniqueInput!): Subscriber
   updateInquiry(data: InquiryUpdateInput!, where: InquiryWhereUniqueInput!): Inquiry
+  updateDatasource(data: DatasourceUpdateInput!, where: DatasourceWhereUniqueInput!): Datasource
+  updateDatasourceItem(data: DatasourceItemUpdateInput!, where: DatasourceItemWhereUniqueInput!): DatasourceItem
   updatePage(data: PageUpdateInput!, where: PageWhereUniqueInput!): Page
   updatePageType(data: PageTypeUpdateInput!, where: PageTypeWhereUniqueInput!): PageType
   updateWebsite(data: WebsiteUpdateInput!, where: WebsiteWhereUniqueInput!): Website
@@ -38,8 +38,6 @@ type Mutation {
   deleteProject(where: ProjectWhereUniqueInput!): Project
   deletePageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
   deletePagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
-  deletePageTask(where: PageTaskWhereUniqueInput!): PageTask
-  deletePageChat(where: PageChatWhereUniqueInput!): PageChat
   deletePageAnnotation(where: PageAnnotationWhereUniqueInput!): PageAnnotation
   deleteFile(where: FileWhereUniqueInput!): File
   deleteNavigation(where: NavigationWhereUniqueInput!): Navigation
@@ -47,6 +45,8 @@ type Mutation {
   deleteTag(where: TagWhereUniqueInput!): Tag
   deleteSubscriber(where: SubscriberWhereUniqueInput!): Subscriber
   deleteInquiry(where: InquiryWhereUniqueInput!): Inquiry
+  deleteDatasource(where: DatasourceWhereUniqueInput!): Datasource
+  deleteDatasourceItem(where: DatasourceItemWhereUniqueInput!): DatasourceItem
   deletePage(where: PageWhereUniqueInput!): Page
   deletePageType(where: PageTypeWhereUniqueInput!): PageType
   deleteWebsite(where: WebsiteWhereUniqueInput!): Website
@@ -54,8 +54,6 @@ type Mutation {
   upsertProject(where: ProjectWhereUniqueInput!, create: ProjectCreateInput!, update: ProjectUpdateInput!): Project!
   upsertPageTranslation(where: PageTranslationWhereUniqueInput!, create: PageTranslationCreateInput!, update: PageTranslationUpdateInput!): PageTranslation!
   upsertPagePlugin(where: PagePluginWhereUniqueInput!, create: PagePluginCreateInput!, update: PagePluginUpdateInput!): PagePlugin!
-  upsertPageTask(where: PageTaskWhereUniqueInput!, create: PageTaskCreateInput!, update: PageTaskUpdateInput!): PageTask!
-  upsertPageChat(where: PageChatWhereUniqueInput!, create: PageChatCreateInput!, update: PageChatUpdateInput!): PageChat!
   upsertPageAnnotation(where: PageAnnotationWhereUniqueInput!, create: PageAnnotationCreateInput!, update: PageAnnotationUpdateInput!): PageAnnotation!
   upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
   upsertNavigation(where: NavigationWhereUniqueInput!, create: NavigationCreateInput!, update: NavigationUpdateInput!): Navigation!
@@ -63,6 +61,8 @@ type Mutation {
   upsertTag(where: TagWhereUniqueInput!, create: TagCreateInput!, update: TagUpdateInput!): Tag!
   upsertSubscriber(where: SubscriberWhereUniqueInput!, create: SubscriberCreateInput!, update: SubscriberUpdateInput!): Subscriber!
   upsertInquiry(where: InquiryWhereUniqueInput!, create: InquiryCreateInput!, update: InquiryUpdateInput!): Inquiry!
+  upsertDatasource(where: DatasourceWhereUniqueInput!, create: DatasourceCreateInput!, update: DatasourceUpdateInput!): Datasource!
+  upsertDatasourceItem(where: DatasourceItemWhereUniqueInput!, create: DatasourceItemCreateInput!, update: DatasourceItemUpdateInput!): DatasourceItem!
   upsertPage(where: PageWhereUniqueInput!, create: PageCreateInput!, update: PageUpdateInput!): Page!
   upsertPageType(where: PageTypeWhereUniqueInput!, create: PageTypeCreateInput!, update: PageTypeUpdateInput!): PageType!
   upsertWebsite(where: WebsiteWhereUniqueInput!, create: WebsiteCreateInput!, update: WebsiteUpdateInput!): Website!
@@ -79,6 +79,8 @@ type Mutation {
   updateManyTags(data: TagUpdateManyMutationInput!, where: TagWhereInput): BatchPayload!
   updateManySubscribers(data: SubscriberUpdateManyMutationInput!, where: SubscriberWhereInput): BatchPayload!
   updateManyInquiries(data: InquiryUpdateManyMutationInput!, where: InquiryWhereInput): BatchPayload!
+  updateManyDatasources(data: DatasourceUpdateManyMutationInput!, where: DatasourceWhereInput): BatchPayload!
+  updateManyDatasourceItems(data: DatasourceItemUpdateManyMutationInput!, where: DatasourceItemWhereInput): BatchPayload!
   updateManyPageTypes(data: PageTypeUpdateManyMutationInput!, where: PageTypeWhereInput): BatchPayload!
   updateManyWebsites(data: WebsiteUpdateManyMutationInput!, where: WebsiteWhereInput): BatchPayload!
   updateManyLanguages(data: LanguageUpdateManyMutationInput!, where: LanguageWhereInput): BatchPayload!
@@ -94,6 +96,8 @@ type Mutation {
   deleteManyTags(where: TagWhereInput): BatchPayload!
   deleteManySubscribers(where: SubscriberWhereInput): BatchPayload!
   deleteManyInquiries(where: InquiryWhereInput): BatchPayload!
+  deleteManyDatasources(where: DatasourceWhereInput): BatchPayload!
+  deleteManyDatasourceItems(where: DatasourceItemWhereInput): BatchPayload!
   deleteManyPages(where: PageWhereInput): BatchPayload!
   deleteManyPageTypes(where: PageTypeWhereInput): BatchPayload!
   deleteManyWebsites(where: WebsiteWhereInput): BatchPayload!
@@ -103,6 +107,14 @@ type Mutation {
   createPage(data: CustomPageCreateInput!): Page!
   createNavigationStructure(navigation: ID!, data: [NavigationNodeCreateInput]!): [NavigationNode]!
   savePagePlugin(data: PagePluginCreateInput!): PagePlugin!
+  updatePageTask(data: PageTaskUpdateInput!, where: PageTaskWhereUniqueInput!): PageTaskWithUser
+  updatePageChat(data: PageChatUpdateInput!, where: PageChatWhereUniqueInput!): PageChatWithUser
+  upsertPageTask(where: PageTaskWhereUniqueInput!, create: PageTaskCreateInput!, update: PageTaskUpdateInput!): PageTaskWithUser!
+  upsertPageChat(where: PageChatWhereUniqueInput!, create: PageChatCreateInput!, update: PageChatUpdateInput!): PageChatWithUser!
+  deletePageTask(where: PageTaskWhereUniqueInput!): PageTaskWithUser
+  deletePageChat(where: PageChatWhereUniqueInput!): PageChatWithUser
+  createPageTask(data: PageTaskCreateInput!): PageTaskWithUser!
+  createPageChat(data: PageChatCreateInput!): PageChatWithUser!
 }
 
 type User {
@@ -134,8 +146,6 @@ type Query {
   projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
   pageTranslations(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTranslation]!
   pagePlugins(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PagePlugin]!
-  pageTasks(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTask]!
-  pageChats(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageChat]!
   pageAnnotations(where: PageAnnotationWhereInput, orderBy: PageAnnotationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageAnnotation]!
   files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File]!
   navigations(where: NavigationWhereInput, orderBy: NavigationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Navigation]!
@@ -143,6 +153,8 @@ type Query {
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag]!
   subscribers(where: SubscriberWhereInput, orderBy: SubscriberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscriber]!
   inquiries(where: InquiryWhereInput, orderBy: InquiryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Inquiry]!
+  datasources(where: DatasourceWhereInput, orderBy: DatasourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Datasource]!
+  datasourceItems(where: DatasourceItemWhereInput, orderBy: DatasourceItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DatasourceItem]!
   pages(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Page]!
   pageTypes(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageType]!
   websites(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Website]!
@@ -150,8 +162,6 @@ type Query {
   project(where: ProjectWhereUniqueInput!): Project
   pageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
   pagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
-  pageTask(where: PageTaskWhereUniqueInput!): PageTask
-  pageChat(where: PageChatWhereUniqueInput!): PageChat
   pageAnnotation(where: PageAnnotationWhereUniqueInput!): PageAnnotation
   file(where: FileWhereUniqueInput!): File
   navigation(where: NavigationWhereUniqueInput!): Navigation
@@ -159,6 +169,8 @@ type Query {
   tag(where: TagWhereUniqueInput!): Tag
   subscriber(where: SubscriberWhereUniqueInput!): Subscriber
   inquiry(where: InquiryWhereUniqueInput!): Inquiry
+  datasource(where: DatasourceWhereUniqueInput!): Datasource
+  datasourceItem(where: DatasourceItemWhereUniqueInput!): DatasourceItem
   page(where: PageWhereUniqueInput!): Page
   pageType(where: PageTypeWhereUniqueInput!): PageType
   website(where: WebsiteWhereUniqueInput!): Website
@@ -175,6 +187,8 @@ type Query {
   tagsConnection(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TagConnection!
   subscribersConnection(where: SubscriberWhereInput, orderBy: SubscriberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SubscriberConnection!
   inquiriesConnection(where: InquiryWhereInput, orderBy: InquiryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InquiryConnection!
+  datasourcesConnection(where: DatasourceWhereInput, orderBy: DatasourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DatasourceConnection!
+  datasourceItemsConnection(where: DatasourceItemWhereInput, orderBy: DatasourceItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DatasourceItemConnection!
   pagesConnection(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageConnection!
   pageTypesConnection(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTypeConnection!
   websitesConnection(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WebsiteConnection!
@@ -189,6 +203,10 @@ type Query {
   # Custom definitions
   frontend(where: FrontendWhereInput!): Frontend
   pagesUrls(where: PagesUrlsWhereInput!): [PageUrl]
+  pageTasks(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTaskWithUser]!
+  pageChats(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageChatWithUser]!
+  pageTask(where: PageTaskWhereUniqueInput!): PageTaskWithUser
+  pageChat(where: PageChatWhereUniqueInput!): PageChatWithUser
 }
 
 type PageChatWithUserSubscriptionPayload {
@@ -211,12 +229,16 @@ type Subscription {
   project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
   pageTranslation(where: PageTranslationSubscriptionWhereInput): PageTranslationSubscriptionPayload
   pagePlugin(where: PagePluginSubscriptionWhereInput): PagePluginSubscriptionPayload
-  pageTask(where: PageTaskSubscriptionWhereInput): PageTaskWithUserSubscriptionPayload
-  pageChat(where: PageChatSubscriptionWhereInput): PageChatWithUserSubscriptionPayload
+  pageTask(where: PageTaskSubscriptionWhereInput): PageTaskSubscriptionPayload
+  pageChat(where: PageChatSubscriptionWhereInput): PageChatSubscriptionPayload
   file(where: FileSubscriptionWhereInput): FileSubscriptionPayload
   navigation(where: NavigationSubscriptionWhereInput): NavigationSubscriptionPayload
   navigationNode(where: NavigationNodeSubscriptionWhereInput): NavigationNodeSubscriptionPayload
   tag(where: TagSubscriptionWhereInput): TagSubscriptionPayload
+  subscriber(where: SubscriberSubscriptionWhereInput): SubscriberSubscriptionPayload
+  inquiry(where: InquirySubscriptionWhereInput): InquirySubscriptionPayload
+  datasource(where: DatasourceSubscriptionWhereInput): DatasourceSubscriptionPayload
+  datasourceItem(where: DatasourceItemSubscriptionWhereInput): DatasourceItemSubscriptionPayload
   page(where: PageSubscriptionWhereInput): PageSubscriptionPayload
   pageType(where: PageTypeSubscriptionWhereInput): PageTypeSubscriptionPayload
   website(where: WebsiteSubscriptionWhereInput): WebsiteSubscriptionPayload

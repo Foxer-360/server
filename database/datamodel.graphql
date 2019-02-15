@@ -15,6 +15,7 @@ type Project {
   defaultLanguage: Language! @relation(name: "DefaultLanguageInProject")
   settings: Json! @default(value: "{}")
   websites: [Website!]! @relation(name: "WebsiteUnderProject", onDelete: CASCADE)
+  components: String @default(value: "")
 }
 
 type Website {
@@ -53,6 +54,7 @@ type Page {
   chats: [PageChat!]! @relation(name: "ChatUnderPage", onDelete: CASCADE)
   tags: [Tag!]! @relation(name: "TagOnPage")
   plugin: PagePlugin @relation(name: "PluginForPage", onDelete: CASCADE)
+  datasources: [Datasource!]! @relation(name: "DatasourceOnPage")
 }
 
 type PageTranslation {
@@ -155,7 +157,27 @@ type Inquiry {
   message: Json!
   url: String
   createdAt: DateTime!
+  formType: String
   ip: String
 }
 
+type Datasource {
+  id: ID! @unique
+  type: String!
+  schema: Json!
+  uiSchema: Json
+  displayInNavigation: Boolean
+  slug: [String!]!
+  datasourceItems: [DatasourceItem!]! @relation(name: "DatasourceItemForPage", onDelete: CASCADE)
+  page: [Page!]! @relation(name: "DatasourceOnPage")
+}
+
+type DatasourceItem {
+  id: ID! @unique
+  datasource: Datasource! @relation(name: "DatasourceItemForPage")
+  slug: String!
+  content: Json!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
 

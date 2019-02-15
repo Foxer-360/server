@@ -15,6 +15,17 @@ type LocalizedPage {
   tags: [Tag!]!
 }
 
+type FrontendDatasource {
+  type: String!
+}
+
+type FrontendDatasourceItem {
+  id: ID!
+  content: Json!
+  slug: String!
+  datasource: FrontendDatasource!
+}
+
 type Frontend {
   website: Website!
   language: Language!
@@ -22,4 +33,6 @@ type Frontend {
   seo: Json,
   navigations: [Navigation!]!
   languages: [Language!]!
+  datasourceItems: [FrontendDatasourceItem!]!
+  project: Project!
 }
