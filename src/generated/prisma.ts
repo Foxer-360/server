@@ -9,6 +9,7 @@ export interface Query {
     pagePlugins: <T = Array<PagePlugin | null>>(args: { where?: PagePluginWhereInput | null, orderBy?: PagePluginOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageTasks: <T = Array<PageTask | null>>(args: { where?: PageTaskWhereInput | null, orderBy?: PageTaskOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageChats: <T = Array<PageChat | null>>(args: { where?: PageChatWhereInput | null, orderBy?: PageChatOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    pageAnnotations: <T = Array<PageAnnotation | null>>(args: { where?: PageAnnotationWhereInput | null, orderBy?: PageAnnotationOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     files: <T = Array<File | null>>(args: { where?: FileWhereInput | null, orderBy?: FileOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     navigations: <T = Array<Navigation | null>>(args: { where?: NavigationWhereInput | null, orderBy?: NavigationOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     navigationNodes: <T = Array<NavigationNode | null>>(args: { where?: NavigationNodeWhereInput | null, orderBy?: NavigationNodeOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -26,6 +27,7 @@ export interface Query {
     pagePlugin: <T = PagePlugin | null>(args: { where: PagePluginWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     pageTask: <T = PageTask | null>(args: { where: PageTaskWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     pageChat: <T = PageChat | null>(args: { where: PageChatWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    pageAnnotation: <T = PageAnnotation | null>(args: { where: PageAnnotationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     file: <T = File | null>(args: { where: FileWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     navigation: <T = Navigation | null>(args: { where: NavigationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     navigationNode: <T = NavigationNode | null>(args: { where: NavigationNodeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
@@ -43,6 +45,7 @@ export interface Query {
     pagePluginsConnection: <T = PagePluginConnection>(args: { where?: PagePluginWhereInput | null, orderBy?: PagePluginOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageTasksConnection: <T = PageTaskConnection>(args: { where?: PageTaskWhereInput | null, orderBy?: PageTaskOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageChatsConnection: <T = PageChatConnection>(args: { where?: PageChatWhereInput | null, orderBy?: PageChatOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    pageAnnotationsConnection: <T = PageAnnotationConnection>(args: { where?: PageAnnotationWhereInput | null, orderBy?: PageAnnotationOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     filesConnection: <T = FileConnection>(args: { where?: FileWhereInput | null, orderBy?: FileOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     navigationsConnection: <T = NavigationConnection>(args: { where?: NavigationWhereInput | null, orderBy?: NavigationOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     navigationNodesConnection: <T = NavigationNodeConnection>(args: { where?: NavigationNodeWhereInput | null, orderBy?: NavigationNodeOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -64,6 +67,7 @@ export interface Mutation {
     createPagePlugin: <T = PagePlugin>(args: { data: PagePluginCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createPageTask: <T = PageTask>(args: { data: PageTaskCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createPageChat: <T = PageChat>(args: { data: PageChatCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    createPageAnnotation: <T = PageAnnotation>(args: { data: PageAnnotationCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createFile: <T = File>(args: { data: FileCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createNavigation: <T = Navigation>(args: { data: NavigationCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createNavigationNode: <T = NavigationNode>(args: { data: NavigationNodeCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -81,6 +85,7 @@ export interface Mutation {
     updatePagePlugin: <T = PagePlugin | null>(args: { data: PagePluginUpdateInput, where: PagePluginWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updatePageTask: <T = PageTask | null>(args: { data: PageTaskUpdateInput, where: PageTaskWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updatePageChat: <T = PageChat | null>(args: { data: PageChatUpdateInput, where: PageChatWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    updatePageAnnotation: <T = PageAnnotation | null>(args: { data: PageAnnotationUpdateInput, where: PageAnnotationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updateFile: <T = File | null>(args: { data: FileUpdateInput, where: FileWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updateNavigation: <T = Navigation | null>(args: { data: NavigationUpdateInput, where: NavigationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updateNavigationNode: <T = NavigationNode | null>(args: { data: NavigationNodeUpdateInput, where: NavigationNodeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
@@ -98,6 +103,7 @@ export interface Mutation {
     deletePagePlugin: <T = PagePlugin | null>(args: { where: PagePluginWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deletePageTask: <T = PageTask | null>(args: { where: PageTaskWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deletePageChat: <T = PageChat | null>(args: { where: PageChatWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    deletePageAnnotation: <T = PageAnnotation | null>(args: { where: PageAnnotationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deleteFile: <T = File | null>(args: { where: FileWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deleteNavigation: <T = Navigation | null>(args: { where: NavigationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deleteNavigationNode: <T = NavigationNode | null>(args: { where: NavigationNodeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
@@ -115,6 +121,7 @@ export interface Mutation {
     upsertPagePlugin: <T = PagePlugin>(args: { where: PagePluginWhereUniqueInput, create: PagePluginCreateInput, update: PagePluginUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertPageTask: <T = PageTask>(args: { where: PageTaskWhereUniqueInput, create: PageTaskCreateInput, update: PageTaskUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertPageChat: <T = PageChat>(args: { where: PageChatWhereUniqueInput, create: PageChatCreateInput, update: PageChatUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    upsertPageAnnotation: <T = PageAnnotation>(args: { where: PageAnnotationWhereUniqueInput, create: PageAnnotationCreateInput, update: PageAnnotationUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertFile: <T = File>(args: { where: FileWhereUniqueInput, create: FileCreateInput, update: FileUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertNavigation: <T = Navigation>(args: { where: NavigationWhereUniqueInput, create: NavigationCreateInput, update: NavigationUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertNavigationNode: <T = NavigationNode>(args: { where: NavigationNodeWhereUniqueInput, create: NavigationNodeCreateInput, update: NavigationNodeUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -132,6 +139,7 @@ export interface Mutation {
     updateManyPagePlugins: <T = BatchPayload>(args: { data: PagePluginUpdateManyMutationInput, where?: PagePluginWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyPageTasks: <T = BatchPayload>(args: { data: PageTaskUpdateManyMutationInput, where?: PageTaskWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyPageChats: <T = BatchPayload>(args: { data: PageChatUpdateManyMutationInput, where?: PageChatWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyPageAnnotations: <T = BatchPayload>(args: { data: PageAnnotationUpdateManyMutationInput, where?: PageAnnotationWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyFiles: <T = BatchPayload>(args: { data: FileUpdateManyMutationInput, where?: FileWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyNavigations: <T = BatchPayload>(args: { data: NavigationUpdateManyMutationInput, where?: NavigationWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyNavigationNodes: <T = BatchPayload>(args: { data: NavigationNodeUpdateManyMutationInput, where?: NavigationNodeWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -148,6 +156,7 @@ export interface Mutation {
     deleteManyPagePlugins: <T = BatchPayload>(args: { where?: PagePluginWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyPageTasks: <T = BatchPayload>(args: { where?: PageTaskWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyPageChats: <T = BatchPayload>(args: { where?: PageChatWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    deleteManyPageAnnotations: <T = BatchPayload>(args: { where?: PageAnnotationWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyFiles: <T = BatchPayload>(args: { where?: FileWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyNavigations: <T = BatchPayload>(args: { where?: NavigationWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyNavigationNodes: <T = BatchPayload>(args: { where?: NavigationNodeWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -168,6 +177,7 @@ export interface Subscription {
     pagePlugin: <T = PagePluginSubscriptionPayload | null>(args: { where?: PagePluginSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     pageTask: <T = PageTaskSubscriptionPayload | null>(args: { where?: PageTaskSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     pageChat: <T = PageChatSubscriptionPayload | null>(args: { where?: PageChatSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
+    pageAnnotation: <T = PageAnnotationSubscriptionPayload | null>(args: { where?: PageAnnotationSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     file: <T = FileSubscriptionPayload | null>(args: { where?: FileSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     navigation: <T = NavigationSubscriptionPayload | null>(args: { where?: NavigationSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     navigationNode: <T = NavigationNodeSubscriptionPayload | null>(args: { where?: NavigationNodeSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
@@ -188,6 +198,7 @@ export interface Exists {
   PagePlugin: (where?: PagePluginWhereInput) => Promise<boolean>
   PageTask: (where?: PageTaskWhereInput) => Promise<boolean>
   PageChat: (where?: PageChatWhereInput) => Promise<boolean>
+  PageAnnotation: (where?: PageAnnotationWhereInput) => Promise<boolean>
   File: (where?: FileWhereInput) => Promise<boolean>
   Navigation: (where?: NavigationWhereInput) => Promise<boolean>
   NavigationNode: (where?: NavigationNodeWhereInput) => Promise<boolean>
@@ -253,6 +264,10 @@ type AggregateNavigationNode {
 }
 
 type AggregatePage {
+  count: Int!
+}
+
+type AggregatePageAnnotation {
   count: Int!
 }
 
@@ -1667,6 +1682,7 @@ input InquiryUpdateInput {
 input InquiryUpdateManyMutationInput {
   message: Json
   url: String
+  formType: String
   ip: String
 }
 
@@ -2429,6 +2445,7 @@ type Mutation {
   createPagePlugin(data: PagePluginCreateInput!): PagePlugin!
   createPageTask(data: PageTaskCreateInput!): PageTask!
   createPageChat(data: PageChatCreateInput!): PageChat!
+  createPageAnnotation(data: PageAnnotationCreateInput!): PageAnnotation!
   createFile(data: FileCreateInput!): File!
   createNavigation(data: NavigationCreateInput!): Navigation!
   createNavigationNode(data: NavigationNodeCreateInput!): NavigationNode!
@@ -2446,6 +2463,7 @@ type Mutation {
   updatePagePlugin(data: PagePluginUpdateInput!, where: PagePluginWhereUniqueInput!): PagePlugin
   updatePageTask(data: PageTaskUpdateInput!, where: PageTaskWhereUniqueInput!): PageTask
   updatePageChat(data: PageChatUpdateInput!, where: PageChatWhereUniqueInput!): PageChat
+  updatePageAnnotation(data: PageAnnotationUpdateInput!, where: PageAnnotationWhereUniqueInput!): PageAnnotation
   updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
   updateNavigation(data: NavigationUpdateInput!, where: NavigationWhereUniqueInput!): Navigation
   updateNavigationNode(data: NavigationNodeUpdateInput!, where: NavigationNodeWhereUniqueInput!): NavigationNode
@@ -2463,6 +2481,7 @@ type Mutation {
   deletePagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
   deletePageTask(where: PageTaskWhereUniqueInput!): PageTask
   deletePageChat(where: PageChatWhereUniqueInput!): PageChat
+  deletePageAnnotation(where: PageAnnotationWhereUniqueInput!): PageAnnotation
   deleteFile(where: FileWhereUniqueInput!): File
   deleteNavigation(where: NavigationWhereUniqueInput!): Navigation
   deleteNavigationNode(where: NavigationNodeWhereUniqueInput!): NavigationNode
@@ -2480,6 +2499,7 @@ type Mutation {
   upsertPagePlugin(where: PagePluginWhereUniqueInput!, create: PagePluginCreateInput!, update: PagePluginUpdateInput!): PagePlugin!
   upsertPageTask(where: PageTaskWhereUniqueInput!, create: PageTaskCreateInput!, update: PageTaskUpdateInput!): PageTask!
   upsertPageChat(where: PageChatWhereUniqueInput!, create: PageChatCreateInput!, update: PageChatUpdateInput!): PageChat!
+  upsertPageAnnotation(where: PageAnnotationWhereUniqueInput!, create: PageAnnotationCreateInput!, update: PageAnnotationUpdateInput!): PageAnnotation!
   upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
   upsertNavigation(where: NavigationWhereUniqueInput!, create: NavigationCreateInput!, update: NavigationUpdateInput!): Navigation!
   upsertNavigationNode(where: NavigationNodeWhereUniqueInput!, create: NavigationNodeCreateInput!, update: NavigationNodeUpdateInput!): NavigationNode!
@@ -2497,6 +2517,7 @@ type Mutation {
   updateManyPagePlugins(data: PagePluginUpdateManyMutationInput!, where: PagePluginWhereInput): BatchPayload!
   updateManyPageTasks(data: PageTaskUpdateManyMutationInput!, where: PageTaskWhereInput): BatchPayload!
   updateManyPageChats(data: PageChatUpdateManyMutationInput!, where: PageChatWhereInput): BatchPayload!
+  updateManyPageAnnotations(data: PageAnnotationUpdateManyMutationInput!, where: PageAnnotationWhereInput): BatchPayload!
   updateManyFiles(data: FileUpdateManyMutationInput!, where: FileWhereInput): BatchPayload!
   updateManyNavigations(data: NavigationUpdateManyMutationInput!, where: NavigationWhereInput): BatchPayload!
   updateManyNavigationNodes(data: NavigationNodeUpdateManyMutationInput!, where: NavigationNodeWhereInput): BatchPayload!
@@ -2513,6 +2534,7 @@ type Mutation {
   deleteManyPagePlugins(where: PagePluginWhereInput): BatchPayload!
   deleteManyPageTasks(where: PageTaskWhereInput): BatchPayload!
   deleteManyPageChats(where: PageChatWhereInput): BatchPayload!
+  deleteManyPageAnnotations(where: PageAnnotationWhereInput): BatchPayload!
   deleteManyFiles(where: FileWhereInput): BatchPayload!
   deleteManyNavigations(where: NavigationWhereInput): BatchPayload!
   deleteManyNavigationNodes(where: NavigationNodeWhereInput): BatchPayload!
@@ -3422,6 +3444,422 @@ type Page implements Node {
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag!]
   plugin: PagePlugin
   datasources(where: DatasourceWhereInput, orderBy: DatasourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Datasource!]
+}
+
+type PageAnnotation implements Node {
+  id: ID!
+  pageTranslation: PageTranslation!
+  key: String!
+  value: String!
+}
+
+"""A connection to a list of items."""
+type PageAnnotationConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [PageAnnotationEdge]!
+  aggregate: AggregatePageAnnotation!
+}
+
+input PageAnnotationCreateInput {
+  key: String!
+  value: String!
+  pageTranslation: PageTranslationCreateOneWithoutAnnotationsInput!
+}
+
+input PageAnnotationCreateManyWithoutPageTranslationInput {
+  create: [PageAnnotationCreateWithoutPageTranslationInput!]
+  connect: [PageAnnotationWhereUniqueInput!]
+}
+
+input PageAnnotationCreateWithoutPageTranslationInput {
+  key: String!
+  value: String!
+}
+
+"""An edge in a connection."""
+type PageAnnotationEdge {
+  """The item at the end of the edge."""
+  node: PageAnnotation!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum PageAnnotationOrderByInput {
+  id_ASC
+  id_DESC
+  key_ASC
+  key_DESC
+  value_ASC
+  value_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type PageAnnotationPreviousValues {
+  id: ID!
+  key: String!
+  value: String!
+}
+
+input PageAnnotationScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PageAnnotationScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PageAnnotationScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PageAnnotationScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  key: String
+
+  """All values that are not equal to given value."""
+  key_not: String
+
+  """All values that are contained in given list."""
+  key_in: [String!]
+
+  """All values that are not contained in given list."""
+  key_not_in: [String!]
+
+  """All values less than the given value."""
+  key_lt: String
+
+  """All values less than or equal the given value."""
+  key_lte: String
+
+  """All values greater than the given value."""
+  key_gt: String
+
+  """All values greater than or equal the given value."""
+  key_gte: String
+
+  """All values containing the given string."""
+  key_contains: String
+
+  """All values not containing the given string."""
+  key_not_contains: String
+
+  """All values starting with the given string."""
+  key_starts_with: String
+
+  """All values not starting with the given string."""
+  key_not_starts_with: String
+
+  """All values ending with the given string."""
+  key_ends_with: String
+
+  """All values not ending with the given string."""
+  key_not_ends_with: String
+  value: String
+
+  """All values that are not equal to given value."""
+  value_not: String
+
+  """All values that are contained in given list."""
+  value_in: [String!]
+
+  """All values that are not contained in given list."""
+  value_not_in: [String!]
+
+  """All values less than the given value."""
+  value_lt: String
+
+  """All values less than or equal the given value."""
+  value_lte: String
+
+  """All values greater than the given value."""
+  value_gt: String
+
+  """All values greater than or equal the given value."""
+  value_gte: String
+
+  """All values containing the given string."""
+  value_contains: String
+
+  """All values not containing the given string."""
+  value_not_contains: String
+
+  """All values starting with the given string."""
+  value_starts_with: String
+
+  """All values not starting with the given string."""
+  value_not_starts_with: String
+
+  """All values ending with the given string."""
+  value_ends_with: String
+
+  """All values not ending with the given string."""
+  value_not_ends_with: String
+}
+
+type PageAnnotationSubscriptionPayload {
+  mutation: MutationType!
+  node: PageAnnotation
+  updatedFields: [String!]
+  previousValues: PageAnnotationPreviousValues
+}
+
+input PageAnnotationSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PageAnnotationSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PageAnnotationSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PageAnnotationSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: PageAnnotationWhereInput
+}
+
+input PageAnnotationUpdateInput {
+  key: String
+  value: String
+  pageTranslation: PageTranslationUpdateOneRequiredWithoutAnnotationsInput
+}
+
+input PageAnnotationUpdateManyDataInput {
+  key: String
+  value: String
+}
+
+input PageAnnotationUpdateManyMutationInput {
+  key: String
+  value: String
+}
+
+input PageAnnotationUpdateManyWithoutPageTranslationInput {
+  create: [PageAnnotationCreateWithoutPageTranslationInput!]
+  connect: [PageAnnotationWhereUniqueInput!]
+  set: [PageAnnotationWhereUniqueInput!]
+  disconnect: [PageAnnotationWhereUniqueInput!]
+  delete: [PageAnnotationWhereUniqueInput!]
+  update: [PageAnnotationUpdateWithWhereUniqueWithoutPageTranslationInput!]
+  updateMany: [PageAnnotationUpdateManyWithWhereNestedInput!]
+  deleteMany: [PageAnnotationScalarWhereInput!]
+  upsert: [PageAnnotationUpsertWithWhereUniqueWithoutPageTranslationInput!]
+}
+
+input PageAnnotationUpdateManyWithWhereNestedInput {
+  where: PageAnnotationScalarWhereInput!
+  data: PageAnnotationUpdateManyDataInput!
+}
+
+input PageAnnotationUpdateWithoutPageTranslationDataInput {
+  key: String
+  value: String
+}
+
+input PageAnnotationUpdateWithWhereUniqueWithoutPageTranslationInput {
+  where: PageAnnotationWhereUniqueInput!
+  data: PageAnnotationUpdateWithoutPageTranslationDataInput!
+}
+
+input PageAnnotationUpsertWithWhereUniqueWithoutPageTranslationInput {
+  where: PageAnnotationWhereUniqueInput!
+  update: PageAnnotationUpdateWithoutPageTranslationDataInput!
+  create: PageAnnotationCreateWithoutPageTranslationInput!
+}
+
+input PageAnnotationWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PageAnnotationWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PageAnnotationWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PageAnnotationWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  key: String
+
+  """All values that are not equal to given value."""
+  key_not: String
+
+  """All values that are contained in given list."""
+  key_in: [String!]
+
+  """All values that are not contained in given list."""
+  key_not_in: [String!]
+
+  """All values less than the given value."""
+  key_lt: String
+
+  """All values less than or equal the given value."""
+  key_lte: String
+
+  """All values greater than the given value."""
+  key_gt: String
+
+  """All values greater than or equal the given value."""
+  key_gte: String
+
+  """All values containing the given string."""
+  key_contains: String
+
+  """All values not containing the given string."""
+  key_not_contains: String
+
+  """All values starting with the given string."""
+  key_starts_with: String
+
+  """All values not starting with the given string."""
+  key_not_starts_with: String
+
+  """All values ending with the given string."""
+  key_ends_with: String
+
+  """All values not ending with the given string."""
+  key_not_ends_with: String
+  value: String
+
+  """All values that are not equal to given value."""
+  value_not: String
+
+  """All values that are contained in given list."""
+  value_in: [String!]
+
+  """All values that are not contained in given list."""
+  value_not_in: [String!]
+
+  """All values less than the given value."""
+  value_lt: String
+
+  """All values less than or equal the given value."""
+  value_lte: String
+
+  """All values greater than the given value."""
+  value_gt: String
+
+  """All values greater than or equal the given value."""
+  value_gte: String
+
+  """All values containing the given string."""
+  value_contains: String
+
+  """All values not containing the given string."""
+  value_not_contains: String
+
+  """All values starting with the given string."""
+  value_starts_with: String
+
+  """All values not starting with the given string."""
+  value_not_starts_with: String
+
+  """All values ending with the given string."""
+  value_ends_with: String
+
+  """All values not ending with the given string."""
+  value_not_ends_with: String
+  pageTranslation: PageTranslationWhereInput
+}
+
+input PageAnnotationWhereUniqueInput {
+  id: ID
 }
 
 type PageChat implements Node {
@@ -4949,6 +5387,7 @@ type PageTranslation implements Node {
   publishedFrom: DateTime
   publishedTo: DateTime
   tasks(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTask!]
+  annotations(where: PageAnnotationWhereInput, orderBy: PageAnnotationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageAnnotation!]
   createdAt: DateTime!
 }
 
@@ -4973,6 +5412,7 @@ input PageTranslationCreateInput {
   page: PageCreateOneWithoutTranslationsInput!
   language: LanguageCreateOneInput!
   tasks: PageTaskCreateManyWithoutPageTranslationInput
+  annotations: PageAnnotationCreateManyWithoutPageTranslationInput
 }
 
 input PageTranslationCreateManyWithoutPageInput {
@@ -4980,9 +5420,27 @@ input PageTranslationCreateManyWithoutPageInput {
   connect: [PageTranslationWhereUniqueInput!]
 }
 
+input PageTranslationCreateOneWithoutAnnotationsInput {
+  create: PageTranslationCreateWithoutAnnotationsInput
+  connect: PageTranslationWhereUniqueInput
+}
+
 input PageTranslationCreateOneWithoutTasksInput {
   create: PageTranslationCreateWithoutTasksInput
   connect: PageTranslationWhereUniqueInput
+}
+
+input PageTranslationCreateWithoutAnnotationsInput {
+  url: String!
+  content: Json
+  name: String
+  status: PageStatus
+  description: String
+  publishedFrom: DateTime
+  publishedTo: DateTime
+  page: PageCreateOneWithoutTranslationsInput!
+  language: LanguageCreateOneInput!
+  tasks: PageTaskCreateManyWithoutPageTranslationInput
 }
 
 input PageTranslationCreateWithoutPageInput {
@@ -4995,6 +5453,7 @@ input PageTranslationCreateWithoutPageInput {
   publishedTo: DateTime
   language: LanguageCreateOneInput!
   tasks: PageTaskCreateManyWithoutPageTranslationInput
+  annotations: PageAnnotationCreateManyWithoutPageTranslationInput
 }
 
 input PageTranslationCreateWithoutTasksInput {
@@ -5007,6 +5466,7 @@ input PageTranslationCreateWithoutTasksInput {
   publishedTo: DateTime
   page: PageCreateOneWithoutTranslationsInput!
   language: LanguageCreateOneInput!
+  annotations: PageAnnotationCreateManyWithoutPageTranslationInput
 }
 
 """An edge in a connection."""
@@ -5350,6 +5810,7 @@ input PageTranslationUpdateInput {
   page: PageUpdateOneRequiredWithoutTranslationsInput
   language: LanguageUpdateOneRequiredInput
   tasks: PageTaskUpdateManyWithoutPageTranslationInput
+  annotations: PageAnnotationUpdateManyWithoutPageTranslationInput
 }
 
 input PageTranslationUpdateManyDataInput {
@@ -5389,11 +5850,31 @@ input PageTranslationUpdateManyWithWhereNestedInput {
   data: PageTranslationUpdateManyDataInput!
 }
 
+input PageTranslationUpdateOneRequiredWithoutAnnotationsInput {
+  create: PageTranslationCreateWithoutAnnotationsInput
+  connect: PageTranslationWhereUniqueInput
+  update: PageTranslationUpdateWithoutAnnotationsDataInput
+  upsert: PageTranslationUpsertWithoutAnnotationsInput
+}
+
 input PageTranslationUpdateOneRequiredWithoutTasksInput {
   create: PageTranslationCreateWithoutTasksInput
   connect: PageTranslationWhereUniqueInput
   update: PageTranslationUpdateWithoutTasksDataInput
   upsert: PageTranslationUpsertWithoutTasksInput
+}
+
+input PageTranslationUpdateWithoutAnnotationsDataInput {
+  url: String
+  content: Json
+  name: String
+  status: PageStatus
+  description: String
+  publishedFrom: DateTime
+  publishedTo: DateTime
+  page: PageUpdateOneRequiredWithoutTranslationsInput
+  language: LanguageUpdateOneRequiredInput
+  tasks: PageTaskUpdateManyWithoutPageTranslationInput
 }
 
 input PageTranslationUpdateWithoutPageDataInput {
@@ -5406,6 +5887,7 @@ input PageTranslationUpdateWithoutPageDataInput {
   publishedTo: DateTime
   language: LanguageUpdateOneRequiredInput
   tasks: PageTaskUpdateManyWithoutPageTranslationInput
+  annotations: PageAnnotationUpdateManyWithoutPageTranslationInput
 }
 
 input PageTranslationUpdateWithoutTasksDataInput {
@@ -5418,11 +5900,17 @@ input PageTranslationUpdateWithoutTasksDataInput {
   publishedTo: DateTime
   page: PageUpdateOneRequiredWithoutTranslationsInput
   language: LanguageUpdateOneRequiredInput
+  annotations: PageAnnotationUpdateManyWithoutPageTranslationInput
 }
 
 input PageTranslationUpdateWithWhereUniqueWithoutPageInput {
   where: PageTranslationWhereUniqueInput!
   data: PageTranslationUpdateWithoutPageDataInput!
+}
+
+input PageTranslationUpsertWithoutAnnotationsInput {
+  update: PageTranslationUpdateWithoutAnnotationsDataInput!
+  create: PageTranslationCreateWithoutAnnotationsInput!
 }
 
 input PageTranslationUpsertWithoutTasksInput {
@@ -5686,6 +6174,9 @@ input PageTranslationWhereInput {
   tasks_every: PageTaskWhereInput
   tasks_some: PageTaskWhereInput
   tasks_none: PageTaskWhereInput
+  annotations_every: PageAnnotationWhereInput
+  annotations_some: PageAnnotationWhereInput
+  annotations_none: PageAnnotationWhereInput
 }
 
 input PageTranslationWhereUniqueInput {
@@ -6681,6 +7172,7 @@ type Query {
   pagePlugins(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PagePlugin]!
   pageTasks(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTask]!
   pageChats(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageChat]!
+  pageAnnotations(where: PageAnnotationWhereInput, orderBy: PageAnnotationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageAnnotation]!
   files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File]!
   navigations(where: NavigationWhereInput, orderBy: NavigationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Navigation]!
   navigationNodes(where: NavigationNodeWhereInput, orderBy: NavigationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [NavigationNode]!
@@ -6698,6 +7190,7 @@ type Query {
   pagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
   pageTask(where: PageTaskWhereUniqueInput!): PageTask
   pageChat(where: PageChatWhereUniqueInput!): PageChat
+  pageAnnotation(where: PageAnnotationWhereUniqueInput!): PageAnnotation
   file(where: FileWhereUniqueInput!): File
   navigation(where: NavigationWhereUniqueInput!): Navigation
   navigationNode(where: NavigationNodeWhereUniqueInput!): NavigationNode
@@ -6715,6 +7208,7 @@ type Query {
   pagePluginsConnection(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PagePluginConnection!
   pageTasksConnection(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTaskConnection!
   pageChatsConnection(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageChatConnection!
+  pageAnnotationsConnection(where: PageAnnotationWhereInput, orderBy: PageAnnotationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageAnnotationConnection!
   filesConnection(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
   navigationsConnection(where: NavigationWhereInput, orderBy: NavigationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NavigationConnection!
   navigationNodesConnection(where: NavigationNodeWhereInput, orderBy: NavigationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NavigationNodeConnection!
@@ -7045,6 +7539,7 @@ type Subscription {
   pagePlugin(where: PagePluginSubscriptionWhereInput): PagePluginSubscriptionPayload
   pageTask(where: PageTaskSubscriptionWhereInput): PageTaskSubscriptionPayload
   pageChat(where: PageChatSubscriptionWhereInput): PageChatSubscriptionPayload
+  pageAnnotation(where: PageAnnotationSubscriptionWhereInput): PageAnnotationSubscriptionPayload
   file(where: FileSubscriptionWhereInput): FileSubscriptionPayload
   navigation(where: NavigationSubscriptionWhereInput): NavigationSubscriptionPayload
   navigationNode(where: NavigationNodeSubscriptionWhereInput): NavigationNodeSubscriptionPayload
@@ -8187,6 +8682,17 @@ export type NavigationOrderByInput =   'id_ASC' |
   'createdAt_ASC' |
   'createdAt_DESC'
 
+export type PageAnnotationOrderByInput =   'id_ASC' |
+  'id_DESC' |
+  'key_ASC' |
+  'key_DESC' |
+  'value_ASC' |
+  'value_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC' |
+  'createdAt_ASC' |
+  'createdAt_DESC'
+
 export type PageChatOrderByInput =   'id_ASC' |
   'id_DESC' |
   'text_ASC' |
@@ -8893,6 +9399,7 @@ export interface InquiryUpdateInput {
 export interface InquiryUpdateManyMutationInput {
   message?: Json | null
   url?: String | null
+  formType?: String | null
   ip?: String | null
 }
 
@@ -9567,6 +10074,183 @@ export interface NavigationWhereInput {
 }
 
 export interface NavigationWhereUniqueInput {
+  id?: ID_Input | null
+}
+
+export interface PageAnnotationCreateInput {
+  key: String
+  value: String
+  pageTranslation: PageTranslationCreateOneWithoutAnnotationsInput
+}
+
+export interface PageAnnotationCreateManyWithoutPageTranslationInput {
+  create?: PageAnnotationCreateWithoutPageTranslationInput[] | PageAnnotationCreateWithoutPageTranslationInput | null
+  connect?: PageAnnotationWhereUniqueInput[] | PageAnnotationWhereUniqueInput | null
+}
+
+export interface PageAnnotationCreateWithoutPageTranslationInput {
+  key: String
+  value: String
+}
+
+export interface PageAnnotationScalarWhereInput {
+  AND?: PageAnnotationScalarWhereInput[] | PageAnnotationScalarWhereInput | null
+  OR?: PageAnnotationScalarWhereInput[] | PageAnnotationScalarWhereInput | null
+  NOT?: PageAnnotationScalarWhereInput[] | PageAnnotationScalarWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+  key?: String | null
+  key_not?: String | null
+  key_in?: String[] | String | null
+  key_not_in?: String[] | String | null
+  key_lt?: String | null
+  key_lte?: String | null
+  key_gt?: String | null
+  key_gte?: String | null
+  key_contains?: String | null
+  key_not_contains?: String | null
+  key_starts_with?: String | null
+  key_not_starts_with?: String | null
+  key_ends_with?: String | null
+  key_not_ends_with?: String | null
+  value?: String | null
+  value_not?: String | null
+  value_in?: String[] | String | null
+  value_not_in?: String[] | String | null
+  value_lt?: String | null
+  value_lte?: String | null
+  value_gt?: String | null
+  value_gte?: String | null
+  value_contains?: String | null
+  value_not_contains?: String | null
+  value_starts_with?: String | null
+  value_not_starts_with?: String | null
+  value_ends_with?: String | null
+  value_not_ends_with?: String | null
+}
+
+export interface PageAnnotationSubscriptionWhereInput {
+  AND?: PageAnnotationSubscriptionWhereInput[] | PageAnnotationSubscriptionWhereInput | null
+  OR?: PageAnnotationSubscriptionWhereInput[] | PageAnnotationSubscriptionWhereInput | null
+  NOT?: PageAnnotationSubscriptionWhereInput[] | PageAnnotationSubscriptionWhereInput | null
+  mutation_in?: MutationType[] | MutationType | null
+  updatedFields_contains?: String | null
+  updatedFields_contains_every?: String[] | String | null
+  updatedFields_contains_some?: String[] | String | null
+  node?: PageAnnotationWhereInput | null
+}
+
+export interface PageAnnotationUpdateInput {
+  key?: String | null
+  value?: String | null
+  pageTranslation?: PageTranslationUpdateOneRequiredWithoutAnnotationsInput | null
+}
+
+export interface PageAnnotationUpdateManyDataInput {
+  key?: String | null
+  value?: String | null
+}
+
+export interface PageAnnotationUpdateManyMutationInput {
+  key?: String | null
+  value?: String | null
+}
+
+export interface PageAnnotationUpdateManyWithoutPageTranslationInput {
+  create?: PageAnnotationCreateWithoutPageTranslationInput[] | PageAnnotationCreateWithoutPageTranslationInput | null
+  connect?: PageAnnotationWhereUniqueInput[] | PageAnnotationWhereUniqueInput | null
+  set?: PageAnnotationWhereUniqueInput[] | PageAnnotationWhereUniqueInput | null
+  disconnect?: PageAnnotationWhereUniqueInput[] | PageAnnotationWhereUniqueInput | null
+  delete?: PageAnnotationWhereUniqueInput[] | PageAnnotationWhereUniqueInput | null
+  update?: PageAnnotationUpdateWithWhereUniqueWithoutPageTranslationInput[] | PageAnnotationUpdateWithWhereUniqueWithoutPageTranslationInput | null
+  updateMany?: PageAnnotationUpdateManyWithWhereNestedInput[] | PageAnnotationUpdateManyWithWhereNestedInput | null
+  deleteMany?: PageAnnotationScalarWhereInput[] | PageAnnotationScalarWhereInput | null
+  upsert?: PageAnnotationUpsertWithWhereUniqueWithoutPageTranslationInput[] | PageAnnotationUpsertWithWhereUniqueWithoutPageTranslationInput | null
+}
+
+export interface PageAnnotationUpdateManyWithWhereNestedInput {
+  where: PageAnnotationScalarWhereInput
+  data: PageAnnotationUpdateManyDataInput
+}
+
+export interface PageAnnotationUpdateWithoutPageTranslationDataInput {
+  key?: String | null
+  value?: String | null
+}
+
+export interface PageAnnotationUpdateWithWhereUniqueWithoutPageTranslationInput {
+  where: PageAnnotationWhereUniqueInput
+  data: PageAnnotationUpdateWithoutPageTranslationDataInput
+}
+
+export interface PageAnnotationUpsertWithWhereUniqueWithoutPageTranslationInput {
+  where: PageAnnotationWhereUniqueInput
+  update: PageAnnotationUpdateWithoutPageTranslationDataInput
+  create: PageAnnotationCreateWithoutPageTranslationInput
+}
+
+export interface PageAnnotationWhereInput {
+  AND?: PageAnnotationWhereInput[] | PageAnnotationWhereInput | null
+  OR?: PageAnnotationWhereInput[] | PageAnnotationWhereInput | null
+  NOT?: PageAnnotationWhereInput[] | PageAnnotationWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+  key?: String | null
+  key_not?: String | null
+  key_in?: String[] | String | null
+  key_not_in?: String[] | String | null
+  key_lt?: String | null
+  key_lte?: String | null
+  key_gt?: String | null
+  key_gte?: String | null
+  key_contains?: String | null
+  key_not_contains?: String | null
+  key_starts_with?: String | null
+  key_not_starts_with?: String | null
+  key_ends_with?: String | null
+  key_not_ends_with?: String | null
+  value?: String | null
+  value_not?: String | null
+  value_in?: String[] | String | null
+  value_not_in?: String[] | String | null
+  value_lt?: String | null
+  value_lte?: String | null
+  value_gt?: String | null
+  value_gte?: String | null
+  value_contains?: String | null
+  value_not_contains?: String | null
+  value_starts_with?: String | null
+  value_not_starts_with?: String | null
+  value_ends_with?: String | null
+  value_not_ends_with?: String | null
+  pageTranslation?: PageTranslationWhereInput | null
+}
+
+export interface PageAnnotationWhereUniqueInput {
   id?: ID_Input | null
 }
 
@@ -10249,6 +10933,7 @@ export interface PageTranslationCreateInput {
   page: PageCreateOneWithoutTranslationsInput
   language: LanguageCreateOneInput
   tasks?: PageTaskCreateManyWithoutPageTranslationInput | null
+  annotations?: PageAnnotationCreateManyWithoutPageTranslationInput | null
 }
 
 export interface PageTranslationCreateManyWithoutPageInput {
@@ -10256,9 +10941,27 @@ export interface PageTranslationCreateManyWithoutPageInput {
   connect?: PageTranslationWhereUniqueInput[] | PageTranslationWhereUniqueInput | null
 }
 
+export interface PageTranslationCreateOneWithoutAnnotationsInput {
+  create?: PageTranslationCreateWithoutAnnotationsInput | null
+  connect?: PageTranslationWhereUniqueInput | null
+}
+
 export interface PageTranslationCreateOneWithoutTasksInput {
   create?: PageTranslationCreateWithoutTasksInput | null
   connect?: PageTranslationWhereUniqueInput | null
+}
+
+export interface PageTranslationCreateWithoutAnnotationsInput {
+  url: String
+  content?: Json | null
+  name?: String | null
+  status?: PageStatus | null
+  description?: String | null
+  publishedFrom?: DateTime | null
+  publishedTo?: DateTime | null
+  page: PageCreateOneWithoutTranslationsInput
+  language: LanguageCreateOneInput
+  tasks?: PageTaskCreateManyWithoutPageTranslationInput | null
 }
 
 export interface PageTranslationCreateWithoutPageInput {
@@ -10271,6 +10974,7 @@ export interface PageTranslationCreateWithoutPageInput {
   publishedTo?: DateTime | null
   language: LanguageCreateOneInput
   tasks?: PageTaskCreateManyWithoutPageTranslationInput | null
+  annotations?: PageAnnotationCreateManyWithoutPageTranslationInput | null
 }
 
 export interface PageTranslationCreateWithoutTasksInput {
@@ -10283,6 +10987,7 @@ export interface PageTranslationCreateWithoutTasksInput {
   publishedTo?: DateTime | null
   page: PageCreateOneWithoutTranslationsInput
   language: LanguageCreateOneInput
+  annotations?: PageAnnotationCreateManyWithoutPageTranslationInput | null
 }
 
 export interface PageTranslationScalarWhereInput {
@@ -10397,6 +11102,7 @@ export interface PageTranslationUpdateInput {
   page?: PageUpdateOneRequiredWithoutTranslationsInput | null
   language?: LanguageUpdateOneRequiredInput | null
   tasks?: PageTaskUpdateManyWithoutPageTranslationInput | null
+  annotations?: PageAnnotationUpdateManyWithoutPageTranslationInput | null
 }
 
 export interface PageTranslationUpdateManyDataInput {
@@ -10436,11 +11142,31 @@ export interface PageTranslationUpdateManyWithWhereNestedInput {
   data: PageTranslationUpdateManyDataInput
 }
 
+export interface PageTranslationUpdateOneRequiredWithoutAnnotationsInput {
+  create?: PageTranslationCreateWithoutAnnotationsInput | null
+  connect?: PageTranslationWhereUniqueInput | null
+  update?: PageTranslationUpdateWithoutAnnotationsDataInput | null
+  upsert?: PageTranslationUpsertWithoutAnnotationsInput | null
+}
+
 export interface PageTranslationUpdateOneRequiredWithoutTasksInput {
   create?: PageTranslationCreateWithoutTasksInput | null
   connect?: PageTranslationWhereUniqueInput | null
   update?: PageTranslationUpdateWithoutTasksDataInput | null
   upsert?: PageTranslationUpsertWithoutTasksInput | null
+}
+
+export interface PageTranslationUpdateWithoutAnnotationsDataInput {
+  url?: String | null
+  content?: Json | null
+  name?: String | null
+  status?: PageStatus | null
+  description?: String | null
+  publishedFrom?: DateTime | null
+  publishedTo?: DateTime | null
+  page?: PageUpdateOneRequiredWithoutTranslationsInput | null
+  language?: LanguageUpdateOneRequiredInput | null
+  tasks?: PageTaskUpdateManyWithoutPageTranslationInput | null
 }
 
 export interface PageTranslationUpdateWithoutPageDataInput {
@@ -10453,6 +11179,7 @@ export interface PageTranslationUpdateWithoutPageDataInput {
   publishedTo?: DateTime | null
   language?: LanguageUpdateOneRequiredInput | null
   tasks?: PageTaskUpdateManyWithoutPageTranslationInput | null
+  annotations?: PageAnnotationUpdateManyWithoutPageTranslationInput | null
 }
 
 export interface PageTranslationUpdateWithoutTasksDataInput {
@@ -10465,11 +11192,17 @@ export interface PageTranslationUpdateWithoutTasksDataInput {
   publishedTo?: DateTime | null
   page?: PageUpdateOneRequiredWithoutTranslationsInput | null
   language?: LanguageUpdateOneRequiredInput | null
+  annotations?: PageAnnotationUpdateManyWithoutPageTranslationInput | null
 }
 
 export interface PageTranslationUpdateWithWhereUniqueWithoutPageInput {
   where: PageTranslationWhereUniqueInput
   data: PageTranslationUpdateWithoutPageDataInput
+}
+
+export interface PageTranslationUpsertWithoutAnnotationsInput {
+  update: PageTranslationUpdateWithoutAnnotationsDataInput
+  create: PageTranslationCreateWithoutAnnotationsInput
 }
 
 export interface PageTranslationUpsertWithoutTasksInput {
@@ -10576,6 +11309,9 @@ export interface PageTranslationWhereInput {
   tasks_every?: PageTaskWhereInput | null
   tasks_some?: PageTaskWhereInput | null
   tasks_none?: PageTaskWhereInput | null
+  annotations_every?: PageAnnotationWhereInput | null
+  annotations_some?: PageAnnotationWhereInput | null
+  annotations_none?: PageAnnotationWhereInput | null
 }
 
 export interface PageTranslationWhereUniqueInput {
@@ -11815,6 +12551,10 @@ export interface AggregatePage {
   count: Int
 }
 
+export interface AggregatePageAnnotation {
+  count: Int
+}
+
 export interface AggregatePageChat {
   count: Int
 }
@@ -12175,6 +12915,45 @@ export interface Page extends Node {
   datasources?: Array<Datasource> | null
 }
 
+export interface PageAnnotation extends Node {
+  id: ID_Output
+  pageTranslation: PageTranslation
+  key: String
+  value: String
+}
+
+/*
+ * A connection to a list of items.
+
+ */
+export interface PageAnnotationConnection {
+  pageInfo: PageInfo
+  edges: Array<PageAnnotationEdge | null>
+  aggregate: AggregatePageAnnotation
+}
+
+/*
+ * An edge in a connection.
+
+ */
+export interface PageAnnotationEdge {
+  node: PageAnnotation
+  cursor: String
+}
+
+export interface PageAnnotationPreviousValues {
+  id: ID_Output
+  key: String
+  value: String
+}
+
+export interface PageAnnotationSubscriptionPayload {
+  mutation: MutationType
+  node?: PageAnnotation | null
+  updatedFields?: Array<String> | null
+  previousValues?: PageAnnotationPreviousValues | null
+}
+
 export interface PageChat extends Node {
   id: ID_Output
   page: Page
@@ -12354,6 +13133,7 @@ export interface PageTranslation extends Node {
   publishedFrom?: DateTime | null
   publishedTo?: DateTime | null
   tasks?: Array<PageTask> | null
+  annotations?: Array<PageAnnotation> | null
   createdAt: DateTime
 }
 
