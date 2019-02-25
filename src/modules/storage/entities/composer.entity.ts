@@ -785,8 +785,10 @@ export class Composer {
   }
 
   public resetPageContent(pageId: string, content: LooseObject) {
+
     this.pages[pageId].delta = new Delta();
     this.pages[pageId].content = content;
+    this.pages[pageId]._componentsIds = this.getComponentIds(pageId);
 
     return {
       content: this.pages[pageId].content,
