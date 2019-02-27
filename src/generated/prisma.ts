@@ -8022,6 +8022,8 @@ type Website implements Node {
   settings: Json!
   pageTypes(where: PageTypeWhereInput, orderBy: PageTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageType!]
   pages(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Page!]
+  domain: String
+  googleTrackingPixel: String
 }
 
 """A connection to a list of items."""
@@ -8038,6 +8040,8 @@ input WebsiteCreateInput {
   title: String!
   urlMask: String!
   settings: Json
+  domain: String
+  googleTrackingPixel: String
   project: ProjectCreateOneWithoutWebsitesInput!
   languages: LanguageCreateManyInput
   defaultLanguage: LanguageCreateOneInput!
@@ -8069,6 +8073,8 @@ input WebsiteCreateWithoutPagesInput {
   title: String!
   urlMask: String!
   settings: Json
+  domain: String
+  googleTrackingPixel: String
   project: ProjectCreateOneWithoutWebsitesInput!
   languages: LanguageCreateManyInput
   defaultLanguage: LanguageCreateOneInput!
@@ -8079,6 +8085,8 @@ input WebsiteCreateWithoutPageTypesInput {
   title: String!
   urlMask: String!
   settings: Json
+  domain: String
+  googleTrackingPixel: String
   project: ProjectCreateOneWithoutWebsitesInput!
   languages: LanguageCreateManyInput
   defaultLanguage: LanguageCreateOneInput!
@@ -8089,6 +8097,8 @@ input WebsiteCreateWithoutProjectInput {
   title: String!
   urlMask: String!
   settings: Json
+  domain: String
+  googleTrackingPixel: String
   languages: LanguageCreateManyInput
   defaultLanguage: LanguageCreateOneInput!
   pageTypes: PageTypeCreateManyWithoutWebsiteInput
@@ -8113,6 +8123,10 @@ enum WebsiteOrderByInput {
   urlMask_DESC
   settings_ASC
   settings_DESC
+  domain_ASC
+  domain_DESC
+  googleTrackingPixel_ASC
+  googleTrackingPixel_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -8124,6 +8138,8 @@ type WebsitePreviousValues {
   title: String!
   urlMask: String!
   settings: Json!
+  domain: String
+  googleTrackingPixel: String
 }
 
 input WebsiteScalarWhereInput {
@@ -8255,6 +8271,86 @@ input WebsiteScalarWhereInput {
 
   """All values not ending with the given string."""
   urlMask_not_ends_with: String
+  domain: String
+
+  """All values that are not equal to given value."""
+  domain_not: String
+
+  """All values that are contained in given list."""
+  domain_in: [String!]
+
+  """All values that are not contained in given list."""
+  domain_not_in: [String!]
+
+  """All values less than the given value."""
+  domain_lt: String
+
+  """All values less than or equal the given value."""
+  domain_lte: String
+
+  """All values greater than the given value."""
+  domain_gt: String
+
+  """All values greater than or equal the given value."""
+  domain_gte: String
+
+  """All values containing the given string."""
+  domain_contains: String
+
+  """All values not containing the given string."""
+  domain_not_contains: String
+
+  """All values starting with the given string."""
+  domain_starts_with: String
+
+  """All values not starting with the given string."""
+  domain_not_starts_with: String
+
+  """All values ending with the given string."""
+  domain_ends_with: String
+
+  """All values not ending with the given string."""
+  domain_not_ends_with: String
+  googleTrackingPixel: String
+
+  """All values that are not equal to given value."""
+  googleTrackingPixel_not: String
+
+  """All values that are contained in given list."""
+  googleTrackingPixel_in: [String!]
+
+  """All values that are not contained in given list."""
+  googleTrackingPixel_not_in: [String!]
+
+  """All values less than the given value."""
+  googleTrackingPixel_lt: String
+
+  """All values less than or equal the given value."""
+  googleTrackingPixel_lte: String
+
+  """All values greater than the given value."""
+  googleTrackingPixel_gt: String
+
+  """All values greater than or equal the given value."""
+  googleTrackingPixel_gte: String
+
+  """All values containing the given string."""
+  googleTrackingPixel_contains: String
+
+  """All values not containing the given string."""
+  googleTrackingPixel_not_contains: String
+
+  """All values starting with the given string."""
+  googleTrackingPixel_starts_with: String
+
+  """All values not starting with the given string."""
+  googleTrackingPixel_not_starts_with: String
+
+  """All values ending with the given string."""
+  googleTrackingPixel_ends_with: String
+
+  """All values not ending with the given string."""
+  googleTrackingPixel_not_ends_with: String
 }
 
 type WebsiteSubscriptionPayload {
@@ -8300,6 +8396,8 @@ input WebsiteUpdateDataInput {
   title: String
   urlMask: String
   settings: Json
+  domain: String
+  googleTrackingPixel: String
   project: ProjectUpdateOneRequiredWithoutWebsitesInput
   languages: LanguageUpdateManyInput
   defaultLanguage: LanguageUpdateOneRequiredInput
@@ -8311,6 +8409,8 @@ input WebsiteUpdateInput {
   title: String
   urlMask: String
   settings: Json
+  domain: String
+  googleTrackingPixel: String
   project: ProjectUpdateOneRequiredWithoutWebsitesInput
   languages: LanguageUpdateManyInput
   defaultLanguage: LanguageUpdateOneRequiredInput
@@ -8322,12 +8422,16 @@ input WebsiteUpdateManyDataInput {
   title: String
   urlMask: String
   settings: Json
+  domain: String
+  googleTrackingPixel: String
 }
 
 input WebsiteUpdateManyMutationInput {
   title: String
   urlMask: String
   settings: Json
+  domain: String
+  googleTrackingPixel: String
 }
 
 input WebsiteUpdateManyWithoutProjectInput {
@@ -8372,6 +8476,8 @@ input WebsiteUpdateWithoutPagesDataInput {
   title: String
   urlMask: String
   settings: Json
+  domain: String
+  googleTrackingPixel: String
   project: ProjectUpdateOneRequiredWithoutWebsitesInput
   languages: LanguageUpdateManyInput
   defaultLanguage: LanguageUpdateOneRequiredInput
@@ -8382,6 +8488,8 @@ input WebsiteUpdateWithoutPageTypesDataInput {
   title: String
   urlMask: String
   settings: Json
+  domain: String
+  googleTrackingPixel: String
   project: ProjectUpdateOneRequiredWithoutWebsitesInput
   languages: LanguageUpdateManyInput
   defaultLanguage: LanguageUpdateOneRequiredInput
@@ -8392,6 +8500,8 @@ input WebsiteUpdateWithoutProjectDataInput {
   title: String
   urlMask: String
   settings: Json
+  domain: String
+  googleTrackingPixel: String
   languages: LanguageUpdateManyInput
   defaultLanguage: LanguageUpdateOneRequiredInput
   pageTypes: PageTypeUpdateManyWithoutWebsiteInput
@@ -8553,6 +8663,86 @@ input WebsiteWhereInput {
 
   """All values not ending with the given string."""
   urlMask_not_ends_with: String
+  domain: String
+
+  """All values that are not equal to given value."""
+  domain_not: String
+
+  """All values that are contained in given list."""
+  domain_in: [String!]
+
+  """All values that are not contained in given list."""
+  domain_not_in: [String!]
+
+  """All values less than the given value."""
+  domain_lt: String
+
+  """All values less than or equal the given value."""
+  domain_lte: String
+
+  """All values greater than the given value."""
+  domain_gt: String
+
+  """All values greater than or equal the given value."""
+  domain_gte: String
+
+  """All values containing the given string."""
+  domain_contains: String
+
+  """All values not containing the given string."""
+  domain_not_contains: String
+
+  """All values starting with the given string."""
+  domain_starts_with: String
+
+  """All values not starting with the given string."""
+  domain_not_starts_with: String
+
+  """All values ending with the given string."""
+  domain_ends_with: String
+
+  """All values not ending with the given string."""
+  domain_not_ends_with: String
+  googleTrackingPixel: String
+
+  """All values that are not equal to given value."""
+  googleTrackingPixel_not: String
+
+  """All values that are contained in given list."""
+  googleTrackingPixel_in: [String!]
+
+  """All values that are not contained in given list."""
+  googleTrackingPixel_not_in: [String!]
+
+  """All values less than the given value."""
+  googleTrackingPixel_lt: String
+
+  """All values less than or equal the given value."""
+  googleTrackingPixel_lte: String
+
+  """All values greater than the given value."""
+  googleTrackingPixel_gt: String
+
+  """All values greater than or equal the given value."""
+  googleTrackingPixel_gte: String
+
+  """All values containing the given string."""
+  googleTrackingPixel_contains: String
+
+  """All values not containing the given string."""
+  googleTrackingPixel_not_contains: String
+
+  """All values starting with the given string."""
+  googleTrackingPixel_starts_with: String
+
+  """All values not starting with the given string."""
+  googleTrackingPixel_not_starts_with: String
+
+  """All values ending with the given string."""
+  googleTrackingPixel_ends_with: String
+
+  """All values not ending with the given string."""
+  googleTrackingPixel_not_ends_with: String
   project: ProjectWhereInput
   languages_every: LanguageWhereInput
   languages_some: LanguageWhereInput
@@ -8822,6 +9012,10 @@ export type WebsiteOrderByInput =   'id_ASC' |
   'urlMask_DESC' |
   'settings_ASC' |
   'settings_DESC' |
+  'domain_ASC' |
+  'domain_DESC' |
+  'googleTrackingPixel_ASC' |
+  'googleTrackingPixel_DESC' |
   'updatedAt_ASC' |
   'updatedAt_DESC' |
   'createdAt_ASC' |
@@ -12204,6 +12398,8 @@ export interface WebsiteCreateInput {
   title: String
   urlMask: String
   settings?: Json | null
+  domain?: String | null
+  googleTrackingPixel?: String | null
   project: ProjectCreateOneWithoutWebsitesInput
   languages?: LanguageCreateManyInput | null
   defaultLanguage: LanguageCreateOneInput
@@ -12235,6 +12431,8 @@ export interface WebsiteCreateWithoutPagesInput {
   title: String
   urlMask: String
   settings?: Json | null
+  domain?: String | null
+  googleTrackingPixel?: String | null
   project: ProjectCreateOneWithoutWebsitesInput
   languages?: LanguageCreateManyInput | null
   defaultLanguage: LanguageCreateOneInput
@@ -12245,6 +12443,8 @@ export interface WebsiteCreateWithoutPageTypesInput {
   title: String
   urlMask: String
   settings?: Json | null
+  domain?: String | null
+  googleTrackingPixel?: String | null
   project: ProjectCreateOneWithoutWebsitesInput
   languages?: LanguageCreateManyInput | null
   defaultLanguage: LanguageCreateOneInput
@@ -12255,6 +12455,8 @@ export interface WebsiteCreateWithoutProjectInput {
   title: String
   urlMask: String
   settings?: Json | null
+  domain?: String | null
+  googleTrackingPixel?: String | null
   languages?: LanguageCreateManyInput | null
   defaultLanguage: LanguageCreateOneInput
   pageTypes?: PageTypeCreateManyWithoutWebsiteInput | null
@@ -12307,6 +12509,34 @@ export interface WebsiteScalarWhereInput {
   urlMask_not_starts_with?: String | null
   urlMask_ends_with?: String | null
   urlMask_not_ends_with?: String | null
+  domain?: String | null
+  domain_not?: String | null
+  domain_in?: String[] | String | null
+  domain_not_in?: String[] | String | null
+  domain_lt?: String | null
+  domain_lte?: String | null
+  domain_gt?: String | null
+  domain_gte?: String | null
+  domain_contains?: String | null
+  domain_not_contains?: String | null
+  domain_starts_with?: String | null
+  domain_not_starts_with?: String | null
+  domain_ends_with?: String | null
+  domain_not_ends_with?: String | null
+  googleTrackingPixel?: String | null
+  googleTrackingPixel_not?: String | null
+  googleTrackingPixel_in?: String[] | String | null
+  googleTrackingPixel_not_in?: String[] | String | null
+  googleTrackingPixel_lt?: String | null
+  googleTrackingPixel_lte?: String | null
+  googleTrackingPixel_gt?: String | null
+  googleTrackingPixel_gte?: String | null
+  googleTrackingPixel_contains?: String | null
+  googleTrackingPixel_not_contains?: String | null
+  googleTrackingPixel_starts_with?: String | null
+  googleTrackingPixel_not_starts_with?: String | null
+  googleTrackingPixel_ends_with?: String | null
+  googleTrackingPixel_not_ends_with?: String | null
 }
 
 export interface WebsiteSubscriptionWhereInput {
@@ -12324,6 +12554,8 @@ export interface WebsiteUpdateDataInput {
   title?: String | null
   urlMask?: String | null
   settings?: Json | null
+  domain?: String | null
+  googleTrackingPixel?: String | null
   project?: ProjectUpdateOneRequiredWithoutWebsitesInput | null
   languages?: LanguageUpdateManyInput | null
   defaultLanguage?: LanguageUpdateOneRequiredInput | null
@@ -12335,6 +12567,8 @@ export interface WebsiteUpdateInput {
   title?: String | null
   urlMask?: String | null
   settings?: Json | null
+  domain?: String | null
+  googleTrackingPixel?: String | null
   project?: ProjectUpdateOneRequiredWithoutWebsitesInput | null
   languages?: LanguageUpdateManyInput | null
   defaultLanguage?: LanguageUpdateOneRequiredInput | null
@@ -12346,12 +12580,16 @@ export interface WebsiteUpdateManyDataInput {
   title?: String | null
   urlMask?: String | null
   settings?: Json | null
+  domain?: String | null
+  googleTrackingPixel?: String | null
 }
 
 export interface WebsiteUpdateManyMutationInput {
   title?: String | null
   urlMask?: String | null
   settings?: Json | null
+  domain?: String | null
+  googleTrackingPixel?: String | null
 }
 
 export interface WebsiteUpdateManyWithoutProjectInput {
@@ -12396,6 +12634,8 @@ export interface WebsiteUpdateWithoutPagesDataInput {
   title?: String | null
   urlMask?: String | null
   settings?: Json | null
+  domain?: String | null
+  googleTrackingPixel?: String | null
   project?: ProjectUpdateOneRequiredWithoutWebsitesInput | null
   languages?: LanguageUpdateManyInput | null
   defaultLanguage?: LanguageUpdateOneRequiredInput | null
@@ -12406,6 +12646,8 @@ export interface WebsiteUpdateWithoutPageTypesDataInput {
   title?: String | null
   urlMask?: String | null
   settings?: Json | null
+  domain?: String | null
+  googleTrackingPixel?: String | null
   project?: ProjectUpdateOneRequiredWithoutWebsitesInput | null
   languages?: LanguageUpdateManyInput | null
   defaultLanguage?: LanguageUpdateOneRequiredInput | null
@@ -12416,6 +12658,8 @@ export interface WebsiteUpdateWithoutProjectDataInput {
   title?: String | null
   urlMask?: String | null
   settings?: Json | null
+  domain?: String | null
+  googleTrackingPixel?: String | null
   languages?: LanguageUpdateManyInput | null
   defaultLanguage?: LanguageUpdateOneRequiredInput | null
   pageTypes?: PageTypeUpdateManyWithoutWebsiteInput | null
@@ -12494,6 +12738,34 @@ export interface WebsiteWhereInput {
   urlMask_not_starts_with?: String | null
   urlMask_ends_with?: String | null
   urlMask_not_ends_with?: String | null
+  domain?: String | null
+  domain_not?: String | null
+  domain_in?: String[] | String | null
+  domain_not_in?: String[] | String | null
+  domain_lt?: String | null
+  domain_lte?: String | null
+  domain_gt?: String | null
+  domain_gte?: String | null
+  domain_contains?: String | null
+  domain_not_contains?: String | null
+  domain_starts_with?: String | null
+  domain_not_starts_with?: String | null
+  domain_ends_with?: String | null
+  domain_not_ends_with?: String | null
+  googleTrackingPixel?: String | null
+  googleTrackingPixel_not?: String | null
+  googleTrackingPixel_in?: String[] | String | null
+  googleTrackingPixel_not_in?: String[] | String | null
+  googleTrackingPixel_lt?: String | null
+  googleTrackingPixel_lte?: String | null
+  googleTrackingPixel_gt?: String | null
+  googleTrackingPixel_gte?: String | null
+  googleTrackingPixel_contains?: String | null
+  googleTrackingPixel_not_contains?: String | null
+  googleTrackingPixel_starts_with?: String | null
+  googleTrackingPixel_not_starts_with?: String | null
+  googleTrackingPixel_ends_with?: String | null
+  googleTrackingPixel_not_ends_with?: String | null
   project?: ProjectWhereInput | null
   languages_every?: LanguageWhereInput | null
   languages_some?: LanguageWhereInput | null
@@ -13357,6 +13629,8 @@ export interface Website extends Node {
   settings: Json
   pageTypes?: Array<PageType> | null
   pages?: Array<Page> | null
+  domain?: String | null
+  googleTrackingPixel?: String | null
 }
 
 /*
@@ -13383,6 +13657,8 @@ export interface WebsitePreviousValues {
   title: String
   urlMask: String
   settings: Json
+  domain?: String | null
+  googleTrackingPixel?: String | null
 }
 
 export interface WebsiteSubscriptionPayload {

@@ -16,7 +16,7 @@ export class FrontendResolver {
     const { url } = args.where;
 
     const emptyRes = null;
-
+    console.log(context.headers);
     const resolvedUrl = this.frontendService.resolveUrl(url);
     const pagesUrls = await this.pageResolver.getPagesUrls(null, { where: { languageCode: resolvedUrl.language } }, null, null);
 
