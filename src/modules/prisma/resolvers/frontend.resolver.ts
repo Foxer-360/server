@@ -23,8 +23,6 @@ export class FrontendResolver {
       return Promise.resolve(emptyRes);
     }
 
-    console.log(context.headers);
-
     const originWithoutProtocolRegexRes = hostOriginRegex.exec(context.headers.origin);
 
     if (!originWithoutProtocolRegexRes[2]) {
