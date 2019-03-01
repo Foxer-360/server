@@ -228,7 +228,7 @@ export class FrontendResolver {
 
     const pluginWhere = {
       page: {
-        id_in: [page.id],
+        id_in: [p[0].id],
       },
       language: {
         id_in: [languageObject.id],
@@ -236,7 +236,6 @@ export class FrontendResolver {
       plugin_contains: 'seo',
     };
     const plugins = await this.prisma.query.pagePlugins({ where: pluginWhere }, pluginInfo);
-
     const navigations = await this.prisma.query.navigations(
       {
         where: {
