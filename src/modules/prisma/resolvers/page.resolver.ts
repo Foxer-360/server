@@ -29,6 +29,8 @@ export class PageResolver {
 
     const languageCode = args && args.where && args.where.languageCode;
 
+    const websiteId = args && args.where && args.where.websiteId;
+
     if (!language && !languageCode) {
       return Promise.resolve([]);
     }
@@ -74,7 +76,7 @@ export class PageResolver {
         url
       }
     }`;
-    const pages = await this.prisma.query.pages({ where: {}}, getPageQuery);
+    const pages = await this.prisma.query.pages({ where: { ...(websiteId ? { website: { id: websiteId }} : {})}}, getPageQuery);
 
     const getUrlOfParent = async (parent: string) => {
       if (cache[parent]) {

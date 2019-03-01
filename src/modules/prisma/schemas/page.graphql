@@ -13,6 +13,7 @@ input PagesUrlsWhereInput {
   ids: [ID]
   language: ID
   languageCode: String
+  websiteId: ID
 }
 
 type PageUrl {
