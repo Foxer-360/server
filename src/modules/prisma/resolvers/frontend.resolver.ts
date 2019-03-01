@@ -17,6 +17,20 @@ export class FrontendResolver {
 
     const emptyRes = null;
 
+    const hostOriginRegex = /^(http|https):\/\/(.*)/;
+
+    if (!context.headers.origin) {
+      return Promise.resolve(emptyRes);
+    }
+
+    const originWithoutProtocolRegexRes = hostOriginRegex.exec(context.headers.origin);
+
+    if (!originWithoutProtocolRegexRes[2]) {
+      return Promise.resolve(emptyRes);
+    }
+
+    const domain = originWithoutProtocolRegexRes[2];
+
     const resolvedUrl = this.frontendService.resolveUrl(url);
     const pagesUrls = await this.pageResolver.getPagesUrls(null, { where: { languageCode: resolvedUrl.language } }, null, null);
 
@@ -80,13 +94,13 @@ export class FrontendResolver {
     let qWs = null;
     let isWebsiteActualyFirstPageSlag = false;
     if (!resolvedUrl.website) {
-      qWs = await this.prisma.query.websites({ where: { urlMask_in: ['', '/'] } }, websiteInfo);
+      qWs = await this.prisma.query.websites({ where: { urlMask_in: ['', '/'], domain } }, websiteInfo);
     } else {
-      qWs = await this.prisma.query.websites({ where: { urlMask_in: [resolvedUrl.website, `/${resolvedUrl.website}`] } }, websiteInfo);
+      qWs = await this.prisma.query.websites({ where: { urlMask_in: [resolvedUrl.website, `/${resolvedUrl.website}`], domain } }, websiteInfo);
 
       if (!resolvedUrl.language && (!qWs || qWs.length < 1)) {
         isWebsiteActualyFirstPageSlag = true;
-        qWs = await this.prisma.query.websites({ where: { urlMask_in: ['', '/'] } }, websiteInfo);
+        qWs = await this.prisma.query.websites({ where: { urlMask_in: ['', '/'], domain } }, websiteInfo);
       }
     }
 
