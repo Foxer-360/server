@@ -122,8 +122,6 @@ export class ComposerService {
 
     try {
       const success = this.storage.composer.clientStartEditComponent(id, pageId, componentId);
-      // tslint:disable-next-line:no-console
-      console.log('Success', success);
       return success;
     } catch (e) {
       // tslint:disable-next-line:no-console
