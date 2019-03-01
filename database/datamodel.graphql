@@ -28,7 +28,7 @@ type Website {
   settings: Json! @default(value: "{}")
   pageTypes: [PageType!]! @relation(name: "PageTypeUnderWebsite", onDelete: CASCADE)
   pages: [Page!]! @relation(name: "PageUnderWebsite", onDelete: CASCADE)
-  domain: String!
+  domain: String
   googleTrackingPixel: String
 }
 
