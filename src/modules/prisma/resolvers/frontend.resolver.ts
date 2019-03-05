@@ -126,7 +126,7 @@ export class FrontendResolver {
     const pageDatasourceItems = [];
     // try to find page in pagesUrls
     const pageUrl = pagesUrls.find(item => {
-      if (item.url === url) {
+      if (item.url === url && item.websiteId === websiteObject.id) {
         return true;
       }
 
@@ -156,6 +156,9 @@ export class FrontendResolver {
       }
       return true;
     });
+
+    // tslint:disable-next-line:no-console
+    console.log(`Found page info:`, pageUrl);
 
     if (!pageUrl) {
       return Promise.resolve(emptyRes);

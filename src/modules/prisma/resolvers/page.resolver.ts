@@ -22,6 +22,7 @@ export class PageResolver {
     const cache = {}; // id => url cache
     const nameCache = {}; // id => name cache
     const descriptionCache = {};
+    const websiteIdCache = {}; // pageId => websiteId
 
     const ids = args && args.where && args.where.ids;
 
@@ -89,6 +90,7 @@ export class PageResolver {
 
         nameCache[parent] = pageInfo.translations[0].name;
         descriptionCache[parent] = pageInfo.translations[0].description;
+        websiteIdCache[parent] = pageInfo.website.id;
 
         // Top level page
         if (!pageInfo.parent) {
@@ -129,6 +131,7 @@ export class PageResolver {
             url,
             name: nameCache[id],
             description: descriptionCache[id],
+            websiteId: websiteIdCache[id],
           });
         }
       }
