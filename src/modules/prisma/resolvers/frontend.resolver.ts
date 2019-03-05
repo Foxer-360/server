@@ -19,11 +19,23 @@ export class FrontendResolver {
 
     const hostOriginRegex = /^(http|https):\/\/(.*)/;
 
-    if (!context.headers.origin) {
+    let origin = context.headers.origin;
+    if (!origin) {
+      origin = context.headers['x-origin'];
+    }
+
+    if (!origin) {
+      // Try to get origin as where param in GraphQL query
+      origin = args.where.origin;
+    }
+    // tslint:disable-next-line:no-console
+    console.log(`Finally parsed origin: ${origin}`);
+
+    if (!origin) {
       return Promise.resolve(emptyRes);
     }
 
-    const originWithoutProtocolRegexRes = hostOriginRegex.exec(context.headers.origin);
+    const originWithoutProtocolRegexRes = hostOriginRegex.exec(origin);
 
     if (!originWithoutProtocolRegexRes[2]) {
       return Promise.resolve(emptyRes);

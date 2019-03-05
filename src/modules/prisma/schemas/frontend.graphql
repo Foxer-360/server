@@ -1,5 +1,6 @@
 input FrontendWhereInput {
   url: String!
+  origin: String
 }
 
 type LocalizedPage {
