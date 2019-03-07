@@ -17,7 +17,8 @@ export class FrontendResolver {
 
     const emptyRes = null;
 
-    const hostOriginRegex = /^(http|https):\/\/(.*)/;
+    // const hostOriginRegex = /^(http|https):\/\/(.*)/;
+    const hostOriginRegex = /^(http?s\:\/\/)?(.*)?$/;
 
     let origin = context.headers.origin;
     if (context.headers['x-origin']) {
