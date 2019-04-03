@@ -28,12 +28,14 @@ import { applyMiddleware } from 'graphql-middleware';
 import graphqlPlayground from 'graphql-playground-middleware-express';
 import authorizationMiddleware from 'foxer360-authorization';
 import { checkJwt } from '../../middleware';
+import { Foxer360AuthService } from '../../common/services/foxer360auth.service';
 
 @Module({
   imports: [GraphQLModule, SubscriptionsModule.forRoot(5001)],
   providers: [prismaProvider, LanguageResolver, ProjectResolver, WebsiteResolver, PageTypeResolver,
     PageResolver, PageTaskResolver, PageChatResolver, PageTranslationResolver, FrontendResolver, FrontendService, NavigationResolver,
-    TagResolver, PagePluginResolver, SubscriberResolver, InquiryResolver, DatasourceResolver, DatasourceItemResolver, PageAnnotationResolver],
+    TagResolver, PagePluginResolver, SubscriberResolver, InquiryResolver, DatasourceResolver, DatasourceItemResolver, PageAnnotationResolver,
+    Foxer360AuthService],
   exports: [prismaProvider],
 })
 export class PrismaModule implements NestModule {
