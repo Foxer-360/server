@@ -1,7 +1,6 @@
 import {
   Controller,
   Req,
-  Response,
   Post,
   FileInterceptor,
   UseInterceptors,
@@ -9,7 +8,7 @@ import {
   Res,
 } from '@nestjs/common';
 import { Prisma } from 'generated/prisma';
-
+import * as AWS from 'aws-sdk';
 import * as fs from 'fs';
 import * as request from 'request-promise';
 
@@ -56,9 +55,55 @@ export class InquiryController {
           ip,
         },
       });
+
+      this.notify(req.body);
       res.status(201).send(inquiry);
     } catch (e) {
       throw new Error(`Error: ${e}`);
+    }
+  }
+
+  private async notify( data ) {
+    const { AWS_ACCESSKEY, AWS_SECRET, AWS_REGION } = process.env;
+    if (AWS_ACCESSKEY && AWS_SECRET && AWS_REGION) {
+      AWS.config.update({
+        region: AWS_REGION,
+        accessKeyId: AWS_ACCESSKEY,
+        secretAccessKey: AWS_SECRET,
+      });
+
+      const params = {
+        Destination: { /* required */
+          ToAddresses: [
+            'pavel.krcil@foxmedia.cz',
+          ],
+        },
+        Message: {
+          Body: {
+            Text: {
+              Charset: 'UTF-8',
+              Data:
+                `Subject: ${data.subject} (${data.formType})\n` +
+                `Text:\n` +
+                `${data.text}\n\n` +
+                `Fullname: ${data.firstName} ${data.lastName}\n` +
+                `Phone: ${data.phone}\n` +
+                `E-mail: ${data.email}\n`,
+            },
+          },
+          Subject: {
+            Charset: 'UTF-8',
+            Data: `[web inquery] ~ ${data.subject}`,
+          },
+        },
+        Source: 'info@foxer360.com', /* required */
+      };
+
+      new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise()
+        // tslint:disable-next-line:no-console
+        .then(() => console.log('OK'))
+        // tslint:disable-next-line:no-console
+        .catch((e) => console.error(`KO: ${e}`));
     }
   }
 }
