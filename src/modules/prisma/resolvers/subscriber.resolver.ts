@@ -1,5 +1,5 @@
 import { Resolver, Mutation, Query } from '@nestjs/graphql';
-import { Req } from '@nestjs/common';
+import { SESNotifier } from 'utils/ses-notifier';
 import { Prisma } from 'generated/prisma';
 
 @Resolver('subscriber')
@@ -20,6 +20,18 @@ export class SubscriberResolver {
   @Mutation('createSubscriber')
   public async createSubscriber(obj, args, context, info): Promise<any> {
     const ip = context.headers['x-forwarded-for'] || context.ip || 'Ip address didn\'t captured.';
+
+    // Notification about subscription
+    const content =
+      `E-mail: ${args.data.email}\n\n` +
+      `Source: ${args.data.url}\n` +
+      `IP: ${ip}\n`;
+
+    SESNotifier.notify(
+      `[subscription] ~ ${args.data.email}`,
+      content,
+    );
+
     return await this.prisma.mutation.createSubscriber({ ...args, data: { ...args.data, ip } }, info);
   }
 

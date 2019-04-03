@@ -32,5 +32,4 @@ export class InquiryResolver {
   public async deleteInquiry(obj, args, context, info): Promise<any> {
     return await this.prisma.mutation.deleteInquiry(args, info);
   }
-
 }
