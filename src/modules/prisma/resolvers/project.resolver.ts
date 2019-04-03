@@ -12,12 +12,48 @@ export class ProjectResolver {
 
   @Query('project')
   public async getProject(obj, args, context, info): Promise<any> {
-    return await this.prisma.query.project(args, info);
+    const accessToken = parseAccessTokenFromHeader(context.headers);
+    if (!accessToken) {
+      return Promise.resolve(null);
+    }
+
+    // Get enabled projects
+    const enabledProjects = await this.foxer360auth.enabledProjects(accessToken);
+    const enabledWebsites = await this.foxer360auth.enabledWebsites(accessToken);
+    const project = await this.prisma.query.project(args, info);
+    if (!project || enabledProjects.indexOf(project.id) < 0) {
+      return Promise.resolve(null);
+    }
+    if (project.websites) {
+      project.websites = project.websites.filter((web) => enabledWebsites.indexOf(web.id) >= 0);
+    }
+
+    return project;
   }
 
   @Query('projects')
   public async getProjects(obj, args, context, info): Promise<any> {
-    return await this.prisma.query.projects(args, info);
+    const accessToken = parseAccessTokenFromHeader(context.headers);
+    if (!accessToken) {
+      return Promise.resolve([]);
+    }
+
+    // Get enabled projects
+    const enabledProjects = await this.foxer360auth.enabledProjects(accessToken);
+    const enabledWebsites = await this.foxer360auth.enabledWebsites(accessToken);
+    const projects = await this.prisma.query.projects(args, info);
+    if (!projects || projects.length < 1) {
+      return Promise.resolve([]);
+    }
+
+    const filteredProjects = projects.filter((project) => enabledProjects.indexOf(project.id) >= 0);
+    filteredProjects.forEach((project) => {
+      if (!project.websites) {
+        return;
+      }
+      project.websites = project.websites.filter((web) => enabledWebsites.indexOf(web.id) >= 0);
+    });
+    return filteredProjects;
   }
 
   @Mutation('createProject')

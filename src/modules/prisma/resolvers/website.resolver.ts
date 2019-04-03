@@ -12,12 +12,37 @@ export class WebsiteResolver {
 
   @Query('website')
   public async getWebsite(obj, args, context, info): Promise<any> {
-    return await this.prisma.query.website(args, info);
+    const accessToken = parseAccessTokenFromHeader(context.headers);
+    if (!accessToken) {
+      return Promise.resolve(null);
+    }
+
+    // Get enabled websites
+    const enabledWebsites = await this.foxer360auth.enabledWebsites(accessToken);
+    const website = await this.prisma.query.website(args, info);
+    if (!website || enabledWebsites.indexOf(website.id) < 0) {
+      return Promise.resolve(null);
+    }
+
+    return website;
   }
 
   @Query('websites')
   public async getWebsites(obj, args, context, info): Promise<any> {
-    return await this.prisma.query.websites(args, info);
+    const accessToken = parseAccessTokenFromHeader(context.headers);
+    if (!accessToken) {
+      return Promise.resolve([]);
+    }
+
+    // Get enabled websites
+    const enabledWebsites = await this.foxer360auth.enabledWebsites(accessToken);
+    const websites = await this.prisma.query.websites(args, info);
+    if (!websites || websites.length < 1) {
+      return Promise.resolve([]);
+    }
+
+    const filteredWebsites = websites.filter((website) => enabledWebsites.indexOf(website.id) >= 0);
+    return filteredWebsites;
   }
 
   @Mutation('createWebsite')

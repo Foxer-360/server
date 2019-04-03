@@ -212,7 +212,7 @@ export class Foxer360AuthService {
       )
     }`;
 
-    const result = await this.client.query({ query });
+    const result = await this.client.query({ query, fetchPolicy: 'no-cache' });
     if (!result || !result.data || !result.data.owns) {
       return Promise.resolve(false);
     }
@@ -230,12 +230,50 @@ export class Foxer360AuthService {
       )
     }`;
 
-    const result = await this.client.query({ query });
+    const result = await this.client.query({ query, fetchPolicy: 'no-cache' });
     if (!result || !result.data || !result.data.exists) {
       return Promise.resolve(false);
     }
 
     return Promise.resolve(result.data.exists);
+  }
+
+  public async enabledProjects(accessToken: string): Promise<string[]> {
+    const query = gql`query {
+      enabledProjects(
+        ${this.clientIdentity}
+        user: {
+          accessToken: "${accessToken}"
+        }
+      ) { foxer360Id }
+    }`;
+
+    const result = await this.client.query({ query, fetchPolicy: 'no-cache' });
+    if (!result || !result.data || !result.data.enabledProjects) {
+      return Promise.resolve([]);
+    }
+
+    const mapped = result.data.enabledProjects.map((project) => project.foxer360Id);
+    return Promise.resolve(mapped);
+  }
+
+  public async enabledWebsites(accessToken: string): Promise<string[]> {
+    const query = gql`query {
+      enabledWebsites(
+        ${this.clientIdentity}
+        user: {
+          accessToken: "${accessToken}"
+        }
+      ) { foxer360Id }
+    }`;
+
+    const result = await this.client.query({ query, fetchPolicy: 'no-cache' });
+    if (!result || !result.data || !result.data.enabledWebsites) {
+      return Promise.resolve([]);
+    }
+
+    const mapped = result.data.enabledWebsites.map((website) => website.foxer360Id);
+    return Promise.resolve(mapped);
   }
 
   private toStringReducer<T>(
