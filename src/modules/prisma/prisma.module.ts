@@ -29,6 +29,7 @@ import graphqlPlayground from 'graphql-playground-middleware-express';
 import authorizationMiddleware from 'foxer360-authorization';
 import { checkJwt } from '../../middleware';
 import { Foxer360AuthService } from '../../common/services/foxer360auth.service';
+import { UserMiddleware } from 'middleware/user.middleware';
 
 @Module({
   imports: [GraphQLModule, SubscriptionsModule.forRoot(5001)],
@@ -94,6 +95,8 @@ export class PrismaModule implements NestModule {
 
     consumer
     .apply(checkJwt)
+    .forRoutes('/graphql')
+    .apply(UserMiddleware)
     .forRoutes('/graphql')
     .apply((req, res, next, err) => {
       if (err) return res.status(401).send(err.message);

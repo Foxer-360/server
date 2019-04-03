@@ -220,6 +220,24 @@ export class Foxer360AuthService {
     return Promise.resolve(result.data.owns);
   }
 
+  public async userExists(accessToken: string): Promise<boolean> {
+    const query = gql`query {
+      exists(
+        ${this.clientIdentity}
+        user: {
+          accessToken: "${accessToken}"
+        }
+      )
+    }`;
+
+    const result = await this.client.query({ query });
+    if (!result || !result.data || !result.data.exists) {
+      return Promise.resolve(false);
+    }
+
+    return Promise.resolve(result.data.exists);
+  }
+
   private toStringReducer<T>(
     array: T[],
     callback: (accumulator: string, current: T, index?: number, array?: T[]) => string,
