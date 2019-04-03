@@ -2,6 +2,7 @@ import { Resolver, Mutation, Query } from '@nestjs/graphql';
 import { Prisma } from 'generated/prisma';
 
 import { Foxer360AuthService } from '../../../common/services/foxer360auth.service';
+import { parseAccessTokenFromHeader } from '../../../utils';
 
 @Resolver('project')
 export class ProjectResolver {
@@ -16,14 +17,20 @@ export class ProjectResolver {
 
   @Query('projects')
   public async getProjects(obj, args, context, info): Promise<any> {
-    // Just get info about context
-    // tslint:disable-next-line:no-console
-    console.log('Context: ', context.headers.authorization);
     return await this.prisma.query.projects(args, info);
   }
 
   @Mutation('createProject')
   public async createProject(obj, args, context, info): Promise<any> {
+    const accessToken = parseAccessTokenFromHeader(context.headers);
+    if (!accessToken) {
+      return Promise.resolve(null);
+    }
+
+    if (!await this.foxer360auth.isUserOwner(accessToken)) {
+      return Promise.resolve(null);
+    }
+
     // ADD CODE HERE !!!
     // To sync created project to Foxer360 Auth System
     const project = await this.prisma.mutation.createProject(args, `{ id name }`);
@@ -38,6 +45,15 @@ export class ProjectResolver {
 
   @Mutation('updateProject')
   public async updateProject(obj, args, context, info): Promise<any> {
+    const accessToken = parseAccessTokenFromHeader(context.headers);
+    if (!accessToken) {
+      return Promise.resolve(null);
+    }
+
+    if (!await this.foxer360auth.isUserOwner(accessToken)) {
+      return Promise.resolve(null);
+    }
+
     // ADD CODE HERE !!!
     // To sync updated project to Foxer360 Auth System
     if (args.data.name) {
@@ -49,6 +65,15 @@ export class ProjectResolver {
 
   @Mutation('deleteProject')
   public async deleteProject(obj, args, context, info): Promise<any> {
+    const accessToken = parseAccessTokenFromHeader(context.headers);
+    if (!accessToken) {
+      return Promise.resolve(null);
+    }
+
+    if (!await this.foxer360auth.isUserOwner(accessToken)) {
+      return Promise.resolve(null);
+    }
+
     // ADD CODE HERE !!!
     // To sync deleted project to Foxer360 Auth System
     await this.foxer360auth.deleteProject(args.where.id);

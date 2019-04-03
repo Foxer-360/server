@@ -2,6 +2,7 @@ import { Resolver, Mutation, Query } from '@nestjs/graphql';
 import { Prisma } from 'generated/prisma';
 
 import { Foxer360AuthService } from '../../../common/services/foxer360auth.service';
+import { parseAccessTokenFromHeader } from '../../../utils';
 
 @Resolver('website')
 export class WebsiteResolver {
@@ -21,6 +22,15 @@ export class WebsiteResolver {
 
   @Mutation('createWebsite')
   public async createWebsite(obj, args, context, info): Promise<any> {
+    const accessToken = parseAccessTokenFromHeader(context.headers);
+    if (!accessToken) {
+      return Promise.resolve(null);
+    }
+
+    if (!await this.foxer360auth.isUserOwner(accessToken)) {
+      return Promise.resolve(null);
+    }
+
     // ADD CODE HERE !!!
     // To sync created website to Foxer360 Auth System
     const website = await this.prisma.mutation.createWebsite(args, `{ id title project { id } }`);
@@ -35,6 +45,15 @@ export class WebsiteResolver {
 
   @Mutation('updateWebsite')
   public async updateWebsite(obj, args, context, info): Promise<any> {
+    const accessToken = parseAccessTokenFromHeader(context.headers);
+    if (!accessToken) {
+      return Promise.resolve(null);
+    }
+
+    if (!await this.foxer360auth.isUserOwner(accessToken)) {
+      return Promise.resolve(null);
+    }
+
     // ADD CODE HERE !!!
     // To sync updated website to Foxer360 Auth System
     if (args.data.title) {
@@ -46,6 +65,15 @@ export class WebsiteResolver {
 
   @Mutation('deleteWebsite')
   public async deleteWebsite(obj, args, context, info): Promise<any> {
+    const accessToken = parseAccessTokenFromHeader(context.headers);
+    if (!accessToken) {
+      return Promise.resolve(null);
+    }
+
+    if (!await this.foxer360auth.isUserOwner(accessToken)) {
+      return Promise.resolve(null);
+    }
+
     // ADD CODE HERE !!!
     // To Sync deleted website to Foxer360 Auth System
     await this.foxer360auth.deleteWebsite(args.where.id);

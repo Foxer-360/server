@@ -202,6 +202,24 @@ export class Foxer360AuthService {
     return Promise.resolve(result.data.syncProjectsWebsites);
   }
 
+  public async isUserOwner(accessToken: string): Promise<boolean> {
+    const query = gql`query {
+      owns(
+        ${this.clientIdentity}
+        user: {
+          accessToken: "${accessToken}"
+        }
+      )
+    }`;
+
+    const result = await this.client.query({ query });
+    if (!result || !result.data || !result.data.owns) {
+      return Promise.resolve(false);
+    }
+
+    return Promise.resolve(result.data.owns);
+  }
+
   private toStringReducer<T>(
     array: T[],
     callback: (accumulator: string, current: T, index?: number, array?: T[]) => string,
