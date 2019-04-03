@@ -7,6 +7,19 @@ import { EnvironmentException } from '../exceptions/environment.exception';
 
 const fetch = fetchFce as any;
 
+export interface IProject {
+  id: string;
+  name: string;
+}
+
+export interface IWebsite {
+  id: string;
+  title: string;
+  project: {
+    id: string;
+  };
+}
+
 @Injectable()
 export class Foxer360AuthService {
 
@@ -160,6 +173,47 @@ export class Foxer360AuthService {
     }
 
     return Promise.resolve(true);
+  }
+
+  public async syncProjectsWebsites(projects: IProject[], websites: IWebsite[]): Promise<boolean> {
+    const reducedProjects = this.toStringReducer(projects, (acc, project) => {
+      const res = `{ foxer360Id: "${project.id}" name: "${project.name}" } `;
+      return acc + res;
+    }, ' ');
+    const reducedWebsites = this.toStringReducer(websites, (acc, website) => {
+      const res = `{ foxer360Id: "${website.id}" name: "${website.title}" project: "${website.project.id}" } `;
+      return acc + res;
+    }, ' ');
+
+    const data = `{ projects: [${reducedProjects}] websites: [${reducedWebsites}] }`;
+
+    const mutation = gql`mutation {
+      syncProjectsWebsites(
+        ${this.clientAccessIdentity}
+        data: ${data}
+      )
+    }`;
+
+    const result = await this.client.mutate({ mutation });
+    if (!result || !result.data || !result.data.syncProjectsWebsites) {
+      return Promise.resolve(false);
+    }
+
+    return Promise.resolve(result.data.syncProjectsWebsites);
+  }
+
+  private toStringReducer<T>(
+    array: T[],
+    callback: (accumulator: string, current: T, index?: number, array?: T[]) => string,
+    initialValue?: string,
+  ): string {
+    let acc = initialValue ? initialValue : '';
+
+    array.forEach((val, index) => {
+      acc = callback(acc, val, index, array);
+    });
+
+    return acc;
   }
 
 }
