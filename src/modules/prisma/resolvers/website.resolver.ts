@@ -56,8 +56,6 @@ export class WebsiteResolver {
       return Promise.resolve(null);
     }
 
-    // ADD CODE HERE !!!
-    // To sync created website to Foxer360 Auth System
     const website = await this.prisma.mutation.createWebsite(args, `{ id title project { id } }`);
     if (!website || !website.id || !website.title || !website.project || !website.project.id) {
       return Promise.resolve(null);
@@ -79,8 +77,6 @@ export class WebsiteResolver {
       return Promise.resolve(null);
     }
 
-    // ADD CODE HERE !!!
-    // To sync updated website to Foxer360 Auth System
     if (args.data.title) {
       await this.foxer360auth.updateWebsite(args.where.id, args.data.title);
     }
@@ -99,8 +95,6 @@ export class WebsiteResolver {
       return Promise.resolve(null);
     }
 
-    // ADD CODE HERE !!!
-    // To Sync deleted website to Foxer360 Auth System
     await this.foxer360auth.deleteWebsite(args.where.id);
 
     return await this.prisma.mutation.deleteWebsite(args, info);

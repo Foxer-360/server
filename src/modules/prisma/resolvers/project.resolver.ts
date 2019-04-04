@@ -67,8 +67,6 @@ export class ProjectResolver {
       return Promise.resolve(null);
     }
 
-    // ADD CODE HERE !!!
-    // To sync created project to Foxer360 Auth System
     const project = await this.prisma.mutation.createProject(args, `{ id name }`);
     if (!project || !project.id || !project.name) {
       return Promise.resolve(null);
@@ -90,8 +88,6 @@ export class ProjectResolver {
       return Promise.resolve(null);
     }
 
-    // ADD CODE HERE !!!
-    // To sync updated project to Foxer360 Auth System
     if (args.data.name) {
       await this.foxer360auth.updateProject(args.where.id, args.data.name);
     }
@@ -110,8 +106,6 @@ export class ProjectResolver {
       return Promise.resolve(null);
     }
 
-    // ADD CODE HERE !!!
-    // To sync deleted project to Foxer360 Auth System
     await this.foxer360auth.deleteProject(args.where.id);
 
     return await this.prisma.mutation.deleteProject(args, info);
