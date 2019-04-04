@@ -13,8 +13,9 @@ export class UserMiddleware implements NestMiddleware {
       const accessToken = parseAccessTokenFromHeader(req.headers);
       if (!accessToken) {
         // tslint:disable-next-line:no-console
-        console.log('No Access Token found in Headers!');
-        throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+        console.log(`No Access Token found in Headers! I strongly believe, it's the only frontend :D`);
+        return next();
+        // throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
       }
 
       if (!await this.foxer360auth.userExists(accessToken)) {
