@@ -5,6 +5,7 @@
 type Mutation {
   # Copied from Prisma schema
   createProject(data: ProjectCreateInput!): Project!
+  createComponentTemplate(data: ComponentTemplateCreateInput!): ComponentTemplate!
   createPageTranslation(data: PageTranslationCreateInput!): PageTranslation!
   createPagePlugin(data: PagePluginCreateInput!): PagePlugin!
   createPageAnnotation(data: PageAnnotationCreateInput!): PageAnnotation!
@@ -20,6 +21,7 @@ type Mutation {
   createWebsite(data: WebsiteCreateInput!): Website!
   createLanguage(data: LanguageCreateInput!): Language!
   updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
+  updateComponentTemplate(data: ComponentTemplateUpdateInput!, where: ComponentTemplateWhereUniqueInput!): ComponentTemplate
   updatePageTranslation(data: PageTranslationUpdateInput!, where: PageTranslationWhereUniqueInput!): PageTranslation
   updatePagePlugin(data: PagePluginUpdateInput!, where: PagePluginWhereUniqueInput!): PagePlugin
   updatePageAnnotation(data: PageAnnotationUpdateInput!, where: PageAnnotationWhereUniqueInput!): PageAnnotation
@@ -36,6 +38,7 @@ type Mutation {
   updateWebsite(data: WebsiteUpdateInput!, where: WebsiteWhereUniqueInput!): Website
   updateLanguage(data: LanguageUpdateInput!, where: LanguageWhereUniqueInput!): Language
   deleteProject(where: ProjectWhereUniqueInput!): Project
+  deleteComponentTemplate(where: ComponentTemplateWhereUniqueInput!): ComponentTemplate
   deletePageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
   deletePagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
   deletePageAnnotation(where: PageAnnotationWhereUniqueInput!): PageAnnotation
@@ -52,6 +55,7 @@ type Mutation {
   deleteWebsite(where: WebsiteWhereUniqueInput!): Website
   deleteLanguage(where: LanguageWhereUniqueInput!): Language
   upsertProject(where: ProjectWhereUniqueInput!, create: ProjectCreateInput!, update: ProjectUpdateInput!): Project!
+  upsertComponentTemplate(where: ComponentTemplateWhereUniqueInput!, create: ComponentTemplateCreateInput!, update: ComponentTemplateUpdateInput!): ComponentTemplate!
   upsertPageTranslation(where: PageTranslationWhereUniqueInput!, create: PageTranslationCreateInput!, update: PageTranslationUpdateInput!): PageTranslation!
   upsertPagePlugin(where: PagePluginWhereUniqueInput!, create: PagePluginCreateInput!, update: PagePluginUpdateInput!): PagePlugin!
   upsertPageAnnotation(where: PageAnnotationWhereUniqueInput!, create: PageAnnotationCreateInput!, update: PageAnnotationUpdateInput!): PageAnnotation!
@@ -68,6 +72,7 @@ type Mutation {
   upsertWebsite(where: WebsiteWhereUniqueInput!, create: WebsiteCreateInput!, update: WebsiteUpdateInput!): Website!
   upsertLanguage(where: LanguageWhereUniqueInput!, create: LanguageCreateInput!, update: LanguageUpdateInput!): Language!
   updateManyProjects(data: ProjectUpdateManyMutationInput!, where: ProjectWhereInput): BatchPayload!
+  updateManyComponentTemplates(data: ComponentTemplateUpdateManyMutationInput!, where: ComponentTemplateWhereInput): BatchPayload!
   updateManyPageTranslations(data: PageTranslationUpdateManyMutationInput!, where: PageTranslationWhereInput): BatchPayload!
   updateManyPagePlugins(data: PagePluginUpdateManyMutationInput!, where: PagePluginWhereInput): BatchPayload!
   updateManyPageTasks(data: PageTaskUpdateManyMutationInput!, where: PageTaskWhereInput): BatchPayload!
@@ -85,6 +90,7 @@ type Mutation {
   updateManyWebsites(data: WebsiteUpdateManyMutationInput!, where: WebsiteWhereInput): BatchPayload!
   updateManyLanguages(data: LanguageUpdateManyMutationInput!, where: LanguageWhereInput): BatchPayload!
   deleteManyProjects(where: ProjectWhereInput): BatchPayload!
+  deleteManyComponentTemplates(where: ComponentTemplateWhereInput): BatchPayload!
   deleteManyPageTranslations(where: PageTranslationWhereInput): BatchPayload!
   deleteManyPagePlugins(where: PagePluginWhereInput): BatchPayload!
   deleteManyPageTasks(where: PageTaskWhereInput): BatchPayload!
@@ -144,6 +150,7 @@ type PageChatWithUser {
 type Query {
   # Copied from Prisma schema
   projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
+  componentTemplates(where: ComponentTemplateWhereInput, orderBy: ComponentTemplateOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ComponentTemplate]!
   pageTranslations(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTranslation]!
   pagePlugins(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PagePlugin]!
   pageAnnotations(where: PageAnnotationWhereInput, orderBy: PageAnnotationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageAnnotation]!
@@ -160,6 +167,7 @@ type Query {
   websites(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Website]!
   languages(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Language]!
   project(where: ProjectWhereUniqueInput!): Project
+  componentTemplate(where: ComponentTemplateWhereUniqueInput!): ComponentTemplate
   pageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
   pagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
   pageAnnotation(where: PageAnnotationWhereUniqueInput!): PageAnnotation
@@ -176,6 +184,7 @@ type Query {
   website(where: WebsiteWhereUniqueInput!): Website
   language(where: LanguageWhereUniqueInput!): Language
   projectsConnection(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectConnection!
+  componentTemplatesConnection(where: ComponentTemplateWhereInput, orderBy: ComponentTemplateOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ComponentTemplateConnection!
   pageTranslationsConnection(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTranslationConnection!
   pagePluginsConnection(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PagePluginConnection!
   pageTasksConnection(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTaskConnection!

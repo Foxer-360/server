@@ -23,6 +23,7 @@ import { SubscriptionsModule } from 'modules/subscriptions/subscriptions.module'
 import { FrontendService } from './services/frontend.service';
 import { importSchema } from 'graphql-import';
 import { PageAnnotationResolver } from './resolvers/pageAnnotation.resolver';
+import { ComponentTemplateResolver } from './resolvers/componentTemplate.resolver';
 
 import { applyMiddleware } from 'graphql-middleware';
 import graphqlPlayground from 'graphql-playground-middleware-express';
@@ -33,7 +34,8 @@ import { checkJwt } from '../../middleware';
   imports: [GraphQLModule, SubscriptionsModule.forRoot(5001)],
   providers: [prismaProvider, LanguageResolver, ProjectResolver, WebsiteResolver, PageTypeResolver,
     PageResolver, PageTaskResolver, PageChatResolver, PageTranslationResolver, FrontendResolver, FrontendService, NavigationResolver,
-    TagResolver, PagePluginResolver, SubscriberResolver, InquiryResolver, DatasourceResolver, DatasourceItemResolver, PageAnnotationResolver],
+    TagResolver, PagePluginResolver, SubscriberResolver, InquiryResolver, DatasourceResolver, DatasourceItemResolver,
+    PageAnnotationResolver,  ComponentTemplateResolver],
   exports: [prismaProvider],
 })
 export class PrismaModule implements NestModule {
@@ -91,13 +93,13 @@ export class PrismaModule implements NestModule {
     );
 
     consumer
-    .apply(checkJwt)
-    .forRoutes('/graphql')
-    .apply((req, res, next, err) => {
-      if (err) return res.status(401).send(err.message);
-      next();
-    })
-    .forRoutes('/graphql')
+    // .apply(checkJwt)
+    // .forRoutes('/graphql')
+    // .apply((req, res, next, err) => {
+    //   if (err) return res.status(401).send(err.message);
+    //   next();
+    // })
+    // .forRoutes('/graphql')
     .apply(
       graphqlPlayground({
         endpoint: '/graphql',

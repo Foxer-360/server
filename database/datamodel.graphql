@@ -40,6 +40,15 @@ type PageType {
   plugins: [String!]!
 }
 
+type ComponentTemplate {
+  id: ID! @unique
+  name: String!
+  type: String!
+  content: Json! @default(value: "{}")
+  website: Website! @relation(name: "ComponentTemplateUnderWebsite")
+  language: Language! @relation(name: "ComponentTemplateUnderLanguage")
+}
+
 # Section with Pages
 enum PageStatus {
   DRAFT
