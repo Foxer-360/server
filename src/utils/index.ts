@@ -28,8 +28,29 @@ const asyncForEach = async <T = any> (arr: T[], fce: Callback<T>) => {
   }
 };
 
+/**
+ * Simple helper which returns access token from headers
+ *
+ * @param {any} headers
+ * @return {string | null}
+ */
+const parseAccessTokenFromHeader = (headers: any): string | null => {
+  if (!headers || !headers.authorization) {
+    return null;
+  }
+
+  const regex = /^Bearer\s*([^\s]+)$/i;
+  const match = regex.exec(headers.authorization);
+  if (!match || !match[1]) {
+    return null;
+  }
+
+  return match[1];
+ };
+
 export {
   Colors,
   isNumber,
   asyncForEach,
+  parseAccessTokenFromHeader,
 };
