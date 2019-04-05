@@ -37,7 +37,7 @@ import { UserMiddleware } from 'middleware/user.middleware';
   providers: [prismaProvider, LanguageResolver, ProjectResolver, WebsiteResolver, PageTypeResolver,
     PageResolver, PageTaskResolver, PageChatResolver, PageTranslationResolver, FrontendResolver, FrontendService, NavigationResolver,
     TagResolver, PagePluginResolver, SubscriberResolver, InquiryResolver, DatasourceResolver, DatasourceItemResolver,
-    PageAnnotationResolver,  ComponentTemplateResolver, Foxer360AuthService],
+    PageAnnotationResolver, ComponentTemplateResolver, Foxer360AuthService],
   exports: [prismaProvider],
 })
 export class PrismaModule implements NestModule {
