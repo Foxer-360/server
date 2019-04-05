@@ -93,13 +93,13 @@ export class PrismaModule implements NestModule {
     );
 
     consumer
-    // .apply(checkJwt)
-    // .forRoutes('/graphql')
-    // .apply((req, res, next, err) => {
-    //   if (err) return res.status(401).send(err.message);
-    //   next();
-    // })
-    // .forRoutes('/graphql')
+    .apply(checkJwt)
+    .forRoutes('/graphql')
+    .apply((req, res, next, err) => {
+      if (err) return res.status(401).send(err.message);
+      next();
+    })
+    .forRoutes('/graphql')
     .apply(
       graphqlPlayground({
         endpoint: '/graphql',
