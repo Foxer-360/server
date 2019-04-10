@@ -22,7 +22,7 @@
     "webpack": "webpack --config webpack.config.js"
   },
   "dependencies": {
-    "@foxer360/delta": "git+https://github.com/Foxer-360/delta.git#v0.1.0",
+    "@foxer360/delta": "git+https://github.com/Foxer-360/delta.git#sandbox",
     "@nestjs/common": "^5.5.0",
     "@nestjs/core": "^5.5.0",
     "@nestjs/graphql": "^3.0.0",
