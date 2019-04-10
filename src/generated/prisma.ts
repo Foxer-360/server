@@ -5,6 +5,7 @@ import { makePrismaBindingClass, BasePrismaOptions } from 'prisma-binding'
 
 export interface Query {
     projects: <T = Array<Project | null>>(args: { where?: ProjectWhereInput | null, orderBy?: ProjectOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    componentTemplates: <T = Array<ComponentTemplate | null>>(args: { where?: ComponentTemplateWhereInput | null, orderBy?: ComponentTemplateOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageTranslations: <T = Array<PageTranslation | null>>(args: { where?: PageTranslationWhereInput | null, orderBy?: PageTranslationOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pagePlugins: <T = Array<PagePlugin | null>>(args: { where?: PagePluginWhereInput | null, orderBy?: PagePluginOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageTasks: <T = Array<PageTask | null>>(args: { where?: PageTaskWhereInput | null, orderBy?: PageTaskOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -23,6 +24,7 @@ export interface Query {
     websites: <T = Array<Website | null>>(args: { where?: WebsiteWhereInput | null, orderBy?: WebsiteOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     languages: <T = Array<Language | null>>(args: { where?: LanguageWhereInput | null, orderBy?: LanguageOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     project: <T = Project | null>(args: { where: ProjectWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    componentTemplate: <T = ComponentTemplate | null>(args: { where: ComponentTemplateWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     pageTranslation: <T = PageTranslation | null>(args: { where: PageTranslationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     pagePlugin: <T = PagePlugin | null>(args: { where: PagePluginWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     pageTask: <T = PageTask | null>(args: { where: PageTaskWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
@@ -41,6 +43,7 @@ export interface Query {
     website: <T = Website | null>(args: { where: WebsiteWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     language: <T = Language | null>(args: { where: LanguageWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     projectsConnection: <T = ProjectConnection>(args: { where?: ProjectWhereInput | null, orderBy?: ProjectOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    componentTemplatesConnection: <T = ComponentTemplateConnection>(args: { where?: ComponentTemplateWhereInput | null, orderBy?: ComponentTemplateOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageTranslationsConnection: <T = PageTranslationConnection>(args: { where?: PageTranslationWhereInput | null, orderBy?: PageTranslationOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pagePluginsConnection: <T = PagePluginConnection>(args: { where?: PagePluginWhereInput | null, orderBy?: PagePluginOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     pageTasksConnection: <T = PageTaskConnection>(args: { where?: PageTaskWhereInput | null, orderBy?: PageTaskOrderByInput | null, skip?: Int | null, after?: String | null, before?: String | null, first?: Int | null, last?: Int | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -63,6 +66,7 @@ export interface Query {
 
 export interface Mutation {
     createProject: <T = Project>(args: { data: ProjectCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    createComponentTemplate: <T = ComponentTemplate>(args: { data: ComponentTemplateCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createPageTranslation: <T = PageTranslation>(args: { data: PageTranslationCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createPagePlugin: <T = PagePlugin>(args: { data: PagePluginCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createPageTask: <T = PageTask>(args: { data: PageTaskCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -81,6 +85,7 @@ export interface Mutation {
     createWebsite: <T = Website>(args: { data: WebsiteCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createLanguage: <T = Language>(args: { data: LanguageCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateProject: <T = Project | null>(args: { data: ProjectUpdateInput, where: ProjectWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    updateComponentTemplate: <T = ComponentTemplate | null>(args: { data: ComponentTemplateUpdateInput, where: ComponentTemplateWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updatePageTranslation: <T = PageTranslation | null>(args: { data: PageTranslationUpdateInput, where: PageTranslationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updatePagePlugin: <T = PagePlugin | null>(args: { data: PagePluginUpdateInput, where: PagePluginWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updatePageTask: <T = PageTask | null>(args: { data: PageTaskUpdateInput, where: PageTaskWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
@@ -99,6 +104,7 @@ export interface Mutation {
     updateWebsite: <T = Website | null>(args: { data: WebsiteUpdateInput, where: WebsiteWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     updateLanguage: <T = Language | null>(args: { data: LanguageUpdateInput, where: LanguageWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deleteProject: <T = Project | null>(args: { where: ProjectWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
+    deleteComponentTemplate: <T = ComponentTemplate | null>(args: { where: ComponentTemplateWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deletePageTranslation: <T = PageTranslation | null>(args: { where: PageTranslationWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deletePagePlugin: <T = PagePlugin | null>(args: { where: PagePluginWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deletePageTask: <T = PageTask | null>(args: { where: PageTaskWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
@@ -117,6 +123,7 @@ export interface Mutation {
     deleteWebsite: <T = Website | null>(args: { where: WebsiteWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     deleteLanguage: <T = Language | null>(args: { where: LanguageWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T | null> ,
     upsertProject: <T = Project>(args: { where: ProjectWhereUniqueInput, create: ProjectCreateInput, update: ProjectUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    upsertComponentTemplate: <T = ComponentTemplate>(args: { where: ComponentTemplateWhereUniqueInput, create: ComponentTemplateCreateInput, update: ComponentTemplateUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertPageTranslation: <T = PageTranslation>(args: { where: PageTranslationWhereUniqueInput, create: PageTranslationCreateInput, update: PageTranslationUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertPagePlugin: <T = PagePlugin>(args: { where: PagePluginWhereUniqueInput, create: PagePluginCreateInput, update: PagePluginUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertPageTask: <T = PageTask>(args: { where: PageTaskWhereUniqueInput, create: PageTaskCreateInput, update: PageTaskUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -135,6 +142,7 @@ export interface Mutation {
     upsertWebsite: <T = Website>(args: { where: WebsiteWhereUniqueInput, create: WebsiteCreateInput, update: WebsiteUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertLanguage: <T = Language>(args: { where: LanguageWhereUniqueInput, create: LanguageCreateInput, update: LanguageUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyProjects: <T = BatchPayload>(args: { data: ProjectUpdateManyMutationInput, where?: ProjectWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyComponentTemplates: <T = BatchPayload>(args: { data: ComponentTemplateUpdateManyMutationInput, where?: ComponentTemplateWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyPageTranslations: <T = BatchPayload>(args: { data: PageTranslationUpdateManyMutationInput, where?: PageTranslationWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyPagePlugins: <T = BatchPayload>(args: { data: PagePluginUpdateManyMutationInput, where?: PagePluginWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyPageTasks: <T = BatchPayload>(args: { data: PageTaskUpdateManyMutationInput, where?: PageTaskWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -152,6 +160,7 @@ export interface Mutation {
     updateManyWebsites: <T = BatchPayload>(args: { data: WebsiteUpdateManyMutationInput, where?: WebsiteWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyLanguages: <T = BatchPayload>(args: { data: LanguageUpdateManyMutationInput, where?: LanguageWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyProjects: <T = BatchPayload>(args: { where?: ProjectWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    deleteManyComponentTemplates: <T = BatchPayload>(args: { where?: ComponentTemplateWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyPageTranslations: <T = BatchPayload>(args: { where?: PageTranslationWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyPagePlugins: <T = BatchPayload>(args: { where?: PagePluginWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyPageTasks: <T = BatchPayload>(args: { where?: PageTaskWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
@@ -173,6 +182,7 @@ export interface Mutation {
 
 export interface Subscription {
     project: <T = ProjectSubscriptionPayload | null>(args: { where?: ProjectSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
+    componentTemplate: <T = ComponentTemplateSubscriptionPayload | null>(args: { where?: ComponentTemplateSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     pageTranslation: <T = PageTranslationSubscriptionPayload | null>(args: { where?: PageTranslationSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     pagePlugin: <T = PagePluginSubscriptionPayload | null>(args: { where?: PagePluginSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
     pageTask: <T = PageTaskSubscriptionPayload | null>(args: { where?: PageTaskSubscriptionWhereInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T | null>> ,
@@ -194,6 +204,7 @@ export interface Subscription {
 
 export interface Exists {
   Project: (where?: ProjectWhereInput) => Promise<boolean>
+  ComponentTemplate: (where?: ComponentTemplateWhereInput) => Promise<boolean>
   PageTranslation: (where?: PageTranslationWhereInput) => Promise<boolean>
   PagePlugin: (where?: PagePluginWhereInput) => Promise<boolean>
   PageTask: (where?: PageTaskWhereInput) => Promise<boolean>
@@ -235,7 +246,11 @@ export interface BindingConstructor<T> {
  * Type Defs
 */
 
-const typeDefs = `type AggregateDatasource {
+const typeDefs = `type AggregateComponentTemplate {
+  count: Int!
+}
+
+type AggregateDatasource {
   count: Int!
 }
 
@@ -310,6 +325,254 @@ type AggregateWebsite {
 type BatchPayload {
   """The number of nodes that have been affected by the Batch operation."""
   count: Long!
+}
+
+type ComponentTemplate implements Node {
+  id: ID!
+  name: String!
+  type: String!
+  content: Json!
+  website: Website!
+  language: Language!
+}
+
+"""A connection to a list of items."""
+type ComponentTemplateConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ComponentTemplateEdge]!
+  aggregate: AggregateComponentTemplate!
+}
+
+input ComponentTemplateCreateInput {
+  name: String!
+  type: String!
+  content: Json
+  website: WebsiteCreateOneInput!
+  language: LanguageCreateOneInput!
+}
+
+"""An edge in a connection."""
+type ComponentTemplateEdge {
+  """The item at the end of the edge."""
+  node: ComponentTemplate!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum ComponentTemplateOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  type_ASC
+  type_DESC
+  content_ASC
+  content_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type ComponentTemplatePreviousValues {
+  id: ID!
+  name: String!
+  type: String!
+  content: Json!
+}
+
+type ComponentTemplateSubscriptionPayload {
+  mutation: MutationType!
+  node: ComponentTemplate
+  updatedFields: [String!]
+  previousValues: ComponentTemplatePreviousValues
+}
+
+input ComponentTemplateSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ComponentTemplateSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ComponentTemplateSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ComponentTemplateSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: ComponentTemplateWhereInput
+}
+
+input ComponentTemplateUpdateInput {
+  name: String
+  type: String
+  content: Json
+  website: WebsiteUpdateOneRequiredInput
+  language: LanguageUpdateOneRequiredInput
+}
+
+input ComponentTemplateUpdateManyMutationInput {
+  name: String
+  type: String
+  content: Json
+}
+
+input ComponentTemplateWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ComponentTemplateWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ComponentTemplateWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ComponentTemplateWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  type: String
+
+  """All values that are not equal to given value."""
+  type_not: String
+
+  """All values that are contained in given list."""
+  type_in: [String!]
+
+  """All values that are not contained in given list."""
+  type_not_in: [String!]
+
+  """All values less than the given value."""
+  type_lt: String
+
+  """All values less than or equal the given value."""
+  type_lte: String
+
+  """All values greater than the given value."""
+  type_gt: String
+
+  """All values greater than or equal the given value."""
+  type_gte: String
+
+  """All values containing the given string."""
+  type_contains: String
+
+  """All values not containing the given string."""
+  type_not_contains: String
+
+  """All values starting with the given string."""
+  type_starts_with: String
+
+  """All values not starting with the given string."""
+  type_not_starts_with: String
+
+  """All values ending with the given string."""
+  type_ends_with: String
+
+  """All values not ending with the given string."""
+  type_not_ends_with: String
+  website: WebsiteWhereInput
+  language: LanguageWhereInput
+}
+
+input ComponentTemplateWhereUniqueInput {
+  id: ID
 }
 
 type Datasource implements Node {
@@ -2441,6 +2704,7 @@ scalar Long
 
 type Mutation {
   createProject(data: ProjectCreateInput!): Project!
+  createComponentTemplate(data: ComponentTemplateCreateInput!): ComponentTemplate!
   createPageTranslation(data: PageTranslationCreateInput!): PageTranslation!
   createPagePlugin(data: PagePluginCreateInput!): PagePlugin!
   createPageTask(data: PageTaskCreateInput!): PageTask!
@@ -2459,6 +2723,7 @@ type Mutation {
   createWebsite(data: WebsiteCreateInput!): Website!
   createLanguage(data: LanguageCreateInput!): Language!
   updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
+  updateComponentTemplate(data: ComponentTemplateUpdateInput!, where: ComponentTemplateWhereUniqueInput!): ComponentTemplate
   updatePageTranslation(data: PageTranslationUpdateInput!, where: PageTranslationWhereUniqueInput!): PageTranslation
   updatePagePlugin(data: PagePluginUpdateInput!, where: PagePluginWhereUniqueInput!): PagePlugin
   updatePageTask(data: PageTaskUpdateInput!, where: PageTaskWhereUniqueInput!): PageTask
@@ -2477,6 +2742,7 @@ type Mutation {
   updateWebsite(data: WebsiteUpdateInput!, where: WebsiteWhereUniqueInput!): Website
   updateLanguage(data: LanguageUpdateInput!, where: LanguageWhereUniqueInput!): Language
   deleteProject(where: ProjectWhereUniqueInput!): Project
+  deleteComponentTemplate(where: ComponentTemplateWhereUniqueInput!): ComponentTemplate
   deletePageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
   deletePagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
   deletePageTask(where: PageTaskWhereUniqueInput!): PageTask
@@ -2495,6 +2761,7 @@ type Mutation {
   deleteWebsite(where: WebsiteWhereUniqueInput!): Website
   deleteLanguage(where: LanguageWhereUniqueInput!): Language
   upsertProject(where: ProjectWhereUniqueInput!, create: ProjectCreateInput!, update: ProjectUpdateInput!): Project!
+  upsertComponentTemplate(where: ComponentTemplateWhereUniqueInput!, create: ComponentTemplateCreateInput!, update: ComponentTemplateUpdateInput!): ComponentTemplate!
   upsertPageTranslation(where: PageTranslationWhereUniqueInput!, create: PageTranslationCreateInput!, update: PageTranslationUpdateInput!): PageTranslation!
   upsertPagePlugin(where: PagePluginWhereUniqueInput!, create: PagePluginCreateInput!, update: PagePluginUpdateInput!): PagePlugin!
   upsertPageTask(where: PageTaskWhereUniqueInput!, create: PageTaskCreateInput!, update: PageTaskUpdateInput!): PageTask!
@@ -2513,6 +2780,7 @@ type Mutation {
   upsertWebsite(where: WebsiteWhereUniqueInput!, create: WebsiteCreateInput!, update: WebsiteUpdateInput!): Website!
   upsertLanguage(where: LanguageWhereUniqueInput!, create: LanguageCreateInput!, update: LanguageUpdateInput!): Language!
   updateManyProjects(data: ProjectUpdateManyMutationInput!, where: ProjectWhereInput): BatchPayload!
+  updateManyComponentTemplates(data: ComponentTemplateUpdateManyMutationInput!, where: ComponentTemplateWhereInput): BatchPayload!
   updateManyPageTranslations(data: PageTranslationUpdateManyMutationInput!, where: PageTranslationWhereInput): BatchPayload!
   updateManyPagePlugins(data: PagePluginUpdateManyMutationInput!, where: PagePluginWhereInput): BatchPayload!
   updateManyPageTasks(data: PageTaskUpdateManyMutationInput!, where: PageTaskWhereInput): BatchPayload!
@@ -2530,6 +2798,7 @@ type Mutation {
   updateManyWebsites(data: WebsiteUpdateManyMutationInput!, where: WebsiteWhereInput): BatchPayload!
   updateManyLanguages(data: LanguageUpdateManyMutationInput!, where: LanguageWhereInput): BatchPayload!
   deleteManyProjects(where: ProjectWhereInput): BatchPayload!
+  deleteManyComponentTemplates(where: ComponentTemplateWhereInput): BatchPayload!
   deleteManyPageTranslations(where: PageTranslationWhereInput): BatchPayload!
   deleteManyPagePlugins(where: PagePluginWhereInput): BatchPayload!
   deleteManyPageTasks(where: PageTaskWhereInput): BatchPayload!
@@ -7168,6 +7437,7 @@ input ProjectWhereUniqueInput {
 
 type Query {
   projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
+  componentTemplates(where: ComponentTemplateWhereInput, orderBy: ComponentTemplateOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ComponentTemplate]!
   pageTranslations(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTranslation]!
   pagePlugins(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PagePlugin]!
   pageTasks(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTask]!
@@ -7186,6 +7456,7 @@ type Query {
   websites(where: WebsiteWhereInput, orderBy: WebsiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Website]!
   languages(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Language]!
   project(where: ProjectWhereUniqueInput!): Project
+  componentTemplate(where: ComponentTemplateWhereUniqueInput!): ComponentTemplate
   pageTranslation(where: PageTranslationWhereUniqueInput!): PageTranslation
   pagePlugin(where: PagePluginWhereUniqueInput!): PagePlugin
   pageTask(where: PageTaskWhereUniqueInput!): PageTask
@@ -7204,6 +7475,7 @@ type Query {
   website(where: WebsiteWhereUniqueInput!): Website
   language(where: LanguageWhereUniqueInput!): Language
   projectsConnection(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectConnection!
+  componentTemplatesConnection(where: ComponentTemplateWhereInput, orderBy: ComponentTemplateOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ComponentTemplateConnection!
   pageTranslationsConnection(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTranslationConnection!
   pagePluginsConnection(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PagePluginConnection!
   pageTasksConnection(where: PageTaskWhereInput, orderBy: PageTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageTaskConnection!
@@ -7535,6 +7807,7 @@ input SubscriberWhereUniqueInput {
 
 type Subscription {
   project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
+  componentTemplate(where: ComponentTemplateSubscriptionWhereInput): ComponentTemplateSubscriptionPayload
   pageTranslation(where: PageTranslationSubscriptionWhereInput): PageTranslationSubscriptionPayload
   pagePlugin(where: PagePluginSubscriptionWhereInput): PagePluginSubscriptionPayload
   pageTask(where: PageTaskSubscriptionWhereInput): PageTaskSubscriptionPayload
@@ -8767,6 +9040,19 @@ export const Prisma = makePrismaBindingClass<BindingConstructor<Prisma>>({typeDe
  * Types
 */
 
+export type ComponentTemplateOrderByInput =   'id_ASC' |
+  'id_DESC' |
+  'name_ASC' |
+  'name_DESC' |
+  'type_ASC' |
+  'type_DESC' |
+  'content_ASC' |
+  'content_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC' |
+  'createdAt_ASC' |
+  'createdAt_DESC'
+
 export type DatasourceItemOrderByInput =   'id_ASC' |
   'id_DESC' |
   'slug_ASC' |
@@ -9020,6 +9306,93 @@ export type WebsiteOrderByInput =   'id_ASC' |
   'updatedAt_DESC' |
   'createdAt_ASC' |
   'createdAt_DESC'
+
+export interface ComponentTemplateCreateInput {
+  name: String
+  type: String
+  content?: Json | null
+  website: WebsiteCreateOneInput
+  language: LanguageCreateOneInput
+}
+
+export interface ComponentTemplateSubscriptionWhereInput {
+  AND?: ComponentTemplateSubscriptionWhereInput[] | ComponentTemplateSubscriptionWhereInput | null
+  OR?: ComponentTemplateSubscriptionWhereInput[] | ComponentTemplateSubscriptionWhereInput | null
+  NOT?: ComponentTemplateSubscriptionWhereInput[] | ComponentTemplateSubscriptionWhereInput | null
+  mutation_in?: MutationType[] | MutationType | null
+  updatedFields_contains?: String | null
+  updatedFields_contains_every?: String[] | String | null
+  updatedFields_contains_some?: String[] | String | null
+  node?: ComponentTemplateWhereInput | null
+}
+
+export interface ComponentTemplateUpdateInput {
+  name?: String | null
+  type?: String | null
+  content?: Json | null
+  website?: WebsiteUpdateOneRequiredInput | null
+  language?: LanguageUpdateOneRequiredInput | null
+}
+
+export interface ComponentTemplateUpdateManyMutationInput {
+  name?: String | null
+  type?: String | null
+  content?: Json | null
+}
+
+export interface ComponentTemplateWhereInput {
+  AND?: ComponentTemplateWhereInput[] | ComponentTemplateWhereInput | null
+  OR?: ComponentTemplateWhereInput[] | ComponentTemplateWhereInput | null
+  NOT?: ComponentTemplateWhereInput[] | ComponentTemplateWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+  name?: String | null
+  name_not?: String | null
+  name_in?: String[] | String | null
+  name_not_in?: String[] | String | null
+  name_lt?: String | null
+  name_lte?: String | null
+  name_gt?: String | null
+  name_gte?: String | null
+  name_contains?: String | null
+  name_not_contains?: String | null
+  name_starts_with?: String | null
+  name_not_starts_with?: String | null
+  name_ends_with?: String | null
+  name_not_ends_with?: String | null
+  type?: String | null
+  type_not?: String | null
+  type_in?: String[] | String | null
+  type_not_in?: String[] | String | null
+  type_lt?: String | null
+  type_lte?: String | null
+  type_gt?: String | null
+  type_gte?: String | null
+  type_contains?: String | null
+  type_not_contains?: String | null
+  type_starts_with?: String | null
+  type_not_starts_with?: String | null
+  type_ends_with?: String | null
+  type_not_ends_with?: String | null
+  website?: WebsiteWhereInput | null
+  language?: LanguageWhereInput | null
+}
+
+export interface ComponentTemplateWhereUniqueInput {
+  id?: ID_Input | null
+}
 
 export interface DatasourceCreateInput {
   type: String
@@ -12791,6 +13164,10 @@ export interface Node {
   id: ID_Output
 }
 
+export interface AggregateComponentTemplate {
+  count: Int
+}
+
 export interface AggregateDatasource {
   count: Int
 }
@@ -12865,6 +13242,48 @@ export interface AggregateWebsite {
 
 export interface BatchPayload {
   count: Long
+}
+
+export interface ComponentTemplate extends Node {
+  id: ID_Output
+  name: String
+  type: String
+  content: Json
+  website: Website
+  language: Language
+}
+
+/*
+ * A connection to a list of items.
+
+ */
+export interface ComponentTemplateConnection {
+  pageInfo: PageInfo
+  edges: Array<ComponentTemplateEdge | null>
+  aggregate: AggregateComponentTemplate
+}
+
+/*
+ * An edge in a connection.
+
+ */
+export interface ComponentTemplateEdge {
+  node: ComponentTemplate
+  cursor: String
+}
+
+export interface ComponentTemplatePreviousValues {
+  id: ID_Output
+  name: String
+  type: String
+  content: Json
+}
+
+export interface ComponentTemplateSubscriptionPayload {
+  mutation: MutationType
+  node?: ComponentTemplate | null
+  updatedFields?: Array<String> | null
+  previousValues?: ComponentTemplatePreviousValues | null
 }
 
 export interface Datasource extends Node {

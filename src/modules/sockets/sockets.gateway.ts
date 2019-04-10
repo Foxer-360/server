@@ -518,7 +518,7 @@ export class SocketsGateway implements OnGatewayInit, OnGatewayConnection, OnGat
       }
 
       // Send event to client
-      const socket = this.server.sockets.sockets[client];
+      const socket = this.server.sockets.sockets[client.socketId];
       // If socket doesn't exist (some type of error)
       if (!socket || socket === null) {
         return;

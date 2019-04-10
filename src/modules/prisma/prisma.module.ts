@@ -23,6 +23,7 @@ import { SubscriptionsModule } from 'modules/subscriptions/subscriptions.module'
 import { FrontendService } from './services/frontend.service';
 import { importSchema } from 'graphql-import';
 import { PageAnnotationResolver } from './resolvers/pageAnnotation.resolver';
+import { ComponentTemplateResolver } from './resolvers/componentTemplate.resolver';
 
 import { applyMiddleware } from 'graphql-middleware';
 import graphqlPlayground from 'graphql-playground-middleware-express';
@@ -35,8 +36,8 @@ import { UserMiddleware } from 'middleware/user.middleware';
   imports: [GraphQLModule, SubscriptionsModule.forRoot(5001)],
   providers: [prismaProvider, LanguageResolver, ProjectResolver, WebsiteResolver, PageTypeResolver,
     PageResolver, PageTaskResolver, PageChatResolver, PageTranslationResolver, FrontendResolver, FrontendService, NavigationResolver,
-    TagResolver, PagePluginResolver, SubscriberResolver, InquiryResolver, DatasourceResolver, DatasourceItemResolver, PageAnnotationResolver,
-    Foxer360AuthService],
+    TagResolver, PagePluginResolver, SubscriberResolver, InquiryResolver, DatasourceResolver, DatasourceItemResolver,
+    PageAnnotationResolver, ComponentTemplateResolver, Foxer360AuthService],
   exports: [prismaProvider],
 })
 export class PrismaModule implements NestModule {
