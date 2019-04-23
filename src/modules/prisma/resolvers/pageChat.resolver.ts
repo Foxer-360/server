@@ -1,35 +1,17 @@
 import { Resolver, Mutation, Query, Subscription } from '@nestjs/graphql';
 import { Prisma, PageChatSubscriptionPayload } from 'generated/prisma';
-import { request } from 'graphql-request';
-
-// TODO place to service
-const getUsers = async () => {
-  const { users }: any = await request(
-    process.env.AUTHORIZATION_API_ADDRESS,
-    `
-    query {
-      users {
-        username
-        avatar
-        email
-        auth0id
-      }
-    }
-    `,
-  );
-
-  return users;
-};
+import { Foxer360AuthService } from '../../../common/services/foxer360auth.service';
 
 @Resolver('pageChat')
 export class PageChatResolver {
 
-  constructor(private readonly prisma: Prisma) {}
+  constructor(private readonly prisma: Prisma,
+              private readonly foxer360auth: Foxer360AuthService) {}
 
   @Query('pageChat')
   public async getPageChat(obj, args, context, info): Promise<any> {
 
-    const users: any = await getUsers();
+    const users = await this.foxer360auth.getAllUsers();
 
     const pageChat: any = await this.prisma.query.pageChat(args, info);
     const pageChatWithAuth0id = await this.prisma.query.pageChat({ where: { id: pageChat.id } }, '{ id auth0id }');
@@ -40,7 +22,7 @@ export class PageChatResolver {
   @Query('pageChats')
   public async getPageChats(obj, args, context, info): Promise<any> {
 
-    const users: any = await getUsers();
+    const users = await this.foxer360auth.getAllUsers();
 
     const pageChats = await this.prisma.query.pageChats(args, info);
     const pageChatsWithAuth0id = await this.prisma.query.pageChats(args, '{ id auth0id }');
@@ -60,7 +42,7 @@ export class PageChatResolver {
   @Mutation('createPageChat')
   public async createPageChat(obj, args, context, info): Promise<any> {
 
-    const users: any = await getUsers();
+    const users = await this.foxer360auth.getAllUsers();
 
     const auth0id = context.user && context.user.sub.split('|')[1];
     const pageChat: any = await this.prisma.mutation.createPageChat({ ...args, data: { ...args.data, auth0id } }, info);
@@ -72,7 +54,7 @@ export class PageChatResolver {
   @Mutation('updatePageChat')
   public async updatePageChat(obj, args, context, info): Promise<any> {
 
-    const users: any = await getUsers();
+    const users = await this.foxer360auth.getAllUsers();
 
     const pageChat: any = await this.prisma.mutation.updatePageChat(args, info);
     const pageChatWithAuth0id = await this.prisma.query.pageChat({ where: { id: pageChat.id } }, '{ id auth0id }');
@@ -91,7 +73,7 @@ export class PageChatResolver {
   public pageChat() {
     return {
       resolve: async (payload, args, context, info) => {
-        const users: any = await getUsers();
+        const users = await this.foxer360auth.getAllUsers();
         const { pageChat } = payload;
         if (pageChat.node.id) {
           const pageChatWithAuth0id = await this.prisma.query.pageChat({ where: { id: pageChat.node.id } }, '{ id auth0id }');
