@@ -6,7 +6,7 @@ import { asyncForEach } from 'utils';
 import { AuthGuard } from 'common/guards/auth.guard';
 
 @Resolver('page')
-@UseGuards(AuthGuard)
+// @UseGuards(AuthGuard)
 export class PageResolver {
 
   constructor(private readonly prisma: Prisma) {}
@@ -144,6 +144,7 @@ export class PageResolver {
     return Promise.resolve(res);
   }
 
+  @UseGuards(AuthGuard)
   @Mutation('createPage')
   public async createPage(obj, args, context, info): Promise<any> {
     // Parse informations for translation
@@ -211,16 +212,19 @@ export class PageResolver {
     return await this.prisma.query.page({ where: { id: page }}, info);
   }
 
+  @UseGuards(AuthGuard)
   @Mutation('updatePage')
   public async updatePage(obj, args, context, info): Promise<any> {
     return await this.prisma.mutation.updatePage(args, info);
   }
 
+  @UseGuards(AuthGuard)
   @Mutation('deletePage')
   public async deletePage(obj, args, context, info): Promise<any> {
     return await this.prisma.mutation.deletePage(args, info);
   }
 
+  @UseGuards(AuthGuard)
   @Mutation('updatePageTranslation')
   public async updatePageTranslation(obj, args, context, info): Promise<any> {
     return await this.prisma.mutation.updatePageTranslation(args, info);

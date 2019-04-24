@@ -15,6 +15,18 @@ const log = (message: string): void => {
   console.log(`${prefix} ${msg}`);
 };
 
+const logOperation = (args: any): void => {
+  const prefix = Colors.yellow(Colors.bright('[GraphQL Operation]'));
+  let op = `Operation wan't provided!`;
+  if (args && args.body && args.body.operationName) {
+    op = args.body.operationName;
+  }
+  const text = Colors.yellow(op);
+
+  // tslint:disable-next-line:no-console
+  console.log(`${prefix} ${text}`);
+};
+
 @Injectable()
 export class AuthGuard implements CanActivate {
 
@@ -28,6 +40,7 @@ export class AuthGuard implements CanActivate {
     }
     const args = context.getArgByIndex(0);
     if (!args || !args.headers || !args.headers.authorization) {
+      logOperation(args);
       log(`Bearer wasn't provided!`);
       return false;
     }
@@ -35,6 +48,7 @@ export class AuthGuard implements CanActivate {
     const regex = /^Bearer\s*([^\s]+)$/i;
     const match = regex.exec(args.headers.authorization);
     if (!match || !match[1]) {
+      logOperation(args);
       log(`Bearer wasn't provided!`);
       return false;
     }
@@ -53,6 +67,7 @@ export class AuthGuard implements CanActivate {
     return new Promise((resolve) => {
       jwt.verify(accessToken, getSigningPublicKey(this.client), options, (err, decode) => {
         if (err) {
+          logOperation(args);
           log(err.toString());
 
           return resolve(false);
