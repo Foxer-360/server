@@ -1,9 +1,13 @@
+import { UseGuards } from '@nestjs/common';
 import { Resolver, Mutation, Query, Subscription } from '@nestjs/graphql';
 import { Prisma } from 'generated/prisma';
 import { lookupService } from 'dns';
 import { Foxer360AuthService } from '../../../common/services/foxer360auth.service';
 
+import { AuthGuard } from 'common/guards/auth.guard';
+
 @Resolver('pageTask')
+@UseGuards(AuthGuard)
 export class PageTaskResolver {
   constructor(private readonly prisma: Prisma,
               private readonly foxer360auth: Foxer360AuthService) {}

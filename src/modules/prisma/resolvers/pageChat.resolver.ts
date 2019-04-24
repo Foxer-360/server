@@ -1,8 +1,12 @@
+import { UseGuards } from '@nestjs/common';
 import { Resolver, Mutation, Query, Subscription } from '@nestjs/graphql';
 import { Prisma, PageChatSubscriptionPayload } from 'generated/prisma';
 import { Foxer360AuthService } from '../../../common/services/foxer360auth.service';
 
+import { AuthGuard } from 'common/guards/auth.guard';
+
 @Resolver('pageChat')
+@UseGuards(AuthGuard)
 export class PageChatResolver {
 
   constructor(private readonly prisma: Prisma,

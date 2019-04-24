@@ -1,8 +1,12 @@
+import { UseGuards } from '@nestjs/common';
 import { Resolver, Mutation, Query } from '@nestjs/graphql';
 import { Prisma, PageTranslationCreateInput } from 'generated/prisma';
 import { asyncForEach } from 'utils';
 
+import { AuthGuard } from 'common/guards/auth.guard';
+
 @Resolver('page')
+@UseGuards(AuthGuard)
 export class PageResolver {
 
   constructor(private readonly prisma: Prisma) {}

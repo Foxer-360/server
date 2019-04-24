@@ -1,7 +1,11 @@
+import { UseGuards } from '@nestjs/common';
 import { Resolver, Mutation, Query } from '@nestjs/graphql';
 import { Prisma } from 'generated/prisma';
 
+import { AuthGuard } from 'common/guards/auth.guard';
+
 @Resolver('datasourceItem')
+@UseGuards(AuthGuard)
 export class DatasourceItemResolver {
 
   constructor(private readonly prisma: Prisma) {}
