@@ -1,6 +1,6 @@
 {
   "name": "@foxer360/server",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The main server for this system. It's written in NestJS and uses Prisma to access DB.",
   "repository": "git@github.com:Foxer-360/server.git",
   "author": "Filip Suchý <nevim42@gmail.com>",
