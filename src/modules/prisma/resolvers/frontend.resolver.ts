@@ -101,6 +101,7 @@ export class FrontendResolver {
         name
       }
       urlMask
+      googleTrackingPixel
       settings
     }`;
 
