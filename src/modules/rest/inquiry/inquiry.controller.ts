@@ -56,10 +56,11 @@ export class InquiryController {
       }
 
       const ip = req.headers['x-forwarded-for'] || req.ip || 'Ip address didn\'t captured.';
-      const attachment = result && result.file
-        ? `${process.env.AWS_ADDRESS}${result.file.category}${result.file.hash}_${result.file.filename}`
-        : null;
 
+      // result.file in case, file already existed, result.location in case it didn't
+      const attachment = result && (result.file || result.Location);
+
+      process.exit();
       const inquiry = await this.prisma.mutation.createInquiry({
         data: {
           message: {
