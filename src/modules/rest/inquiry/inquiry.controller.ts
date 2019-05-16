@@ -25,7 +25,11 @@ export class InquiryController {
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file', { dest: '/tmp' }))
-  public async upload(@UploadedFile() file, @Req() req, @Res() res) {
+  public upload(@UploadedFile() file, @Req() req, @Res() res) {
+    this.submit(file, req, res);
+  }
+
+  private async submit(@UploadedFile() file, @Req() req, @Res() res) {
     let formData = null;
     let result = null;
 
