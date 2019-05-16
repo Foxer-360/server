@@ -5,12 +5,19 @@ import {
   FileInterceptor,
   UseInterceptors,
   UploadedFile,
+  MulterModule,
   Res,
 } from '@nestjs/common';
 import { Prisma } from 'generated/prisma';
 import * as fs from 'fs';
 import * as request from 'request-promise';
 import { SESNotifier } from 'utils/ses-notifier';
+
+MulterModule.registerAsync({
+  useFactory: () => ({
+    dest: '/inquiry/upload',
+  }),
+});
 
 @Controller('inquiry')
 export class InquiryController {
