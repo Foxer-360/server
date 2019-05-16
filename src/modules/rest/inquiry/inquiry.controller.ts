@@ -60,7 +60,6 @@ export class InquiryController {
       // result.file in case, file already existed, result.location in case it didn't
       const attachment = result && (result.file || result.Location);
 
-      process.exit();
       const inquiry = await this.prisma.mutation.createInquiry({
         data: {
           message: {
