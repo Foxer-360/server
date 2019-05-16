@@ -31,13 +31,14 @@ import authorizationMiddleware from 'foxer360-authorization';
 import { checkJwt } from '../../middleware';
 import { Foxer360AuthService } from '../../common/services/foxer360auth.service';
 import { UserMiddleware } from 'middleware/user.middleware';
+import { jwksProvider } from 'common/providers/jwks.provider';
 
 @Module({
   imports: [GraphQLModule, SubscriptionsModule.forRoot(5001)],
   providers: [prismaProvider, LanguageResolver, ProjectResolver, WebsiteResolver, PageTypeResolver,
     PageResolver, PageTaskResolver, PageChatResolver, PageTranslationResolver, FrontendResolver, FrontendService, NavigationResolver,
     TagResolver, PagePluginResolver, SubscriberResolver, InquiryResolver, DatasourceResolver, DatasourceItemResolver,
-    PageAnnotationResolver, ComponentTemplateResolver, Foxer360AuthService],
+    PageAnnotationResolver, ComponentTemplateResolver, Foxer360AuthService, jwksProvider],
   exports: [prismaProvider],
 })
 export class PrismaModule implements NestModule {
@@ -95,8 +96,8 @@ export class PrismaModule implements NestModule {
     );
 
     consumer
-    .apply(checkJwt)
-    .forRoutes('/graphql')
+    // .apply(checkJwt)
+    // .forRoutes('/graphql')
     .apply(UserMiddleware)
     .forRoutes('/graphql')
     .apply((req, res, next, err) => {

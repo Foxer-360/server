@@ -1,10 +1,13 @@
+import { UseGuards } from '@nestjs/common';
 import { Resolver, Mutation, Query } from '@nestjs/graphql';
 import { Prisma } from 'generated/prisma';
 
 import { Foxer360AuthService } from '../../../common/services/foxer360auth.service';
 import { parseAccessTokenFromHeader } from '../../../utils';
+import { AuthGuard } from 'common/guards/auth.guard';
 
 @Resolver('project')
+@UseGuards(AuthGuard)
 export class ProjectResolver {
 
   constructor(private readonly prisma: Prisma,

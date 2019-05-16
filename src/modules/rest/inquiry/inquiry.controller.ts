@@ -31,20 +31,30 @@ export class InquiryController {
 
     if (file && file.path) {
       formData = {
-        file: fs.createReadStream(file.path),
+         file: {
+          value: fs.createReadStream(file.path),
+          options: {
+            filename: file.originalname,
+            mimetype: file.mimetype,
+          },
+        },
+        category: process.env.MEDIA_LIBRARY_SERVER__CATEGORY,
       };
     }
 
     try {
       if (formData) {
         result = await request.post({
-          url: `${process.env.MEDIA_LIBRARY_SERVER}/upload`
-          + `?category=${process.env.MEDIA_LIBRARY_SERVER__CATEGORY}`,
+          url: `${process.env.MEDIA_LIBRARY_SERVER}/upload`,
           formData,
           json: true,
         });
       }
+
       const ip = req.headers['x-forwarded-for'] || req.ip || 'Ip address didn\'t captured.';
+      const attachment = result && result.file
+        ? `${process.env.AWS_ADDRESS}${result.file.category}${result.file.hash}_${result.file.filename}`
+        : null;
 
       const inquiry = await this.prisma.mutation.createInquiry({
         data: {
@@ -54,7 +64,7 @@ export class InquiryController {
             phone: req.body.phone,
             email: req.body.email,
             text: req.body.text,
-            attachment: result && result.file ? `${process.env.AWS_ADDRESS}${result.file.category}${result.file.hash}_${result.file.filename}` : null,
+            attachment,
             subject: req.body.subject,
           },
           url: req.body.url,
@@ -72,6 +82,7 @@ export class InquiryController {
         `Phone: ${req.body.phone}\n` +
         `E-mail: ${req.body.email}\n\n` +
         `Source: ${req.body.url}\n` +
+        `Attachment URL: ${attachment}\n` +
         `IP: ${ip}\n`;
 
       SESNotifier.notify(

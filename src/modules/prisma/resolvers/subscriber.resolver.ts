@@ -1,8 +1,12 @@
+import { UseGuards } from '@nestjs/common';
 import { Resolver, Mutation, Query } from '@nestjs/graphql';
 import { SESNotifier } from 'utils/ses-notifier';
 import { Prisma } from 'generated/prisma';
 
+import { AuthGuard } from 'common/guards/auth.guard';
+
 @Resolver('subscriber')
+@UseGuards(AuthGuard)
 export class SubscriberResolver {
 
   constructor(private readonly prisma: Prisma) {}

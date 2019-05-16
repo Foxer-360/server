@@ -1,8 +1,11 @@
+import { UseGuards, Req } from '@nestjs/common';
 import { Resolver, Mutation, Query } from '@nestjs/graphql';
-import { Req } from '@nestjs/common';
 import { Prisma } from 'generated/prisma';
 
+import { AuthGuard } from 'common/guards/auth.guard';
+
 @Resolver('inquiry')
+@UseGuards(AuthGuard)
 export class InquiryResolver {
 
   constructor(private readonly prisma: Prisma) {}

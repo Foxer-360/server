@@ -20,6 +20,14 @@ export interface IWebsite {
   };
 }
 
+export interface IUser {
+  auth0id: string;
+  avatar: string;
+  email: string;
+  id: string;
+  username: string;
+}
+
 @Injectable()
 export class Foxer360AuthService {
 
@@ -273,6 +281,34 @@ export class Foxer360AuthService {
     }
 
     const mapped = result.data.enabledWebsites.map((website) => website.foxer360Id);
+    return Promise.resolve(mapped);
+  }
+
+  public async getAllUsers(): Promise<IUser[]> {
+    const query = gql`query {
+      users(
+        ${this.clientAccessIdentity}
+      ) {
+        auth0Id
+        avatar
+        email
+        name
+      }
+    }`;
+    const result = await this.client.query({ query, fetchPolicy: 'no-cache' });
+    if (!result || !result.data || !result.data.users || result.data.users.length < 1) {
+      return Promise.resolve([] as IUser[]);
+    }
+
+    const mapped = result.data.users.map((user) => {
+      return {
+        auth0id: user.auth0Id,
+        email: user.email,
+        username: user.name,
+        avatar: user.avatar,
+      } as IUser;
+    }) as IUser[];
+
     return Promise.resolve(mapped);
   }
 
