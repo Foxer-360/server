@@ -6,17 +6,18 @@ import { Prisma } from 'generated/prisma';
 import { AuthGuard } from 'common/guards/auth.guard';
 
 @Resolver('subscriber')
-@UseGuards(AuthGuard)
 export class SubscriberResolver {
 
   constructor(private readonly prisma: Prisma) {}
 
   @Query('subscriber')
+  @UseGuards(AuthGuard)
   public async getSubscriber(obj, args, context, info): Promise<any> {
     return await this.prisma.query.subscriber(args, info);
   }
 
   @Query('subscribers')
+  @UseGuards(AuthGuard)
   public async getSubscribers(obj, args, context, info): Promise<any> {
     return await this.prisma.query.subscribers(args, info);
   }
@@ -40,11 +41,13 @@ export class SubscriberResolver {
   }
 
   @Mutation('updateSubscriber')
+  @UseGuards(AuthGuard)
   public async updateSubscriber(obj, args, context, info): Promise<any> {
     return await this.prisma.mutation.updateSubscriber(args, info);
   }
 
   @Mutation('deleteSubscriber')
+  @UseGuards(AuthGuard)
   public async deleteSubscriber(obj, args, context, info): Promise<any> {
     return await this.prisma.mutation.deleteSubscriber(args, info);
   }
