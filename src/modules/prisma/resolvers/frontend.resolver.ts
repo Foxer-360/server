@@ -13,7 +13,7 @@ export class FrontendResolver {
 
   @Query('frontend')
   public async getLanguage(obj, args, context, info): Promise<any> {
-    const { url } = args.where;
+    let { url } = args.where;
 
     const emptyRes = null;
 
@@ -35,6 +35,10 @@ export class FrontendResolver {
     if (!origin) {
       return Promise.resolve(emptyRes);
     }
+
+    // Remove query from url, to correctly resolve page url
+    const queryRegex = /\?.*$/i;
+    url = url.replace(queryRegex, '');
 
     const originWithoutProtocolRegexRes = hostOriginRegex.exec(origin);
 
