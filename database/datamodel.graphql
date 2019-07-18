@@ -64,7 +64,7 @@ type Page {
   translations: [PageTranslation!]! @relation(name: "TranslationForPage", onDelete: CASCADE)
   chats: [PageChat!]! @relation(name: "ChatUnderPage", onDelete: CASCADE)
   tags: [Tag!]! @relation(name: "TagOnPage")
-  plugin: PagePlugin @relation(name: "PluginForPage", onDelete: CASCADE)
+  plugin: [PagePlugin!] @relation(name: "PluginForPage", onDelete: CASCADE)
   datasources: [Datasource!]! @relation(name: "DatasourceOnPage")
 }
 

@@ -3711,7 +3711,7 @@ type Page implements Node {
   translations(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTranslation!]
   chats(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageChat!]
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag!]
-  plugin: PagePlugin
+  plugin(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PagePlugin!]
   datasources(where: DatasourceWhereInput, orderBy: DatasourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Datasource!]
 }
 
@@ -4610,7 +4610,7 @@ input PageCreateInput {
   translations: PageTranslationCreateManyWithoutPageInput
   chats: PageChatCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
-  plugin: PagePluginCreateOneWithoutPageInput
+  plugin: PagePluginCreateManyWithoutPageInput
   datasources: DatasourceCreateManyWithoutPageInput
 }
 
@@ -4655,7 +4655,7 @@ input PageCreateWithoutChatsInput {
   type: PageTypeCreateOneInput!
   translations: PageTranslationCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
-  plugin: PagePluginCreateOneWithoutPageInput
+  plugin: PagePluginCreateManyWithoutPageInput
   datasources: DatasourceCreateManyWithoutPageInput
 }
 
@@ -4666,7 +4666,7 @@ input PageCreateWithoutDatasourcesInput {
   translations: PageTranslationCreateManyWithoutPageInput
   chats: PageChatCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
-  plugin: PagePluginCreateOneWithoutPageInput
+  plugin: PagePluginCreateManyWithoutPageInput
 }
 
 input PageCreateWithoutPluginInput {
@@ -4685,7 +4685,7 @@ input PageCreateWithoutTagsInput {
   type: PageTypeCreateOneInput!
   translations: PageTranslationCreateManyWithoutPageInput
   chats: PageChatCreateManyWithoutPageInput
-  plugin: PagePluginCreateOneWithoutPageInput
+  plugin: PagePluginCreateManyWithoutPageInput
   datasources: DatasourceCreateManyWithoutPageInput
 }
 
@@ -4695,7 +4695,7 @@ input PageCreateWithoutTranslationsInput {
   type: PageTypeCreateOneInput!
   chats: PageChatCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
-  plugin: PagePluginCreateOneWithoutPageInput
+  plugin: PagePluginCreateManyWithoutPageInput
   datasources: DatasourceCreateManyWithoutPageInput
 }
 
@@ -4705,7 +4705,7 @@ input PageCreateWithoutWebsiteInput {
   translations: PageTranslationCreateManyWithoutPageInput
   chats: PageChatCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
-  plugin: PagePluginCreateOneWithoutPageInput
+  plugin: PagePluginCreateManyWithoutPageInput
   datasources: DatasourceCreateManyWithoutPageInput
 }
 
@@ -4767,9 +4767,9 @@ input PagePluginCreateInput {
   language: LanguageCreateOneInput!
 }
 
-input PagePluginCreateOneWithoutPageInput {
-  create: PagePluginCreateWithoutPageInput
-  connect: PagePluginWhereUniqueInput
+input PagePluginCreateManyWithoutPageInput {
+  create: [PagePluginCreateWithoutPageInput!]
+  connect: [PagePluginWhereUniqueInput!]
 }
 
 input PagePluginCreateWithoutPageInput {
@@ -4804,6 +4804,97 @@ type PagePluginPreviousValues {
   id: ID!
   plugin: String!
   content: Json!
+}
+
+input PagePluginScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PagePluginScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PagePluginScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PagePluginScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  plugin: String
+
+  """All values that are not equal to given value."""
+  plugin_not: String
+
+  """All values that are contained in given list."""
+  plugin_in: [String!]
+
+  """All values that are not contained in given list."""
+  plugin_not_in: [String!]
+
+  """All values less than the given value."""
+  plugin_lt: String
+
+  """All values less than or equal the given value."""
+  plugin_lte: String
+
+  """All values greater than the given value."""
+  plugin_gt: String
+
+  """All values greater than or equal the given value."""
+  plugin_gte: String
+
+  """All values containing the given string."""
+  plugin_contains: String
+
+  """All values not containing the given string."""
+  plugin_not_contains: String
+
+  """All values starting with the given string."""
+  plugin_starts_with: String
+
+  """All values not starting with the given string."""
+  plugin_not_starts_with: String
+
+  """All values ending with the given string."""
+  plugin_ends_with: String
+
+  """All values not ending with the given string."""
+  plugin_not_ends_with: String
 }
 
 type PagePluginSubscriptionPayload {
@@ -4852,18 +4943,31 @@ input PagePluginUpdateInput {
   language: LanguageUpdateOneRequiredInput
 }
 
+input PagePluginUpdateManyDataInput {
+  plugin: String
+  content: Json
+}
+
 input PagePluginUpdateManyMutationInput {
   plugin: String
   content: Json
 }
 
-input PagePluginUpdateOneWithoutPageInput {
-  create: PagePluginCreateWithoutPageInput
-  connect: PagePluginWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-  update: PagePluginUpdateWithoutPageDataInput
-  upsert: PagePluginUpsertWithoutPageInput
+input PagePluginUpdateManyWithoutPageInput {
+  create: [PagePluginCreateWithoutPageInput!]
+  connect: [PagePluginWhereUniqueInput!]
+  set: [PagePluginWhereUniqueInput!]
+  disconnect: [PagePluginWhereUniqueInput!]
+  delete: [PagePluginWhereUniqueInput!]
+  update: [PagePluginUpdateWithWhereUniqueWithoutPageInput!]
+  updateMany: [PagePluginUpdateManyWithWhereNestedInput!]
+  deleteMany: [PagePluginScalarWhereInput!]
+  upsert: [PagePluginUpsertWithWhereUniqueWithoutPageInput!]
+}
+
+input PagePluginUpdateManyWithWhereNestedInput {
+  where: PagePluginScalarWhereInput!
+  data: PagePluginUpdateManyDataInput!
 }
 
 input PagePluginUpdateWithoutPageDataInput {
@@ -4872,7 +4976,13 @@ input PagePluginUpdateWithoutPageDataInput {
   language: LanguageUpdateOneRequiredInput
 }
 
-input PagePluginUpsertWithoutPageInput {
+input PagePluginUpdateWithWhereUniqueWithoutPageInput {
+  where: PagePluginWhereUniqueInput!
+  data: PagePluginUpdateWithoutPageDataInput!
+}
+
+input PagePluginUpsertWithWhereUniqueWithoutPageInput {
+  where: PagePluginWhereUniqueInput!
   update: PagePluginUpdateWithoutPageDataInput!
   create: PagePluginCreateWithoutPageInput!
 }
@@ -6835,7 +6945,7 @@ input PageUpdateDataInput {
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
-  plugin: PagePluginUpdateOneWithoutPageInput
+  plugin: PagePluginUpdateManyWithoutPageInput
   datasources: DatasourceUpdateManyWithoutPageInput
 }
 
@@ -6846,7 +6956,7 @@ input PageUpdateInput {
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
-  plugin: PagePluginUpdateOneWithoutPageInput
+  plugin: PagePluginUpdateManyWithoutPageInput
   datasources: DatasourceUpdateManyWithoutPageInput
 }
 
@@ -6919,7 +7029,7 @@ input PageUpdateWithoutChatsDataInput {
   type: PageTypeUpdateOneRequiredInput
   translations: PageTranslationUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
-  plugin: PagePluginUpdateOneWithoutPageInput
+  plugin: PagePluginUpdateManyWithoutPageInput
   datasources: DatasourceUpdateManyWithoutPageInput
 }
 
@@ -6930,7 +7040,7 @@ input PageUpdateWithoutDatasourcesDataInput {
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
-  plugin: PagePluginUpdateOneWithoutPageInput
+  plugin: PagePluginUpdateManyWithoutPageInput
 }
 
 input PageUpdateWithoutPluginDataInput {
@@ -6949,7 +7059,7 @@ input PageUpdateWithoutTagsDataInput {
   type: PageTypeUpdateOneRequiredInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
-  plugin: PagePluginUpdateOneWithoutPageInput
+  plugin: PagePluginUpdateManyWithoutPageInput
   datasources: DatasourceUpdateManyWithoutPageInput
 }
 
@@ -6959,7 +7069,7 @@ input PageUpdateWithoutTranslationsDataInput {
   type: PageTypeUpdateOneRequiredInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
-  plugin: PagePluginUpdateOneWithoutPageInput
+  plugin: PagePluginUpdateManyWithoutPageInput
   datasources: DatasourceUpdateManyWithoutPageInput
 }
 
@@ -6969,7 +7079,7 @@ input PageUpdateWithoutWebsiteDataInput {
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
-  plugin: PagePluginUpdateOneWithoutPageInput
+  plugin: PagePluginUpdateManyWithoutPageInput
   datasources: DatasourceUpdateManyWithoutPageInput
 }
 
@@ -7087,7 +7197,9 @@ input PageWhereInput {
   tags_every: TagWhereInput
   tags_some: TagWhereInput
   tags_none: TagWhereInput
-  plugin: PagePluginWhereInput
+  plugin_every: PagePluginWhereInput
+  plugin_some: PagePluginWhereInput
+  plugin_none: PagePluginWhereInput
   datasources_every: DatasourceWhereInput
   datasources_some: DatasourceWhereInput
   datasources_none: DatasourceWhereInput
@@ -11021,7 +11133,7 @@ export interface PageCreateInput {
   translations?: PageTranslationCreateManyWithoutPageInput | null
   chats?: PageChatCreateManyWithoutPageInput | null
   tags?: TagCreateManyWithoutPagesInput | null
-  plugin?: PagePluginCreateOneWithoutPageInput | null
+  plugin?: PagePluginCreateManyWithoutPageInput | null
   datasources?: DatasourceCreateManyWithoutPageInput | null
 }
 
@@ -11066,7 +11178,7 @@ export interface PageCreateWithoutChatsInput {
   type: PageTypeCreateOneInput
   translations?: PageTranslationCreateManyWithoutPageInput | null
   tags?: TagCreateManyWithoutPagesInput | null
-  plugin?: PagePluginCreateOneWithoutPageInput | null
+  plugin?: PagePluginCreateManyWithoutPageInput | null
   datasources?: DatasourceCreateManyWithoutPageInput | null
 }
 
@@ -11077,7 +11189,7 @@ export interface PageCreateWithoutDatasourcesInput {
   translations?: PageTranslationCreateManyWithoutPageInput | null
   chats?: PageChatCreateManyWithoutPageInput | null
   tags?: TagCreateManyWithoutPagesInput | null
-  plugin?: PagePluginCreateOneWithoutPageInput | null
+  plugin?: PagePluginCreateManyWithoutPageInput | null
 }
 
 export interface PageCreateWithoutPluginInput {
@@ -11096,7 +11208,7 @@ export interface PageCreateWithoutTagsInput {
   type: PageTypeCreateOneInput
   translations?: PageTranslationCreateManyWithoutPageInput | null
   chats?: PageChatCreateManyWithoutPageInput | null
-  plugin?: PagePluginCreateOneWithoutPageInput | null
+  plugin?: PagePluginCreateManyWithoutPageInput | null
   datasources?: DatasourceCreateManyWithoutPageInput | null
 }
 
@@ -11106,7 +11218,7 @@ export interface PageCreateWithoutTranslationsInput {
   type: PageTypeCreateOneInput
   chats?: PageChatCreateManyWithoutPageInput | null
   tags?: TagCreateManyWithoutPagesInput | null
-  plugin?: PagePluginCreateOneWithoutPageInput | null
+  plugin?: PagePluginCreateManyWithoutPageInput | null
   datasources?: DatasourceCreateManyWithoutPageInput | null
 }
 
@@ -11116,7 +11228,7 @@ export interface PageCreateWithoutWebsiteInput {
   translations?: PageTranslationCreateManyWithoutPageInput | null
   chats?: PageChatCreateManyWithoutPageInput | null
   tags?: TagCreateManyWithoutPagesInput | null
-  plugin?: PagePluginCreateOneWithoutPageInput | null
+  plugin?: PagePluginCreateManyWithoutPageInput | null
   datasources?: DatasourceCreateManyWithoutPageInput | null
 }
 
@@ -11127,15 +11239,49 @@ export interface PagePluginCreateInput {
   language: LanguageCreateOneInput
 }
 
-export interface PagePluginCreateOneWithoutPageInput {
-  create?: PagePluginCreateWithoutPageInput | null
-  connect?: PagePluginWhereUniqueInput | null
+export interface PagePluginCreateManyWithoutPageInput {
+  create?: PagePluginCreateWithoutPageInput[] | PagePluginCreateWithoutPageInput | null
+  connect?: PagePluginWhereUniqueInput[] | PagePluginWhereUniqueInput | null
 }
 
 export interface PagePluginCreateWithoutPageInput {
   plugin: String
   content?: Json | null
   language: LanguageCreateOneInput
+}
+
+export interface PagePluginScalarWhereInput {
+  AND?: PagePluginScalarWhereInput[] | PagePluginScalarWhereInput | null
+  OR?: PagePluginScalarWhereInput[] | PagePluginScalarWhereInput | null
+  NOT?: PagePluginScalarWhereInput[] | PagePluginScalarWhereInput | null
+  id?: ID_Input | null
+  id_not?: ID_Input | null
+  id_in?: ID_Output[] | ID_Output | null
+  id_not_in?: ID_Output[] | ID_Output | null
+  id_lt?: ID_Input | null
+  id_lte?: ID_Input | null
+  id_gt?: ID_Input | null
+  id_gte?: ID_Input | null
+  id_contains?: ID_Input | null
+  id_not_contains?: ID_Input | null
+  id_starts_with?: ID_Input | null
+  id_not_starts_with?: ID_Input | null
+  id_ends_with?: ID_Input | null
+  id_not_ends_with?: ID_Input | null
+  plugin?: String | null
+  plugin_not?: String | null
+  plugin_in?: String[] | String | null
+  plugin_not_in?: String[] | String | null
+  plugin_lt?: String | null
+  plugin_lte?: String | null
+  plugin_gt?: String | null
+  plugin_gte?: String | null
+  plugin_contains?: String | null
+  plugin_not_contains?: String | null
+  plugin_starts_with?: String | null
+  plugin_not_starts_with?: String | null
+  plugin_ends_with?: String | null
+  plugin_not_ends_with?: String | null
 }
 
 export interface PagePluginSubscriptionWhereInput {
@@ -11156,18 +11302,31 @@ export interface PagePluginUpdateInput {
   language?: LanguageUpdateOneRequiredInput | null
 }
 
+export interface PagePluginUpdateManyDataInput {
+  plugin?: String | null
+  content?: Json | null
+}
+
 export interface PagePluginUpdateManyMutationInput {
   plugin?: String | null
   content?: Json | null
 }
 
-export interface PagePluginUpdateOneWithoutPageInput {
-  create?: PagePluginCreateWithoutPageInput | null
-  connect?: PagePluginWhereUniqueInput | null
-  disconnect?: Boolean | null
-  delete?: Boolean | null
-  update?: PagePluginUpdateWithoutPageDataInput | null
-  upsert?: PagePluginUpsertWithoutPageInput | null
+export interface PagePluginUpdateManyWithoutPageInput {
+  create?: PagePluginCreateWithoutPageInput[] | PagePluginCreateWithoutPageInput | null
+  connect?: PagePluginWhereUniqueInput[] | PagePluginWhereUniqueInput | null
+  set?: PagePluginWhereUniqueInput[] | PagePluginWhereUniqueInput | null
+  disconnect?: PagePluginWhereUniqueInput[] | PagePluginWhereUniqueInput | null
+  delete?: PagePluginWhereUniqueInput[] | PagePluginWhereUniqueInput | null
+  update?: PagePluginUpdateWithWhereUniqueWithoutPageInput[] | PagePluginUpdateWithWhereUniqueWithoutPageInput | null
+  updateMany?: PagePluginUpdateManyWithWhereNestedInput[] | PagePluginUpdateManyWithWhereNestedInput | null
+  deleteMany?: PagePluginScalarWhereInput[] | PagePluginScalarWhereInput | null
+  upsert?: PagePluginUpsertWithWhereUniqueWithoutPageInput[] | PagePluginUpsertWithWhereUniqueWithoutPageInput | null
+}
+
+export interface PagePluginUpdateManyWithWhereNestedInput {
+  where: PagePluginScalarWhereInput
+  data: PagePluginUpdateManyDataInput
 }
 
 export interface PagePluginUpdateWithoutPageDataInput {
@@ -11176,7 +11335,13 @@ export interface PagePluginUpdateWithoutPageDataInput {
   language?: LanguageUpdateOneRequiredInput | null
 }
 
-export interface PagePluginUpsertWithoutPageInput {
+export interface PagePluginUpdateWithWhereUniqueWithoutPageInput {
+  where: PagePluginWhereUniqueInput
+  data: PagePluginUpdateWithoutPageDataInput
+}
+
+export interface PagePluginUpsertWithWhereUniqueWithoutPageInput {
+  where: PagePluginWhereUniqueInput
   update: PagePluginUpdateWithoutPageDataInput
   create: PagePluginCreateWithoutPageInput
 }
@@ -12079,7 +12244,7 @@ export interface PageUpdateDataInput {
   translations?: PageTranslationUpdateManyWithoutPageInput | null
   chats?: PageChatUpdateManyWithoutPageInput | null
   tags?: TagUpdateManyWithoutPagesInput | null
-  plugin?: PagePluginUpdateOneWithoutPageInput | null
+  plugin?: PagePluginUpdateManyWithoutPageInput | null
   datasources?: DatasourceUpdateManyWithoutPageInput | null
 }
 
@@ -12090,7 +12255,7 @@ export interface PageUpdateInput {
   translations?: PageTranslationUpdateManyWithoutPageInput | null
   chats?: PageChatUpdateManyWithoutPageInput | null
   tags?: TagUpdateManyWithoutPagesInput | null
-  plugin?: PagePluginUpdateOneWithoutPageInput | null
+  plugin?: PagePluginUpdateManyWithoutPageInput | null
   datasources?: DatasourceUpdateManyWithoutPageInput | null
 }
 
@@ -12163,7 +12328,7 @@ export interface PageUpdateWithoutChatsDataInput {
   type?: PageTypeUpdateOneRequiredInput | null
   translations?: PageTranslationUpdateManyWithoutPageInput | null
   tags?: TagUpdateManyWithoutPagesInput | null
-  plugin?: PagePluginUpdateOneWithoutPageInput | null
+  plugin?: PagePluginUpdateManyWithoutPageInput | null
   datasources?: DatasourceUpdateManyWithoutPageInput | null
 }
 
@@ -12174,7 +12339,7 @@ export interface PageUpdateWithoutDatasourcesDataInput {
   translations?: PageTranslationUpdateManyWithoutPageInput | null
   chats?: PageChatUpdateManyWithoutPageInput | null
   tags?: TagUpdateManyWithoutPagesInput | null
-  plugin?: PagePluginUpdateOneWithoutPageInput | null
+  plugin?: PagePluginUpdateManyWithoutPageInput | null
 }
 
 export interface PageUpdateWithoutPluginDataInput {
@@ -12193,7 +12358,7 @@ export interface PageUpdateWithoutTagsDataInput {
   type?: PageTypeUpdateOneRequiredInput | null
   translations?: PageTranslationUpdateManyWithoutPageInput | null
   chats?: PageChatUpdateManyWithoutPageInput | null
-  plugin?: PagePluginUpdateOneWithoutPageInput | null
+  plugin?: PagePluginUpdateManyWithoutPageInput | null
   datasources?: DatasourceUpdateManyWithoutPageInput | null
 }
 
@@ -12203,7 +12368,7 @@ export interface PageUpdateWithoutTranslationsDataInput {
   type?: PageTypeUpdateOneRequiredInput | null
   chats?: PageChatUpdateManyWithoutPageInput | null
   tags?: TagUpdateManyWithoutPagesInput | null
-  plugin?: PagePluginUpdateOneWithoutPageInput | null
+  plugin?: PagePluginUpdateManyWithoutPageInput | null
   datasources?: DatasourceUpdateManyWithoutPageInput | null
 }
 
@@ -12213,7 +12378,7 @@ export interface PageUpdateWithoutWebsiteDataInput {
   translations?: PageTranslationUpdateManyWithoutPageInput | null
   chats?: PageChatUpdateManyWithoutPageInput | null
   tags?: TagUpdateManyWithoutPagesInput | null
-  plugin?: PagePluginUpdateOneWithoutPageInput | null
+  plugin?: PagePluginUpdateManyWithoutPageInput | null
   datasources?: DatasourceUpdateManyWithoutPageInput | null
 }
 
@@ -12300,7 +12465,9 @@ export interface PageWhereInput {
   tags_every?: TagWhereInput | null
   tags_some?: TagWhereInput | null
   tags_none?: TagWhereInput | null
-  plugin?: PagePluginWhereInput | null
+  plugin_every?: PagePluginWhereInput | null
+  plugin_some?: PagePluginWhereInput | null
+  plugin_none?: PagePluginWhereInput | null
   datasources_every?: DatasourceWhereInput | null
   datasources_some?: DatasourceWhereInput | null
   datasources_none?: DatasourceWhereInput | null
@@ -13602,7 +13769,7 @@ export interface Page extends Node {
   translations?: Array<PageTranslation> | null
   chats?: Array<PageChat> | null
   tags?: Array<Tag> | null
-  plugin?: PagePlugin | null
+  plugin?: Array<PagePlugin> | null
   datasources?: Array<Datasource> | null
 }
 

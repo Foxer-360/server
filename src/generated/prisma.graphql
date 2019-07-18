@@ -1,5 +1,5 @@
-# source: http://52.59.228.119:4466
-# timestamp: Thu Apr 04 2019 23:51:51 GMT+0200 (CEST)
+# source: http://localhost:4466
+# timestamp: Thu Jul 18 2019 16:07:07 GMT+0200 (Central European Summer Time)
 
 type AggregateComponentTemplate {
   count: Int!
@@ -157,7 +157,9 @@ input ComponentTemplateSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [ComponentTemplateSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
@@ -617,7 +619,9 @@ input DatasourceItemSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [DatasourceItemSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
@@ -964,7 +968,9 @@ input DatasourceSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [DatasourceSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
@@ -1264,7 +1270,9 @@ input FileSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [FileSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
@@ -1660,7 +1668,9 @@ input InquirySubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [InquirySubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
@@ -2164,7 +2174,9 @@ input LanguageSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [LanguageSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
@@ -2938,7 +2950,9 @@ input NavigationNodeSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [NavigationNodeSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
@@ -3290,7 +3304,9 @@ input NavigationSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [NavigationSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
@@ -3450,7 +3466,7 @@ type Page implements Node {
   translations(where: PageTranslationWhereInput, orderBy: PageTranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageTranslation!]
   chats(where: PageChatWhereInput, orderBy: PageChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageChat!]
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag!]
-  plugin: PagePlugin
+  plugin(where: PagePluginWhereInput, orderBy: PagePluginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PagePlugin!]
   datasources(where: DatasourceWhereInput, orderBy: DatasourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Datasource!]
 }
 
@@ -3663,7 +3679,9 @@ input PageAnnotationSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [PageAnnotationSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
@@ -4101,7 +4119,9 @@ input PageChatSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [PageChatSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
@@ -4345,7 +4365,7 @@ input PageCreateInput {
   translations: PageTranslationCreateManyWithoutPageInput
   chats: PageChatCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
-  plugin: PagePluginCreateOneWithoutPageInput
+  plugin: PagePluginCreateManyWithoutPageInput
   datasources: DatasourceCreateManyWithoutPageInput
 }
 
@@ -4390,7 +4410,7 @@ input PageCreateWithoutChatsInput {
   type: PageTypeCreateOneInput!
   translations: PageTranslationCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
-  plugin: PagePluginCreateOneWithoutPageInput
+  plugin: PagePluginCreateManyWithoutPageInput
   datasources: DatasourceCreateManyWithoutPageInput
 }
 
@@ -4401,7 +4421,7 @@ input PageCreateWithoutDatasourcesInput {
   translations: PageTranslationCreateManyWithoutPageInput
   chats: PageChatCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
-  plugin: PagePluginCreateOneWithoutPageInput
+  plugin: PagePluginCreateManyWithoutPageInput
 }
 
 input PageCreateWithoutPluginInput {
@@ -4420,7 +4440,7 @@ input PageCreateWithoutTagsInput {
   type: PageTypeCreateOneInput!
   translations: PageTranslationCreateManyWithoutPageInput
   chats: PageChatCreateManyWithoutPageInput
-  plugin: PagePluginCreateOneWithoutPageInput
+  plugin: PagePluginCreateManyWithoutPageInput
   datasources: DatasourceCreateManyWithoutPageInput
 }
 
@@ -4430,7 +4450,7 @@ input PageCreateWithoutTranslationsInput {
   type: PageTypeCreateOneInput!
   chats: PageChatCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
-  plugin: PagePluginCreateOneWithoutPageInput
+  plugin: PagePluginCreateManyWithoutPageInput
   datasources: DatasourceCreateManyWithoutPageInput
 }
 
@@ -4440,7 +4460,7 @@ input PageCreateWithoutWebsiteInput {
   translations: PageTranslationCreateManyWithoutPageInput
   chats: PageChatCreateManyWithoutPageInput
   tags: TagCreateManyWithoutPagesInput
-  plugin: PagePluginCreateOneWithoutPageInput
+  plugin: PagePluginCreateManyWithoutPageInput
   datasources: DatasourceCreateManyWithoutPageInput
 }
 
@@ -4502,9 +4522,9 @@ input PagePluginCreateInput {
   language: LanguageCreateOneInput!
 }
 
-input PagePluginCreateOneWithoutPageInput {
-  create: PagePluginCreateWithoutPageInput
-  connect: PagePluginWhereUniqueInput
+input PagePluginCreateManyWithoutPageInput {
+  create: [PagePluginCreateWithoutPageInput!]
+  connect: [PagePluginWhereUniqueInput!]
 }
 
 input PagePluginCreateWithoutPageInput {
@@ -4541,6 +4561,97 @@ type PagePluginPreviousValues {
   content: Json!
 }
 
+input PagePluginScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PagePluginScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PagePluginScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PagePluginScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  plugin: String
+
+  """All values that are not equal to given value."""
+  plugin_not: String
+
+  """All values that are contained in given list."""
+  plugin_in: [String!]
+
+  """All values that are not contained in given list."""
+  plugin_not_in: [String!]
+
+  """All values less than the given value."""
+  plugin_lt: String
+
+  """All values less than or equal the given value."""
+  plugin_lte: String
+
+  """All values greater than the given value."""
+  plugin_gt: String
+
+  """All values greater than or equal the given value."""
+  plugin_gte: String
+
+  """All values containing the given string."""
+  plugin_contains: String
+
+  """All values not containing the given string."""
+  plugin_not_contains: String
+
+  """All values starting with the given string."""
+  plugin_starts_with: String
+
+  """All values not starting with the given string."""
+  plugin_not_starts_with: String
+
+  """All values ending with the given string."""
+  plugin_ends_with: String
+
+  """All values not ending with the given string."""
+  plugin_not_ends_with: String
+}
+
 type PagePluginSubscriptionPayload {
   mutation: MutationType!
   node: PagePlugin
@@ -4558,7 +4669,9 @@ input PagePluginSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [PagePluginSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
@@ -4585,18 +4698,31 @@ input PagePluginUpdateInput {
   language: LanguageUpdateOneRequiredInput
 }
 
+input PagePluginUpdateManyDataInput {
+  plugin: String
+  content: Json
+}
+
 input PagePluginUpdateManyMutationInput {
   plugin: String
   content: Json
 }
 
-input PagePluginUpdateOneWithoutPageInput {
-  create: PagePluginCreateWithoutPageInput
-  connect: PagePluginWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-  update: PagePluginUpdateWithoutPageDataInput
-  upsert: PagePluginUpsertWithoutPageInput
+input PagePluginUpdateManyWithoutPageInput {
+  create: [PagePluginCreateWithoutPageInput!]
+  connect: [PagePluginWhereUniqueInput!]
+  set: [PagePluginWhereUniqueInput!]
+  disconnect: [PagePluginWhereUniqueInput!]
+  delete: [PagePluginWhereUniqueInput!]
+  update: [PagePluginUpdateWithWhereUniqueWithoutPageInput!]
+  updateMany: [PagePluginUpdateManyWithWhereNestedInput!]
+  deleteMany: [PagePluginScalarWhereInput!]
+  upsert: [PagePluginUpsertWithWhereUniqueWithoutPageInput!]
+}
+
+input PagePluginUpdateManyWithWhereNestedInput {
+  where: PagePluginScalarWhereInput!
+  data: PagePluginUpdateManyDataInput!
 }
 
 input PagePluginUpdateWithoutPageDataInput {
@@ -4605,7 +4731,13 @@ input PagePluginUpdateWithoutPageDataInput {
   language: LanguageUpdateOneRequiredInput
 }
 
-input PagePluginUpsertWithoutPageInput {
+input PagePluginUpdateWithWhereUniqueWithoutPageInput {
+  where: PagePluginWhereUniqueInput!
+  data: PagePluginUpdateWithoutPageDataInput!
+}
+
+input PagePluginUpsertWithWhereUniqueWithoutPageInput {
+  where: PagePluginWhereUniqueInput!
   update: PagePluginUpdateWithoutPageDataInput!
   create: PagePluginCreateWithoutPageInput!
 }
@@ -4785,7 +4917,9 @@ input PageSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [PageSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
@@ -5094,7 +5228,9 @@ input PageTaskSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [PageTaskSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
@@ -5775,7 +5911,9 @@ input PageTranslationSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [PageTranslationSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
@@ -6361,7 +6499,9 @@ input PageTypeSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [PageTypeSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
@@ -6560,7 +6700,7 @@ input PageUpdateDataInput {
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
-  plugin: PagePluginUpdateOneWithoutPageInput
+  plugin: PagePluginUpdateManyWithoutPageInput
   datasources: DatasourceUpdateManyWithoutPageInput
 }
 
@@ -6571,7 +6711,7 @@ input PageUpdateInput {
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
-  plugin: PagePluginUpdateOneWithoutPageInput
+  plugin: PagePluginUpdateManyWithoutPageInput
   datasources: DatasourceUpdateManyWithoutPageInput
 }
 
@@ -6644,7 +6784,7 @@ input PageUpdateWithoutChatsDataInput {
   type: PageTypeUpdateOneRequiredInput
   translations: PageTranslationUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
-  plugin: PagePluginUpdateOneWithoutPageInput
+  plugin: PagePluginUpdateManyWithoutPageInput
   datasources: DatasourceUpdateManyWithoutPageInput
 }
 
@@ -6655,7 +6795,7 @@ input PageUpdateWithoutDatasourcesDataInput {
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
-  plugin: PagePluginUpdateOneWithoutPageInput
+  plugin: PagePluginUpdateManyWithoutPageInput
 }
 
 input PageUpdateWithoutPluginDataInput {
@@ -6674,7 +6814,7 @@ input PageUpdateWithoutTagsDataInput {
   type: PageTypeUpdateOneRequiredInput
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
-  plugin: PagePluginUpdateOneWithoutPageInput
+  plugin: PagePluginUpdateManyWithoutPageInput
   datasources: DatasourceUpdateManyWithoutPageInput
 }
 
@@ -6684,7 +6824,7 @@ input PageUpdateWithoutTranslationsDataInput {
   type: PageTypeUpdateOneRequiredInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
-  plugin: PagePluginUpdateOneWithoutPageInput
+  plugin: PagePluginUpdateManyWithoutPageInput
   datasources: DatasourceUpdateManyWithoutPageInput
 }
 
@@ -6694,7 +6834,7 @@ input PageUpdateWithoutWebsiteDataInput {
   translations: PageTranslationUpdateManyWithoutPageInput
   chats: PageChatUpdateManyWithoutPageInput
   tags: TagUpdateManyWithoutPagesInput
-  plugin: PagePluginUpdateOneWithoutPageInput
+  plugin: PagePluginUpdateManyWithoutPageInput
   datasources: DatasourceUpdateManyWithoutPageInput
 }
 
@@ -6812,7 +6952,9 @@ input PageWhereInput {
   tags_every: TagWhereInput
   tags_some: TagWhereInput
   tags_none: TagWhereInput
-  plugin: PagePluginWhereInput
+  plugin_every: PagePluginWhereInput
+  plugin_some: PagePluginWhereInput
+  plugin_none: PagePluginWhereInput
   datasources_every: DatasourceWhereInput
   datasources_some: DatasourceWhereInput
   datasources_none: DatasourceWhereInput
@@ -6918,7 +7060,9 @@ input ProjectSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [ProjectSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
@@ -7297,7 +7441,9 @@ input SubscriberSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [SubscriberSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
@@ -7778,7 +7924,9 @@ input TagSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [TagSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
@@ -8362,7 +8510,9 @@ input WebsiteSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [WebsiteSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
 
   """
