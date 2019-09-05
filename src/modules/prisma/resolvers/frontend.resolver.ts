@@ -160,7 +160,7 @@ export class FrontendResolver {
 
         }
       }
-      return true;
+      return item.websiteId === websiteObject.id;
     });
 
     // tslint:disable-next-line:no-console
