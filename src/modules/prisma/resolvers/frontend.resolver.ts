@@ -137,7 +137,7 @@ export class FrontendResolver {
       }
 
       const urlFragments = item.url.split('/').filter(slug => slug !== '');
-      const askedUrlFragments = [...([websiteObject.urlMask.replace('/', '')] || []), resolvedUrl.language, ...(resolvedUrl.pages || [])];
+      const askedUrlFragments = [...([websiteObject.urlMask.replace('/', '')].filter(k => k && k.length > 0) || []), resolvedUrl.language, ...(resolvedUrl.pages || [])];
       for (let i = 0; i < askedUrlFragments.length; i++) {
         const res = urlFragments[i] && urlFragments[i].match(/^ds\:(.*)/);
 
