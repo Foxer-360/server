@@ -2,6 +2,7 @@ import { Query, Resolver } from '@nestjs/graphql';
 import { Prisma } from 'generated/prisma';
 import { FrontendService } from '../services/frontend.service';
 import { PageResolver } from './page.resolver';
+import cache from '../../../utils/cache';
 
 @Resolver('frontend')
 export class FrontendResolver {
@@ -49,23 +50,6 @@ export class FrontendResolver {
     const domain = originWithoutProtocolRegexRes[2];
 
     const resolvedUrl = this.frontendService.resolveUrl(url);
-    const pagesUrls = await this.pageResolver.getPagesUrls(null, { where: { languageCode: resolvedUrl.language } }, null, null);
-
-    const datasources = await this.prisma.query.datasources(
-      {},
-      `{
-        type
-        datasourceItems {
-          id
-          content
-          slug
-          datasource {
-            type
-          }
-        }
-      }`,
-    );
-
     // Flow:
     // Resolve website..
     //   If website is null, then it must have empty prefix ('' or '/')
@@ -112,13 +96,27 @@ export class FrontendResolver {
     let qWs = null;
     let isWebsiteActualyFirstPageSlag = false;
     if (!resolvedUrl.website) {
-      qWs = await this.prisma.query.websites({ where: { urlMask_in: ['', '/'], domain } }, websiteInfo);
+      // read cache - if not exists, save for later use
+      qWs = await cache.get_website(domain);
+      if (!qWs) {
+        qWs = await this.prisma.query.websites({ where: { urlMask_in: ['', '/'], domain } }, websiteInfo);
+        cache.save_website(domain, qWs);
+      }
     } else {
-      qWs = await this.prisma.query.websites({ where: { urlMask_in: [resolvedUrl.website, `/${resolvedUrl.website}`], domain } }, websiteInfo);
+      // tslint:disable-next-line:no-console
+      qWs = await cache.get_website(domain);
+      if (!qWs) {
+        qWs = await this.prisma.query.websites({ where: { urlMask_in: [resolvedUrl.website, `/${resolvedUrl.website}`], domain } }, websiteInfo);
+        cache.save_website(`${domain}/${resolvedUrl.website}`, qWs);
+      }
 
       if (!resolvedUrl.language && (!qWs || qWs.length < 1)) {
         isWebsiteActualyFirstPageSlag = true;
-        qWs = await this.prisma.query.websites({ where: { urlMask_in: ['', '/'], domain } }, websiteInfo);
+        qWs = await cache.get_website(domain);
+        if (!qWs) {
+          qWs = await this.prisma.query.websites({ where: { urlMask_in: ['', '/'], domain } }, websiteInfo);
+          cache.save_website(domain, qWs);
+        }
       }
     }
 
@@ -130,14 +128,49 @@ export class FrontendResolver {
     const websiteObject = qWs[0];
     // Possible datasource items
     const pageDatasourceItems = [];
+
     // try to find page in pagesUrls
+    let pagesUrls = [];
+    pagesUrls = await cache.get_pageUrls(domain);
+    if (!pagesUrls) {
+      pagesUrls = websiteObject && await this.pageResolver.getPagesUrls(
+        null,
+        { where: { languageCode: resolvedUrl.language, websiteId: websiteObject.id } },
+        null,
+        null,
+      );
+      cache.save_pageUrls(domain, pagesUrls);
+    }
+
+    let datasources = [];
+    datasources = await cache.get_datasources(domain);
+    if (!datasources) {
+      datasources = await this.prisma.query.datasources(
+        {},
+        `{
+          type
+          datasourceItems {
+            id
+            content
+            slug
+            datasource {
+              type
+            }
+          }
+        }`,
+      );
+      cache.save_datasources(domain, datasources);
+    }
+
     const pageUrl = pagesUrls.find(item => {
       if (item.url === url && item.websiteId === websiteObject.id) {
         return true;
       }
 
       const urlFragments = item.url.split('/').filter(slug => slug !== '');
-      const askedUrlFragments = [...([websiteObject.urlMask.replace('/', '')].filter(k => k && k.length > 0) || []), resolvedUrl.language, ...(resolvedUrl.pages || [])];
+      const askedUrlFragments = [
+        ...([websiteObject.urlMask.replace('/', '')].filter(k => k && k.length > 0) || []), resolvedUrl.language, ...(resolvedUrl.pages || [])];
+
       for (let i = 0; i < askedUrlFragments.length; i++) {
         const res = urlFragments[i] && urlFragments[i].match(/^ds\:(.*)/);
 
@@ -164,7 +197,7 @@ export class FrontendResolver {
     });
 
     // tslint:disable-next-line:no-console
-    console.log(`Found page info:`, pageUrl);
+    console.log(`${new Date()} Found page info:`, pageUrl);
 
     if (!pageUrl) {
       return Promise.resolve(emptyRes);
@@ -271,6 +304,7 @@ export class FrontendResolver {
       plugin_contains: 'seo',
     };
     const plugins = await this.prisma.query.pagePlugins({ where: pluginWhere }, pluginInfo);
+
     const navigations = await this.prisma.query.navigations(
       {
         where: {
@@ -311,6 +345,7 @@ export class FrontendResolver {
       project: websiteObject.project,
     };
 
+    cache.save_page(domain, url, res);
     return Promise.resolve(res);
   }
 }
