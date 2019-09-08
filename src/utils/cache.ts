@@ -127,14 +127,14 @@ class Cache {
       })
       .then((cache) => {
         if (!cache) return false;
-        const website = JSON.parse(String(cache));
-        if (website) {
+        const page = JSON.parse(String(cache));
+        if (page) {
           // tslint:disable-next-line:no-console
-          console.log('${new Date()} - [REDIS] Serve page from cache');
-          return website;
+          console.log(`${new Date()} - [REDIS] Serve page from cache`);
+          return page;
         }
         // when wrong data stored, then drop & return false
-        this.drop_website(domain);
+        this.drop_page(domain, url);
       })
       .catch((err) => { 
         // tslint:disable-next-line:no-console

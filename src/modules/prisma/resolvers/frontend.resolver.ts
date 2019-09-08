@@ -49,6 +49,11 @@ export class FrontendResolver {
 
     const domain = originWithoutProtocolRegexRes[2];
 
+    const pageCache = await cache.get_page(domain, url);
+    if (pageCache) {
+      return Promise.resolve(pageCache);
+    }
+
     const resolvedUrl = this.frontendService.resolveUrl(url);
     // Flow:
     // Resolve website..
