@@ -2,7 +2,7 @@ import { UseGuards } from '@nestjs/common';
 import { Resolver, Mutation, Query } from '@nestjs/graphql';
 import { Prisma, PageTranslationCreateInput } from 'generated/prisma';
 import { asyncForEach } from 'utils';
-
+import cache from 'utils/cache';
 import { AuthGuard } from 'common/guards/auth.guard';
 
 @Resolver('page')
@@ -18,7 +18,17 @@ export class PageResolver {
 
   @Query('pages')
   public async getPages(obj, args, context, info): Promise<any> {
-    return await this.prisma.query.pages(args, info);
+    const cacheKey = obj.body.variables && (obj.body.variables.websiteId || obj.body.variables.projectId);
+    let pages = [];
+
+    pages = await cache.get_pages(cacheKey);
+    if (pages) {
+      return pages;
+    }
+    pages = await this.prisma.query.pages(args, info);
+    cache.save_pages(cacheKey, pages);
+
+    return pages;
   }
 
   @Query('pagesUrls')

@@ -200,6 +200,46 @@ class Cache {
         }
       });
     }
+
+    /////////// Pages
+    static save_pages(key, data) {
+      client.set(key, JSON.stringify(data));
+    }
+
+    static get_pages(key) {
+      return new Promise((resolve, reject) => {
+        client.get(key, (err, result) => {
+          if (err) return reject(err);
+          return resolve(result);
+        });
+      })
+      .then((cache) => {
+        if (!cache) return false;
+        const page = JSON.parse(String(cache));
+        if (page) {
+          // tslint:disable-next-line:no-console
+          console.log(`${new Date()} - [REDIS] Serve pages for key ${key} from cache`);
+          return page;
+        }
+        // when wrong data stored, then drop & return false
+        this.drop_pages(key);
+      })
+      .catch((err) => { 
+        // tslint:disable-next-line:no-console
+        console.error(`${new Date()} - [REDIS ERROR] ${err}`);
+        return false;
+      });
+    }
+
+    static drop_pages(key) {
+      // tslint:disable-next-line:no-console
+      console.log(`${new Date()} - [REDIS] dropping pages for ${key}`);
+      client.keys(key, (err, keys) => {
+        if (Array.isArray(keys)) {
+          keys.forEach((k) => client.del(k));
+        }
+      });
+    }
 }
 
 export default Cache;
