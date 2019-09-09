@@ -88,6 +88,7 @@ class Cache {
       }
       // when wrong data stored, then drop & return false
       this.drop_website(domain);
+      return false;
     })
     .catch((err) => {
       // tslint:disable-next-line:no-console
