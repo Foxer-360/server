@@ -80,11 +80,11 @@ class Cache {
     })
     .then((cache) => {
       if (!cache) return false;
-      const website = JSON.parse(String(cache));
-      if (website) {
+      const pageUrls = JSON.parse(String(cache));
+      if (Array.isArray(pageUrls) && pageUrls.length > 0) {
         // tslint:disable-next-line:no-console
         console.log(`${new Date()} - [REDIS] Serve pageUrls from cache`);
-        return website;
+        return pageUrls;
       }
       // when wrong data stored, then drop & return false
       this.drop_website(domain);
