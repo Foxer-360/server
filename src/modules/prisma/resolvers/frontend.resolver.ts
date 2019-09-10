@@ -135,8 +135,7 @@ export class FrontendResolver {
     const pageDatasourceItems = [];
 
     // try to find page in pagesUrls
-    let pagesUrls = [];
-    pagesUrls = await cache.get_pageUrls(domain);
+    let pagesUrls = await cache.get_pageUrls(domain);
     if (!pagesUrls) {
       pagesUrls = websiteObject && await this.pageResolver.getPagesUrls(
         null,
@@ -167,7 +166,7 @@ export class FrontendResolver {
       cache.save_datasources(domain, datasources);
     }
 
-    const pageUrl = pagesUrls.find(item => {
+    const pageUrl = Array.isArray(pagesUrls) && pagesUrls.find(item => {
       if (item.url === url && item.websiteId === websiteObject.id) {
         return true;
       }

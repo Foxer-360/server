@@ -18,7 +18,7 @@ export class PageResolver {
 
   @Query('pages')
   public async getPages(obj, args, context, info): Promise<any> {
-    const cacheKey = obj.body.variables && (obj.body.variables.websiteId || obj.body.variables.projectId);
+    const cacheKey = obj.body.variables && (obj.body.variables.websiteId || obj.body.variables.projectId || obj.body.variables.website);
     let pages = [];
 
     pages = await cache.get_pages(cacheKey);
