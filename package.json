@@ -34,7 +34,7 @@
     "aws-sdk": "^2.434.0",
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
-    "express-jwt": "^5.3.1",
+    "express-jwt": "^6.0.0",
     "foxer360-authorization": "^1.0.5",
     "graphql": "^0.13.2",
     "graphql-import": "^0.6.0",
