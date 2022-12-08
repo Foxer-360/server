@@ -24,7 +24,7 @@
   "dependencies": {
     "@foxer360/delta": "git+https://github.com/Foxer-360/delta.git#sandbox",
     "@nestjs/common": "^5.5.0",
-    "@nestjs/core": "^5.5.0",
+    "@nestjs/core": "^9.2.1",
     "@nestjs/graphql": "^3.0.0",
     "@nestjs/microservices": "^5.5.0",
     "@nestjs/testing": "^5.5.0",
